@@ -73,7 +73,7 @@ class BasePlugin:
         gitHubName = Parameters["Mode2"]
         Domoticz.Log("Installation requested for Plugin:" + gitHubName)
         Domoticz.Log("Installation URL is:" + "https://github.com/ycahome/" + gitHubName)
-        Domoticz.Log("Paret dir is:" + str(os.pardir))
+        Domoticz.Log("Paret dir is:" + str(os.path.dirname(os.getcwd())))
 
         Domoticz.Log("Checking for dir:" + str(os.path.isdir(str(os.pardir) + "/" + gitHubName)))
         if (os.path.isdir(str(os.pardir) + "/" + gitHubName)) == True:
