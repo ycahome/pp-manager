@@ -16,6 +16,7 @@
                 <option label="SNMP Reader" value="SNMP Reader"/>
                 <option label="UPS Monitor" value="UPS Monitor"/>
                 <option label="Xiaomi Mi Flower Mate" value="Xiaomi Mi Flower Mate"/>
+                <option label="Sonos Players" value="Sonos Players"/>
                 <option label="Dummy Plugin" value="Dummy Plugin"/>
             </options>
         </param>
@@ -62,6 +63,7 @@ class BasePlugin:
             "SNMP Reader":                      ["ycahome",         "SNMPreader",                   "SNMPreader"],
             "NUT_UPS":                          ["999LV",           "NUT_UPS",                      "NUT_UPS"],
             "Xiaomi Mi Flower Mate":            ["flatsiedatsie",   "Mi_Flower_mate_plugin",        "Mi_Flower_mate_plugin"],
+            "Sonos Players":                    ["gerard33",        "sonos",                        "Sonos"],
             "Dummy Plugin":                     ["ycahome",         "Dummy_Plugin",                 "Dummy_Plugin"],
         }        
         
