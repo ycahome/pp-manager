@@ -102,20 +102,8 @@ class BasePlugin:
         if (os.path.isdir(str(os.getcwd()) + "/plugins/" + gitHubName)) == True:
             Domoticz.Log("Folder for Plugin:" + gitHubName + " already exists")
         else:
-            Domoticz.Log("Installing Plugin:" + gitHubName)
-            Domoticz.Log("Calling:" + str('git clone -b master https://github.com/ycahome/' + gitHubName + '.git ' + gitHubName))
-            #subprocess.call(['/usr/bin/git clone -b master https://github.com/ycahome/' + gitHubName + '.git ' + gitHubName])
-            #try:
-            #    pr = subprocess.Popen( "/usr/bin/git clone -b master https://github.com/ycahome/" + gitHubName + ".git " + gitHubName , cwd = os.path.dirname(str(os.getcwd()) + "/plugins/"), shell = True, stdout = subprocess.PIPE, stderr = subprocess.PIPE )
-            #    (out, error) = pr.communicate()
-            #    if out:
-            #        Domoticz.Log("Git Response:" + str(out))
-            #    if error:
-            #        Domoticz.Log("Git Error:" + str(error.strip()))
-            #except OSError as e:
-            #    Domoticz.Error("Git ErrorNo:" + str(e.errno))
-            #    Domoticz.Error("Git StrError:" + str(e.strerror))
-
+            InstallPythonPlugin(self.plugindata[gitHubName][0], self.plugindata[gitHubName][1])
+            
         Domoticz.Debug("Checking for file:" + str(os.getcwd()) + "/plugins/" + gitHubName + "/plugin.py")
         if (os.path.exists(str(os.getcwd()) + "/plugins/" + gitHubName + "/plugin.py")) == True:
             Domoticz.Log("Folder for Plugin:" + gitHubName + " already exists")
@@ -165,6 +153,31 @@ def DumpConfigToLog():
         Domoticz.Debug("Device nValue:    " + str(Devices[x].nValue))
         Domoticz.Debug("Device sValue:   '" + Devices[x].sValue + "'")
     return
+
+
+
+# InstallPyhtonPlugin function
+def InstallPythonPlugin(ppAuthor, ppRepository):
+
+    Domoticz.Log("Installing Plugin:" + ppRepository)
+    Domoticz.Log("Calling:" + str('git clone -b master https://github.com/' + ppAuthor + '/' + ppRepository + '.git ' + ppRepository))
+    #subprocess.call(['/usr/bin/git clone -b master https://github.com/ycahome/' + gitHubName + '.git ' + gitHubName])
+    #try:
+    #    pr = subprocess.Popen( "/usr/bin/git clone -b master https://github.com/ycahome/" + gitHubName + ".git " + gitHubName , cwd = os.path.dirname(str(os.getcwd()) + "/plugins/"), shell = True, stdout = subprocess.PIPE, stderr = subprocess.PIPE )
+    #    (out, error) = pr.communicate()
+    #    if out:
+    #        Domoticz.Log("Git Response:" + str(out))
+    #    if error:
+    #        Domoticz.Log("Git Error:" + str(error.strip()))
+    #except OSError as e:
+    #    Domoticz.Error("Git ErrorNo:" + str(e.errno))
+    #    Domoticz.Error("Git StrError:" + str(e.strerror))
+    
+    return None
+
+
+
+
 
 
 #
