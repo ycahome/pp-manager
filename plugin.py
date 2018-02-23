@@ -60,7 +60,7 @@ class BasePlugin:
 
         self.plugindata = {
             #DisplayName       (gitHubName,           Version)
-            "Idle":       ("Idle",          1.0.0), # On line (mains is present)
+            "Idle":       ("Idle",          1), # On line (mains is present)
             "SNMP Reader":       ("SNMPreader",       1), # On battery (mains is not present)
             "UPS Monitor":       ("NUT_UPS",      4), # Low battery
         }
