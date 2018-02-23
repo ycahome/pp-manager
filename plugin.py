@@ -34,7 +34,7 @@
 """
 
 import Domoticz
-import hmac
+import os
 import hashlib
 import time
 import urllib
