@@ -87,7 +87,7 @@ class BasePlugin:
             Domoticz.Log("Installing Plugin:" + gitHubName)
             Domoticz.Log("Calling:" + str('git clone -b master https://github.com/ycahome/' + gitHubName + '.git ' + gitHubName))
             #subprocess.call(['/usr/bin/git clone -b master https://github.com/ycahome/' + gitHubName + '.git ' + gitHubName])
-            pr = subprocess.Popen( "/usr/bin/git log" , cwd = os.path.dirname(str(os.getcwd()) + "/plugins/" + gitHubName), shell = True, stdout = subprocess.PIPE, stderr = subprocess.PIPE )
+            pr = subprocess.Popen( "/usr/bin/git clone" , cwd = os.path.dirname(str(os.getcwd()) + "/plugins/"), shell = True, stdout = subprocess.PIPE, stderr = subprocess.PIPE )
             (out, error) = pr.communicate()
             Domoticz.Log("Git Response:" + str(out))
             Domoticz.Error("Git Error:" + str(error))
