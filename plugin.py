@@ -71,7 +71,6 @@ class BasePlugin:
     def onStart(self):
 
         Domoticz.Debug("onStart called")
-        self.pollinterval = int(Parameters["Mode1"])  #Time in seconds between two polls
 
         if Parameters["Mode6"] == 'Debug':
             self.debug = True
