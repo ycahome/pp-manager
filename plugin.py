@@ -160,17 +160,17 @@ def InstallPythonPlugin(ppAuthor, ppRepository):
 
     Domoticz.Log("Installing Plugin:" + ppRepository)
     Domoticz.Log("Calling:" + str('git clone -b master https://github.com/' + ppAuthor + '/' + ppRepository + '.git ' + ppRepository))
-    #subprocess.call(['/usr/bin/git clone -b master https://github.com/ycahome/' + gitHubName + '.git ' + gitHubName])
-    #try:
-    #    pr = subprocess.Popen( "/usr/bin/git clone -b master https://github.com/ycahome/" + gitHubName + ".git " + gitHubName , cwd = os.path.dirname(str(os.getcwd()) + "/plugins/"), shell = True, stdout = subprocess.PIPE, stderr = subprocess.PIPE )
-    #    (out, error) = pr.communicate()
-    #    if out:
-    #        Domoticz.Log("Git Response:" + str(out))
-    #    if error:
-    #        Domoticz.Log("Git Error:" + str(error.strip()))
-    #except OSError as e:
-    #    Domoticz.Error("Git ErrorNo:" + str(e.errno))
-    #    Domoticz.Error("Git StrError:" + str(e.strerror))
+    subprocess.call(['/usr/bin/git clone -b master https://github.com/ycahome/' + gitHubName + '.git ' + gitHubName])
+    try:
+        pr = subprocess.Popen( "/usr/bin/git clone -b master https://github.com/ycahome/" + gitHubName + ".git " + gitHubName , cwd = os.path.dirname(str(os.getcwd()) + "/plugins/"), shell = True, stdout = subprocess.PIPE, stderr = subprocess.PIPE )
+        (out, error) = pr.communicate()
+        if out:
+            Domoticz.Log("Git Response:" + str(out))
+        if error:
+            Domoticz.Log("Git Error:" + str(error.strip()))
+    except OSError as e:
+        Domoticz.Error("Git ErrorNo:" + str(e.errno))
+        Domoticz.Error("Git StrError:" + str(e.strerror))
     
     return None
 
