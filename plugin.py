@@ -37,6 +37,7 @@
 import Domoticz
 import os
 import subprocess
+import git
 import hashlib
 import time
 import urllib
@@ -53,6 +54,9 @@ class BasePlugin:
     sessionCookie = ""
     privateKey = b""
     socketOn = "FALSE"
+
+    def git(*args):
+        return subprocess.check_call(['git'] + list(args))
 
     def __init__(self):
         self.debug = False
@@ -83,7 +87,8 @@ class BasePlugin:
         else:
             Domoticz.Log("Installing Plugin:" + gitHubName)
             Domoticz.Log("Calling:" + str('git clone -b master https://github.com/ycahome/' + gitHubName + '.git ' + gitHubName))
-            subprocess.call(['/usr/bin/git clone -b master https://github.com/ycahome/' + gitHubName + '.git ' + gitHubName])
+            #subprocess.call(['/usr/bin/git clone -b master https://github.com/ycahome/' + gitHubName + '.git ' + gitHubName])
+            git("clone", "git clone -b master https://github.com/ycahome/" + gitHubName + ".git " + gitHubName)
 
         Domoticz.Debug("Checking for file:" + str(os.getcwd()) + "/plugins/" + gitHubName + "/plugin.py")
         if (os.path.exists(str(os.getcwd()) + "/plugins/" + gitHubName + "/plugin.py")) == True:
