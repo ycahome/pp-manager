@@ -14,8 +14,8 @@
             <options>
                 <option label="Idle" value="Idle"  default="true" />
                 <option label="SNMP Reader" value="SNMP Reader"/>
-                <option label="UPS Monitor" value="NUT_UPS"/>
-                <option label="Dummy Plugin" value="Dummy_Plugin"/>
+                <option label="UPS Monitor" value="UPS Monitor"/>
+                <option label="Dummy Plugin" value="Dummy Plugin"/>
             </options>
         </param>
         <param field="Mode3" label="Notifications" width="75px">
@@ -62,6 +62,16 @@ class BasePlugin:
         self.error = False
         self.nextpoll = datetime.now()
         self.pollinterval = 60  #Time in seconds between two polls
+
+        self.plugindata = {
+            # Plugin Text:      [author,        repository,             version]
+            "idle":             ["idle",        "idle",                 "1.0.0"],
+            "SNMP Reader":      ["ycahome"      "SNMPreader",           "1.1.1"],
+            "NUT_UPS":          ["999LV",       "NUT_UPS",              "1.1.2"],
+            "Dummy_Plugin":     ["ycahome",     "Dummy_Plugin",         "1.1.3"],
+        }        
+        
+        
         return
 
     def onStart(self):
@@ -76,6 +86,14 @@ class BasePlugin:
             Domoticz.Debugging(0)
         gitHubName = ""
         gitHubName = Parameters["Mode2"]
+        
+        if gitHubName in self.plugindata:
+            Domoticz.Log("Plugin Text:" + self.plugindata[gitHubName][1])
+            Domoticz.Log("Plugin Author:" + self.plugindata[gitHubName][2])
+            Domoticz.Log("Plugin Repository:" + self.plugindata[gitHubName][3])
+            Domoticz.Log("Plugin Version:" + self.plugindata[gitHubName][4])
+            #self.plugindata[gitHubName][2] = data
+        
         Domoticz.Log("Installation requested for Plugin:" + gitHubName)
         Domoticz.Debug("Installation URL is:" + "https://github.com/ycahome/" + gitHubName)
         Domoticz.Log("Current Working dir is:" + str(os.getcwd()))
@@ -87,16 +105,16 @@ class BasePlugin:
             Domoticz.Log("Installing Plugin:" + gitHubName)
             Domoticz.Log("Calling:" + str('git clone -b master https://github.com/ycahome/' + gitHubName + '.git ' + gitHubName))
             #subprocess.call(['/usr/bin/git clone -b master https://github.com/ycahome/' + gitHubName + '.git ' + gitHubName])
-            try:
-                pr = subprocess.Popen( "/usr/bin/git clone -b master https://github.com/ycahome/" + gitHubName + ".git " + gitHubName , cwd = os.path.dirname(str(os.getcwd()) + "/plugins/"), shell = True, stdout = subprocess.PIPE, stderr = subprocess.PIPE )
-                (out, error) = pr.communicate()
-                if out:
-                    Domoticz.Log("Git Response:" + str(out))
-                if error:
-                    Domoticz.Log("Git Error:" + str(error.strip()))
-            except OSError as e:
-                Domoticz.Error("Git ErrorNo:" + str(e.errno))
-                Domoticz.Error("Git StrError:" + str(e.strerror))
+            #try:
+            #    pr = subprocess.Popen( "/usr/bin/git clone -b master https://github.com/ycahome/" + gitHubName + ".git " + gitHubName , cwd = os.path.dirname(str(os.getcwd()) + "/plugins/"), shell = True, stdout = subprocess.PIPE, stderr = subprocess.PIPE )
+            #    (out, error) = pr.communicate()
+            #    if out:
+            #        Domoticz.Log("Git Response:" + str(out))
+            #    if error:
+            #        Domoticz.Log("Git Error:" + str(error.strip()))
+            #except OSError as e:
+            #    Domoticz.Error("Git ErrorNo:" + str(e.errno))
+            #    Domoticz.Error("Git StrError:" + str(e.strerror))
 
         Domoticz.Debug("Checking for file:" + str(os.getcwd()) + "/plugins/" + gitHubName + "/plugin.py")
         if (os.path.exists(str(os.getcwd()) + "/plugins/" + gitHubName + "/plugin.py")) == True:
