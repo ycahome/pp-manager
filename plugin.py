@@ -79,7 +79,7 @@ class BasePlugin:
         if (os.path.isdir(str(os.getcwd()) + "/plugins/" + gitHubName)) == True:
             Domoticz.Log("Folder for Plugin:" + gitHubName + " already exists")
 
-        Domoticz.Log("Checking for file:" + str(os.getcwd()) + "/plugins/" + gitHubName + "/plugin.py"))
+        Domoticz.Log("Checking for file:" + str(os.getcwd()) + "/plugins/" + gitHubName + "/plugin.py")
         if (os.path.exists(str(os.getcwd()) + "/plugins/" + gitHubName + "/plugin.py")) == True:
             Domoticz.Log("Folder for Plugin:" + gitHubName + " already exists")
         #Domoticz.Heartbeat(int(Parameters["Mode1"]))
