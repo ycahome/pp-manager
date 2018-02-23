@@ -62,7 +62,7 @@ class BasePlugin:
             #DisplayName       (gitHubName,           Version)
             "Idle":       ("Idle",          1), # On line (mains is present)
             "SNMP Reader":       ("SNMPreader",       1), # On battery (mains is not present)
-            "UPS Monitor":       ("NUT_UPS",      4), # Low battery
+            "NUT_UPS":       ("NUT_UPS",      4), # Low battery
         }
         
         
