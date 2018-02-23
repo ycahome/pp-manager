@@ -19,12 +19,6 @@
                 <option label="Dummy Plugin" value="Dummy Plugin"/>
             </options>
         </param>
-        <param field="Mode3" label="Notifications" width="75px">
-            <options>
-                <option label="Notify" value="Notify"/>
-                <option label="Disable" value="Disable"  default="true" />
-            </options>
-        </param>
          <param field="Mode6" label="Debug" width="75px">
             <options>
                 <option label="True" value="Debug"/>
@@ -39,9 +33,7 @@ import Domoticz
 import os
 import subprocess
 import sys
-#import commands
 
-import hashlib
 import time
 import urllib
 import urllib.request
