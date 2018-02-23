@@ -35,6 +35,7 @@
 
 import Domoticz
 import os
+import subprocess
 import hashlib
 import time
 import urllib
@@ -72,14 +73,18 @@ class BasePlugin:
         gitHubName = ""
         gitHubName = Parameters["Mode2"]
         Domoticz.Log("Installation requested for Plugin:" + gitHubName)
-        Domoticz.Log("Installation URL is:" + "https://github.com/ycahome/" + gitHubName)
-        Domoticz.Log("Paret dir is:" + str(os.getcwd()))
+        Domoticz.Debug("Installation URL is:" + "https://github.com/ycahome/" + gitHubName)
+        Domoticz.Log("Current Working dir is:" + str(os.getcwd()))
 
-        Domoticz.Log("Checking for dir:" + str(os.getcwd()) + "/plugins/" + gitHubName)
+        Domoticz.Debug("Checking for dir:" + str(os.getcwd()) + "/plugins/" + gitHubName)
         if (os.path.isdir(str(os.getcwd()) + "/plugins/" + gitHubName)) == True:
             Domoticz.Log("Folder for Plugin:" + gitHubName + " already exists")
+        else:
+            Domoticz.Log("Installing Plugin:" + gitHubName)
+            Domoticz.Log("Calling:" + str('git clone -b master https://github.com/ycahome/' + gitHubName + '.git ' + gitHubName))
+            #subprocess.call(['git clone -b master https://github.com/ycahome/' + gitHubName + '.git ' + gitHubName])
 
-        Domoticz.Log("Checking for file:" + str(os.getcwd()) + "/plugins/" + gitHubName + "/plugin.py")
+        Domoticz.Debug("Checking for file:" + str(os.getcwd()) + "/plugins/" + gitHubName + "/plugin.py")
         if (os.path.exists(str(os.getcwd()) + "/plugins/" + gitHubName + "/plugin.py")) == True:
             Domoticz.Log("Folder for Plugin:" + gitHubName + " already exists")
         #Domoticz.Heartbeat(int(Parameters["Mode1"]))
