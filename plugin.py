@@ -57,6 +57,15 @@ class BasePlugin:
         self.error = False
         self.nextpoll = datetime.now()
         self.pollinterval = 60  #Time in seconds between two polls
+
+        self.plugindata = {
+            #DisplayName       (gitHubName,           Version)
+            "Idle":       ("Idle",          1.0.0), # On line (mains is present)
+            "SNMP Reader":       ("SNMPreader",       1), # On battery (mains is not present)
+            "UPS Monitor":       ("NUT_UPS",      4), # Low battery
+        }
+        
+        
         return
 
     def onStart(self):
@@ -72,6 +81,8 @@ class BasePlugin:
             Domoticz.Debugging(0)
 
 
+        Domoticz.Log("Installation requested for Plugin:" + Parameters["Mode2"])
+        Domoticz.Log("Installation URL is:" + "https://github.com/ycahome/" + self.plugindata[Parameters["Mode2"]][1])
         Domoticz.Heartbeat(int(Parameters["Mode1"]))
 
 
