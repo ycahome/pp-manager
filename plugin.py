@@ -14,7 +14,7 @@
             <options>
                 <option label="Idle" value="Idle"  default="true" />
                 <option label="SNMP Reader" value="SNMP Reader"/>
-                <option label="NUT UPS" value="NUT UPS"/>
+                <option label="UPS Monitor" value="NUT_UPS"/>
             </options>
         </param>
         <param field="Mode3" label="Notifications" width="75px">
