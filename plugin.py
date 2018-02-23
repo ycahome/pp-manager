@@ -38,7 +38,7 @@ import Domoticz
 import os
 import subprocess
 import sys
-import commands
+#import commands
 
 import hashlib
 import time
