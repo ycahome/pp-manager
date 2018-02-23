@@ -83,7 +83,7 @@ class BasePlugin:
         else:
             Domoticz.Log("Installing Plugin:" + gitHubName)
             Domoticz.Log("Calling:" + str('git clone -b master https://github.com/ycahome/' + gitHubName + '.git ' + gitHubName))
-            subprocess.call(['git clone -b master https://github.com/ycahome/' + gitHubName + '.git ' + gitHubName])
+            subprocess.call(['/usr/bin/git clone -b master https://github.com/ycahome/' + gitHubName + '.git ' + gitHubName])
 
         Domoticz.Debug("Checking for file:" + str(os.getcwd()) + "/plugins/" + gitHubName + "/plugin.py")
         if (os.path.exists(str(os.getcwd()) + "/plugins/" + gitHubName + "/plugin.py")) == True:
