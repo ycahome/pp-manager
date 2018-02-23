@@ -93,7 +93,7 @@ class BasePlugin:
                 if out:
                     Domoticz.Log("Git Response:" + str(out))
                 if error:
-                    Domoticz.Error("Git Error:" + str(error.strip()))
+                    Domoticz.Log("Git Error:" + str(error.strip()))
             except OSError as e:
                 Domoticz.Error("Git ErrorNo:" + str(e.errno))
                 Domoticz.Error("Git StrError:" + str(e.strerror))
