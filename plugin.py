@@ -65,12 +65,12 @@ class BasePlugin:
         self.pollinterval = 60  #Time in seconds between two polls
 
         self.plugindata = {
-            # Plugin Text:                      [gitHub author,        repository,             text]
-            "idle":                             ["idle",            "idle",                         "n-a"],
-            "SNMP Reader":                      ["ycahome",         "SNMPreader",                   "n-a"],
-            "NUT_UPS":                          ["999LV",           "NUT_UPS",                      "n-a"],
-            "Xiaomi Mi Flower Mate":            ["flatsiedatsie",   "Mi_Flower_mate_plugin ",       "n-a"],
-            "Dummy Plugin":                     ["ycahome",         "Dummy_Plugin",                 "n-a"],
+            # Plugin Text:                      [gitHub author,        repository,                  plugin key]
+            "idle":                             ["idle",            "idle",                         "idle"],
+            "SNMP Reader":                      ["ycahome",         "SNMPreader",                   "SNMPreader"],
+            "NUT_UPS":                          ["999LV",           "NUT_UPS",                      "NUT_UPS"],
+            "Xiaomi Mi Flower Mate":            ["flatsiedatsie",   "Mi_Flower_mate_plugin",        "Mi_Flower_mate_plugin"],
+            "Dummy Plugin":                     ["ycahome",         "Dummy_Plugin",                 "Dummy_Plugin"],
         }        
         
         
@@ -86,25 +86,31 @@ class BasePlugin:
             DumpConfigToLog()
         else:
             Domoticz.Debugging(0)
-        gitHubName = ""
-        gitHubName = Parameters["Mode2"]
+        pluginText = ""
+        pluginAuthor = ""
+        pluginRepository = ""
+        pluginKey = ""
         
+        pluginText = Parameters["Mode2"]
+        pluginAuthor = self.plugindata[pluginText][0]
+        pluginRepository = self.plugindata[pluginText][1]
+        pluginKey = self.plugindata[pluginText][2]
+
         if gitHubName in self.plugindata:
-            Domoticz.Log("Plugin Text:" + gitHubName)
-            Domoticz.Log("Plugin Author:" + self.plugindata[gitHubName][0])
-            Domoticz.Log("Plugin Repository:" + self.plugindata[gitHubName][1])
-            Domoticz.Log("Plugin Text:" + self.plugindata[gitHubName][2])
-            #self.plugindata[gitHubName][2] = data
+            Domoticz.Log("Plugin Text:" + pluginText)
+            Domoticz.Log("Plugin Author:" + pluginAuthor)
+            Domoticz.Log("Plugin Repository:" + pluginRepository)
+            Domoticz.Log("Plugin Key:" + pluginKey)
         
-        Domoticz.Log("Installation requested for Plugin:" + gitHubName)
-        Domoticz.Debug("Installation URL is:" + "https://github.com/ycahome/" + gitHubName)
+        Domoticz.Log("Installation requested for Plugin:" + pluginText)
+        Domoticz.Debug("Installation URL is:" + "https://github.com/" + pluginAuthor +"/" + pluginRepository)
         Domoticz.Log("Current Working dir is:" + str(os.getcwd()))
 
-        Domoticz.Debug("Checking for dir:" + str(os.getcwd()) + "/plugins/" + gitHubName)
-        if (os.path.isdir(str(os.getcwd()) + "/plugins/" + gitHubName)) == True:
-            Domoticz.Log("Folder for Plugin:" + gitHubName + " already exists")
+        Domoticz.Debug("Checking for dir:" + str(os.getcwd()) + "/plugins/" + pluginKey)
+        if (os.path.isdir(str(os.getcwd()) + "/plugins/" + pluginKey)) == True:
+            Domoticz.Log("Folder for Plugin:" + pluginKey + " already exists")
         else:
-            InstallPythonPlugin(self.plugindata[gitHubName][0], self.plugindata[gitHubName][1].strip())
+            InstallPythonPlugin(pluginAuthor, pluginRepository, pluginKey)
             
         #Domoticz.Heartbeat(int(Parameters["Mode1"]))
 
@@ -156,10 +162,10 @@ def DumpConfigToLog():
 
 
 # InstallPyhtonPlugin function
-def InstallPythonPlugin(ppAuthor, ppRepository):
+def InstallPythonPlugin(ppAuthor, ppRepository, ppKey):
 
     Domoticz.Log("Installing Plugin:" + ppRepository)
-    ppUrl = "/usr/bin/git clone -b master https://github.com/" + ppAuthor + "/" + ppRepository + ".git " + ppRepository
+    ppUrl = "/usr/bin/git clone -b master https://github.com/" + ppAuthor + "/" + ppRepository + ".git " + ppKey
     Domoticz.Log("Calling:" + ppUrl)
     #subprocess.call(["/usr/bin/git clone -b master https://github.com/" + ppAuthor + '/' + ppRepository + '.git ' + ppRepository])
     try:
