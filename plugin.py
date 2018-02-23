@@ -15,6 +15,7 @@
                 <option label="Idle" value="Idle"  default="true" />
                 <option label="SNMP Reader" value="SNMP Reader"/>
                 <option label="UPS Monitor" value="UPS Monitor"/>
+                <option label="Xiaomi Mi Flower Mate" value="Xiaomi Mi Flower Mate"/>
                 <option label="Dummy Plugin" value="Dummy Plugin"/>
             </options>
         </param>
@@ -64,11 +65,12 @@ class BasePlugin:
         self.pollinterval = 60  #Time in seconds between two polls
 
         self.plugindata = {
-            # Plugin Text:      [author,        repository,             version]
-            "idle":             ["idle",        "idle",                 "1.0.0"],
-            "SNMP Reader":      ["ycahome"      "SNMPreader",           "1.1.1"],
-            "NUT_UPS":          ["999LV",       "NUT_UPS",              "1.1.2"],
-            "Dummy_Plugin":     ["ycahome",     "Dummy_Plugin",         "1.1.3"],
+            # Plugin Text:                      [gitHub author,        repository,             text]
+            "idle":                             ["idle",            "idle",                         "n-a"],
+            "SNMP Reader":                      ["ycahome",         "SNMPreader",                   "n-a"],
+            "NUT_UPS":                          ["999LV",           "NUT_UPS",                      "n-a"],
+            "Xiaomi Mi Flower Mate":            ["flatsiedatsie",   "Mi_Flower_mate_plugin ",       "n-a"],
+            "Dummy_Plugin":                     ["ycahome",         "Dummy_Plugin",                 "n-a"],
         }        
         
         
@@ -91,7 +93,7 @@ class BasePlugin:
             Domoticz.Log("Plugin Text:" + gitHubName)
             Domoticz.Log("Plugin Author:" + self.plugindata[gitHubName][0])
             Domoticz.Log("Plugin Repository:" + self.plugindata[gitHubName][1])
-            Domoticz.Log("Plugin Version:" + self.plugindata[gitHubName][2])
+            Domoticz.Log("Plugin Text:" + self.plugindata[gitHubName][2])
             #self.plugindata[gitHubName][2] = data
         
         Domoticz.Log("Installation requested for Plugin:" + gitHubName)
@@ -104,9 +106,6 @@ class BasePlugin:
         else:
             InstallPythonPlugin(self.plugindata[gitHubName][0], self.plugindata[gitHubName][1])
             
-        Domoticz.Debug("Checking for file:" + str(os.getcwd()) + "/plugins/" + gitHubName + "/plugin.py")
-        if (os.path.exists(str(os.getcwd()) + "/plugins/" + gitHubName + "/plugin.py")) == True:
-            Domoticz.Log("Folder for Plugin:" + gitHubName + " already exists")
         #Domoticz.Heartbeat(int(Parameters["Mode1"]))
 
 
