@@ -70,7 +70,7 @@ class BasePlugin:
             "SNMP Reader":                      ["ycahome",         "SNMPreader",                   "n-a"],
             "NUT_UPS":                          ["999LV",           "NUT_UPS",                      "n-a"],
             "Xiaomi Mi Flower Mate":            ["flatsiedatsie",   "Mi_Flower_mate_plugin ",       "n-a"],
-            "Dummy_Plugin":                     ["ycahome",         "Dummy_Plugin",                 "n-a"],
+            "Dummy Plugin":                     ["ycahome",         "Dummy_Plugin",                 "n-a"],
         }        
         
         
