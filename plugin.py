@@ -159,10 +159,11 @@ def DumpConfigToLog():
 def InstallPythonPlugin(ppAuthor, ppRepository):
 
     Domoticz.Log("Installing Plugin:" + ppRepository)
-    Domoticz.Log("Calling:" + str('git clone -b master https://github.com/' + ppAuthor + '/' + ppRepository + '.git ' + ppRepository))
+    ppUrl = "/usr/bin/git clone -b master https://github.com/" + ppAuthor + "/" + ppRepository + ".git " + ppRepository
+    Domoticz.Log("Calling:" + ppUrl)
     subprocess.call(['/usr/bin/git clone -b master https://github.com/' + ppAuthor + '/' + ppRepository + '.git ' + ppRepository])
     try:
-        pr = subprocess.Popen( "/usr/bin/git clone -b master https://github.com/" + ppAuthor + "/" + ppRepository + ".git " + ppRepository , cwd = os.path.dirname(str(os.getcwd()) + "/plugins/"), shell = True, stdout = subprocess.PIPE, stderr = subprocess.PIPE )
+        pr = subprocess.Popen( ppUrl , cwd = os.path.dirname(str(os.getcwd()) + "/plugins/"), shell = True, stdout = subprocess.PIPE, stderr = subprocess.PIPE )
         (out, error) = pr.communicate()
         if out:
             Domoticz.Log("Git Response:" + str(out))
