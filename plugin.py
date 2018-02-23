@@ -94,6 +94,11 @@ class BasePlugin:
                     Domoticz.Log("Git Response:" + str(out))
                 if error:
                     Domoticz.Error("Git Error:" + str(error.strip()))
+                except OSError as e:
+                    Domoticz.Error("Git ErrorNo:" + str(e.errno))
+                    Domoticz.Error("Git StrError:" + str(e.strerror))
+                except:
+                    print "Error > ",sys.exc_info()[0]
 
         Domoticz.Debug("Checking for file:" + str(os.getcwd()) + "/plugins/" + gitHubName + "/plugin.py")
         if (os.path.exists(str(os.getcwd()) + "/plugins/" + gitHubName + "/plugin.py")) == True:
