@@ -81,6 +81,7 @@ class BasePlugin:
         gitHubName = ""
         gitHubName = Parameters["Mode2"]
         Domoticz.Log("Installation requested for Plugin:" + Parameters["Mode2"])
+        Domoticz.Log("Installation requested for Plugin:" + self.plugindata[gitHubName][1])
         Domoticz.Log("Installation URL is:" + "https://github.com/ycahome/" + self.plugindata[gitHubName][1])
         Domoticz.Heartbeat(int(Parameters["Mode1"]))
 
