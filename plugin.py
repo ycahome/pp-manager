@@ -97,9 +97,6 @@ class BasePlugin:
         pluginKey = self.plugindata[pluginText][2]
 
         
-        Domoticz.Log("Installation requested for Plugin:" + pluginText)
-        Domoticz.Debug("Installation URL is:" + "https://github.com/" + pluginAuthor +"/" + pluginRepository)
-        Domoticz.Log("Current Working dir is:" + str(os.getcwd()))
 
         Domoticz.Debug("Checking for dir:" + str(os.getcwd()) + "/plugins/" + pluginKey)
         if (os.path.isdir(str(os.getcwd()) + "/plugins/" + pluginKey)) == True:
@@ -108,7 +105,10 @@ class BasePlugin:
         elif pluginText == "Idle":
             Domoticz.Log("Plugin Idle")
         else:
-            if pluginText in self.plugindata:
+           Domoticz.Log("Installation requested for Plugin:" + pluginText)
+           Domoticz.Debug("Installation URL is:" + "https://github.com/" + pluginAuthor +"/" + pluginRepository)
+           Domoticz.Debug("Current Working dir is:" + str(os.getcwd()))
+           if pluginText in self.plugindata:
                 Domoticz.Log("Plugin Display Name:" + pluginText)
                 Domoticz.Log("Plugin Author:" + pluginAuthor)
                 Domoticz.Log("Plugin Repository:" + pluginRepository)
