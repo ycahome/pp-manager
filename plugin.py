@@ -96,11 +96,6 @@ class BasePlugin:
         pluginRepository = self.plugindata[pluginText][1]
         pluginKey = self.plugindata[pluginText][2]
 
-        if pluginText in self.plugindata:
-            Domoticz.Log("Plugin Display Name:" + pluginText)
-            Domoticz.Log("Plugin Author:" + pluginAuthor)
-            Domoticz.Log("Plugin Repository:" + pluginRepository)
-            Domoticz.Log("Plugin Key:" + pluginKey)
         
         Domoticz.Log("Installation requested for Plugin:" + pluginText)
         Domoticz.Debug("Installation URL is:" + "https://github.com/" + pluginAuthor +"/" + pluginRepository)
@@ -113,7 +108,12 @@ class BasePlugin:
         elif pluginText == "Idle":
             Domoticz.Log("Plugin Idle")
         else:
-            InstallPythonPlugin(pluginAuthor, pluginRepository, pluginKey)
+            if pluginText in self.plugindata:
+                Domoticz.Log("Plugin Display Name:" + pluginText)
+                Domoticz.Log("Plugin Author:" + pluginAuthor)
+                Domoticz.Log("Plugin Repository:" + pluginRepository)
+                Domoticz.Log("Plugin Key:" + pluginKey)
+                InstallPythonPlugin(pluginAuthor, pluginRepository, pluginKey)
             
         #Domoticz.Heartbeat(int(Parameters["Mode1"]))
 
