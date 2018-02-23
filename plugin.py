@@ -74,14 +74,13 @@ class BasePlugin:
         Domoticz.Log("Installation requested for Plugin:" + gitHubName)
         Domoticz.Log("Installation URL is:" + "https://github.com/ycahome/" + gitHubName)
         Domoticz.Log("Paret dir is:" + str(os.getcwd()))
-        Domoticz.Log("Paret dir is:" + str(os.path.dirname(os.getcwd())))
 
-        Domoticz.Log("Checking for dir:" + str(os.path.isdir(str(os.pardir) + "/" + gitHubName)))
-        if (os.path.isdir(str(os.pardir) + "/" + gitHubName)) == True:
+        Domoticz.Log("Checking for dir:" + str(os.getcwd()) + "/plugins/" + gitHubName)
+        if (os.path.isdir(str(os.getcwd()) + "/plugins/" + gitHubName)) == True:
             Domoticz.Log("Folder for Plugin:" + gitHubName + " already exists")
 
-        Domoticz.Log("Checking for file:" + str(os.path.exists(str(os.pardir) + "/" + gitHubName + "/plugin.py")))
-        if (os.path.exists(str(os.pardir) + "/" + gitHubName + "/plugin.py")) == True:
+        Domoticz.Log("Checking for file:" + str(os.getcwd()) + "/plugins/" + gitHubName + "/plugin.py"))
+        if (os.path.exists(str(os.getcwd()) + "/plugins/" + gitHubName + "/plugin.py")) == True:
             Domoticz.Log("Folder for Plugin:" + gitHubName + " already exists")
         #Domoticz.Heartbeat(int(Parameters["Mode1"]))
 
