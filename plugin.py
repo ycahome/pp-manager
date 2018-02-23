@@ -162,7 +162,7 @@ def InstallPythonPlugin(ppAuthor, ppRepository):
     Domoticz.Log("Calling:" + str('git clone -b master https://github.com/' + ppAuthor + '/' + ppRepository + '.git ' + ppRepository))
     subprocess.call(['/usr/bin/git clone -b master https://github.com/' + ppAuthor + '/' + ppRepository + '.git ' + ppRepository])
     try:
-        pr = subprocess.Popen( "/usr/bin/git clone -b master https://github.com/' + ppAuthor + '/" + ppRepository + ".git " + ppRepository , cwd = os.path.dirname(str(os.getcwd()) + "/plugins/"), shell = True, stdout = subprocess.PIPE, stderr = subprocess.PIPE )
+        pr = subprocess.Popen( "/usr/bin/git clone -b master https://github.com/" + ppAuthor + "/" + ppRepository + ".git " + ppRepository , cwd = os.path.dirname(str(os.getcwd()) + "/plugins/"), shell = True, stdout = subprocess.PIPE, stderr = subprocess.PIPE )
         (out, error) = pr.communicate()
         if out:
             Domoticz.Log("Git Response:" + str(out))
