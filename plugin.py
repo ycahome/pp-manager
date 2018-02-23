@@ -57,15 +57,6 @@ class BasePlugin:
         self.error = False
         self.nextpoll = datetime.now()
         self.pollinterval = 60  #Time in seconds between two polls
-
-        self.plugindata = {
-            #DisplayName       (gitHubName,           Version)
-            "Idle":       ("Idle",          1), # On line (mains is present)
-            "SNMP Reader":       ("SNMPreader",       1), # On battery (mains is not present)
-            "NUT_UPS":       ("NUT_UPS",      4), # Low battery
-        }
-        
-        
         return
 
     def onStart(self):
@@ -80,9 +71,16 @@ class BasePlugin:
             Domoticz.Debugging(0)
         gitHubName = ""
         gitHubName = Parameters["Mode2"]
-        Domoticz.Log("Installation requested for Plugin:" + Parameters["Mode2"])
-        Domoticz.Log("Installation requested for Plugin:" + self.plugindata[gitHubName][1])
-        Domoticz.Log("Installation URL is:" + "https://github.com/ycahome/" + self.plugindata[gitHubName][1])
+        Domoticz.Log("Installation requested for Plugin:" + gitHubName)
+        Domoticz.Log("Installation URL is:" + "https://github.com/ycahome/" + gitHubName)
+
+        Domoticz.Log("Checking for:" + "../" + gitHubName)
+        if os.path.isdir("../" + gitHubName) == true:
+            Domoticz.Log("Folder for Plugin:" + gitHubName + " already exists")
+
+        Domoticz.Log("../" + gitHubName + "plugin.py")
+            if os.path.exists("../" + gitHubName + "plugin.py") == true:
+            Domoticz.Log("Folder for Plugin:" + gitHubName + " already exists")
         Domoticz.Heartbeat(int(Parameters["Mode1"]))
 
 
