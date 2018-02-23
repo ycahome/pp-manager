@@ -75,11 +75,11 @@ class BasePlugin:
         Domoticz.Log("Installation URL is:" + "https://github.com/ycahome/" + gitHubName)
 
         Domoticz.Log("Checking for:" + "../" + gitHubName)
-        if (os.path.isdir("../" + gitHubName)) = True:
+        if (os.path.isdir("../" + gitHubName)) == True:
             Domoticz.Log("Folder for Plugin:" + gitHubName + " already exists")
 
         Domoticz.Log("../" + gitHubName + "plugin.py")
-        if (os.path.exists("../" + gitHubName + "/plugin.py")) = True:
+        if (os.path.exists("../" + gitHubName + "/plugin.py")) == True:
             Domoticz.Log("Folder for Plugin:" + gitHubName + " already exists")
         Domoticz.Heartbeat(int(Parameters["Mode1"]))
 
