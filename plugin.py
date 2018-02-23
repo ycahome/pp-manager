@@ -10,7 +10,6 @@
 """
 <plugin key="PP-MANAGER" name="Python Plugin Manager" author="ycahome" version="1.0.0" externallink="https://www.domoticz.com/forum/viewtopic.php?t=16266">
     <params>
-        <param field="Address" label="Check My IP URL" width="200px" required="true" default="https://4.ifcfg.me/ip"/>
         <param field="Mode2" label="Domoticz Plugin" width="200px">
             <options>
                 <option label="Idle" value="Idle"  default="true" />
