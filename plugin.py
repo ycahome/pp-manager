@@ -66,7 +66,7 @@ class BasePlugin:
 
         self.plugindata = {
             # Plugin Text:                      [gitHub author,        repository,                  plugin key]
-            "idle":                             ["idle",            "idle",                         "idle"],
+            "Idle":                             ["idle",            "idle",                         "idle"],
             "SNMP Reader":                      ["ycahome",         "SNMPreader",                   "SNMPreader"],
             "NUT_UPS":                          ["999LV",           "NUT_UPS",                      "NUT_UPS"],
             "Xiaomi Mi Flower Mate":            ["flatsiedatsie",   "Mi_Flower_mate_plugin",        "Mi_Flower_mate_plugin"],
@@ -110,6 +110,8 @@ class BasePlugin:
         if (os.path.isdir(str(os.getcwd()) + "/plugins/" + pluginKey)) == True:
             Domoticz.Error("Folder for Plugin:" + pluginKey + " already exists. Skipping installation!!!")
             Domoticz.Error("Set 'Python Plugin Manager'/ 'Domoticz plugin' attribute to 'idle'.")
+        else if pluginText == "Idle":
+            #--
         else:
             InstallPythonPlugin(pluginAuthor, pluginRepository, pluginKey)
             
