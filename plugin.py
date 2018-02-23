@@ -172,7 +172,20 @@ def InstallPythonPlugin(ppAuthor, ppRepository):
     except OSError as e:
         Domoticz.Error("Git ErrorNo:" + str(e.errno))
         Domoticz.Error("Git StrError:" + str(e.strerror))
-    
+ 
+    Domoticz.Log("---Restarting Domoticz---")
+    try:
+        pr1 = subprocess.Popen( "/etc/init.d/domoticz.sh restart" , cwd = os.path.dirname(str(os.getcwd()) + "/plugins/"), shell = True, stdout = subprocess.PIPE, stderr = subprocess.PIPE )
+        (out1, error1) = pr1.communicate()
+        if out1:
+            Domoticz.Log("Command Response1:" + str(out1))
+        if error1:
+            Domoticz.Log("Command Error1:" + str(error1.strip()))
+    except OSError1 as e1:
+        Domoticz.Error("Command ErrorNo1:" + str(e1.errno))
+        Domoticz.Error("Command StrError1:" + str(e1.strerror))
+
+
     return None
 
 
