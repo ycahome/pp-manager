@@ -88,10 +88,10 @@ class BasePlugin:
         gitHubName = Parameters["Mode2"]
         
         if gitHubName in self.plugindata:
-            Domoticz.Log("Plugin Text:" + self.plugindata[gitHubName][1])
-            Domoticz.Log("Plugin Author:" + self.plugindata[gitHubName][2])
-            Domoticz.Log("Plugin Repository:" + self.plugindata[gitHubName][3])
-            Domoticz.Log("Plugin Version:" + self.plugindata[gitHubName][4])
+            Domoticz.Log("Plugin Text:" + gitHubName)
+            Domoticz.Log("Plugin Author:" + self.plugindata[gitHubName][0])
+            Domoticz.Log("Plugin Repository:" + self.plugindata[gitHubName][1])
+            Domoticz.Log("Plugin Version:" + self.plugindata[gitHubName][2])
             #self.plugindata[gitHubName][2] = data
         
         Domoticz.Log("Installation requested for Plugin:" + gitHubName)
