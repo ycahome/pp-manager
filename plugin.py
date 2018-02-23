@@ -96,8 +96,8 @@ class BasePlugin:
         pluginRepository = self.plugindata[pluginText][1]
         pluginKey = self.plugindata[pluginText][2]
 
-        if gitHubName in self.plugindata:
-            Domoticz.Log("Plugin Text:" + pluginText)
+        if pluginText in self.plugindata:
+            Domoticz.Log("Plugin Display Name:" + pluginText)
             Domoticz.Log("Plugin Author:" + pluginAuthor)
             Domoticz.Log("Plugin Repository:" + pluginRepository)
             Domoticz.Log("Plugin Key:" + pluginKey)
