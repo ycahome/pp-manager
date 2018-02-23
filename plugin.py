@@ -78,10 +78,10 @@ class BasePlugin:
             DumpConfigToLog()
         else:
             Domoticz.Debugging(0)
-
-
+        gitHubName = ""
+        gitHubName = Parameters["Mode2"]
         Domoticz.Log("Installation requested for Plugin:" + Parameters["Mode2"])
-        Domoticz.Log("Installation URL is:" + "https://github.com/ycahome/" + self.plugindata[Parameters["Mode2"]][1])
+        Domoticz.Log("Installation URL is:" + "https://github.com/ycahome/" + self.plugindata[gitHubName][1])
         Domoticz.Heartbeat(int(Parameters["Mode1"]))
 
 
