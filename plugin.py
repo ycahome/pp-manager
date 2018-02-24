@@ -9,7 +9,24 @@
 #
 """
 <plugin key="PP-MANAGER" name="Python Plugin Manager" author="ycahome" version="1.0.0" externallink="https://www.domoticz.com/forum/viewtopic.php?f=65&t=22339">
-    <params>
+    <description>
+		<h2>Python Plugin Manager v.1.0.0</h2><br/>
+		<h3>Features</h3>
+		<ul style="list-style-type:square">
+			<li>has a predefined list of plugins to be installed (for start only 3 valid plugins and one dummy)</li>
+			<li>supports only plugins located on GitHub</li>
+			<li>performs plugin installation only if plugin directory not exists</li>
+			<li>performs plugin installation and prompts you to restart Domoticz in order to activate it.</li>
+		</ul>
+		<h3>Plugins</h3>
+		<ul style="list-style-type:square">
+			<li>SNMP Reader</li>
+			<li>UPS Monitor</li>
+			<li>Xiaomi Mi Flower Mate</li>
+			<li>Sonos</li>
+		</ul>
+    </description>
+     <params>
         <param field="Mode2" label="Domoticz Plugin" width="200px">
             <options>
                 <option label="Idle" value="Idle"  default="true" />
