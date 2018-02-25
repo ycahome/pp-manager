@@ -37,15 +37,15 @@
                 <option label="Dummy Plugin" value="Dummy Plugin"/>
             </options>
         </param>
-         <param field="Mode4" label="Auto" width="75px">
+         <param field="Mode4" label="Auto Update" width="75px">
             <options>
-                <option label="True" value="Debug"/>
+                <option label="True" value="Update"/>
                 <option label="False" value="Normal"  default="true" />
             </options>
         </param>
          <param field="Mode6" label="Debug" width="75px">
             <options>
-                <option label="True" value="Update"/>
+                <option label="True" value="Debug"/>
                 <option label="False" value="Normal"  default="true" />
             </options>
         </param>
