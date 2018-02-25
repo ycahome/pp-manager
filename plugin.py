@@ -188,7 +188,6 @@ class BasePlugin:
 
 
 
-
 global _plugin
 _plugin = BasePlugin()
 
