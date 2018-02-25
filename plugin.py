@@ -237,8 +237,8 @@ def UpdatePythonPlugin(ppAuthor, ppRepository, ppKey):
             k = out.find('\n', j);
             branch = out[j+10:k];
             Domoticz.Log("Current Branch for plugin is:" + branch)
-            if -1 != out.find('nothing'):
-                Domoticz.Log("No Changes to apply.")
+            #if -1 != out.find('nothing'):
+                #Domoticz.Log("No Changes to apply.")
         if error:
             Domoticz.Log("Git Error:" + str(error.strip()))
     except OSError as e:
