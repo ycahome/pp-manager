@@ -242,7 +242,7 @@ def UpdatePythonPlugin(ppAuthor, ppRepository, ppKey):
         if error:
             Domoticz.Log("Git Error:" + str(error.strip()))
     except OSError as e:
-        Domoticz.Error("Git ErrorNo:" + str(e.errno))
+        #Domoticz.Error("Git ErrorNo:" + str(e.errno))
         #Domoticz.Error("Git StrError:" + str(e.strerror))
  
     Domoticz.Log("---Restarting Domoticz MAY REQUIRED to activate new plugins---")
