@@ -30,17 +30,32 @@
         <param field="Mode2" label="Domoticz Plugin" width="200px">
             <options>
                 <option label="Idle" value="Idle"  default="true" />
+                <option label="Battery monitoring for Z-Wave nodes" value="Battery monitoring for Z-Wave nodes"/>
+                <option label="Buienradar.nl (Weather lookup)" value="Buienradar.nl (Weather lookup)"/>
+                <option label="Homewizard" value="Homewizard"/>
+                <option label="ebusd bridge" value="ebusd bridge"/>
+                <option label="MQTT discovery" value="MQTT discovery"/>
+                <option label="Onkyo AV Receiver" value="Onkyo AV Receiver"/>
+                <option label="OpenAQ" value="OpenAQ"/>
+                <option label="Pi-hole summary" value="Pi-hole summary"/>
+                <option label="PiMonitor" value="PiMonitor"/>
+                <option label="SYSFS-Switches" value="SYSFS-Switches"/>
                 <option label="SNMP Reader" value="SNMP Reader"/>
-                <option label="UPS Monitor" value="UPS Monitor"/>
-                <option label="Xiaomi Mi Flower Mate" value="Xiaomi Mi Flower Mate"/>
                 <option label="Sonos Players" value="Sonos Players"/>
+                <option label="Speedtest" value="Speedtest"/>
+                <option label="UPS Monitor" value="UPS Monitor"/>
+                <option label="Wan IP Checker" value="Wan IP Checker"/>
+                <option label="Xiaomi Mi Flower Mate" value="Xiaomi Mi Flower Mate"/>
+                <option label="Xiaomi Mi Robot Vacuum" value="Xiaomi Mi Robot Vacuum"/>
+                <option label="Yamaha AV Receiver" value="Yamaha AV Receiver"/>
                 <option label="Dummy Plugin" value="Dummy Plugin"/>
             </options>
         </param>
          <param field="Mode4" label="Auto Update" width="75px">
             <options>
-                <option label="True" value="Update"/>
-                <option label="False" value="Normal"  default="true" />
+                <option label="All" value="All"/>
+                <option label="Selected" value="Selected"/>
+                <option label="None" value="None"  default="true" />
             </options>
         </param>
          <param field="Mode6" label="Debug" width="75px">
@@ -87,6 +102,20 @@ class BasePlugin:
             "NUT_UPS":                          ["999LV",           "NUT_UPS",                      "NUT_UPS"],
             "Xiaomi Mi Flower Mate":            ["flatsiedatsie",   "Mi_Flower_mate_plugin",        "Mi_Flower_mate_plugin"],
             "Sonos Players":                    ["gerard33",        "sonos",                        "Sonos"],
+            "Wan IP Checker":                   ["ycahome",         "WAN-IP-CHECKER",               "WAN-IP-CHECKER"],
+            "Speedtest":                        ["Xorfor",          "Domoticz-Speedtest-Plugin ",   "xfr_speedtest"],
+            "Buienradar.nl (Weather lookup)":   ["ffes",            "domoticz-buienradar",          "Buienradar"],
+            "ebusd bridge":                     ["guillaumezin",    "DomoticzEbusd",                "ebusd"],
+            "Pi-hole summary":                  ["Xorfor",          "Domoticz-Pi-hole-Plugin",      "xfr_pihole"],
+            "SYSFS-Switches":                   ["flatsiedatsie",   "GPIO-SYSFS-Switches",          "SYSFS-Switches"],
+            "Yamaha AV Receiver":               ["thomas-villagers", "domoticz-yamaha",             "YamahaPlug"],
+            "Onkyo AV Receiver":                ["jorgh6",          "domoticz-onkyo-plugin",        "Onkyo"],
+            "Battery monitoring for Z-Wave nodes":  ["999LV",       "BatteryLevel",                 "BatteryLevel"],
+            "Homewizard":                       ["rvdvoorde",       "domoticz-homewizard",          "Homewizard"],
+            "PiMonitor":                        ["Xorfor",          "Domoticz-PiMonitor-Plugin",    "xfr-pimonitor"],
+            "Xiaomi Mi Robot Vacuum":           ["mrin",            "domoticz-mirobot-plugin",      "xiaomi-mi-robot-vacuum"],
+            "MQTT discovery":                   ["emontnemery",     "domoticz_mqtt_discovery",      "MQTTDiscovery"],
+            "OpenAQ":                           ["Xorfor",          "Domoticz-OpenAQ-Plugin",       "xfr_openaq"],
             "Dummy Plugin":                     ["ycahome",         "Dummy_Plugin",                 "Dummy_Plugin"],
         }        
         
@@ -120,9 +149,11 @@ class BasePlugin:
         if (os.path.isdir(str(os.getcwd()) + "/plugins/" + pluginKey)) == True:
             Domoticz.Error("Folder for Plugin:" + pluginKey + " already exists. Skipping installation!!!")
             Domoticz.Error("Set 'Python Plugin Manager'/ 'Domoticz plugin' attribute to 'idle'.")
-            if Parameters["Mode4"] == 'Update':
+            if Parameters["Mode4"] == 'Selected':
                 Domoticz.Log("Updating Enabled for Plugin:" + pluginText)
                 UpdatePythonPlugin(pluginAuthor, pluginRepository, pluginKey)
+            if Parameters["Mode4"] == 'All':
+                Domoticz.Log("Updating for All Plugins NOTYET IMPLEMENTED!!")
         elif pluginText == "Idle":
             Domoticz.Log("Plugin Idle")
         else:
@@ -241,7 +272,7 @@ def UpdatePythonPlugin(ppAuthor, ppRepository, ppKey):
         Domoticz.Error("Git ErrorNo:" + str(e.errno))
         Domoticz.Error("Git StrError:" + str(e.strerror))
  
-    Domoticz.Log("---Restarting Domoticz MAY REQUIRED to activate new plugins---")
+    Domoticz.Log("---Restarting Domoticz MAY BE REQUIRED to activate new plugins---")
     #try:
     #    pr1 = subprocess.Popen( "/etc/init.d/domoticz.sh restart" , cwd = os.path.dirname(str(os.getcwd()) + "/plugins/"), shell = True, stdout = subprocess.PIPE, stderr = subprocess.PIPE )
     #    (out1, error1) = pr1.communicate()
