@@ -226,10 +226,10 @@ def UpdatePythonPlugin(ppAuthor, ppRepository, ppKey):
 
     Domoticz.Log("Updating Plugin:" + ppRepository + " with ppKey:" + ppKey)
     ppUrl = "/usr/bin/git status -uno"
-    Domoticz.Log("Calling:" + ppUrl + " on folder " + os.path.dirname(str(os.getcwd()) + "/plugins/" + ppKey))
+    Domoticz.Log("Calling:" + ppUrl + " on folder " + str(os.getcwd()) + "/plugins/" + ppKey)
     #subprocess.call(["/usr/bin/git clone -b master https://github.com/" + ppAuthor + '/' + ppRepository + '.git ' + ppRepository])
     try:
-        pr = subprocess.Popen( ppUrl , cwd = os.path.dirname(str(os.getcwd()) + "/plugins/" + ppKey), shell = True, stdout = subprocess.PIPE, stderr = subprocess.PIPE )
+        pr = subprocess.Popen( ppUrl , cwd = str(os.getcwd() + "/plugins/" + ppKey), shell = True, stdout = subprocess.PIPE, stderr = subprocess.PIPE )
         (out, error) = pr.communicate()
         if out:
             Domoticz.Log("Git Response:" + str(out))
