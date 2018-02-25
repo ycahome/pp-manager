@@ -180,7 +180,7 @@ class BasePlugin:
         UpdatePythonPlugin("ycahome", "pp-manager", "PP-MANAGER")
 
         if Parameters["Mode4"] == 'Selected':
-            Domoticz.Log("Updating Enabled for Plugin:" + pluginText)
+            Domoticz.Log("Updating Enabled for Plugin:" + Parameters["Mode2"])
             UpdatePythonPlugin(pluginAuthor, pluginRepository, pluginKey)
         if Parameters["Mode4"] == 'All':
             Domoticz.Log("Updating for All Plugins NOT YET IMPLEMENTED!!")
