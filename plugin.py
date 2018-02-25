@@ -147,10 +147,10 @@ class BasePlugin:
 
         Domoticz.Debug("Checking for dir:" + str(os.getcwd()) + "/plugins/" + pluginKey)
         if (os.path.isdir(str(os.getcwd()) + "/plugins/" + pluginKey)) == True:
-            Domoticz.Error("Folder for Plugin:" + pluginKey + " already exists. Skipping installation!!!")
-            Domoticz.Error("Set 'Python Plugin Manager'/ 'Domoticz plugin' attribute to 'idle'.")
+            Domoticz.Log("Folder for Plugin:" + pluginKey + " already exists. Skipping installation!!!")
+            Domoticz.Log("Set 'Python Plugin Manager'/ 'Domoticz plugin' attribute to 'idle'.")
             if Parameters["Mode4"] == 'Selected':
-                Domoticz.Log("Updating Enabled for Plugin:" + pluginText)
+                Domoticz.Debug("Updating Enabled for Plugin:" + pluginText)
                 UpdatePythonPlugin(pluginAuthor, pluginRepository, pluginKey)
             if Parameters["Mode4"] == 'All':
                 Domoticz.Log("Updating for All Plugins NOT YET IMPLEMENTED!!")
@@ -274,13 +274,13 @@ def UpdatePythonPlugin(ppAuthor, ppRepository, ppKey):
                Domoticz.Log("Plugin already Up-To-Date")
             if str(out).find("Updating") != -1:
                Domoticz.Log("Succesfully pulled gtHub update:" + str(out)[str(out).find("Updating")+8:26])
+               Domoticz.Log("---Restarting Domoticz MAY BE REQUIRED to activate new plugins---")
         if error:
             Domoticz.Debug("Git Error:" + str(error.strip()))
     except OSError as e:
         Domoticz.Error("Git ErrorNo:" + str(e.errno))
         Domoticz.Error("Git StrError:" + str(e.strerror))
  
-    Domoticz.Log("---Restarting Domoticz MAY BE REQUIRED to activate new plugins---")
     #try:
     #    pr1 = subprocess.Popen( "/etc/init.d/domoticz.sh restart" , cwd = os.path.dirname(str(os.getcwd()) + "/plugins/"), shell = True, stdout = subprocess.PIPE, stderr = subprocess.PIPE )
     #    (out1, error1) = pr1.communicate()
