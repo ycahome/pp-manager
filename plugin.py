@@ -167,7 +167,7 @@ class BasePlugin:
                 Domoticz.Log("Plugin Key:" + pluginKey)
                 InstallPythonPlugin(pluginAuthor, pluginRepository, pluginKey)
             
-        #Domoticz.Heartbeat(int(Parameters["Mode1"]))
+        Domoticz.Heartbeat(86400)
 
 
     def onStop(self):
@@ -177,6 +177,11 @@ class BasePlugin:
     def onHeartbeat(self):
 
         Domoticz.Debug("onHeartbeat called")
+        if Parameters["Mode4"] == 'Selected':
+            Domoticz.Log("Updating Enabled for Plugin:" + pluginText)
+            UpdatePythonPlugin(pluginAuthor, pluginRepository, pluginKey)
+        if Parameters["Mode4"] == 'All':
+            Domoticz.Log("Updating for All Plugins NOT YET IMPLEMENTED!!")
 
 
 
