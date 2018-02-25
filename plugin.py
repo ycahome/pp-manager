@@ -114,17 +114,17 @@ class BasePlugin:
         pluginRepository = self.plugindata[pluginText][1]
         pluginKey = self.plugindata[pluginText][2]
 
-        
+
 
         Domoticz.Debug("Checking for dir:" + str(os.getcwd()) + "/plugins/" + pluginKey)
         if (os.path.isdir(str(os.getcwd()) + "/plugins/" + pluginKey)) == True:
             Domoticz.Error("Folder for Plugin:" + pluginKey + " already exists. Skipping installation!!!")
             Domoticz.Error("Set 'Python Plugin Manager'/ 'Domoticz plugin' attribute to 'idle'.")
-	    if Parameters["Mode4"] == 'Update':
-		Domoticz.Log("Updating Enabled for Plugin:" + pluginText)
+            if Parameters["Mode4"] == 'Update':
+                Domoticz.Log("Updating Enabled for Plugin:" + pluginText)
         elif pluginText == "Idle":
             Domoticz.Log("Plugin Idle")
-	    UpdatePythonPlugin(pluginAuthor, pluginRepository, pluginKey)
+            UpdatePythonPlugin(pluginAuthor, pluginRepository, pluginKey)
         else:
            Domoticz.Log("Installation requested for Plugin:" + pluginText)
            Domoticz.Debug("Installation URL is:" + "https://github.com/" + pluginAuthor +"/" + pluginRepository)
