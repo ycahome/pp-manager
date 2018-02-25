@@ -266,6 +266,8 @@ def UpdatePythonPlugin(ppAuthor, ppRepository, ppKey):
             Domoticz.Log("Git Response:" + str(out))
             if str(out).find("Already up-to-date") != -1:
                Domoticz.Log("Plugin already Up-To-Date")
+	    if str(out).find("Updating") != -1:
+	       Domoticz.Log("Succesfully pulled gtHub version:" + str(out)[str(out).find("Updating"):26])
         if error:
             Domoticz.Log("Git Error:" + str(error.strip()))
     except OSError as e:
