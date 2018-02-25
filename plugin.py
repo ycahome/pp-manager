@@ -104,7 +104,7 @@ class BasePlugin:
         else:
             Domoticz.Debugging(0)
 
-	pluginText = ""
+        pluginText = ""
         pluginAuthor = ""
         pluginRepository = ""
         pluginKey = ""
