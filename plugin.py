@@ -225,7 +225,7 @@ def InstallPythonPlugin(ppAuthor, ppRepository, ppKey):
 def UpdatePythonPlugin(ppAuthor, ppRepository, ppKey):
 
     Domoticz.Log("Updating Plugin:" + ppRepository + " with ppKey:" + ppKey)
-    ppUrl = "/usr/bin/git status -uno"
+    ppUrl = "/usr/bin/git pull --force"
     Domoticz.Log("Calling:" + ppUrl + " on folder " + str(os.getcwd()) + "/plugins/" + ppKey)
     #subprocess.call(["/usr/bin/git clone -b master https://github.com/" + ppAuthor + '/' + ppRepository + '.git ' + ppRepository])
     try:
@@ -233,12 +233,6 @@ def UpdatePythonPlugin(ppAuthor, ppRepository, ppKey):
         (out, error) = pr.communicate()
         if out:
             Domoticz.Log("Git Response:" + str(out))
-            j = out.find("On branch")
-            k = out.find("\n", j)
-            branch = out[j+10:k]
-            Domoticz.Log("Current Branch for plugin is:" + branch)
-            if -1 != out.find("nothing"):
-                Domoticz.Log("No Changes to apply.")
         if error:
             Domoticz.Log("Git Error:" + str(error.strip()))
     except OSError as e:
