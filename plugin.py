@@ -237,13 +237,11 @@ def UpdatePythonPlugin(ppAuthor, ppRepository, ppKey):
             k = out.find('\n', j);
             branch = out[j+10:k];
             Domoticz.Log("Current Branch for plugin is:" + branch)
-            if -1 != out.find('nothing'):
-                Domoticz.Log("No Changes to apply.")
         if error:
             Domoticz.Log("Git Error:" + str(error.strip()))
     except OSError as e:
-        #Domoticz.Error("Git ErrorNo:" + str(e.errno))
-        #Domoticz.Error("Git StrError:" + str(e.strerror))
+        Domoticz.Error("Git ErrorNo:" + str(e.errno))
+        Domoticz.Error("Git StrError:" + str(e.strerror))
  
     Domoticz.Log("---Restarting Domoticz MAY REQUIRED to activate new plugins---")
     #try:
