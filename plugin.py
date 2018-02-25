@@ -255,21 +255,21 @@ def InstallPythonPlugin(ppAuthor, ppRepository, ppKey):
 # UpdatePyhtonPlugin function
 def UpdatePythonPlugin(ppAuthor, ppRepository, ppKey):
 
-    Domoticz.Log("Updating Plugin:" + ppRepository + " with ppKey:" + ppKey)
+    Domoticz.Log("Updating Plugin:" + ppRepository)
     ppUrl = "/usr/bin/git pull --force"
-    Domoticz.Log("Calling:" + ppUrl + " on folder " + str(os.getcwd()) + "/plugins/" + ppKey)
+    Domoticz.Debug("Calling:" + ppUrl + " on folder " + str(os.getcwd()) + "/plugins/" + ppKey)
     #subprocess.call(["/usr/bin/git clone -b master https://github.com/" + ppAuthor + '/' + ppRepository + '.git ' + ppRepository])
     try:
         pr = subprocess.Popen( ppUrl , cwd = str(os.getcwd() + "/plugins/" + ppKey), shell = True, stdout = subprocess.PIPE, stderr = subprocess.PIPE )
         (out, error) = pr.communicate()
         if out:
-            Domoticz.Log("Git Response:" + str(out))
+            Domoticz.Debug("Git Response:" + str(out))
             if str(out).find("Already up-to-date") != -1:
                Domoticz.Log("Plugin already Up-To-Date")
             if str(out).find("Updating") != -1:
                Domoticz.Log("Succesfully pulled gtHub update:" + str(out)[str(out).find("Updating")+8:26])
         if error:
-            Domoticz.Log("Git Error:" + str(error.strip()))
+            Domoticz.Debug("Git Error:" + str(error.strip()))
     except OSError as e:
         Domoticz.Error("Git ErrorNo:" + str(e.errno))
         Domoticz.Error("Git StrError:" + str(e.strerror))
