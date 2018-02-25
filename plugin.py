@@ -233,6 +233,8 @@ def UpdatePythonPlugin(ppAuthor, ppRepository, ppKey):
         (out, error) = pr.communicate()
         if out:
             Domoticz.Log("Git Response:" + str(out))
+	    if str(out).find(Already up-to-date):
+               Domoticz.Log("Plugin already Up-To-Date")
         if error:
             Domoticz.Log("Git Error:" + str(error.strip()))
     except OSError as e:
