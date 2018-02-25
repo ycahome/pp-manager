@@ -122,9 +122,9 @@ class BasePlugin:
             Domoticz.Error("Set 'Python Plugin Manager'/ 'Domoticz plugin' attribute to 'idle'.")
             if Parameters["Mode4"] == 'Update':
                 Domoticz.Log("Updating Enabled for Plugin:" + pluginText)
+                UpdatePythonPlugin(pluginAuthor, pluginRepository, pluginKey)
         elif pluginText == "Idle":
             Domoticz.Log("Plugin Idle")
-            UpdatePythonPlugin(pluginAuthor, pluginRepository, pluginKey)
         else:
            Domoticz.Log("Installation requested for Plugin:" + pluginText)
            Domoticz.Debug("Installation URL is:" + "https://github.com/" + pluginAuthor +"/" + pluginRepository)
