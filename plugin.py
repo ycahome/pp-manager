@@ -177,7 +177,7 @@ class BasePlugin:
     def onHeartbeat(self):
 
         Domoticz.Debug("onHeartbeat called")
-	UpdatePythonPlugin("ycahome", "pp-manager", "PP-MANAGER")
+        UpdatePythonPlugin("ycahome", "pp-manager", "PP-MANAGER")
 
         if Parameters["Mode4"] == 'Selected':
             Domoticz.Log("Updating Enabled for Plugin:" + pluginText)
