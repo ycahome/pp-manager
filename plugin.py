@@ -225,7 +225,7 @@ def InstallPythonPlugin(ppAuthor, ppRepository, ppKey):
 def UpdatePythonPlugin(ppAuthor, ppRepository, ppKey):
 
     Domoticz.Log("Updating Plugin:" + ppRepository)
-    ppUrl = "/usr/bin/git git status -uno"
+    ppUrl = "/usr/bin/git status -uno"
     Domoticz.Log("Calling:" + ppUrl)
     #subprocess.call(["/usr/bin/git clone -b master https://github.com/" + ppAuthor + '/' + ppRepository + '.git ' + ppRepository])
     try:
