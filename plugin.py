@@ -8,9 +8,9 @@
 #
 #
 """
-<plugin key="PP-MANAGER" name="Python Plugin Manager" author="ycahome" version="1.1.0" externallink="https://www.domoticz.com/forum/viewtopic.php?f=65&t=22339">
+<plugin key="PP-MANAGER" name="Python Plugin Manager" author="ycahome" version="1.2.0" externallink="https://www.domoticz.com/forum/viewtopic.php?f=65&t=22339">
     <description>
-		<h2>Python Plugin Manager v.1.0.0</h2><br/>
+		<h2>Python Plugin Manager v.1.2.0</h2><br/>
 		<h3>Features</h3>
 		<ul style="list-style-type:square">
 			<li>has a predefined list of plugins to be installed (for start only 3 valid plugins and one dummy)</li>
@@ -177,6 +177,8 @@ class BasePlugin:
     def onHeartbeat(self):
 
         Domoticz.Debug("onHeartbeat called")
+	UpdatePythonPlugin("ycahome", "pp-manager", "PP-MANAGER")
+
         if Parameters["Mode4"] == 'Selected':
             Domoticz.Log("Updating Enabled for Plugin:" + pluginText)
             UpdatePythonPlugin(pluginAuthor, pluginRepository, pluginKey)
@@ -260,6 +262,8 @@ def InstallPythonPlugin(ppAuthor, ppRepository, ppKey):
 # UpdatePyhtonPlugin function
 def UpdatePythonPlugin(ppAuthor, ppRepository, ppKey):
 
+    if ppKey == "PP-MANAGER":
+	Domoticz.Log("Self Update Initiated")
     Domoticz.Log("Updating Plugin:" + ppRepository)
     ppUrl = "/usr/bin/git pull --force"
     Domoticz.Debug("Calling:" + ppUrl + " on folder " + str(os.getcwd()) + "/plugins/" + ppKey)
