@@ -147,8 +147,8 @@ class BasePlugin:
 
         Domoticz.Debug("Checking for dir:" + str(os.getcwd()) + "/plugins/" + pluginKey)
         if (os.path.isdir(str(os.getcwd()) + "/plugins/" + pluginKey)) == True:
-            Domoticz.Log("Folder for Plugin:" + pluginKey + " already exists. Skipping installation!!!")
-            Domoticz.Log("Set 'Python Plugin Manager'/ 'Domoticz plugin' attribute to 'idle'.")
+            Domoticz.Debug("Folder for Plugin:" + pluginKey + " already exists. Skipping installation!!!")
+            Domoticz.Debug("Set 'Python Plugin Manager'/ 'Domoticz plugin' attribute to 'idle' in order t.")
             Domoticz.Heartbeat(86400)
         elif pluginText == "Idle":
             Domoticz.Log("Plugin Idle")
@@ -162,6 +162,7 @@ class BasePlugin:
                 Domoticz.Log("Plugin Repository:" + pluginRepository)
                 Domoticz.Log("Plugin Key:" + pluginKey)
                 InstallPythonPlugin(pluginAuthor, pluginRepository, pluginKey)
+           Domoticz.Heartbeat(86400)
             
 
 
