@@ -8,7 +8,7 @@
 #
 #
 """
-<plugin key="PP-MANAGER" name="Python Plugin Manager" author="ycahome" version="1.0.0" externallink="https://www.domoticz.com/forum/viewtopic.php?f=65&t=22339">
+<plugin key="PP-MANAGER" name="Python Plugin Manager" author="ycahome" version="1.1.0" externallink="https://www.domoticz.com/forum/viewtopic.php?f=65&t=22339">
     <description>
 		<h2>Python Plugin Manager v.1.0.0</h2><br/>
 		<h3>Features</h3>
@@ -37,9 +37,15 @@
                 <option label="Dummy Plugin" value="Dummy Plugin"/>
             </options>
         </param>
-         <param field="Mode6" label="Debug" width="75px">
+         <param field="Mode4" label="Auto" width="75px">
             <options>
                 <option label="True" value="Debug"/>
+                <option label="False" value="Normal"  default="true" />
+            </options>
+        </param>
+         <param field="Mode6" label="Debug" width="75px">
+            <options>
+                <option label="True" value="Update"/>
                 <option label="False" value="Normal"  default="true" />
             </options>
         </param>
@@ -97,7 +103,8 @@ class BasePlugin:
             DumpConfigToLog()
         else:
             Domoticz.Debugging(0)
-        pluginText = ""
+
+	pluginText = ""
         pluginAuthor = ""
         pluginRepository = ""
         pluginKey = ""
@@ -113,8 +120,11 @@ class BasePlugin:
         if (os.path.isdir(str(os.getcwd()) + "/plugins/" + pluginKey)) == True:
             Domoticz.Error("Folder for Plugin:" + pluginKey + " already exists. Skipping installation!!!")
             Domoticz.Error("Set 'Python Plugin Manager'/ 'Domoticz plugin' attribute to 'idle'.")
+	    if Parameters["Mode4"] == 'Update':
+		Domoticz.Log("Updating Enabled for Plugin:" + pluginText)
         elif pluginText == "Idle":
             Domoticz.Log("Plugin Idle")
+	    UpdatePythonPlugin(pluginAuthor, pluginRepository, pluginKey)
         else:
            Domoticz.Log("Installation requested for Plugin:" + pluginText)
            Domoticz.Debug("Installation URL is:" + "https://github.com/" + pluginAuthor +"/" + pluginRepository)
@@ -194,6 +204,42 @@ def InstallPythonPlugin(ppAuthor, ppRepository, ppKey):
         Domoticz.Error("Git StrError:" + str(e.strerror))
  
     Domoticz.Log("---Restarting Domoticz REQUIRED to activate new plugins---")
+    #try:
+    #    pr1 = subprocess.Popen( "/etc/init.d/domoticz.sh restart" , cwd = os.path.dirname(str(os.getcwd()) + "/plugins/"), shell = True, stdout = subprocess.PIPE, stderr = subprocess.PIPE )
+    #    (out1, error1) = pr1.communicate()
+    #    if out1:
+    #        Domoticz.Log("Command Response1:" + str(out1))
+    #    if error1:
+    #        Domoticz.Log("Command Error1:" + str(error1.strip()))
+    #except OSError1 as e1:
+    #    Domoticz.Error("Command ErrorNo1:" + str(e1.errno))
+    #    Domoticz.Error("Command StrError1:" + str(e1.strerror))
+
+
+    return None
+
+
+
+
+# UpdatePyhtonPlugin function
+def UpdatePythonPlugin(ppAuthor, ppRepository, ppKey):
+
+    Domoticz.Log("Updating Plugin:" + ppRepository)
+    ppUrl = "/usr/bin/git git status -uno"
+    Domoticz.Log("Calling:" + ppUrl)
+    #subprocess.call(["/usr/bin/git clone -b master https://github.com/" + ppAuthor + '/' + ppRepository + '.git ' + ppRepository])
+    try:
+        pr = subprocess.Popen( ppUrl , cwd = os.path.dirname(str(os.getcwd()) + "/plugins/" + ppKey), shell = True, stdout = subprocess.PIPE, stderr = subprocess.PIPE )
+        (out, error) = pr.communicate()
+        if out:
+            Domoticz.Log("Git Response:" + str(out))
+        if error:
+            Domoticz.Log("Git Error:" + str(error.strip()))
+    except OSError as e:
+        Domoticz.Error("Git ErrorNo:" + str(e.errno))
+        Domoticz.Error("Git StrError:" + str(e.strerror))
+ 
+    Domoticz.Log("---Restarting Domoticz MAY REQUIRED to activate new plugins---")
     #try:
     #    pr1 = subprocess.Popen( "/etc/init.d/domoticz.sh restart" , cwd = os.path.dirname(str(os.getcwd()) + "/plugins/"), shell = True, stdout = subprocess.PIPE, stderr = subprocess.PIPE )
     #    (out1, error1) = pr1.communicate()
