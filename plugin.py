@@ -167,7 +167,6 @@ class BasePlugin:
 
         if pluginKey == "Idle":
             Domoticz.Log("Plugin Idle")
-            UpdateAll()
             Domoticz.Heartbeat(60)
         else:
             Domoticz.Debug("Checking for dir:" + str(os.getcwd()) + "/plugins/" + pluginKey)
