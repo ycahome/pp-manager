@@ -316,8 +316,6 @@ def UpdatePythonPlugin(ppAuthor, ppRepository, ppKey):
 # UpdateAll function
 def UpdateAll():
 
-    if ppKey == "PP-MANAGER":
-       return
 
     Domoticz.Log("Updating All Plugins!!!")
     i = 0
