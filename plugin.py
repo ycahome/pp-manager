@@ -158,7 +158,7 @@ class BasePlugin:
                 if i >= 1:
                    break
 
-	
+
         if Parameters["Mode4"] == 'AllNotify':
             Domoticz.Log("Update Notification for All Plugins NOT YET IMPLEMENTED!!")
             #UpdatePythonPlugin(pluginAuthor, pluginRepository, pluginKey)
@@ -173,7 +173,7 @@ class BasePlugin:
 	else:
             Domoticz.Debug("Checking for dir:" + str(os.getcwd()) + "/plugins/" + pluginKey)
             #If plugin Directory exists
-	    if (os.path.isdir(str(os.getcwd()) + "/plugins/" + pluginKey)) == True:
+            if (os.path.isdir(str(os.getcwd()) + "/plugins/" + pluginKey)) == True:
                 Domoticz.Debug("Folder for Plugin:" + pluginKey + " already exists!!!")
                 #Domoticz.Debug("Set 'Python Plugin Manager'/ 'Domoticz plugin' attribute to 'idle' in order t.")
                 if Parameters["Mode4"] == 'Selected':
