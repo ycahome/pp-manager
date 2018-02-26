@@ -32,8 +32,8 @@
                 <option label="Idle" value="Idle"  default="true" />
                 <option label="Battery monitoring for Z-Wave nodes" value="Battery monitoring for Z-Wave nodes"/>
                 <option label="Buienradar.nl (Weather lookup)" value="Buienradar.nl (Weather lookup)"/>
-                <option label="Homewizard" value="Homewizard"/>
                 <option label="ebusd bridge" value="ebusd bridge"/>
+                <option label="Homewizard" value="Homewizard"/>
                 <option label="MQTT discovery" value="MQTT discovery"/>
                 <option label="Onkyo AV Receiver" value="Onkyo AV Receiver"/>
                 <option label="OpenAQ" value="OpenAQ"/>
@@ -51,7 +51,7 @@
                 <option label="Dummy Plugin" value="Dummy Plugin"/>
             </options>
         </param>
-         <param field="Mode4" label="Auto Update" width="75px">
+         <param field="Mode4" label="Auto Update" width="175px">
             <options>
                 <option label="All" value="All"/>
                 <option label="Selected" value="Selected"/>
@@ -149,6 +149,9 @@ class BasePlugin:
         if (os.path.isdir(str(os.getcwd()) + "/plugins/" + pluginKey)) == True:
             Domoticz.Debug("Folder for Plugin:" + pluginKey + " already exists. Skipping installation!!!")
             Domoticz.Debug("Set 'Python Plugin Manager'/ 'Domoticz plugin' attribute to 'idle' in order t.")
+            if Parameters["Mode4"] == 'Selected':
+                Domoticz.Log("Updating Enabled for Plugin:" + Parameters["Mode2"])
+                UpdatePythonPlugin(self.plugindata[Parameters["Mode2"]][0], self.plugindata[Parameters["Mode2"]][1], self.plugindata[Parameters["Mode2"]][2])
             Domoticz.Heartbeat(60)
         elif pluginText == "Idle":
             Domoticz.Log("Plugin Idle")
@@ -182,7 +185,7 @@ class BasePlugin:
         Domoticz.Log("Current time:" + CurHr + ":" + CurMin)
 
         if (mid(CurHr,0,2) == "12" and  mid(CurMin,0,2) == "20"):
-            Domoticz.Error("Its time!!. Trigering IP Change:")
+            Domoticz.Log("Its time!!. Trigering Update!!!")
 		
             if Parameters["Mode4"] == 'Selected':
                 Domoticz.Log("Updating Enabled for Plugin:" + Parameters["Mode2"])
@@ -278,7 +281,7 @@ def UpdatePythonPlugin(ppAuthor, ppRepository, ppKey):
             if str(out).find("Already up-to-date") != -1:
                Domoticz.Log("Plugin already Up-To-Date")
             if str(out).find("Updating") != -1:
-               Domoticz.Log("Succesfully pulled gtHub update:" + str(out)[str(out).find("Updating")+8:26])
+               Domoticz.Log("Succesfully pulled gitHub update:" + str(out)[str(out).find("Updating")+8:26])
                Domoticz.Log("---Restarting Domoticz MAY BE REQUIRED to activate new plugins---")
         if error:
             Domoticz.Debug("Git Error:" + str(error.strip()))
