@@ -153,7 +153,7 @@ class BasePlugin:
                 Domoticz.Log("Updating Enabled for Plugin:" + pluginText)
                 UpdatePythonPlugin(pluginAuthor, pluginRepository, pluginKey)
             Domoticz.Heartbeat(60)
-        elif pluginText == "Idle":
+        elif pluginKey == "Idle":
             Domoticz.Log("Plugin Idle")
             if Parameters["Mode4"] == 'All':
                 #Domoticz.Log("Updating for All Plugins NOT YET IMPLEMENTED!!")
