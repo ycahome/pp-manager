@@ -310,6 +310,7 @@ def UpdatePythonPlugin(ppAuthor, ppRepository, ppKey):
             if str(out).find("Already up-to-date") != -1:
                Domoticz.Log("Plugin already Up-To-Date")
             if (str(out).find("Updating") != -1) and (str(out).find("error") == -1):
+               Domoticz.Log("str(out).find(error) == -1:" + str(str(out).find("error"))
                Domoticz.Log("Succesfully pulled gitHub update:" + str(out)[str(out).find("Updating")+8:26])
                Domoticz.Log("---Restarting Domoticz MAY BE REQUIRED to activate new plugins---")
             else:
