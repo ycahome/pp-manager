@@ -309,9 +309,11 @@ def UpdatePythonPlugin(ppAuthor, ppRepository, ppKey):
             Domoticz.Debug("Git Response:" + str(out))
             if str(out).find("Already up-to-date") != -1:
                Domoticz.Log("Plugin already Up-To-Date")
-            if str(out).find("Updating") != -1:
+            if (str(out).find("Updating") != -1) and (str(out).find("error") = -1):
                Domoticz.Log("Succesfully pulled gitHub update:" + str(out)[str(out).find("Updating")+8:26])
                Domoticz.Log("---Restarting Domoticz MAY BE REQUIRED to activate new plugins---")
+	    else:
+	       Domoticz.Error("Something went wrong with update of " + str(ppKey))
         if error:
             Domoticz.Debug("Git Error:" + str(error.strip()))
             if str(error).find("Not a git repository") != -1:
