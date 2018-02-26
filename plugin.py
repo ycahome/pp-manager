@@ -169,7 +169,7 @@ class BasePlugin:
             Domoticz.Log("Plugin Idle")
             UpdateAll()
             Domoticz.Heartbeat(60)
-	else:
+        else:
             Domoticz.Debug("Checking for dir:" + str(os.getcwd()) + "/plugins/" + pluginKey)
             #If plugin Directory exists
             if (os.path.isdir(str(os.getcwd()) + "/plugins/" + pluginKey)) == True:
