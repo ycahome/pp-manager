@@ -158,7 +158,6 @@ class BasePlugin:
                 if i >= 1:
                    break
 
-
         if Parameters["Mode4"] == 'AllNotify':
             Domoticz.Log("Update Notification for All Plugins NOT YET IMPLEMENTED!!")
             #UpdatePythonPlugin(pluginAuthor, pluginRepository, pluginKey)
@@ -166,7 +165,7 @@ class BasePlugin:
             Domoticz.Log("Update Notification for Selected Plugin NOT YET IMPLEMENTED!!")
             #UpdatePythonPlugin(pluginAuthor, pluginRepository, pluginKey)
 
-        if pluginKey == "Idle:
+        if pluginKey == "Idle":
             Domoticz.Log("Plugin Idle")
             UpdateAll()
             Domoticz.Heartbeat(60)
