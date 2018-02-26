@@ -244,14 +244,14 @@ def InstallPythonPlugin(ppAuthor, ppRepository, ppKey):
         pr = subprocess.Popen( ppUrl , cwd = os.path.dirname(str(os.getcwd()) + "/plugins/"), shell = True, stdout = subprocess.PIPE, stderr = subprocess.PIPE )
         (out, error) = pr.communicate()
         if out:
-            Domoticz.Log("Git Response:" + str(out))
+               Domoticz.Log("Succesfully pulled gitHub update:" + str(out).strip)
+               Domoticz.Log("---Restarting Domoticz MAY BE REQUIRED to activate new plugins---")
         if error:
-            Domoticz.Log("Git Error:" + str(error.strip()))
+            Domoticz.Debug("Git Error:" + str(error.strip()))
     except OSError as e:
         Domoticz.Error("Git ErrorNo:" + str(e.errno))
         Domoticz.Error("Git StrError:" + str(e.strerror))
  
-    Domoticz.Log("---Restarting Domoticz REQUIRED to activate new plugins---")
     #try:
     #    pr1 = subprocess.Popen( "/etc/init.d/domoticz.sh restart" , cwd = os.path.dirname(str(os.getcwd()) + "/plugins/"), shell = True, stdout = subprocess.PIPE, stderr = subprocess.PIPE )
     #    (out1, error1) = pr1.communicate()
