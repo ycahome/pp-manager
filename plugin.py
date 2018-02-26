@@ -96,8 +96,8 @@ class BasePlugin:
         self.pollinterval = 60  #Time in seconds between two polls
 
         self.plugindata = {
-            # Plugin Text:                      [gitHub author,        repository,                  plugin key]
-            "Idle":                             ["idle",            "idle",                         "idle"],
+            # Plugin Key:                      [gitHub author,        repository,                  plugin Text]
+            "Idle":                             ["Idle",            "Idle",                         "Idle"],
             "SNMPreader":                      	["ycahome",         "SNMPreader",                   "SNMP Reader"],
             "NUT_UPS":                          ["999LV",           "NUT_UPS",                      "NUT_UPS"],
             "Mi_Flower_mate_plugin":            ["flatsiedatsie",   "Mi_Flower_mate_plugin",        "Xiaomi Mi Flower Mate"],
