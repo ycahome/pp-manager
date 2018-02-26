@@ -177,11 +177,10 @@ class BasePlugin:
 
         CurHr = str(datetime.now().hour)
         CurMin = str(datetime.now().minute)
-        Domoticz.Log("Current hour:" + CurHr)
-        Domoticz.Log("Current minute:" + CurMin)
+        Domoticz.Log("Current time:" + CurHr + ":" + CurMin)
         if len(CurHr) == 1: CurHr = "0" + CurHr
 
-        if (mid(CurHr,0,2) == "12" and  mid(CurMin,0,2) == "05"):
+        if (mid(CurHr,0,2) == "12" and  mid(CurMin,0,2) == "09"):
             Domoticz.Error("Its time!!. Trigering IP Change:")
 		
             if Parameters["Mode4"] == 'Selected':
