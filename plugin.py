@@ -324,7 +324,7 @@ def UpdateAll():
     for (path, dirs, files) in os.walk(path):
         for dir in dirs:
             if str(dir) != "":
-                Domoticz.Log("Updating All Plugins!!!" + str(dir) + "'")
+                Domoticz.Log("Updating All Plugins!!!" + str(dir))
         i += 1
         if i >= 1:
            break
