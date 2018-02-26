@@ -291,7 +291,7 @@ def UpdatePythonPlugin(ppAuthor, ppRepository, ppKey):
         if error:
             Domoticz.Debug("Git Error:" + str(error.strip()))
             if str(error).find("Not a git repository") != -1:
-               Domoticz.Error("Plugin is not installed from gitHub. Cannot be updated with PP-Manager!!.")
+               Domoticz.Error("Plugin:" + ppKey + " is not installed from gitHub. Cannot be updated with PP-Manager!!.")
     except OSError as e:
         Domoticz.Error("Git ErrorNo:" + str(e.errno))
         Domoticz.Error("Git StrError:" + str(e.strerror))
@@ -327,6 +327,7 @@ def UpdateAll():
         for dir in dirs:
             if str(dir) != "":
                 Domoticz.Log("Updating All Plugins!!!" + str(dir))
+                UpdatePythonPlugin(self.plugindata[str(dir)][0], self.plugindata[str(dir)][1], str(dir))
         i += 1
         if i >= 1:
            break
