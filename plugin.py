@@ -54,7 +54,9 @@
          <param field="Mode4" label="Auto Update" width="175px">
             <options>
                 <option label="All" value="All"/>
+                <option label="All (NotifyOnly)" value="AllNotify"/>
                 <option label="Selected" value="Selected"/>
+                <option label="Selected (NotifyOnly)" value="SelectedNotify"/>
                 <option label="None" value="None"  default="true" />
             </options>
         </param>
@@ -143,33 +145,52 @@ class BasePlugin:
         pluginRepository = self.plugindata[pluginKey][1]
         pluginText = self.plugindata[pluginKey][2]
 
+        if Parameters["Mode4"] == 'All':
+            Domoticz.Log("Updating All Plugins!!!")
+            i = 0
+            path = str(os.getcwd()) + "/plugins/"
+            for (path, dirs, files) in os.walk(path):
+                for dir in dirs:
+                    if str(dir) != "":
+                        Domoticz.Log("Updating All Plugins!!!" + str(dir))
+                        UpdatePythonPlugin(pluginAuthor, pluginRepository, str(dir))
+                i += 1
+                if i >= 1:
+                   break
 
+	
+	if Parameters["Mode4"] == 'AllNotify':
+            Domoticz.Log("Update Notification for All Plugins NOT YET IMPLEMENTED!!")
+            #UpdatePythonPlugin(pluginAuthor, pluginRepository, pluginKey)
+        if Parameters["Mode4"] == 'SelectedNotify':
+            Domoticz.Log("Update Notification for Selected Plugin NOT YET IMPLEMENTED!!")
+            #UpdatePythonPlugin(pluginAuthor, pluginRepository, pluginKey)
 
-        Domoticz.Debug("Checking for dir:" + str(os.getcwd()) + "/plugins/" + pluginKey)
-        if (os.path.isdir(str(os.getcwd()) + "/plugins/" + pluginKey)) == True:
-            Domoticz.Debug("Folder for Plugin:" + pluginKey + " already exists. Skipping installation!!!")
-            Domoticz.Debug("Set 'Python Plugin Manager'/ 'Domoticz plugin' attribute to 'idle' in order t.")
-            if Parameters["Mode4"] == 'Selected':
-                Domoticz.Log("Updating Enabled for Plugin:" + pluginText)
-                UpdatePythonPlugin(pluginAuthor, pluginRepository, pluginKey)
-            Domoticz.Heartbeat(60)
-        elif pluginKey == "Idle":
+        if pluginKey == "Idle:
             Domoticz.Log("Plugin Idle")
-            if Parameters["Mode4"] == 'All':
-                #Domoticz.Log("Updating for All Plugins NOT YET IMPLEMENTED!!")
-                UpdateAll()
+            UpdateAll()
+            Domoticz.Heartbeat(60)
+	else:
+            Domoticz.Debug("Checking for dir:" + str(os.getcwd()) + "/plugins/" + pluginKey)
+            #If plugin Directory exists
+	    if (os.path.isdir(str(os.getcwd()) + "/plugins/" + pluginKey)) == True:
+                Domoticz.Debug("Folder for Plugin:" + pluginKey + " already exists!!!")
+                #Domoticz.Debug("Set 'Python Plugin Manager'/ 'Domoticz plugin' attribute to 'idle' in order t.")
+                if Parameters["Mode4"] == 'Selected':
+                    Domoticz.Log("Updating Enabled for Plugin:" + pluginText + ".Checking For Update!!!")
+                    UpdatePythonPlugin(pluginAuthor, pluginRepository, pluginKey)
                 Domoticz.Heartbeat(60)
-        else:
-           Domoticz.Log("Installation requested for Plugin:" + pluginText)
-           Domoticz.Debug("Installation URL is:" + "https://github.com/" + pluginAuthor +"/" + pluginRepository)
-           Domoticz.Debug("Current Working dir is:" + str(os.getcwd()))
-           if pluginKey in self.plugindata:
-                Domoticz.Log("Plugin Display Name:" + pluginText)
-                Domoticz.Log("Plugin Author:" + pluginAuthor)
-                Domoticz.Log("Plugin Repository:" + pluginRepository)
-                Domoticz.Log("Plugin Key:" + pluginKey)
-                InstallPythonPlugin(pluginAuthor, pluginRepository, pluginKey)
-           Domoticz.Heartbeat(60)
+            else:
+               Domoticz.Log("Installation requested for Plugin:" + pluginText)
+               Domoticz.Debug("Installation URL is:" + "https://github.com/" + pluginAuthor +"/" + pluginRepository)
+               Domoticz.Debug("Current Working dir is:" + str(os.getcwd()))
+               if pluginKey in self.plugindata:
+                    Domoticz.Log("Plugin Display Name:" + pluginText)
+                    Domoticz.Log("Plugin Author:" + pluginAuthor)
+                    Domoticz.Log("Plugin Repository:" + pluginRepository)
+                    Domoticz.Log("Plugin Key:" + pluginKey)
+                    InstallPythonPlugin(pluginAuthor, pluginRepository, pluginKey)
+               Domoticz.Heartbeat(60)
             
 
 
@@ -195,8 +216,8 @@ class BasePlugin:
                 Domoticz.Log("Updating Enabled for Plugin:" + self.plugindata[pluginKey][2])
                 UpdatePythonPlugin(self.plugindata[Parameters["Mode2"]][0], self.plugindata[Parameters["Mode2"]][1], Parameters["Mode2"])
             if Parameters["Mode4"] == 'All':
-                #Domoticz.Log("Updating for All Plugins NOT YET IMPLEMENTED!!")
-                UpdateAll()
+                Domoticz.Log("Updating for All Plugins NOT YET IMPLEMENTED!!")
+                #UpdateAll()
 
 
 
@@ -309,55 +330,6 @@ def UpdatePythonPlugin(ppAuthor, ppRepository, ppKey):
 
 
     return None
-
-
-
-
-
-
-# UpdateAll function
-def UpdateAll(self):
-
-
-    Domoticz.Log("Updating All Plugins!!!")
-    i = 0
-
-    path = str(os.getcwd()) + "/plugins/"
-    for (path, dirs, files) in os.walk(path):
-        for dir in dirs:
-            if str(dir) != "":
-                Domoticz.Log("Updating All Plugins!!!" + str(dir))
-                UpdatePythonPlugin(self.plugindata[str(dir)][0], self.plugindata[str(dir)][1], str(dir))
-        i += 1
-        if i >= 1:
-           break
-
-    #ppUrl = "/usr/bin/git pull --force"
-    #Domoticz.Debug("Calling:" + ppUrl + " on folder " + str(os.getcwd()) + "/plugins/" + ppKey)
-    ##subprocess.call(["/usr/bin/git clone -b master https://github.com/" + ppAuthor + '/' + ppRepository + '.git ' + ppRepository])
-    #try:
-    #    pr = subprocess.Popen( ppUrl , cwd = str(os.getcwd() + "/plugins/" + ppKey), shell = True, stdout = subprocess.PIPE, stderr = subprocess.PIPE )
-    #    (out, error) = pr.communicate()
-    #    if out:
-    #        Domoticz.Debug("Git Response:" + str(out))
-    #        if str(out).find("Already up-to-date") != -1:
-    #           Domoticz.Log("Plugin already Up-To-Date")
-    #        if str(out).find("Updating") != -1:
-    #           Domoticz.Log("Succesfully pulled gitHub update:" + str(out)[str(out).find("Updating")+8:26])
-    #           Domoticz.Log("---Restarting Domoticz MAY BE REQUIRED to activate new plugins---")
-    #    if error:
-    #        Domoticz.Debug("Git Error:" + str(error.strip()))
-    #except OSError as e:
-    #    Domoticz.Error("Git ErrorNo:" + str(e.errno))
-    #    Domoticz.Error("Git StrError:" + str(e.strerror))
- 
-
-    return None
-
-
-
-
-
 
 
 
