@@ -162,7 +162,7 @@ class BasePlugin:
                 Domoticz.Log("Plugin Repository:" + pluginRepository)
                 Domoticz.Log("Plugin Key:" + pluginKey)
                 InstallPythonPlugin(pluginAuthor, pluginRepository, pluginKey)
-           Domoticz.Heartbeat(86400)
+           Domoticz.Heartbeat(60)
             
 
 
@@ -175,11 +175,20 @@ class BasePlugin:
 
         Domoticz.Debug("onHeartbeat called")
 
-        if Parameters["Mode4"] == 'Selected':
-            Domoticz.Log("Updating Enabled for Plugin:" + Parameters["Mode2"])
-            UpdatePythonPlugin(self.plugindata[Parameters["Mode2"]][0], self.plugindata[Parameters["Mode2"]][1], self.plugindata[Parameters["Mode2"]][2])
-        if Parameters["Mode4"] == 'All':
-            Domoticz.Log("Updating for All Plugins NOT YET IMPLEMENTED!!")
+        CurHr = str(datetime.now().hour)
+        CurMin = str(datetime.now().minute)
+        Domoticz.Log("Current hour:" + CurHr)
+        Domoticz.Log("Current minute:" + CurMin)
+        if len(CurHr) == 1: CurHr = "0" + CurHr
+
+        if (mid(CurHr,0,2) == "12" and  mid(CurMin,0,2) == "05"):
+            Domoticz.Error("Its time!!. Trigering IP Change:")
+		
+            if Parameters["Mode4"] == 'Selected':
+                Domoticz.Log("Updating Enabled for Plugin:" + Parameters["Mode2"])
+                UpdatePythonPlugin(self.plugindata[Parameters["Mode2"]][0], self.plugindata[Parameters["Mode2"]][1], self.plugindata[Parameters["Mode2"]][2])
+            if Parameters["Mode4"] == 'All':
+                Domoticz.Log("Updating for All Plugins NOT YET IMPLEMENTED!!")
 
 
 
