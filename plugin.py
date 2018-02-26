@@ -290,6 +290,8 @@ def UpdatePythonPlugin(ppAuthor, ppRepository, ppKey):
                Domoticz.Log("---Restarting Domoticz MAY BE REQUIRED to activate new plugins---")
         if error:
             Domoticz.Debug("Git Error:" + str(error.strip()))
+            if str(error).find("Not a git repository") != -1:
+               Domoticz.Log("Plugin is not installed from gitHub. Delete and reinstall from Pp-Manager.")
     except OSError as e:
         Domoticz.Error("Git ErrorNo:" + str(e.errno))
         Domoticz.Error("Git StrError:" + str(e.strerror))
