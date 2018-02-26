@@ -8,9 +8,9 @@
 #
 #
 """
-<plugin key="PP-MANAGER" name="Python Plugin Manager" author="ycahome" version="1.2.15" externallink="https://www.domoticz.com/forum/viewtopic.php?f=65&t=22339">
+<plugin key="PP-MANAGER" name="Python Plugin Manager" author="ycahome" version="1.3.1" externallink="https://www.domoticz.com/forum/viewtopic.php?f=65&t=22339">
     <description>
-		<h2>Python Plugin Manager v.1.2.15</h2><br/>
+		<h2>Python Plugin Manager v.1.3.1</h2><br/>
 		<h3>Features</h3>
 		<ul style="list-style-type:square">
 			<li>has a predefined list of plugins to be installed (for start only 3 valid plugins and one dummy)</li>
@@ -157,6 +157,7 @@ class BasePlugin:
             Domoticz.Log("Plugin Idle")
             if Parameters["Mode4"] == 'All':
                 #Domoticz.Log("Updating for All Plugins NOT YET IMPLEMENTED!!")
+                UpdateAll()
                 Domoticz.Heartbeat(60)
         else:
            Domoticz.Log("Installation requested for Plugin:" + pluginText)
