@@ -191,7 +191,8 @@ class BasePlugin:
                 Domoticz.Log("Updating Enabled for Plugin:" + Parameters["Mode2"])
                 UpdatePythonPlugin(self.plugindata[Parameters["Mode2"]][0], self.plugindata[Parameters["Mode2"]][1], self.plugindata[Parameters["Mode2"]][2])
             if Parameters["Mode4"] == 'All':
-                Domoticz.Log("Updating for All Plugins NOT YET IMPLEMENTED!!")
+                #Domoticz.Log("Updating for All Plugins NOT YET IMPLEMENTED!!")
+		UpdateAll()
 
 
 
@@ -320,29 +321,29 @@ def UpdateAll():
     path = str(os.getcwd()) + "/plugins/"
     for (path) in os.walk(path):
         for dir in dirs:
-	    Domoticz.Log("Updating All Plugins!!!" + str(dir))
+            Domoticz.Log("Updating All Plugins!!!" + str(dir))
         i += 1
         if i >= 1:
            break
 
-    ppUrl = "/usr/bin/git pull --force"
-    Domoticz.Debug("Calling:" + ppUrl + " on folder " + str(os.getcwd()) + "/plugins/" + ppKey)
-    #subprocess.call(["/usr/bin/git clone -b master https://github.com/" + ppAuthor + '/' + ppRepository + '.git ' + ppRepository])
-    try:
-        pr = subprocess.Popen( ppUrl , cwd = str(os.getcwd() + "/plugins/" + ppKey), shell = True, stdout = subprocess.PIPE, stderr = subprocess.PIPE )
-        (out, error) = pr.communicate()
-        if out:
-            Domoticz.Debug("Git Response:" + str(out))
-            if str(out).find("Already up-to-date") != -1:
-               Domoticz.Log("Plugin already Up-To-Date")
-            if str(out).find("Updating") != -1:
-               Domoticz.Log("Succesfully pulled gitHub update:" + str(out)[str(out).find("Updating")+8:26])
-               Domoticz.Log("---Restarting Domoticz MAY BE REQUIRED to activate new plugins---")
-        if error:
-            Domoticz.Debug("Git Error:" + str(error.strip()))
-    except OSError as e:
-        Domoticz.Error("Git ErrorNo:" + str(e.errno))
-        Domoticz.Error("Git StrError:" + str(e.strerror))
+    #ppUrl = "/usr/bin/git pull --force"
+    #Domoticz.Debug("Calling:" + ppUrl + " on folder " + str(os.getcwd()) + "/plugins/" + ppKey)
+    ##subprocess.call(["/usr/bin/git clone -b master https://github.com/" + ppAuthor + '/' + ppRepository + '.git ' + ppRepository])
+    #try:
+    #    pr = subprocess.Popen( ppUrl , cwd = str(os.getcwd() + "/plugins/" + ppKey), shell = True, stdout = subprocess.PIPE, stderr = subprocess.PIPE )
+    #    (out, error) = pr.communicate()
+    #    if out:
+    #        Domoticz.Debug("Git Response:" + str(out))
+    #        if str(out).find("Already up-to-date") != -1:
+    #           Domoticz.Log("Plugin already Up-To-Date")
+    #        if str(out).find("Updating") != -1:
+    #           Domoticz.Log("Succesfully pulled gitHub update:" + str(out)[str(out).find("Updating")+8:26])
+    #           Domoticz.Log("---Restarting Domoticz MAY BE REQUIRED to activate new plugins---")
+    #    if error:
+    #        Domoticz.Debug("Git Error:" + str(error.strip()))
+    #except OSError as e:
+    #    Domoticz.Error("Git ErrorNo:" + str(e.errno))
+    #    Domoticz.Error("Git StrError:" + str(e.strerror))
  
 
     return None
