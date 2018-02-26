@@ -239,15 +239,14 @@ def InstallPythonPlugin(ppAuthor, ppRepository, ppKey):
     Domoticz.Log("Installing Plugin:" + ppRepository)
     ppUrl = "/usr/bin/git clone -b master https://github.com/" + ppAuthor + "/" + ppRepository + ".git " + ppKey
     Domoticz.Log("Calling:" + ppUrl)
-    #subprocess.call(["/usr/bin/git clone -b master https://github.com/" + ppAuthor + '/' + ppRepository + '.git ' + ppRepository])
     try:
         pr = subprocess.Popen( ppUrl , cwd = os.path.dirname(str(os.getcwd()) + "/plugins/"), shell = True, stdout = subprocess.PIPE, stderr = subprocess.PIPE )
         (out, error) = pr.communicate()
         if out:
-               Domoticz.Log("Succesfully pulled gitHub update:" + str(out).strip)
+               Domoticz.Log("Succesfully installed:" + str(out).strip)
                Domoticz.Log("---Restarting Domoticz MAY BE REQUIRED to activate new plugins---")
         if error:
-            Domoticz.Debug("Git Error:" + str(error.strip()))
+            Domoticz.Log("Git Error:" + str(error))
     except OSError as e:
         Domoticz.Error("Git ErrorNo:" + str(e.errno))
         Domoticz.Error("Git StrError:" + str(e.strerror))
@@ -277,7 +276,6 @@ def UpdatePythonPlugin(ppAuthor, ppRepository, ppKey):
     Domoticz.Log("Updating Plugin:" + ppRepository)
     ppUrl = "/usr/bin/git pull --force"
     Domoticz.Debug("Calling:" + ppUrl + " on folder " + str(os.getcwd()) + "/plugins/" + ppKey)
-    #subprocess.call(["/usr/bin/git clone -b master https://github.com/" + ppAuthor + '/' + ppRepository + '.git ' + ppRepository])
     try:
         pr = subprocess.Popen( ppUrl , cwd = str(os.getcwd() + "/plugins/" + ppKey), shell = True, stdout = subprocess.PIPE, stderr = subprocess.PIPE )
         (out, error) = pr.communicate()
