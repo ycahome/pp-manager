@@ -159,7 +159,7 @@ class BasePlugin:
                    break
 
 	
-	if Parameters["Mode4"] == 'AllNotify':
+        if Parameters["Mode4"] == 'AllNotify':
             Domoticz.Log("Update Notification for All Plugins NOT YET IMPLEMENTED!!")
             #UpdatePythonPlugin(pluginAuthor, pluginRepository, pluginKey)
         if Parameters["Mode4"] == 'SelectedNotify':
