@@ -316,7 +316,7 @@ def UpdatePythonPlugin(ppAuthor, ppRepository, ppKey):
 
 
 # UpdateAll function
-def UpdateAll():
+def UpdateAll(self):
 
 
     Domoticz.Log("Updating All Plugins!!!")
