@@ -177,8 +177,9 @@ class BasePlugin:
 
         CurHr = str(datetime.now().hour)
         CurMin = str(datetime.now().minute)
-        Domoticz.Log("Current time:" + CurHr + ":" + CurMin)
         if len(CurHr) == 1: CurHr = "0" + CurHr
+        if len(CurMin) == 1: CurMin = "0" + CurMin
+        Domoticz.Log("Current time:" + CurHr + ":" + CurMin)
 
         if (mid(CurHr,0,2) == "12" and  mid(CurMin,0,2) == "09"):
             Domoticz.Error("Its time!!. Trigering IP Change:")
