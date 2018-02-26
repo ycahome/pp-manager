@@ -323,7 +323,7 @@ def UpdateAll():
     path = str(os.getcwd()) + "/plugins/"
     for (path, dirs, files) in os.walk(path):
         for dir in dirs:
-            if dir != ""
+            if str(dir) != "":
 	        Domoticz.Log("Updating All Plugins!!!" + str(dir) + "'")
         i += 1
         if i >= 1:
