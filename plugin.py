@@ -291,7 +291,7 @@ def UpdatePythonPlugin(ppAuthor, ppRepository, ppKey):
         if error:
             Domoticz.Debug("Git Error:" + str(error.strip()))
             if str(error).find("Not a git repository") != -1:
-               Domoticz.Log("Plugin is not installed from gitHub. Delete and reinstall from Pp-Manager.")
+               Domoticz.Error("Plugin is not installed from gitHub. Cannot be updated with PP-Manager!!.")
     except OSError as e:
         Domoticz.Error("Git ErrorNo:" + str(e.errno))
         Domoticz.Error("Git StrError:" + str(e.strerror))
