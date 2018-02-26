@@ -294,7 +294,7 @@ def UpdatePythonPlugin(ppAuthor, ppRepository, ppKey):
 
     if ppKey == "PP-MANAGER":
        Domoticz.Log("Self Update Initiated")
-    Domoticz.Log("Updating Plugin:" + ppRepository)
+    Domoticz.Log("Updating Plugin:" + ppKey)
     ppUrl = "/usr/bin/git pull --force"
     Domoticz.Debug("Calling:" + ppUrl + " on folder " + str(os.getcwd()) + "/plugins/" + ppKey)
     try:
