@@ -8,9 +8,9 @@
 #
 #
 """
-<plugin key="PP-MANAGER" name="Python Plugin Manager" author="ycahome" version="1.3.1" externallink="https://www.domoticz.com/forum/viewtopic.php?f=65&t=22339">
+<plugin key="PP-MANAGER" name="Python Plugin Manager" author="ycahome" version="1.3.2" externallink="https://www.domoticz.com/forum/viewtopic.php?f=65&t=22339">
     <description>
-		<h2>Python Plugin Manager v.1.3.1</h2><br/>
+		<h2>Python Plugin Manager v.1.3.2</h2><br/>
 		<h3>Features</h3>
 		<ul style="list-style-type:square">
 			<li>has a predefined list of plugins to be installed (for start only 3 valid plugins and one dummy)</li>
@@ -76,9 +76,6 @@ import subprocess
 import sys
 
 import time
-import urllib
-import urllib.request
-import urllib.error
 
 #from urllib2 import urlopen
 from datetime import datetime, timedelta
