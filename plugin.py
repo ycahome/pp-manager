@@ -181,7 +181,7 @@ class BasePlugin:
         if len(CurMin) == 1: CurMin = "0" + CurMin
         Domoticz.Log("Current time:" + CurHr + ":" + CurMin)
 
-        if (mid(CurHr,0,2) == "12" and  mid(CurMin,0,2) == "09"):
+        if (mid(CurHr,0,2) == "12" and  mid(CurMin,0,2) == "12"):
             Domoticz.Error("Its time!!. Trigering IP Change:")
 		
             if Parameters["Mode4"] == 'Selected':
