@@ -155,6 +155,9 @@ class BasePlugin:
             Domoticz.Heartbeat(60)
         elif pluginText == "Idle":
             Domoticz.Log("Plugin Idle")
+            if Parameters["Mode4"] == 'All':
+                #Domoticz.Log("Updating for All Plugins NOT YET IMPLEMENTED!!")
+                Domoticz.Heartbeat(60)
         else:
            Domoticz.Log("Installation requested for Plugin:" + pluginText)
            Domoticz.Debug("Installation URL is:" + "https://github.com/" + pluginAuthor +"/" + pluginRepository)
