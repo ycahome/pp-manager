@@ -163,7 +163,7 @@ class BasePlugin:
            Domoticz.Log("Installation requested for Plugin:" + pluginText)
            Domoticz.Debug("Installation URL is:" + "https://github.com/" + pluginAuthor +"/" + pluginRepository)
            Domoticz.Debug("Current Working dir is:" + str(os.getcwd()))
-           if pluginText in self.plugindata:
+           if pluginKey in self.plugindata:
                 Domoticz.Log("Plugin Display Name:" + pluginText)
                 Domoticz.Log("Plugin Author:" + pluginAuthor)
                 Domoticz.Log("Plugin Repository:" + pluginRepository)
