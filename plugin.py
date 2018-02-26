@@ -192,6 +192,7 @@ class BasePlugin:
                 UpdatePythonPlugin(self.plugindata[Parameters["Mode2"]][0], self.plugindata[Parameters["Mode2"]][1], self.plugindata[Parameters["Mode2"]][2])
             if Parameters["Mode4"] == 'All':
                 #Domoticz.Log("Updating for All Plugins NOT YET IMPLEMENTED!!")
+		
 		UpdateAll()
 
 
