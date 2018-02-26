@@ -209,6 +209,12 @@ class BasePlugin:
         if (mid(CurHr,0,2) == "12" and  mid(CurMin,0,2) == "00"):
             Domoticz.Log("Its time!!. Trigering Update!!!")
 		
+            if Parameters["Mode4"] == 'AllNotify':
+                Domoticz.Log("Update Notification for All Plugins NOT YET IMPLEMENTED!!")
+                #UpdatePythonPlugin(pluginAuthor, pluginRepository, pluginKey)
+            if Parameters["Mode4"] == 'SelectedNotify':
+                Domoticz.Log("Update Notification for Selected Plugin NOT YET IMPLEMENTED!!")
+                #UpdatePythonPlugin(pluginAuthor, pluginRepository, pluginKey)
             if Parameters["Mode4"] == 'Selected':
                 Domoticz.Log("Updating Enabled for Plugin:" + self.plugindata[pluginKey][2])
                 UpdatePythonPlugin(self.plugindata[Parameters["Mode2"]][0], self.plugindata[Parameters["Mode2"]][1], Parameters["Mode2"])
