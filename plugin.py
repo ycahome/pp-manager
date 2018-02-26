@@ -246,7 +246,9 @@ def InstallPythonPlugin(ppAuthor, ppRepository, ppKey):
                Domoticz.Log("Succesfully installed:" + str(out).strip)
                Domoticz.Log("---Restarting Domoticz MAY BE REQUIRED to activate new plugins---")
         if error:
-            Domoticz.Log("Git Error:" + str(error))
+            Domoticz.Debug("Git Error:" + str(error))
+            if str(error).find("Cloning into") != -1:
+               Domoticz.Log("Plugin installed Succesfully")
     except OSError as e:
         Domoticz.Error("Git ErrorNo:" + str(e.errno))
         Domoticz.Error("Git StrError:" + str(e.strerror))
