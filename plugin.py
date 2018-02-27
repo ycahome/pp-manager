@@ -166,6 +166,7 @@ class BasePlugin:
             ServerURL = "http://127.0.0.1:8080/json.htm?param=sendnotification&type=command"
             Domoticz.Debug("ConstructedURL ServerURL is:" + ServerURL)
             MailSubject = urllib.parse.quote("New Domoticz Python Plugin Updates")
+            MailBody = ""
 
             for (path, dirs, files) in os.walk(path):
                 for dir in dirs:
