@@ -435,7 +435,7 @@ def fnSelectedNotify(pluginText):
        Domoticz.Debug("Notification URL is :" + str(notificationURL))
 
 
-return None
+       return None
 
 
 
