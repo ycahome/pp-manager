@@ -375,10 +375,10 @@ def CheckForUpdatePythonPlugin(ppAuthor, ppRepository, ppKey):
         pr = subprocess.Popen( ppUrl , cwd = str(os.getcwd() + "/plugins/" + ppKey), shell = True, stdout = subprocess.PIPE, stderr = subprocess.PIPE )
         (out, error) = pr.communicate()
         if out:
-            Domoticz.Debug("Git Response:" + str(out))
+            Domoticz.Log("Git Response:" + str(out))
             if str(out).find("up-to-date") != -1:
                Domoticz.Log("Plugin already Up-To-Date")
-               Domoticz.Debug("find(error):" + str(str(out).find("error")))
+               Domoticz.Log("find(error):" + str(str(out).find("error")))
             elif (str(out).find("Your branch is behind") != -1) and (str(str(out).find("error")) == "-1"):
                fnSelectedNotify(ppKey)
                Domoticz.Log("Found that we are behind")
