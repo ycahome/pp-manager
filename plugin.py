@@ -8,9 +8,9 @@
 #
 #
 """
-<plugin key="PP-MANAGER" name="Python Plugin Manager" author="ycahome" version="1.4.0" externallink="https://www.domoticz.com/forum/viewtopic.php?f=65&t=22339">
+<plugin key="PP-MANAGER" name="Python Plugin Manager" author="ycahome" version="1.4.5" externallink="https://www.domoticz.com/forum/viewtopic.php?f=65&t=22339">
     <description>
-		<h2>Python Plugin Manager v.1.4.0</h2><br/>
+		<h2>Python Plugin Manager v.1.4.5</h2><br/>
 		<h3>Features</h3>
 		<ul style="list-style-type:square">
 			<li>has a predefined list of plugins to be installed (for start only 3 valid plugins and one dummy)</li>
@@ -377,13 +377,13 @@ def CheckForUpdatePythonPlugin(ppAuthor, ppRepository, ppKey):
         if out:
             Domoticz.Debug("Git Response:" + str(out))
             if str(out).find("up-to-date") != -1:
-               Domoticz.Log("Plugin already Up-To-Date")
+               Domoticz.Log("Plugin " + ppKey + " already Up-To-Date")
                Domoticz.Debug("find(error):" + str(str(out).find("error")))
             elif (str(out).find("Your branch is behind") != -1) and (str(str(out).find("error")) == "-1"):
                Domoticz.Log("Found that we are behind on plugin " + ppKey)
                fnSelectedNotify(ppKey)
             elif (str(out).find("Your branch is ahead") != -1) and (str(str(out).find("error")) == "-1"):
-               Domoticz.Log("Found that we are ahead on plugin" + ppKey + ". No need for update")
+               Domoticz.Log("Found that we are ahead on plugin " + ppKey + ". No need for update")
             else:
                Domoticz.Error("Something went wrong with update of " + str(ppKey))
         if error:
