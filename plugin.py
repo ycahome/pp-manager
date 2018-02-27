@@ -419,6 +419,7 @@ def CheckForUpdatePythonPlugin(ppAuthor, ppRepository, ppKey):
 
  # fnSelectedNotify function
 def fnSelectedNotify(pluginText):
+       Domoticz.Log("Preparing Notification")
        MailBody = ""
        MailSubject = urllib.parse.quote("Domoticz Plugin Updates for:" + pluginText)
        MailBody = MailBody + urllib.parse.quote(pluginText) + "</br>"
