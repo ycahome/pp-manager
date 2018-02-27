@@ -8,9 +8,9 @@
 #
 #
 """
-<plugin key="PP-MANAGER" name="Python Plugin Manager" author="ycahome" version="1.3.2" externallink="https://www.domoticz.com/forum/viewtopic.php?f=65&t=22339">
+<plugin key="PP-MANAGER" name="Python Plugin Manager" author="ycahome" version="1.3.3" externallink="https://www.domoticz.com/forum/viewtopic.php?f=65&t=22339">
     <description>
-		<h2>Python Plugin Manager v.1.3.2</h2><br/>
+		<h2>Python Plugin Manager v.1.3.3</h2><br/>
 		<h3>Features</h3>
 		<ul style="list-style-type:square">
 			<li>has a predefined list of plugins to be installed (for start only 3 valid plugins and one dummy)</li>
@@ -153,13 +153,16 @@ class BasePlugin:
                 i += 1
                 if i >= 1:
                    break
+            Domoticz.Heartbeat(60)
 
         if Parameters["Mode4"] == 'AllNotify':
             Domoticz.Log("Update Notification for All Plugins NOT YET IMPLEMENTED!!")
             #UpdatePythonPlugin(pluginAuthor, pluginRepository, pluginKey)
+            Domoticz.Heartbeat(60)
         if Parameters["Mode4"] == 'SelectedNotify':
             Domoticz.Log("Update Notification for Selected Plugin NOT YET IMPLEMENTED!!")
             #UpdatePythonPlugin(pluginAuthor, pluginRepository, pluginKey)
+            Domoticz.Heartbeat(60)
 
         if pluginKey == "Idle":
             Domoticz.Log("Plugin Idle")
@@ -216,8 +219,16 @@ class BasePlugin:
                 Domoticz.Log("Updating Enabled for Plugin:" + self.plugindata[pluginKey][2])
                 UpdatePythonPlugin(self.plugindata[Parameters["Mode2"]][0], self.plugindata[Parameters["Mode2"]][1], Parameters["Mode2"])
             if Parameters["Mode4"] == 'All':
-                Domoticz.Log("Updating for All Plugins NOT YET IMPLEMENTED!!")
-                #UpdateAll()
+                Domoticz.Log("Updating All Plugins!!!")
+                i = 0
+                path = str(os.getcwd()) + "/plugins/"
+                for (path, dirs, files) in os.walk(path):
+                    for dir in dirs:
+                        if str(dir) != "":
+                            UpdatePythonPlugin(self.plugindata[str(dir)][0], self.plugindata[str(dir)][1], str(dir))
+                    i += 1
+                    if i >= 1:
+                       break
 
 
 
