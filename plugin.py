@@ -375,18 +375,18 @@ def CheckForUpdatePythonPlugin(ppAuthor, ppRepository, ppKey):
         pr = subprocess.Popen( ppUrl , cwd = str(os.getcwd() + "/plugins/" + ppKey), shell = True, stdout = subprocess.PIPE, stderr = subprocess.PIPE )
         (out, error) = pr.communicate()
         if out:
-            Domoticz.Log("Git Response:" + str(out))
+            Domoticz.Debug("Git Response:" + str(out))
             if str(out).find("up-to-date") != -1:
                Domoticz.Log("Plugin already Up-To-Date")
-               Domoticz.Log("find(error):" + str(str(out).find("error")))
-            elif (str(out).find("Updating") != -1) and (str(str(out).find("error")) == "-1"):
+               Domoticz.Debug("find(error):" + str(str(out).find("error")))
+            elif (str(out).find("Your branch is behind") != -1) and (str(str(out).find("error")) == "-1"):
                fnSelectedNotify(ppKey)
-               Domoticz.Log("-----------Succesfully pulled gitHub update:" + str(out)[str(out).find("Updating")+8:26])
-               Domoticz.Log("---Restarting Domoticz MAY BE REQUIRED to activate new plugins---")
+               Domoticz.Log("Found that we are behind:" + str(out)[str(out).find("Your branch is behind")+4:30])
+               #Domoticz.Log("---Restarting Domoticz MAY BE REQUIRED to activate new plugins---")
             else:
                Domoticz.Error("Something went wrong with update of " + str(ppKey))
         if error:
-            Domoticz.Log("Git Error:" + str(error.strip()))
+            Domoticz.Debug("Git Error:" + str(error.strip()))
             if str(error).find("Not a git repository") != -1:
                Domoticz.Error("Plugin:" + ppKey + " is not installed from gitHub. Cannot be updated with PP-Manager!!.")
     except OSError as e:
