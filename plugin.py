@@ -167,7 +167,7 @@ class BasePlugin:
             for (path, dirs, files) in os.walk(path):
                 for dir in dirs:
                     if str(dir) != "":
-                        UpdatePythonPlugin(pluginAuthor, pluginRepository, str(dir))
+                        CheckForUpdatePythonPlugin(pluginAuthor, pluginRepository, str(dir))
                 i += 1
                 if i >= 1:
                    break
@@ -322,7 +322,7 @@ def UpdatePythonPlugin(ppAuthor, ppRepository, ppKey):
     if ppKey == "PP-MANAGER":
        Domoticz.Log("Self Update Initiated")
     Domoticz.Log("Updating Plugin:" + ppKey)
-    ppUrl = "/usr/bin/git pull --force"
+    ppUrl = "/usr/bin/git status -uno"
     Domoticz.Debug("Calling:" + ppUrl + " on folder " + str(os.getcwd()) + "/plugins/" + ppKey)
     try:
         pr = subprocess.Popen( ppUrl , cwd = str(os.getcwd() + "/plugins/" + ppKey), shell = True, stdout = subprocess.PIPE, stderr = subprocess.PIPE )
@@ -338,7 +338,7 @@ def UpdatePythonPlugin(ppAuthor, ppRepository, ppKey):
             else:
                Domoticz.Error("Something went wrong with update of " + str(ppKey))
         if error:
-            Domoticz.Debug("Git Error:" + str(error.strip()))
+            Domoticz.Log("Git Error:" + str(error.strip()))
             if str(error).find("Not a git repository") != -1:
                Domoticz.Error("Plugin:" + ppKey + " is not installed from gitHub. Cannot be updated with PP-Manager!!.")
     except OSError as e:
@@ -364,7 +364,7 @@ def UpdatePythonPlugin(ppAuthor, ppRepository, ppKey):
 
 
 # UpdateNotifyPyhtonPlugin function
-def CheckForUpdatePythonPlugin(ppAuthor, ppRepository, ppKey, ppNotifyOnly):
+def CheckForUpdatePythonPlugin(ppAuthor, ppRepository, ppKey):
 
     if ppKey == "PP-MANAGER":
        Domoticz.Log("Self Update Initiated")
@@ -380,6 +380,7 @@ def CheckForUpdatePythonPlugin(ppAuthor, ppRepository, ppKey, ppNotifyOnly):
                Domoticz.Log("Plugin already Up-To-Date")
                #Domoticz.Log("find(error):" + str(str(out).find("error")))
             elif (str(out).find("Updating") != -1) and (str(str(out).find("error")) == "-1"):
+               fnSelectedNotify(ppKey)
                Domoticz.Log("Succesfully pulled gitHub update:" + str(out)[str(out).find("Updating")+8:26])
                Domoticz.Log("---Restarting Domoticz MAY BE REQUIRED to activate new plugins---")
             else:
