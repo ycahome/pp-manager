@@ -374,7 +374,7 @@ def CheckForUpdatePythonPlugin(ppAuthor, ppRepository, ppKey):
         (out, error) = pr.communicate()
         if out:
             Domoticz.Log("Git Response:" + str(out))
-            if str(out).find("Already up-to-date") != -1:
+            if str(out).find("up-to-date") != -1:
                Domoticz.Log("-----Plugin already Up-To-Date")
                Domoticz.Log("-----find(error):" + str(str(out).find("error")))
             elif (str(out).find("Updating") != -1) and (str(str(out).find("error")) == "-1"):
