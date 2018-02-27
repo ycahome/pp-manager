@@ -375,10 +375,10 @@ def CheckForUpdatePythonPlugin(ppAuthor, ppRepository, ppKey):
         if out:
             Domoticz.Log("Git Response:" + str(out))
             if str(out).find("up-to-date") != -1:
-               Domoticz.Log("-----Plugin already Up-To-Date")
-               Domoticz.Log("-----find(error):" + str(str(out).find("error")))
-            elif (str(out).find("Updating") != -1) and (str(str(out).find("error")) == "-1"):
                fnSelectedNotify(ppKey)
+               Domoticz.Log("Plugin already Up-To-Date")
+               Domoticz.Log("find(error):" + str(str(out).find("error")))
+            elif (str(out).find("Updating") != -1) and (str(str(out).find("error")) == "-1"):
                Domoticz.Log("-----------Succesfully pulled gitHub update:" + str(out)[str(out).find("Updating")+8:26])
                Domoticz.Log("---Restarting Domoticz MAY BE REQUIRED to activate new plugins---")
             else:
