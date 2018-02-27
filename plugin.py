@@ -8,9 +8,9 @@
 #
 #
 """
-<plugin key="PP-MANAGER" name="Python Plugin Manager" author="ycahome" version="1.3.3" externallink="https://www.domoticz.com/forum/viewtopic.php?f=65&t=22339">
+<plugin key="PP-MANAGER" name="Python Plugin Manager" author="ycahome" version="1.4.0" externallink="https://www.domoticz.com/forum/viewtopic.php?f=65&t=22339">
     <description>
-		<h2>Python Plugin Manager v.1.3.3</h2><br/>
+		<h2>Python Plugin Manager v.1.4.0</h2><br/>
 		<h3>Features</h3>
 		<ul style="list-style-type:square">
 			<li>has a predefined list of plugins to be installed (for start only 3 valid plugins and one dummy)</li>
@@ -74,6 +74,10 @@ import Domoticz
 import os
 import subprocess
 import sys
+
+import urllib
+import urllib.request
+import urllib.error
 
 import time
 
@@ -156,9 +160,32 @@ class BasePlugin:
             Domoticz.Heartbeat(60)
 
         if Parameters["Mode4"] == 'AllNotify':
-            Domoticz.Log("Update Notification for All Plugins NOT YET IMPLEMENTED!!")
-            #UpdatePythonPlugin(pluginAuthor, pluginRepository, pluginKey)
+            Domoticz.Log("Collecting Updates from All Plugins!!!")
+            i = 0
+            path = str(os.getcwd()) + "/plugins/"
+            ServerURL = "http://127.0.0.1:8080/json.htm?param=sendnotification&type=command"
+            Domoticz.Debug("ConstructedURL ServerURL is:" + ServerURL)
+            MailSubject = urllib.parse.quote("New Domoticz Python Plugin Updates")
+
+            for (path, dirs, files) in os.walk(path):
+                for dir in dirs:
+                    if str(dir) != "":
+                        #UpdatePythonPlugin(pluginAuthor, pluginRepository, str(dir))
+                        MailBody = MailBody + urllib.parse.quote(pluginText) + "</br>"
+			i += 1
+                if i >= 1:
+                   break
+            MailDetailsURL = "&subject=" + MailSubject + "&body=" + MailBody
+            notificationURL = ServerURL + MailDetailsURL
+            Domoticz.Debug("ConstructedURL is:" + notificationURL)
+            try:
+                response = urllib.request.urlopen(notificationURL, timeout = 30).read()
+            except urllib.error.HTTPError as err1:
+                Domoticz.Error("HTTP Request error: " + str(err1) + " URL: " + notificationURL)
+            return
+            Domoticz.Debug("Notification URL is :" + str(notificationURL))
             Domoticz.Heartbeat(60)
+
         if Parameters["Mode4"] == 'SelectedNotify':
             Domoticz.Log("Update Notification for Selected Plugin NOT YET IMPLEMENTED!!")
             #UpdatePythonPlugin(pluginAuthor, pluginRepository, pluginKey)
