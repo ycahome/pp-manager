@@ -322,7 +322,7 @@ def UpdatePythonPlugin(ppAuthor, ppRepository, ppKey):
     if ppKey == "PP-MANAGER":
        Domoticz.Log("Self Update Initiated")
     Domoticz.Log("Updating Plugin:" + ppKey)
-    ppUrl = "/usr/bin/git status -uno"
+    ppUrl = "/usr/bin/git pull --force"
     Domoticz.Debug("Calling:" + ppUrl + " on folder " + str(os.getcwd()) + "/plugins/" + ppKey)
     try:
         pr = subprocess.Popen( ppUrl , cwd = str(os.getcwd() + "/plugins/" + ppKey), shell = True, stdout = subprocess.PIPE, stderr = subprocess.PIPE )
@@ -366,10 +366,8 @@ def UpdatePythonPlugin(ppAuthor, ppRepository, ppKey):
 # UpdateNotifyPyhtonPlugin function
 def CheckForUpdatePythonPlugin(ppAuthor, ppRepository, ppKey):
 
-    if ppKey == "PP-MANAGER":
-       Domoticz.Log("Self Update Initiated")
-    Domoticz.Log("Updating Plugin:" + ppKey)
-    ppUrl = "/usr/bin/git pull --force"
+    Domoticz.Log("Checking Plugin:" + ppKey + "for updates")
+    ppUrl = "/usr/bin/git status -uno"
     Domoticz.Debug("Calling:" + ppUrl + " on folder " + str(os.getcwd()) + "/plugins/" + ppKey)
     try:
         pr = subprocess.Popen( ppUrl , cwd = str(os.getcwd() + "/plugins/" + ppKey), shell = True, stdout = subprocess.PIPE, stderr = subprocess.PIPE )
@@ -377,11 +375,11 @@ def CheckForUpdatePythonPlugin(ppAuthor, ppRepository, ppKey):
         if out:
             Domoticz.Debug("Git Response:" + str(out))
             if str(out).find("Already up-to-date") != -1:
-               Domoticz.Log("Plugin already Up-To-Date")
+               #Domoticz.Log("Plugin already Up-To-Date")
                #Domoticz.Log("find(error):" + str(str(out).find("error")))
             elif (str(out).find("Updating") != -1) and (str(str(out).find("error")) == "-1"):
                fnSelectedNotify(ppKey)
-               Domoticz.Log("Succesfully pulled gitHub update:" + str(out)[str(out).find("Updating")+8:26])
+               Domoticz.Log("-----------Succesfully pulled gitHub update:" + str(out)[str(out).find("Updating")+8:26])
                Domoticz.Log("---Restarting Domoticz MAY BE REQUIRED to activate new plugins---")
             else:
                Domoticz.Error("Something went wrong with update of " + str(ppKey))
