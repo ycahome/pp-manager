@@ -380,11 +380,10 @@ def CheckForUpdatePythonPlugin(ppAuthor, ppRepository, ppKey):
                Domoticz.Log("Plugin already Up-To-Date")
                Domoticz.Debug("find(error):" + str(str(out).find("error")))
             elif (str(out).find("Your branch is behind") != -1) and (str(str(out).find("error")) == "-1"):
+               Domoticz.Log("Found that we are behind on plugin " + ppKey)
                fnSelectedNotify(ppKey)
-               Domoticz.Log("Found that we are behind")
-               #Domoticz.Log("---Restarting Domoticz MAY BE REQUIRED to activate new plugins---")
             elif (str(out).find("Your branch is ahead") != -1) and (str(str(out).find("error")) == "-1"):
-               Domoticz.Log("Found that we are ahead. No need for update")
+               Domoticz.Log("Found that we are ahead on plugin" + ppKey + ". No need for update")
             else:
                Domoticz.Error("Something went wrong with update of " + str(ppKey))
         if error:
