@@ -161,7 +161,6 @@ class BasePlugin:
 
         if Parameters["Mode4"] == 'AllNotify':
             Domoticz.Log("Collecting Updates from All Plugins!!!")
-            Domoticz.Log("Updating All Plugins!!!")
             i = 0
             path = str(os.getcwd()) + "/plugins/"
             for (path, dirs, files) in os.walk(path):
@@ -368,7 +367,7 @@ def UpdatePythonPlugin(ppAuthor, ppRepository, ppKey):
 # UpdateNotifyPyhtonPlugin function
 def CheckForUpdatePythonPlugin(ppAuthor, ppRepository, ppKey):
 
-    Domoticz.Log("Checking Plugin:" + ppKey + " for updates")
+    Domoticz.Debug("Checking Plugin:" + ppKey + " for updates")
     ppUrl = "/usr/bin/git status -uno"
     Domoticz.Debug("Calling:" + ppUrl + " on folder " + str(os.getcwd()) + "/plugins/" + ppKey)
     try:
@@ -377,13 +376,13 @@ def CheckForUpdatePythonPlugin(ppAuthor, ppRepository, ppKey):
         if out:
             Domoticz.Debug("Git Response:" + str(out))
             if str(out).find("up-to-date") != -1:
-               Domoticz.Log("Plugin " + ppKey + " already Up-To-Date")
+               Domoticz.Debug("Plugin " + ppKey + " already Up-To-Date")
                Domoticz.Debug("find(error):" + str(str(out).find("error")))
             elif (str(out).find("Your branch is behind") != -1) and (str(str(out).find("error")) == "-1"):
                Domoticz.Log("Found that we are behind on plugin " + ppKey)
                fnSelectedNotify(ppKey)
             elif (str(out).find("Your branch is ahead") != -1) and (str(str(out).find("error")) == "-1"):
-               Domoticz.Log("Found that we are ahead on plugin " + ppKey + ". No need for update")
+               Domoticz.Debug("Found that we are ahead on plugin " + ppKey + ". No need for update")
             else:
                Domoticz.Error("Something went wrong with update of " + str(ppKey))
         if error:
