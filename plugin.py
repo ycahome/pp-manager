@@ -172,7 +172,7 @@ class BasePlugin:
                     if str(dir) != "":
                         #UpdatePythonPlugin(pluginAuthor, pluginRepository, str(dir))
                         MailBody = MailBody + urllib.parse.quote(pluginText) + "</br>"
-			i += 1
+                        i += 1
                 if i >= 1:
                    break
             MailDetailsURL = "&subject=" + MailSubject + "&body=" + MailBody
