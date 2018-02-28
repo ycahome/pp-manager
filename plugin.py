@@ -8,9 +8,9 @@
 #
 #
 """
-<plugin key="PP-MANAGER" name="Python Plugin Manager" author="ycahome" version="1.4.7" externallink="https://www.domoticz.com/forum/viewtopic.php?f=65&t=22339">
+<plugin key="PP-MANAGER" name="Python Plugin Manager" author="ycahome" version="1.4.8" externallink="https://www.domoticz.com/forum/viewtopic.php?f=65&t=22339">
     <description>
-		<h2>Python Plugin Manager v.1.4.7</h2><br/>
+		<h2>Python Plugin Manager v.1.4.8</h2><br/>
 		<h3>Features</h3>
 		<ul style="list-style-type:square">
 			<li>Install plugins</li>
@@ -221,7 +221,8 @@ class BasePlugin:
                 for (path, dirs, files) in os.walk(path):
                     for dir in dirs:
                         if str(dir) != "":
-                            UpdatePythonPlugin(pluginAuthor, pluginRepository, str(dir))
+                            #UpdatePythonPlugin(pluginAuthor, pluginRepository, str(dir))
+                            UpdatePythonPlugin(self.plugindata[Parameters["Mode2"]][0], self.plugindata[Parameters["Mode2"]][1], str(dir))
                     i += 1
                     if i >= 1:
                        break
@@ -233,14 +234,16 @@ class BasePlugin:
                 for (path, dirs, files) in os.walk(path):
                     for dir in dirs:
                         if str(dir) != "":
-                            CheckForUpdatePythonPlugin(pluginAuthor, pluginRepository, str(dir))
+                            #CheckForUpdatePythonPlugin(pluginAuthor, pluginRepository, str(dir))
+                            CheckForUpdatePythonPlugin(self.plugindata[Parameters["Mode2"]][0], self.plugindata[Parameters["Mode2"]][1], str(dir))
                     i += 1
                     if i >= 1:
                        break
 
             if Parameters["Mode4"] == 'SelectedNotify':
                 Domoticz.Log("Collecting Updates for Plugin:" + pluginKey)
-                CheckForUpdatePythonPlugin(pluginAuthor, pluginRepository, pluginKey)
+                #CheckForUpdatePythonPlugin(pluginAuthor, pluginRepository, pluginKey)
+                CheckForUpdatePythonPlugin(self.plugindata[Parameters["Mode2"]][0], self.plugindata[Parameters["Mode2"]][1], Parameters["Mode2"])
 
             #-------------------------------------
             if Parameters["Mode4"] == 'Selected':
