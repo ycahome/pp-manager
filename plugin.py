@@ -3,7 +3,7 @@
 #
 # Author: ycahome, 2018
 #
-#  version 1.0.0 (2018-02-23): Initial Version
+#  Since (2018-02-23): Initial Version
 #
 #
 #
