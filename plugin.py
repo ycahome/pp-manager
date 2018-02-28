@@ -13,17 +13,9 @@
 		<h2>Python Plugin Manager v.1.4.5</h2><br/>
 		<h3>Features</h3>
 		<ul style="list-style-type:square">
-			<li>has a predefined list of plugins to be installed (for start only 3 valid plugins and one dummy)</li>
-			<li>supports only plugins located on GitHub</li>
-			<li>performs plugin installation only if plugin directory not exists</li>
-			<li>performs plugin installation and prompts you to restart Domoticz in order to activate it.</li>
-		</ul>
-		<h3>Plugins</h3>
-		<ul style="list-style-type:square">
-			<li>SNMP Reader</li>
-			<li>UPS Monitor</li>
-			<li>Xiaomi Mi Flower Mate</li>
-			<li>Sonos</li>
+			<li>Install plugins</li>
+			<li>Update plugins</li>
+			<li>Update Notification for All/Selected</li>
 		</ul>
     </description>
      <params>
