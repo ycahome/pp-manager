@@ -6,7 +6,6 @@
 #  Since (2018-02-23): Initial Version
 #
 #
-#
 """
 <plugin key="PP-MANAGER" name="Python Plugin Manager" author="ycahome" version="1.4.8" externallink="https://www.domoticz.com/forum/viewtopic.php?f=65&t=22339">
     <description>
