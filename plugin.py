@@ -8,9 +8,9 @@
 #
 #
 """
-<plugin key="PP-MANAGER" name="Python Plugin Manager" author="ycahome" version="1.4.6" externallink="https://www.domoticz.com/forum/viewtopic.php?f=65&t=22339">
+<plugin key="PP-MANAGER" name="Python Plugin Manager" author="ycahome" version="1.4.7" externallink="https://www.domoticz.com/forum/viewtopic.php?f=65&t=22339">
     <description>
-		<h2>Python Plugin Manager v.1.4.6</h2><br/>
+		<h2>Python Plugin Manager v.1.4.7</h2><br/>
 		<h3>Features</h3>
 		<ul style="list-style-type:square">
 			<li>Install plugins</li>
@@ -210,7 +210,7 @@ class BasePlugin:
         Domoticz.Debug("Current time:" + CurHr + ":" + CurMin)
 
         if (mid(CurHr,0,2) == "12" and  mid(CurMin,0,2) == "00"):
-            Domoticz.Log("Its time!!. Trigering Update!!!")
+            Domoticz.Log("Its time!!. Trigering Actions!!!")
 
 
             #-------------------------------------
@@ -246,18 +246,10 @@ class BasePlugin:
             if Parameters["Mode4"] == 'Selected':
                 Domoticz.Log("Updating Enabled for Plugin:" + self.plugindata[pluginKey][2])
                 UpdatePythonPlugin(self.plugindata[Parameters["Mode2"]][0], self.plugindata[Parameters["Mode2"]][1], Parameters["Mode2"])
-            if Parameters["Mode4"] == 'All':
-                Domoticz.Log("Updating All Plugins!!!")
-                i = 0
-                path = str(os.getcwd()) + "/plugins/"
-                for (path, dirs, files) in os.walk(path):
-                    for dir in dirs:
-                        if str(dir) != "":
-                            UpdatePythonPlugin(self.plugindata[str(dir)][0], self.plugindata[str(dir)][1], str(dir))
-                    i += 1
-                    if i >= 1:
-                       break
 
+            if pluginKey == "Idle":
+                Domoticz.Log("Plugin Idle. No actions to be performed!!!")
+ 
 
 
 
