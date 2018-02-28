@@ -8,22 +8,14 @@
 #
 #
 """
-<plugin key="PP-MANAGER" name="Python Plugin Manager" author="ycahome" version="1.3.3" externallink="https://www.domoticz.com/forum/viewtopic.php?f=65&t=22339">
+<plugin key="PP-MANAGER" name="Python Plugin Manager" author="ycahome" version="1.4.5" externallink="https://www.domoticz.com/forum/viewtopic.php?f=65&t=22339">
     <description>
-		<h2>Python Plugin Manager v.1.3.3</h2><br/>
+		<h2>Python Plugin Manager v.1.4.5</h2><br/>
 		<h3>Features</h3>
 		<ul style="list-style-type:square">
-			<li>has a predefined list of plugins to be installed (for start only 3 valid plugins and one dummy)</li>
-			<li>supports only plugins located on GitHub</li>
-			<li>performs plugin installation only if plugin directory not exists</li>
-			<li>performs plugin installation and prompts you to restart Domoticz in order to activate it.</li>
-		</ul>
-		<h3>Plugins</h3>
-		<ul style="list-style-type:square">
-			<li>SNMP Reader</li>
-			<li>UPS Monitor</li>
-			<li>Xiaomi Mi Flower Mate</li>
-			<li>Sonos</li>
+			<li>Install plugins</li>
+			<li>Update plugins</li>
+			<li>Update Notification for All/Selected</li>
 		</ul>
     </description>
      <params>
@@ -48,7 +40,7 @@
                 <option label="Xiaomi Mi Flower Mate" value="Mi_Flower_mate_plugin"/>
                 <option label="Xiaomi Mi Robot Vacuum" value="xiaomi-mi-robot-vacuum"/>
                 <option label="Yamaha AV Receiver" value="YamahaPlug"/>
-                <option label="Dummy Plugin" value="Dummy Plugin"/>
+                <option label="Dummy Plugin" value="Dummy_Plugin"/>
             </options>
         </param>
          <param field="Mode4" label="Auto Update" width="175px">
@@ -74,6 +66,10 @@ import Domoticz
 import os
 import subprocess
 import sys
+
+import urllib
+import urllib.request
+import urllib.error
 
 import time
 
@@ -115,9 +111,10 @@ class BasePlugin:
             "xiaomi-mi-robot-vacuum":           ["mrin",            "domoticz-mirobot-plugin",      "Xiaomi Mi Robot Vacuum"],
             "MQTTDiscovery":                   	["emontnemery",     "domoticz_mqtt_discovery",      "MQTT discovery"],
             "xfr_openaq":                       ["Xorfor",          "Domoticz-OpenAQ-Plugin",       "OpenAQ"],
-            "Dummy Plugin":                     ["ycahome",         "Dummy_Plugin",                 "Dummy_Plugin"],
+            "Dummy_Plugin":                     ["ycahome",         "Dummy_Plugin",                 "Dummy Plugin"],
         }        
         
+	
         
         return
 
@@ -136,7 +133,7 @@ class BasePlugin:
         pluginAuthor = ""
         pluginRepository = ""
         pluginKey = ""
-        
+
         pluginKey = Parameters["Mode2"]
         pluginAuthor = self.plugindata[pluginKey][0]
         pluginRepository = self.plugindata[pluginKey][1]
@@ -153,16 +150,22 @@ class BasePlugin:
                 i += 1
                 if i >= 1:
                    break
-            Domoticz.Heartbeat(60)
 
         if Parameters["Mode4"] == 'AllNotify':
-            Domoticz.Log("Update Notification for All Plugins NOT YET IMPLEMENTED!!")
-            #UpdatePythonPlugin(pluginAuthor, pluginRepository, pluginKey)
-            Domoticz.Heartbeat(60)
+            Domoticz.Log("Collecting Updates for All Plugins!!!")
+            i = 0
+            path = str(os.getcwd()) + "/plugins/"
+            for (path, dirs, files) in os.walk(path):
+                for dir in dirs:
+                    if str(dir) != "":
+                        CheckForUpdatePythonPlugin(pluginAuthor, pluginRepository, str(dir))
+                i += 1
+                if i >= 1:
+                   break
+
         if Parameters["Mode4"] == 'SelectedNotify':
-            Domoticz.Log("Update Notification for Selected Plugin NOT YET IMPLEMENTED!!")
-            #UpdatePythonPlugin(pluginAuthor, pluginRepository, pluginKey)
-            Domoticz.Heartbeat(60)
+            Domoticz.Log("Collecting Updates for Plugin:" + pluginKey)
+            CheckForUpdatePythonPlugin(pluginAuthor, pluginRepository, pluginKey)
 
         if pluginKey == "Idle":
             Domoticz.Log("Plugin Idle")
@@ -208,13 +211,38 @@ class BasePlugin:
 
         if (mid(CurHr,0,2) == "12" and  mid(CurMin,0,2) == "00"):
             Domoticz.Log("Its time!!. Trigering Update!!!")
-		
+
+
+            #-------------------------------------
+            if Parameters["Mode4"] == 'All':
+                Domoticz.Log("Updating All Plugins!!!")
+                i = 0
+                path = str(os.getcwd()) + "/plugins/"
+                for (path, dirs, files) in os.walk(path):
+                    for dir in dirs:
+                        if str(dir) != "":
+                            UpdatePythonPlugin(pluginAuthor, pluginRepository, str(dir))
+                    i += 1
+                    if i >= 1:
+                       break
+
             if Parameters["Mode4"] == 'AllNotify':
-                Domoticz.Log("Update Notification for All Plugins NOT YET IMPLEMENTED!!")
-                #UpdatePythonPlugin(pluginAuthor, pluginRepository, pluginKey)
+                Domoticz.Log("Collecting Updates for All Plugins!!!")
+                i = 0
+                path = str(os.getcwd()) + "/plugins/"
+                for (path, dirs, files) in os.walk(path):
+                    for dir in dirs:
+                        if str(dir) != "":
+                            CheckForUpdatePythonPlugin(pluginAuthor, pluginRepository, str(dir))
+                    i += 1
+                    if i >= 1:
+                       break
+
             if Parameters["Mode4"] == 'SelectedNotify':
-                Domoticz.Log("Update Notification for Selected Plugin NOT YET IMPLEMENTED!!")
-                #UpdatePythonPlugin(pluginAuthor, pluginRepository, pluginKey)
+                Domoticz.Log("Collecting Updates for Plugin:" + pluginKey)
+                CheckForUpdatePythonPlugin(pluginAuthor, pluginRepository, pluginKey)
+
+            #-------------------------------------
             if Parameters["Mode4"] == 'Selected':
                 Domoticz.Log("Updating Enabled for Plugin:" + self.plugindata[pluginKey][2])
                 UpdatePythonPlugin(self.plugindata[Parameters["Mode2"]][0], self.plugindata[Parameters["Mode2"]][1], Parameters["Mode2"])
@@ -308,6 +336,8 @@ def UpdatePythonPlugin(ppAuthor, ppRepository, ppKey):
     if ppKey == "PP-MANAGER":
        Domoticz.Log("Self Update Initiated")
     Domoticz.Log("Updating Plugin:" + ppKey)
+    ppUrl = "/usr/bin/git remote update"
+    pr = subprocess.Popen( ppUrl , cwd = str(os.getcwd() + "/plugins/" + ppKey), shell = True, stdout = subprocess.PIPE, stderr = subprocess.PIPE )
     ppUrl = "/usr/bin/git pull --force"
     Domoticz.Debug("Calling:" + ppUrl + " on folder " + str(os.getcwd()) + "/plugins/" + ppKey)
     try:
@@ -326,7 +356,7 @@ def UpdatePythonPlugin(ppAuthor, ppRepository, ppKey):
         if error:
             Domoticz.Debug("Git Error:" + str(error.strip()))
             if str(error).find("Not a git repository") != -1:
-               Domoticz.Error("Plugin:" + ppKey + " is not installed from gitHub. Cannot be updated with PP-Manager!!.")
+               Domoticz.Log("Plugin:" + ppKey + " is not installed from gitHub. Cannot be updated with PP-Manager!!.")
     except OSError as e:
         Domoticz.Error("Git ErrorNo:" + str(e.errno))
         Domoticz.Error("Git StrError:" + str(e.strerror))
@@ -346,6 +376,82 @@ def UpdatePythonPlugin(ppAuthor, ppRepository, ppKey):
     return None
 
 
+
+
+
+# UpdateNotifyPyhtonPlugin function
+def CheckForUpdatePythonPlugin(ppAuthor, ppRepository, ppKey):
+
+    Domoticz.Debug("Checking Plugin:" + ppKey + " for updates")
+    ppUrl = "/usr/bin/git status -uno"
+    Domoticz.Debug("Calling:" + ppUrl + " on folder " + str(os.getcwd()) + "/plugins/" + ppKey)
+    try:
+        pr = subprocess.Popen( ppUrl , cwd = str(os.getcwd() + "/plugins/" + ppKey), shell = True, stdout = subprocess.PIPE, stderr = subprocess.PIPE )
+        (out, error) = pr.communicate()
+        if out:
+            Domoticz.Debug("Git Response:" + str(out))
+            if str(out).find("up-to-date") != -1:
+               Domoticz.Debug("Plugin " + ppKey + " already Up-To-Date")
+               Domoticz.Debug("find(error):" + str(str(out).find("error")))
+            elif (str(out).find("Your branch is behind") != -1) and (str(str(out).find("error")) == "-1"):
+               Domoticz.Log("Found that we are behind on plugin " + ppKey)
+               fnSelectedNotify(ppKey)
+            elif (str(out).find("Your branch is ahead") != -1) and (str(str(out).find("error")) == "-1"):
+               Domoticz.Debug("Found that we are ahead on plugin " + ppKey + ". No need for update")
+            else:
+               Domoticz.Error("Something went wrong with update of " + str(ppKey))
+        if error:
+            Domoticz.Debug("Git Error:" + str(error.strip()))
+            if str(error).find("Not a git repository") != -1:
+               Domoticz.Log("Plugin:" + ppKey + " is not installed from gitHub. Ignoring!!.")
+    except OSError as e:
+        Domoticz.Error("Git ErrorNo:" + str(e.errno))
+        Domoticz.Error("Git StrError:" + str(e.strerror))
+ 
+    #try:
+    #    pr1 = subprocess.Popen( "/etc/init.d/domoticz.sh restart" , cwd = os.path.dirname(str(os.getcwd()) + "/plugins/"), shell = True, stdout = subprocess.PIPE, stderr = subprocess.PIPE )
+    #    (out1, error1) = pr1.communicate()
+    #    if out1:
+    #        Domoticz.Log("Command Response1:" + str(out1))
+    #    if error1:
+    #        Domoticz.Log("Command Error1:" + str(error1.strip()))
+    #except OSError1 as e1:
+    #    Domoticz.Error("Command ErrorNo1:" + str(e1.errno))
+    #    Domoticz.Error("Command StrError1:" + str(e1.strerror))
+
+
+    return None
+
+
+
+
+
+
+
+
+
+
+
+
+
+ # fnSelectedNotify function
+def fnSelectedNotify(pluginText):
+       Domoticz.Log("Preparing Notification")
+       ServerURL = "http://127.0.0.1:8080/json.htm?param=sendnotification&type=command"
+       MailSubject = urllib.parse.quote("Domoticz Plugin Updates Available for " + pluginText)
+       MailBody = urllib.parse.quote(pluginText + " has updates available!!")
+       MailDetailsURL = "&subject=" + MailSubject + "&body=" + MailBody + "&subsystem=email"
+       notificationURL = ServerURL + MailDetailsURL
+       Domoticz.Debug("ConstructedURL is:" + notificationURL)
+       try:
+           response = urllib.request.urlopen(notificationURL, timeout = 30).read()
+       except urllib.error.HTTPError as err1:
+           Domoticz.Error("HTTP Request error: " + str(err1) + " URL: " + notificationURL)
+       return
+       Domoticz.Debug("Notification URL is :" + str(notificationURL))
+
+
+       return None
 
 
 
