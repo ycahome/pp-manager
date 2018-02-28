@@ -336,8 +336,6 @@ def UpdatePythonPlugin(ppAuthor, ppRepository, ppKey):
     if ppKey == "PP-MANAGER":
        Domoticz.Log("Self Update Initiated")
     Domoticz.Log("Updating Plugin:" + ppKey)
-    ppUrl = "/usr/bin/git remote update"
-    pr = subprocess.Popen( ppUrl , cwd = str(os.getcwd() + "/plugins/" + ppKey), shell = True, stdout = subprocess.PIPE, stderr = subprocess.PIPE )
     ppUrl = "/usr/bin/git pull --force"
     Domoticz.Debug("Calling:" + ppUrl + " on folder " + str(os.getcwd()) + "/plugins/" + ppKey)
     try:
