@@ -1,7 +1,84 @@
 # pp-manager
 Domoticz Python plugin manager
 
-THIS PLUGIN IS UNDER TESTING
+THIS PLUGIN IS UNDER TESTING USE ON YOUR OWN RISK!!
 
 BEWARE, this is a very early Beta version. Use it on your test server first.
  Also, can be used ONLY ON LINUX SYSTEMS and Raspberry Pi!!!!!!
+
+
+Hello,
+
+Some thoughts became code.
+
+What if we could use a plugin in order to install other plugins from a list?
+
+So, I did it.
+
+This plugin 
+- has a predefined list of plugins to be installed (for start only 3 valid plugins and one dummy)
+- auto updates itself on every self.stop()
+
+[b]To install a plugin:[/b] select it on [b]"Domoticz Plugin"[/b] field and press [b]update[/b]
+[b]To continuously update all plugins:[/b] Select [b]"All"[/b] from [b]"Auto Update"[/b] drop-down box and press update
+[b]To continuously update selected plugin:[/b] Select desired plugin from [b]"Domoticz Plugin"[/b] field put [b]"Selected"[/b] on [b]"Auto Update"[/b] drop-down box and press update
+[b]To check all plugins for updates and receive notification email:[/b] Select [b]"All (NotifyOnly)"[/b] from [b]"Auto Update"[/b] drop-down box and press update
+[b]To check selected plugin for updates and receive notification email:[/b] Select desired plugin from [b]"Domoticz Plugin"[/b] field put [b]"Selected (NotifyOnly)"[/b] on [b]"Auto Update"[/b] drop-down box and press update
+
+
+
+DISPLAY NAME                                     
+---------------------------------------------
+Buienradar.nl (Weather lookup)               
+ebusd bridge                                            
+Pi-hole summary                                        
+Wan IP Checker                                           
+SYSFS-Switches                                           
+Yamaha AV Receiver                                   
+Onkyo AV Receiver                                      
+Battery monitoring for Z-Wave nodes           
+Homewizard                                               
+PiMonitor                                                   
+Xiaomi Mi Robot Vacuum                        
+MQTT discovery                                     
+OpenAQ
+SNMP Reader
+UPS Monitor
+Xiaomi Mi Flower Mate
+---------------Dummy Plugin
+
+
+- supports only plugins located on GitHub
+- performs plugin installation only if plugin directory not exists
+- performs plugin installation and prompts you to restart Domoticz in order to activate it.
+- self updates every 24 hours
+- update selected plugin (ad-hoc update) every 24 hours
+ -more plugins added
+
+To install another plugin, just select it and press update.
+
+
+Pending to be implemented:
+ - Uninstall plugins
+ - standardise execution of a shell file in order to fulfill individual plugin prerequisites
+ - check for updates for currently installed plugins and notify admin
+ - implement notifications 
+ - 
+
+
+
+You can install and test it from GitHub bellow (git tools required):
+
+go to your plugins folder
+and execute 
+
+[code]git clone https://github.com/ycahome/pp-manager.git PP-MANAGER[/code]
+
+
+
+
+BEWARE, this is a very early Beta version. Use it on your test server first.
+Also, can be used ONLY ON LINUX SYSTEMS and Raspberry Pi!!!!!!
+
+
+Waiting for your comments!!!!
