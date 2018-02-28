@@ -221,7 +221,7 @@ class BasePlugin:
             Domoticz.Log("Its time!!. Trigering Update!!!")
 
 
-#-------------------------------------
+            #-------------------------------------
             if Parameters["Mode4"] == 'All':
                 Domoticz.Log("Updating All Plugins!!!")
                 i = 0
@@ -250,7 +250,7 @@ class BasePlugin:
                 Domoticz.Log("Collecting Updates for Plugin:" + pluginKey)
                 CheckForUpdatePythonPlugin(pluginAuthor, pluginRepository, pluginKey)
 
-#-------------------------------------
+            #-------------------------------------
             if Parameters["Mode4"] == 'Selected':
                 Domoticz.Log("Updating Enabled for Plugin:" + self.plugindata[pluginKey][2])
                 UpdatePythonPlugin(self.plugindata[Parameters["Mode2"]][0], self.plugindata[Parameters["Mode2"]][1], Parameters["Mode2"])
