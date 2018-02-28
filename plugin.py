@@ -141,7 +141,7 @@ class BasePlugin:
         pluginRepository = ""
         pluginKey = ""
 
-	pluginKey = Parameters["Mode2"]
+        pluginKey = Parameters["Mode2"]
         pluginAuthor = self.plugindata[pluginKey][0]
         pluginRepository = self.plugindata[pluginKey][1]
         pluginText = self.plugindata[pluginKey][2]
