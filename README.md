@@ -19,11 +19,11 @@ This plugin
 - has a predefined list of plugins to be installed (for start only 3 valid plugins and one dummy)
 - auto updates itself on every self.stop()
 
-[b]To install a plugin:[/b] select it on [b]"Domoticz Plugin"[/b] field and press [b]update[/b]
-[b]To continuously update all plugins:[/b] Select [b]"All"[/b] from [b]"Auto Update"[/b] drop-down box and press update
-[b]To continuously update selected plugin:[/b] Select desired plugin from [b]"Domoticz Plugin"[/b] field put [b]"Selected"[/b] on [b]"Auto Update"[/b] drop-down box and press update
-[b]To check all plugins for updates and receive notification email:[/b] Select [b]"All (NotifyOnly)"[/b] from [b]"Auto Update"[/b] drop-down box and press update
-[b]To check selected plugin for updates and receive notification email:[/b] Select desired plugin from [b]"Domoticz Plugin"[/b] field put [b]"Selected (NotifyOnly)"[/b] on [b]"Auto Update"[/b] drop-down box and press update
+To install a plugin: select it on "Domoticz Plugin" field and press update
+To continuously update all plugins: Select "All" from "Auto Update" drop-down box and press update
+To continuously update selected plugin: Select desired plugin from "Domoticz Plugin" field put "Selected" on "Auto Update" drop-down box and press update
+To check all plugins for updates and receive notification email: Select "All (NotifyOnly)" from "Auto Update" drop-down box and press update
+To check selected plugin for updates and receive notification email: Select desired plugin from "Domoticz Plugin" field put "Selected (NotifyOnly)" on "Auto Update" drop-down box and press update
 
 
 
