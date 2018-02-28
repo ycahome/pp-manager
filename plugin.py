@@ -140,8 +140,8 @@ class BasePlugin:
         pluginAuthor = ""
         pluginRepository = ""
         pluginKey = ""
-        
-        pluginKey = Parameters["Mode2"]
+
+	pluginKey = Parameters["Mode2"]
         pluginAuthor = self.plugindata[pluginKey][0]
         pluginRepository = self.plugindata[pluginKey][1]
         pluginText = self.plugindata[pluginKey][2]
@@ -157,10 +157,9 @@ class BasePlugin:
                 i += 1
                 if i >= 1:
                    break
-            Domoticz.Heartbeat(60)
 
         if Parameters["Mode4"] == 'AllNotify':
-            Domoticz.Log("Collecting Updates from All Plugins!!!")
+            Domoticz.Log("Collecting Updates for All Plugins!!!")
             i = 0
             path = str(os.getcwd()) + "/plugins/"
             for (path, dirs, files) in os.walk(path):
@@ -170,12 +169,10 @@ class BasePlugin:
                 i += 1
                 if i >= 1:
                    break
-            Domoticz.Heartbeat(60)
 
         if Parameters["Mode4"] == 'SelectedNotify':
-            Domoticz.Log("Update Notification for Selected Plugin NOT YET IMPLEMENTED!!")
-            #UpdatePythonPlugin(pluginAuthor, pluginRepository, pluginKey)
-            Domoticz.Heartbeat(60)
+            Domoticz.Log("Collecting Updates for Plugin:" + pluginKey)
+            CheckForUpdatePythonPlugin(pluginAuthor, pluginRepository, pluginKey)
 
         if pluginKey == "Idle":
             Domoticz.Log("Plugin Idle")
@@ -221,13 +218,38 @@ class BasePlugin:
 
         if (mid(CurHr,0,2) == "12" and  mid(CurMin,0,2) == "00"):
             Domoticz.Log("Its time!!. Trigering Update!!!")
-		
+
+
+#-------------------------------------
+            if Parameters["Mode4"] == 'All':
+                Domoticz.Log("Updating All Plugins!!!")
+                i = 0
+                path = str(os.getcwd()) + "/plugins/"
+                for (path, dirs, files) in os.walk(path):
+                    for dir in dirs:
+                        if str(dir) != "":
+                            UpdatePythonPlugin(pluginAuthor, pluginRepository, str(dir))
+                    i += 1
+                    if i >= 1:
+                       break
+
             if Parameters["Mode4"] == 'AllNotify':
-                Domoticz.Log("Update Notification for All Plugins NOT YET IMPLEMENTED!!")
-                #UpdatePythonPlugin(pluginAuthor, pluginRepository, pluginKey,0)
+                Domoticz.Log("Collecting Updates for All Plugins!!!")
+                i = 0
+                path = str(os.getcwd()) + "/plugins/"
+                for (path, dirs, files) in os.walk(path):
+                    for dir in dirs:
+                        if str(dir) != "":
+                            CheckForUpdatePythonPlugin(pluginAuthor, pluginRepository, str(dir))
+                    i += 1
+                    if i >= 1:
+                       break
+
             if Parameters["Mode4"] == 'SelectedNotify':
-                Domoticz.Log("Update Notification for Selected Plugin NOT YET IMPLEMENTED!!")
-                #UpdatePythonPlugin(pluginAuthor, pluginRepository, pluginKey,0)
+                Domoticz.Log("Collecting Updates for Plugin:" + pluginKey)
+                CheckForUpdatePythonPlugin(pluginAuthor, pluginRepository, pluginKey)
+
+#-------------------------------------
             if Parameters["Mode4"] == 'Selected':
                 Domoticz.Log("Updating Enabled for Plugin:" + self.plugindata[pluginKey][2])
                 UpdatePythonPlugin(self.plugindata[Parameters["Mode2"]][0], self.plugindata[Parameters["Mode2"]][1], Parameters["Mode2"])
