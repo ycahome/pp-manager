@@ -48,7 +48,7 @@
                 <option label="Xiaomi Mi Flower Mate" value="Mi_Flower_mate_plugin"/>
                 <option label="Xiaomi Mi Robot Vacuum" value="xiaomi-mi-robot-vacuum"/>
                 <option label="Yamaha AV Receiver" value="YamahaPlug"/>
-                <option label="Dummy Plugin" value="Dummy Plugin"/>
+                <option label="Dummy Plugin" value="Dummy_Plugin"/>
             </options>
         </param>
          <param field="Mode4" label="Auto Update" width="175px">
@@ -119,7 +119,7 @@ class BasePlugin:
             "xiaomi-mi-robot-vacuum":           ["mrin",            "domoticz-mirobot-plugin",      "Xiaomi Mi Robot Vacuum"],
             "MQTTDiscovery":                   	["emontnemery",     "domoticz_mqtt_discovery",      "MQTT discovery"],
             "xfr_openaq":                       ["Xorfor",          "Domoticz-OpenAQ-Plugin",       "OpenAQ"],
-            "Dummy Plugin":                     ["ycahome",         "Dummy_Plugin",                 "Dummy_Plugin"],
+            "Dummy_Plugin":                     ["ycahome",         "Dummy_Plugin",                 "Dummy Plugin"],
         }        
         
         
