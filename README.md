@@ -20,10 +20,15 @@ This plugin
 - auto updates itself on every self.stop()
 
 To install a plugin: select it on "Domoticz Plugin" field and press update
-To continuously update all plugins: Select "All" from "Auto Update" drop-down box and press update
+
+To continuously update all plugins: Select "All" from "Auto Update" drop-down box and press 
+
 To continuously update selected plugin: Select desired plugin from "Domoticz Plugin" field put "Selected" on "Auto Update" drop-down box and press update
+
 To check all plugins for updates and receive notification email: Select "All (NotifyOnly)" from "Auto Update" drop-down box and press update
+
 To check selected plugin for updates and receive notification email: Select desired plugin from "Domoticz Plugin" field put "Selected (NotifyOnly)" on "Auto Update" drop-down box and press update
+
 
 
 
