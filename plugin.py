@@ -7,9 +7,9 @@
 #
 #
 """
-<plugin key="PP-MANAGER" name="Python Plugin Manager" author="ycahome" version="1.4.8" externallink="https://www.domoticz.com/forum/viewtopic.php?f=65&t=22339">
+<plugin key="PP-MANAGER" name="Python Plugin Manager" author="ycahome" version="1.4.9" externallink="https://www.domoticz.com/forum/viewtopic.php?f=65&t=22339">
     <description>
-		<h2>Python Plugin Manager v.1.4.8</h2><br/>
+		<h2>Python Plugin Manager v.1.4.9</h2><br/>
 		<h3>Features</h3>
 		<ul style="list-style-type:square">
 			<li>Install plugins</li>
@@ -23,7 +23,9 @@
                 <option label="Idle" value="Idle"  default="true" />
                 <option label="Battery monitoring for Z-Wave nodes" value="BatteryLevel"/>
                 <option label="Buienradar.nl (Weather lookup)" value="Buienradar"/>
+                <option label="Eartquake EMSC Data" value="SeismicPortal"/>
                 <option label="ebusd bridge" value="ebusd"/>
+                <option label="Global Cache 100" value="GC-100"/>
                 <option label="Homewizard" value="Homewizard"/>
                 <option label="MQTT discovery" value="MQTTDiscovery"/>
                 <option label="Onkyo AV Receiver" value="Onkyo"/>
@@ -99,7 +101,9 @@ class BasePlugin:
             "WAN-IP-CHECKER":                   ["ycahome",         "WAN-IP-CHECKER",               "Wan IP Checker"],
             "xfr_speedtest":                    ["Xorfor",          "Domoticz-Speedtest-Plugin ",   "Speedtest"],
             "Buienradar":   			["ffes",            "domoticz-buienradar",          "Buienradar.nl (Weather lookup)"],
+            "SeismicPortal":                  	["febalci",    	    "DomoticzEarthquake",           "Eartquake EMSC Data"],
             "ebusd":                     	["guillaumezin",    "DomoticzEbusd",                "ebusd bridge"],
+            "GC-100":                     	["dnpwwo",          "Domoticz-GlobalCache-Plugin",  "Global Cache 100"],
             "xfr_pihole":                  	["Xorfor",          "Domoticz-Pi-hole-Plugin",      "Pi-hole summary"],
             "SYSFS-Switches":                   ["flatsiedatsie",   "GPIO-SYSFS-Switches",          "SYSFS-Switches"],
             "YamahaPlug":               	["thomas-villagers", "domoticz-yamaha",             "Yamaha AV Receiver"],
