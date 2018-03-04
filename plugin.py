@@ -360,6 +360,7 @@ def UpdatePythonPlugin(ppAuthor, ppRepository, ppKey):
                Domoticz.Log("Plugin " + ppKey + " already Up-To-Date")
                #Domoticz.Log("find(error):" + str(str(out).find("error")))
             elif (str(out).find("Updating") != -1) and (str(str(out).find("error")) == "-1"):
+               ppUrl = "chmod "
                Domoticz.Log("Succesfully pulled gitHub update:" + str(out)[str(out).find("Updating")+8:26] + " for plugin " + ppKey)
                Domoticz.Log("---Restarting Domoticz MAY BE REQUIRED to activate new plugins---")
             else:
@@ -402,7 +403,7 @@ def CheckForUpdatePythonPlugin(ppAuthor, ppRepository, ppKey):
         if out:
             Domoticz.Debug("Git Response:" + str(out))
             if str(out).find("up-to-date") != -1:
-               Domoticz.Debug("Plugin " + ppKey + " already Up-To-Date")
+               Domoticz.Log("Plugin " + ppKey + " already Up-To-Date")
                Domoticz.Debug("find(error):" + str(str(out).find("error")))
             elif (str(out).find("Your branch is behind") != -1) and (str(str(out).find("error")) == "-1"):
                Domoticz.Log("Found that we are behind on plugin " + ppKey)
