@@ -7,13 +7,13 @@
 #
 #
 """
-<plugin key="PP-MANAGER" name="Python Plugin Manager" author="ycahome" version="1.4.9" externallink="https://www.domoticz.com/forum/viewtopic.php?f=65&t=22339">
+<plugin key="PP-MANAGER" name="Python Plugin Manager" author="ycahome" version="1.4.10" externallink="https://www.domoticz.com/forum/viewtopic.php?f=65&t=22339">
     <description>
-		<h2>Python Plugin Manager v.1.4.9</h2><br/>
+		<h2>Python Plugin Manager v.1.4.10</h2><br/>
 		<h3>Features</h3>
 		<ul style="list-style-type:square">
 			<li>Install plugins</li>
-			<li>Update plugins</li>
+			<li>Update All/Selected plugins</li>
 			<li>Update Notification for All/Selected</li>
 		</ul>
     </description>
@@ -21,6 +21,7 @@
         <param field="Mode2" label="Domoticz Plugin" width="200px">
             <options>
                 <option label="Idle" value="Idle"  default="true" />
+                <option label="Dummy Plugin" value="Dummy_Plugin"/>
                 <option label="Battery monitoring for Z-Wave nodes" value="BatteryLevel"/>
                 <option label="Buienradar.nl (Weather lookup)" value="Buienradar"/>
                 <option label="Eartquake EMSC Data" value="SeismicPortal"/>
@@ -35,22 +36,22 @@
                 <option label="SYSFS-Switches" value="SYSFS-Switches"/>
                 <option label="SNMP Reader" value="SNMPreader"/>
                 <option label="Sonos Players" value="Sonos"/>
+                <option label="Sony Bravia TV (with Kodi remote)" value="sony"/>
                 <option label="Speedtest" value="xfr_speedtest"/>
                 <option label="UPS Monitor" value="UPS Monitor"/>
                 <option label="Wan IP Checker" value="WAN-IP-CHECKER"/>
                 <option label="Xiaomi Mi Flower Mate" value="Mi_Flower_mate_plugin"/>
                 <option label="Xiaomi Mi Robot Vacuum" value="xiaomi-mi-robot-vacuum"/>
                 <option label="Yamaha AV Receiver" value="YamahaPlug"/>
-                <option label="Dummy Plugin" value="Dummy_Plugin"/>
             </options>
         </param>
          <param field="Mode4" label="Auto Update" width="175px">
             <options>
                 <option label="All" value="All"/>
-                <option label="All (NotifyOnly)" value="AllNotify"/>
+                <option label="All (NotifyOnly)" value="AllNotify default="true" "/>
                 <option label="Selected" value="Selected"/>
                 <option label="Selected (NotifyOnly)" value="SelectedNotify"/>
-                <option label="None" value="None"  default="true" />
+                <option label="None" value="None"/>
             </options>
         </param>
          <param field="Mode6" label="Debug" width="75px">
@@ -94,26 +95,27 @@ class BasePlugin:
         self.plugindata = {
             # Plugin Key:                      [gitHub author,        repository,                  plugin Text]
             "Idle":                             ["Idle",            "Idle",                         "Idle"],
-            "SNMPreader":                      	["ycahome",         "SNMPreader",                   "SNMP Reader"],
-            "NUT_UPS":                          ["999LV",           "NUT_UPS",                      "NUT_UPS"],
-            "Mi_Flower_mate_plugin":            ["flatsiedatsie",   "Mi_Flower_mate_plugin",        "Xiaomi Mi Flower Mate"],
-            "Sonos":                    	["gerard33",        "sonos",                        "Sonos Players"],
-            "WAN-IP-CHECKER":                   ["ycahome",         "WAN-IP-CHECKER",               "Wan IP Checker"],
-            "xfr_speedtest":                    ["Xorfor",          "Domoticz-Speedtest-Plugin ",   "Speedtest"],
+            "BatteryLevel":  			["999LV",       "BatteryLevel",                     "Battery monitoring for Z-Wave nodes"],
             "Buienradar":   			["ffes",            "domoticz-buienradar",          "Buienradar.nl (Weather lookup)"],
             "SeismicPortal":                  	["febalci",    	    "DomoticzEarthquake",           "Eartquake EMSC Data"],
             "ebusd":                     	["guillaumezin",    "DomoticzEbusd",                "ebusd bridge"],
             "GC-100":                     	["dnpwwo",          "Domoticz-GlobalCache-Plugin",  "Global Cache 100"],
+            "Homewizard":                       ["rvdvoorde",       "domoticz-homewizard",          "Homewizard"],
+            "NUT_UPS":                          ["999LV",           "NUT_UPS",                      "NUT_UPS"],
+            "xfr_openaq":                       ["Xorfor",          "Domoticz-OpenAQ-Plugin",       "OpenAQ"],
+            "Onkyo":                		["jorgh6",          "domoticz-onkyo-plugin",        "Onkyo AV Receiver"],
+            "xfr-pimonitor":                    ["Xorfor",          "Domoticz-PiMonitor-Plugin",    "PiMonitor"],
             "xfr_pihole":                  	["Xorfor",          "Domoticz-Pi-hole-Plugin",      "Pi-hole summary"],
             "SYSFS-Switches":                   ["flatsiedatsie",   "GPIO-SYSFS-Switches",          "SYSFS-Switches"],
-            "YamahaPlug":               	["thomas-villagers", "domoticz-yamaha",             "Yamaha AV Receiver"],
-            "Onkyo":                		["jorgh6",          "domoticz-onkyo-plugin",        "Onkyo AV Receiver"],
-            "BatteryLevel":  			["999LV",       "BatteryLevel",                     "Battery monitoring for Z-Wave nodes"],
-            "Homewizard":                       ["rvdvoorde",       "domoticz-homewizard",          "Homewizard"],
-            "xfr-pimonitor":                    ["Xorfor",          "Domoticz-PiMonitor-Plugin",    "PiMonitor"],
+            "Sonos":                    	["gerard33",        "sonos",                        "Sonos Players"],
+            "sony":                             ["gerard33",        "sony-bravia",                  "Sony Bravia TV (with Kodi remote)"],
+            "xfr_speedtest":                    ["Xorfor",          "Domoticz-Speedtest-Plugin ",   "Speedtest"],
+            "SNMPreader":                      	["ycahome",         "SNMPreader",                   "SNMP Reader"],
             "xiaomi-mi-robot-vacuum":           ["mrin",            "domoticz-mirobot-plugin",      "Xiaomi Mi Robot Vacuum"],
+            "XiaomiPM":                         ["febalci",         "DomoticzXiaomiPM2.5",          "Xiaomi PM2.5 Sensor"],
+            "Mi_Flower_mate_plugin":            ["flatsiedatsie",   "Mi_Flower_mate_plugin",        "Xiaomi Mi Flower Mate"],
             "MQTTDiscovery":                   	["emontnemery",     "domoticz_mqtt_discovery",      "MQTT discovery"],
-            "xfr_openaq":                       ["Xorfor",          "Domoticz-OpenAQ-Plugin",       "OpenAQ"],
+            "WAN-IP-CHECKER":                   ["ycahome",         "WAN-IP-CHECKER",               "Wan IP Checker"],
             "Dummy_Plugin":                     ["ycahome",         "Dummy_Plugin",                 "Dummy Plugin"],
         }        
         
