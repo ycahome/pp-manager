@@ -33,15 +33,16 @@
                 <option label="OpenAQ" value="xfr_openaq"/>
                 <option label="Pi-hole summary" value="xfr_pihole"/>
                 <option label="PiMonitor" value="xfr-pimonitor"/>
-                <option label="SYSFS-Switches" value="SYSFS-Switches"/>
                 <option label="SNMP Reader" value="SNMPreader"/>
                 <option label="Sonos Players" value="Sonos"/>
                 <option label="Sony Bravia TV (with Kodi remote)" value="sony"/>
                 <option label="Speedtest" value="xfr_speedtest"/>
-                <option label="UPS Monitor" value="UPS Monitor"/>
+                <option label="SYSFS-Switches" value="SYSFS-Switches"/>
+                <option label="UPS Monitor" value="NUT_UPS"/>
                 <option label="Wan IP Checker" value="WAN-IP-CHECKER"/>
                 <option label="Xiaomi Mi Flower Mate" value="Mi_Flower_mate_plugin"/>
                 <option label="Xiaomi Mi Robot Vacuum" value="xiaomi-mi-robot-vacuum"/>
+                <option label="Xiaomi PM2.5 Sensor" value="XiaomiPM"/>
                 <option label="Yamaha AV Receiver" value="YamahaPlug"/>
             </options>
         </param>
@@ -95,28 +96,29 @@ class BasePlugin:
         self.plugindata = {
             # Plugin Key:                      [gitHub author,        repository,                  plugin Text]
             "Idle":                             ["Idle",            "Idle",                         "Idle"],
-            "BatteryLevel":  			["999LV",       "BatteryLevel",                     "Battery monitoring for Z-Wave nodes"],
+            "Dummy_Plugin":                     ["ycahome",         "Dummy_Plugin",                 "Dummy Plugin"],
+            "BatteryLevel":  			["999LV",           "BatteryLevel",                 "Battery monitoring for Z-Wave nodes"],
             "Buienradar":   			["ffes",            "domoticz-buienradar",          "Buienradar.nl (Weather lookup)"],
             "SeismicPortal":                  	["febalci",    	    "DomoticzEarthquake",           "Eartquake EMSC Data"],
             "ebusd":                     	["guillaumezin",    "DomoticzEbusd",                "ebusd bridge"],
             "GC-100":                     	["dnpwwo",          "Domoticz-GlobalCache-Plugin",  "Global Cache 100"],
             "Homewizard":                       ["rvdvoorde",       "domoticz-homewizard",          "Homewizard"],
-            "NUT_UPS":                          ["999LV",           "NUT_UPS",                      "NUT_UPS"],
-            "xfr_openaq":                       ["Xorfor",          "Domoticz-OpenAQ-Plugin",       "OpenAQ"],
+            "MQTTDiscovery":                   	["emontnemery",     "domoticz_mqtt_discovery",      "MQTT discovery"],
             "Onkyo":                		["jorgh6",          "domoticz-onkyo-plugin",        "Onkyo AV Receiver"],
-            "xfr-pimonitor":                    ["Xorfor",          "Domoticz-PiMonitor-Plugin",    "PiMonitor"],
+            "xfr_openaq":                       ["Xorfor",          "Domoticz-OpenAQ-Plugin",       "OpenAQ"],
             "xfr_pihole":                  	["Xorfor",          "Domoticz-Pi-hole-Plugin",      "Pi-hole summary"],
-            "SYSFS-Switches":                   ["flatsiedatsie",   "GPIO-SYSFS-Switches",          "SYSFS-Switches"],
+            "xfr-pimonitor":                    ["Xorfor",          "Domoticz-PiMonitor-Plugin",    "PiMonitor"],
+            "SNMPreader":                      	["ycahome",         "SNMPreader",                   "SNMP Reader"],
             "Sonos":                    	["gerard33",        "sonos",                        "Sonos Players"],
             "sony":                             ["gerard33",        "sony-bravia",                  "Sony Bravia TV (with Kodi remote)"],
             "xfr_speedtest":                    ["Xorfor",          "Domoticz-Speedtest-Plugin ",   "Speedtest"],
-            "SNMPreader":                      	["ycahome",         "SNMPreader",                   "SNMP Reader"],
+            "SYSFS-Switches":                   ["flatsiedatsie",   "GPIO-SYSFS-Switches",          "SYSFS-Switches"],
+            "NUT_UPS":                          ["999LV",           "NUT_UPS",                      "UPS Monitor"],
+            "WAN-IP-CHECKER":                   ["ycahome",         "WAN-IP-CHECKER",               "Wan IP Checker"],
+            "Mi_Flower_mate_plugin":            ["flatsiedatsie",   "Mi_Flower_mate_plugin",        "Xiaomi Mi Flower Mate"],
             "xiaomi-mi-robot-vacuum":           ["mrin",            "domoticz-mirobot-plugin",      "Xiaomi Mi Robot Vacuum"],
             "XiaomiPM":                         ["febalci",         "DomoticzXiaomiPM2.5",          "Xiaomi PM2.5 Sensor"],
-            "Mi_Flower_mate_plugin":            ["flatsiedatsie",   "Mi_Flower_mate_plugin",        "Xiaomi Mi Flower Mate"],
-            "MQTTDiscovery":                   	["emontnemery",     "domoticz_mqtt_discovery",      "MQTT discovery"],
-            "WAN-IP-CHECKER":                   ["ycahome",         "WAN-IP-CHECKER",               "Wan IP Checker"],
-            "Dummy_Plugin":                     ["ycahome",         "Dummy_Plugin",                 "Dummy Plugin"],
+            "YamahaPlug":                       ["thomas-villagers","domoticz-yamaha",              "Yamaha AV Receiver"],
         }        
         
 	
