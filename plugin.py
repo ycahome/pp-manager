@@ -7,9 +7,9 @@
 #
 #
 """
-<plugin key="PP-MANAGER" name="Python Plugin Manager" author="ycahome" version="1.4.10" externallink="https://www.domoticz.com/forum/viewtopic.php?f=65&t=22339">
+<plugin key="PP-MANAGER" name="Python Plugin Manager" author="ycahome" version="1.4.11" externallink="https://www.domoticz.com/forum/viewtopic.php?f=65&t=22339">
     <description>
-		<h2>Python Plugin Manager v.1.4.10</h2><br/>
+		<h2>Python Plugin Manager v.1.4.11</h2><br/>
 		<h3>Features</h3>
 		<ul style="list-style-type:square">
 			<li>Install plugins</li>
@@ -76,6 +76,8 @@ import urllib.error
 
 import time
 
+import platform
+
 #from urllib2 import urlopen
 from datetime import datetime, timedelta
 
@@ -135,6 +137,14 @@ class BasePlugin:
             DumpConfigToLog()
         else:
             Domoticz.Debugging(0)
+
+        Domoticz.Log("Domoticz Platform System is:" + platform.system())
+        Domoticz.Log("Domoticz Platform Release is:" + platform.release())
+        Domoticz.Log("Domoticz Platform Version is:" + platform.version())
+
+        if platform.system() == "Windows":
+            Domoticz.Error("Windows Platform NOT YET SUPPORTED!!")
+            return
 
         pluginText = ""
         pluginAuthor = ""
