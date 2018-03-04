@@ -14,7 +14,7 @@ What if we could use a plugin in order to install other plugins from a list?
 So, I did it.
 
 This plugin 
-- has a predefined list of plugins to be installed (for start only 3 valid plugins and one dummy)
+- has a predefined list of plugins to be installed 
 - auto updates itself on every self.stop()
 
 To install a plugin: select it on "Domoticz Plugin" field and press update
@@ -26,29 +26,6 @@ To continuously update selected plugin: Select desired plugin from "Domoticz Plu
 To check all plugins for updates and receive notification email: Select "All (NotifyOnly)" from "Auto Update" drop-down box and press update
 
 To check selected plugin for updates and receive notification email: Select desired plugin from "Domoticz Plugin" field put "Selected (NotifyOnly)" on "Auto Update" drop-down box and press update
-
-
-
-
-DISPLAY NAME                                     
----------------------------------------------
-Buienradar.nl (Weather lookup)               
-ebusd bridge                                            
-Pi-hole summary                                        
-Wan IP Checker                                           
-SYSFS-Switches                                           
-Yamaha AV Receiver                                   
-Onkyo AV Receiver                                      
-Battery monitoring for Z-Wave nodes           
-Homewizard                                               
-PiMonitor                                                   
-Xiaomi Mi Robot Vacuum                        
-MQTT discovery                                     
-OpenAQ
-SNMP Reader
-UPS Monitor
-Xiaomi Mi Flower Mate
----------------Dummy Plugin
 
 
 - supports only plugins located on GitHub
