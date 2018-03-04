@@ -48,7 +48,7 @@
          <param field="Mode4" label="Auto Update" width="175px">
             <options>
                 <option label="All" value="All"/>
-                <option label="All (NotifyOnly)" value="AllNotify default="true" "/>
+                <option label="All (NotifyOnly)" value="AllNotify" default="true"/>
                 <option label="Selected" value="Selected"/>
                 <option label="Selected (NotifyOnly)" value="SelectedNotify"/>
                 <option label="None" value="None"/>
