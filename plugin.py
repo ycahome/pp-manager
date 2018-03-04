@@ -7,9 +7,9 @@
 #
 #
 """
-<plugin key="PP-MANAGER" name="Python Plugin Manager" author="ycahome" version="1.4.11" externallink="https://www.domoticz.com/forum/viewtopic.php?f=65&t=22339">
+<plugin key="PP-MANAGER" name="Python Plugin Manager" author="ycahome" version="1.4.12" externallink="https://www.domoticz.com/forum/viewtopic.php?f=65&t=22339">
     <description>
-		<h2>Python Plugin Manager v.1.4.11</h2><br/>
+		<h2>Python Plugin Manager v.1.4.12</h2><br/>
 		<h3>Features</h3>
 		<ul style="list-style-type:square">
 			<li>Install plugins</li>
@@ -139,8 +139,9 @@ class BasePlugin:
             Domoticz.Debugging(0)
 
         Domoticz.Log("Domoticz Platform System is:" + platform.system())
-        Domoticz.Log("Domoticz Platform Release is:" + platform.release())
-        Domoticz.Log("Domoticz Platform Version is:" + platform.version())
+        Domoticz.Debug("Domoticz Platform Release is:" + platform.release())
+        Domoticz.Debug("Domoticz Platform Version is:" + platform.version())
+        Domoticz.Log("Default Python Version is:" + str(sys.version_info[0]) + "." + str(sys.version_info[1]) + "." + str(sys.version_info[2]) + ".")
 
         if platform.system() == "Windows":
             Domoticz.Error("Windows Platform NOT YET SUPPORTED!!")
