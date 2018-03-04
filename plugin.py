@@ -138,6 +138,7 @@ class BasePlugin:
         else:
             Domoticz.Debugging(0)
 
+        Domoticz.Log("Domoticz Node Name is:" + platform.node())
         Domoticz.Log("Domoticz Platform System is:" + platform.system())
         Domoticz.Debug("Domoticz Platform Release is:" + platform.release())
         Domoticz.Debug("Domoticz Platform Version is:" + platform.version())
