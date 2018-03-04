@@ -7,9 +7,9 @@
 #
 #
 """
-<plugin key="PP-MANAGER" name="Python Plugin Manager" author="ycahome" version="1.4.13" externallink="https://www.domoticz.com/forum/viewtopic.php?f=65&t=22339">
+<plugin key="PP-MANAGER" name="Python Plugin Manager" author="ycahome" version="1.4.14" externallink="https://www.domoticz.com/forum/viewtopic.php?f=65&t=22339">
     <description>
-		<h2>Python Plugin Manager v.1.4.13</h2><br/>
+		<h2>Python Plugin Manager v.1.4.14</h2><br/>
 		<h3>Features</h3>
 		<ul style="list-style-type:square">
 			<li>Install plugins</li>
@@ -457,7 +457,7 @@ def CheckForUpdatePythonPlugin(ppAuthor, ppRepository, ppKey):
 def fnSelectedNotify(pluginText):
        Domoticz.Log("Preparing Notification")
        ServerURL = "http://127.0.0.1:8080/json.htm?param=sendnotification&type=command"
-       MailSubject = urllib.parse.quote("Domoticz Plugin Updates Available for " + pluginText)
+       MailSubject = urllib.parse.quote(platform.node() + ":Domoticz Plugin Updates Available for " + pluginText)
        MailBody = urllib.parse.quote(pluginText + " has updates available!!")
        MailDetailsURL = "&subject=" + MailSubject + "&body=" + MailBody + "&subsystem=email"
        notificationURL = ServerURL + MailDetailsURL
