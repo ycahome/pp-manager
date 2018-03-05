@@ -7,9 +7,9 @@
 #
 #
 """
-<plugin key="PP-MANAGER" name="Python Plugin Manager" author="ycahome" version="1.4.15" externallink="https://www.domoticz.com/forum/viewtopic.php?f=65&t=22339">
+<plugin key="PP-MANAGER" name="Python Plugin Manager" author="ycahome" version="1.4.16" externallink="https://www.domoticz.com/forum/viewtopic.php?f=65&t=22339">
     <description>
-		<h2>Python Plugin Manager v.1.4.15</h2><br/>
+		<h2>Python Plugin Manager v.1.4.16</h2><br/>
 		<h3>Features</h3>
 		<ul style="list-style-type:square">
 			<li>Install plugins</li>
@@ -167,6 +167,8 @@ class BasePlugin:
                     if str(dir) != "":
                         if str(dir) in self.plugindata:
                             UpdatePythonPlugin(pluginAuthor, pluginRepository, str(dir))
+                        elif str(dir) == "PP-MANAGER":
+                            Domoticz.Debug("PP-Manager Folder found. Skipping!!")      
                         else:
                             Domoticz.Log("Plugin:" + str(dir) + " cannot be managed with PP-Manager!!.")      
                 i += 1
@@ -182,7 +184,9 @@ class BasePlugin:
                     if str(dir) != "":
                         if str(dir) in self.plugindata:
                             CheckForUpdatePythonPlugin(pluginAuthor, pluginRepository, str(dir))
-                        else:
+                         elif str(dir) == "PP-MANAGER":
+                            Domoticz.Debug("PP-Manager Folder found. Skipping!!")      
+                       else:
                             Domoticz.Log("Plugin:" + str(dir) + " cannot be managed with PP-Manager!!.")      
                 i += 1
                 if i >= 1:
