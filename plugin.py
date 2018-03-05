@@ -184,9 +184,9 @@ class BasePlugin:
                     if str(dir) != "":
                         if str(dir) in self.plugindata:
                             CheckForUpdatePythonPlugin(pluginAuthor, pluginRepository, str(dir))
-                         elif str(dir) == "PP-MANAGER":
+                        elif str(dir) == "PP-MANAGER":
                             Domoticz.Debug("PP-Manager Folder found. Skipping!!")      
-                       else:
+                        else:
                             Domoticz.Log("Plugin:" + str(dir) + " cannot be managed with PP-Manager!!.")      
                 i += 1
                 if i >= 1:
