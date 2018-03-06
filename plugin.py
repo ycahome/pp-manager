@@ -7,9 +7,9 @@
 #
 #
 """
-<plugin key="PP-MANAGER" name="Python Plugin Manager" author="ycahome" version="1.4.16" externallink="https://www.domoticz.com/forum/viewtopic.php?f=65&t=22339">
+<plugin key="PP-MANAGER" name="Python Plugin Manager" author="ycahome" version="1.4.17" externallink="https://www.domoticz.com/forum/viewtopic.php?f=65&t=22339">
     <description>
-		<h2>Python Plugin Manager v.1.4.16</h2><br/>
+		<h2>Python Plugin Manager v.1.4.17</h2><br/>
 		<h3>Features</h3>
 		<ul style="list-style-type:square">
 			<li>Install plugins</li>
@@ -24,10 +24,14 @@
                 <option label="Dummy Plugin" value="Dummy_Plugin"/>
                 <option label="Battery monitoring for Z-Wave nodes" value="BatteryLevel"/>
                 <option label="Buienradar.nl (Weather lookup)" value="Buienradar"/>
+                <option label="Denon/Marantz Amplifier" value="Denon4306"/>
+                <option label="Disc usage" value="xfr_discusage"/>
+                <option label="Dutch earthquakes" value="xfr_aardbeving"/>
                 <option label="Eartquake EMSC Data" value="SeismicPortal"/>
                 <option label="ebusd bridge" value="ebusd"/>
                 <option label="Global Cache 100" value="GC-100"/>
                 <option label="Homewizard" value="Homewizard"/>
+                <option label="Hive Plugin" value="HivePlug"/>
                 <option label="MQTT discovery" value="MQTTDiscovery"/>
                 <option label="Onkyo AV Receiver" value="Onkyo"/>
                 <option label="OpenAQ" value="xfr_openaq"/>
@@ -101,10 +105,14 @@ class BasePlugin:
             "Dummy_Plugin":                     ["ycahome",         "Dummy_Plugin",                 "Dummy Plugin"],
             "BatteryLevel":  			["999LV",           "BatteryLevel",                 "Battery monitoring for Z-Wave nodes"],
             "Buienradar":   			["ffes",            "domoticz-buienradar",          "Buienradar.nl (Weather lookup)"],
+            "Denon4306":                  	["dnpwwo",    	    "Domoticz-Denon-Plugin",        "Denon/Marantz Amplifier"],
+            "xfr_discusage":                  	["Xorfor",    	    "Domoticz-Disc-usage-Plugin",   "Disc usage"],
+            "xfr_aardbeving":                  	["Xorfor",    	    "Domoticz-LastDutchEarthquake-Plugin", "Dutch earthquakes"],
             "SeismicPortal":                  	["febalci",    	    "DomoticzEarthquake",           "Eartquake EMSC Data"],
             "ebusd":                     	["guillaumezin",    "DomoticzEbusd",                "ebusd bridge"],
             "GC-100":                     	["dnpwwo",          "Domoticz-GlobalCache-Plugin",  "Global Cache 100"],
             "Homewizard":                       ["rvdvoorde",       "domoticz-homewizard",          "Homewizard"],
+            "HivePlug":                         ["imcfarla2003",    "domoticz-hive",                "Hive Plugin"],
             "MQTTDiscovery":                   	["emontnemery",     "domoticz_mqtt_discovery",      "MQTT discovery"],
             "Onkyo":                		["jorgh6",          "domoticz-onkyo-plugin",        "Onkyo AV Receiver"],
             "xfr_openaq":                       ["Xorfor",          "Domoticz-OpenAQ-Plugin",       "OpenAQ"],
