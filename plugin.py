@@ -200,7 +200,7 @@ class BasePlugin:
                 # use realine() to read next line
                 line = f.readline()
             f.close()
-
+        Domoticz.Log(str(self.ExceptionList))
         if Parameters["Mode4"] == 'All':
             Domoticz.Log("Updating All Plugins!!!")
             i = 0
