@@ -7,9 +7,9 @@
 #
 #
 """
-<plugin key="PP-MANAGER" name="Python Plugin Manager" author="ycahome" version="1.4.17" externallink="https://www.domoticz.com/forum/viewtopic.php?f=65&t=22339">
+<plugin key="PP-MANAGER" name="Python Plugin Manager" author="ycahome" version="1.4.18" externallink="https://www.domoticz.com/forum/viewtopic.php?f=65&t=22339">
     <description>
-		<h2>Python Plugin Manager v.1.4.17</h2><br/>
+		<h2>Python Plugin Manager v.1.4.18</h2><br/>
 		<h3>Features</h3>
 		<ul style="list-style-type:square">
 			<li>Install plugins</li>
@@ -32,6 +32,9 @@
                 <option label="Global Cache 100" value="GC-100"/>
                 <option label="Homewizard" value="Homewizard"/>
                 <option label="Hive Plugin" value="HivePlug"/>
+                <option label="Meteo Alarm EU RSS Reader" value="MeteoAlarmEU"/>
+                <option label="Mikrotik RouterOS" value="mikrotik-routeros"/>
+                <option label="Moon Phases" value="MoonPhases"/>
                 <option label="MQTT discovery" value="MQTTDiscovery"/>
                 <option label="Onkyo AV Receiver" value="Onkyo"/>
                 <option label="OpenAQ" value="xfr_openaq"/>
@@ -113,6 +116,9 @@ class BasePlugin:
             "GC-100":                     	["dnpwwo",          "Domoticz-GlobalCache-Plugin",  "Global Cache 100"],
             "Homewizard":                       ["rvdvoorde",       "domoticz-homewizard",          "Homewizard"],
             "HivePlug":                         ["imcfarla2003",    "domoticz-hive",                "Hive Plugin"],
+            "MeteoAlarmEU":                   	["ycahome",         "MeteoAlarmEU",                 "Meteo Alarm EU RSS Reader"],
+            "mikrotik-routeros":              	["mrin",            "domoticz-routeros-plugin",     "Mikrotik RouterOS"],
+            "MoonPhases":                   	["ycahome",         "MoonPhases",                   "Moon Phases"],
             "MQTTDiscovery":                   	["emontnemery",     "domoticz_mqtt_discovery",      "MQTT discovery"],
             "Onkyo":                		["jorgh6",          "domoticz-onkyo-plugin",        "Onkyo AV Receiver"],
             "xfr_openaq":                       ["Xorfor",          "Domoticz-OpenAQ-Plugin",       "OpenAQ"],
