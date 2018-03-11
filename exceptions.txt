@@ -1,0 +1,35 @@
+# Insert Here the plugins you want PP-Manager to NOT process
+# Mark a line with "#" to de-activate it
+
+Dummy Plugin
+Battery monitoring for Z-Wave nodes
+#Buienradar.nl (Weather lookup)
+#Denon/Marantz Amplifier
+#Disc usage
+#Dutch earthquakes
+#Eartquake EMSC Data
+ebusd bridge
+#Global Cache 100
+Homewizard
+#Hive Plugin
+#Meteo Alarm EU RSS Reader
+#Mikrotik RouterOS
+#Moon Phases
+#MQTT discovery
+#Onkyo AV Receiver
+#OpenAQ
+#Pi-hole summary
+#PiMonitor
+#SNMP Reader
+#Sonos Players
+#Sony Bravia TV (with Kodi remote)
+#Speedtest
+#SYSFS-Switches
+#UPS Monitor
+#Wan IP Checker
+#Xiaomi Mi Flower Mate
+#Xiaomi Mi Robot Vacuum
+#Xiaomi PM2.5 Sensor
+#Yamaha AV Receiver
+
+
