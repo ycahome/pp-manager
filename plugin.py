@@ -165,6 +165,17 @@ class BasePlugin:
             Domoticz.Error("Windows Platform NOT YET SUPPORTED!!")
             return
 
+
+        pluginText = ""
+        pluginAuthor = ""
+        pluginRepository = ""
+        pluginKey = ""
+
+        pluginKey = Parameters["Mode2"]
+        pluginAuthor = self.plugindata[pluginKey][0]
+        pluginRepository = self.plugindata[pluginKey][1]
+        pluginText = self.plugindata[pluginKey][2]
+
         if (os.path.isfile(str(os.getcwd()) + "/plugins/" + pluginKey + "/exceptions.txt")) == True:
             Domoticz.Log("Exception file found. Processing!!!")
 
@@ -186,17 +197,7 @@ class BasePlugin:
                 line = f.readline()
             f.close()
 
-        pluginText = ""
-        pluginAuthor = ""
-        pluginRepository = ""
-        pluginKey = ""
-
-        pluginKey = Parameters["Mode2"]
-        pluginAuthor = self.plugindata[pluginKey][0]
-        pluginRepository = self.plugindata[pluginKey][1]
-        pluginText = self.plugindata[pluginKey][2]
-
-        if Parameters["Mode4"] == 'All':
+	if Parameters["Mode4"] == 'All':
             Domoticz.Log("Updating All Plugins!!!")
             i = 0
             path = str(os.getcwd()) + "/plugins/"
