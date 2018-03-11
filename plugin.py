@@ -196,7 +196,7 @@ class BasePlugin:
 
                 if ((line[:1].strip() != "#") and (line[:1].strip() != " ") and (line[:1].strip() != "")):
                     Domoticz.Log("'" + line.strip() + "'")
-                    ExceptionList.append(line.strip())    
+                    self.ExceptionList.append(line.strip())    
                 # use realine() to read next line
                 line = f.readline()
             f.close()
