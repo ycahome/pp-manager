@@ -197,7 +197,7 @@ class BasePlugin:
                 line = f.readline()
             f.close()
 
-	if Parameters["Mode4"] == 'All':
+        if Parameters["Mode4"] == 'All':
             Domoticz.Log("Updating All Plugins!!!")
             i = 0
             path = str(os.getcwd()) + "/plugins/"
