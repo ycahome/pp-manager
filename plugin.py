@@ -177,7 +177,7 @@ class BasePlugin:
         pluginText = self.plugindata[pluginKey][2]
 
         Domoticz.Log("Checking for Exception file on:" + str(os.getcwd()) + "/plugins/" + pluginKey + "/exceptions.txt")
-        if (os.path.isfile(str(os.getcwd()) + "/plugins/" + pluginKey + "/exceptions.txt") == True):
+        if (os.path.isfile(str(os.getcwd()) + "/plugins/PP-MANAGER/exceptions.txt") == True):
             Domoticz.Log("Exception file found. Processing!!!")
 
             # Open the file with read only permit
