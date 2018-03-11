@@ -226,7 +226,10 @@ class BasePlugin:
                 for dir in dirs:
                     if str(dir) != "":
                         if str(dir) in self.plugindata:
-                            CheckForUpdatePythonPlugin(pluginAuthor, pluginRepository, str(dir))
+                            if (self.plugindata[str(dir)][3] not in self.ExceptionList)):
+                                CheckForUpdatePythonPlugin(pluginAuthor, pluginRepository, str(dir))
+                            else:
+                                Domoticz.Log("Plugin:" + self.plugindata[str(dir)][3] + " excluded by Exclusion file. Skipping!!!")
                         elif str(dir) == "PP-MANAGER":
                             Domoticz.Debug("PP-Manager Folder found. Skipping!!")      
                         else:
@@ -240,7 +243,7 @@ class BasePlugin:
                 Domoticz.Log("Collecting Updates for Plugin:" + pluginKey)
                 CheckForUpdatePythonPlugin(pluginAuthor, pluginRepository, pluginKey)
             else:
-                Domoticz.Log("Plugin:" + Parameters["Mode2"] + " excluded by Exclusion file.")
+                Domoticz.Log("Plugin:" + Parameters["Mode2"] + " excluded by Exclusion file. Skipping!!!")
            
 
         if pluginKey == "Idle":
