@@ -98,6 +98,8 @@ class BasePlugin:
     sessionCookie = ""
     privateKey = b""
     socketOn = "FALSE"
+    ExceptionList = []
+
 
     def __init__(self):
         self.debug = False
@@ -194,6 +196,7 @@ class BasePlugin:
 
                 if ((line[:1].strip() != "#") and (line[:1].strip() != " ") and (line[:1].strip() != "")):
                     Domoticz.Log("'" + line.strip() + "'")
+                    ExceptionList.append(line.strip())    
                 # use realine() to read next line
                 line = f.readline()
             f.close()
@@ -232,7 +235,7 @@ class BasePlugin:
                 if i >= 1:
                    break
 
-        if Parameters["Mode4"] == 'SelectedNotify':
+        if Parameters["Mode4"] == 'SelectedNotify' and Parameters["Mode2"] not in ExceptionList:
             Domoticz.Log("Collecting Updates for Plugin:" + pluginKey)
             CheckForUpdatePythonPlugin(pluginAuthor, pluginRepository, pluginKey)
 
