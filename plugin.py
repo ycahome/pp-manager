@@ -16,7 +16,7 @@
 			<li>Update All/Selected plugins</li>
 			<li>Update Notification for All/Selected</li>
 		</ul>
-		<h3>WARNING: Auto Updating plugins makes you system vulnerable to developer's code intensions </br></h3>
+		<h3>WARNING: Auto Updating plugins makes you system vulnerable to developer's code intensions </h3>
     </description>
      <params>
         <param field="Mode2" label="Domoticz Plugin" width="200px">
