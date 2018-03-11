@@ -180,7 +180,7 @@ class BasePlugin:
             Domoticz.Log("Exception file found. Processing!!!")
 
             # Open the file with read only permit
-            f = open(str(os.getcwd()) + "/plugins/" + pluginKey + "/exceptions.txt"))
+            f = open(str(os.getcwd()) + "/plugins/" + pluginKey + "/exceptions.txt")
             # use readline() to read the first line 
             line = f.readline()
             # use the read line to read further.
