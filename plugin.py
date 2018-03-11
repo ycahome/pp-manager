@@ -98,7 +98,6 @@ class BasePlugin:
     sessionCookie = ""
     privateKey = b""
     socketOn = "FALSE"
-    ExceptionList = []
 
 
     def __init__(self):
@@ -106,6 +105,7 @@ class BasePlugin:
         self.error = False
         self.nextpoll = datetime.now()
         self.pollinterval = 60  #Time in seconds between two polls
+        self.ExceptionList = []
 
         self.plugindata = {
             # Plugin Key:                      [gitHub author,        repository,                  plugin Text]
@@ -235,7 +235,7 @@ class BasePlugin:
                 if i >= 1:
                    break
 
-        if Parameters["Mode4"] == 'SelectedNotify' and Parameters["Mode2"] not in ExceptionList:
+        if Parameters["Mode4"] == 'SelectedNotify' and Parameters["Mode2"] not in self.ExceptionList:
             Domoticz.Log("Collecting Updates for Plugin:" + pluginKey)
             CheckForUpdatePythonPlugin(pluginAuthor, pluginRepository, pluginKey)
         else:
