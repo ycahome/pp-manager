@@ -226,7 +226,7 @@ class BasePlugin:
                 for dir in dirs:
                     if str(dir) != "":
                         if str(dir) in self.plugindata:
-                            if (self.plugindata[str(dir)][2] not in self.ExceptionList)):
+                            if (self.plugindata[str(dir)][2] not in self.ExceptionList):
                                 CheckForUpdatePythonPlugin(pluginAuthor, pluginRepository, str(dir))
                             else:
                                 Domoticz.Log("Plugin:" + self.plugindata[str(dir)][2] + " excluded by Exclusion file. Skipping!!!")
@@ -238,8 +238,8 @@ class BasePlugin:
                 if i >= 1:
                    break
 
-        if ((Parameters["Mode4"] == 'SelectedNotify'): 
-            if (Parameters["Mode2"] not in self.ExceptionList)):
+        if (Parameters["Mode4"] == 'SelectedNotify'): 
+            if (Parameters["Mode2"] not in self.ExceptionList):
                 Domoticz.Log("Collecting Updates for Plugin:" + pluginKey)
                 CheckForUpdatePythonPlugin(pluginAuthor, pluginRepository, pluginKey)
             else:
