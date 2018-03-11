@@ -192,8 +192,8 @@ class BasePlugin:
                 # print line
                 # in python 3 print is a builtin function, so
 
-                if ((line[:1] != "#") and (line[:1] != " ") and (line[:1] != "")):
-                    Domoticz.Log("'" + line + "'")
+                if ((line[:1].strip() != "#") and (line[:1].strip() != " ") and (line[:1].strip() != "")):
+                    Domoticz.Log("'" + line.strip() + "'")
                 # use realine() to read next line
                 line = f.readline()
             f.close()
