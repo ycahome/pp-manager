@@ -238,6 +238,9 @@ class BasePlugin:
         if Parameters["Mode4"] == 'SelectedNotify' and Parameters["Mode2"] not in ExceptionList:
             Domoticz.Log("Collecting Updates for Plugin:" + pluginKey)
             CheckForUpdatePythonPlugin(pluginAuthor, pluginRepository, pluginKey)
+        else:
+             Domoticz.Log("Selected Plugin:" + pluginKey + " found on exception List.")
+           
 
         if pluginKey == "Idle":
             Domoticz.Log("Plugin Idle")
