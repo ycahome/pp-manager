@@ -192,7 +192,7 @@ class BasePlugin:
                 # print line
                 # in python 3 print is a builtin function, so
 
-                if ((line[:1] != "#") or (line[:1] != " ")):
+                if ((line[:1] != "#") and (line[:1] != " ")):
                     Domoticz.Log(line)
                 # use realine() to read next line
                 line = f.readline()
