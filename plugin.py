@@ -235,7 +235,7 @@ class BasePlugin:
                 if i >= 1:
                    break
 
-        if Parameters["Mode4"] == 'SelectedNotify' and Parameters["Mode2"] not in self.ExceptionList:
+        if ((Parameters["Mode4"] == 'SelectedNotify') and (Parameters["Mode2"] in self.ExceptionList)):
             Domoticz.Log("Collecting Updates for Plugin:" + pluginKey)
             CheckForUpdatePythonPlugin(pluginAuthor, pluginRepository, pluginKey)
         else:
