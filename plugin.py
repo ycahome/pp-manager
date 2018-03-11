@@ -165,6 +165,27 @@ class BasePlugin:
             Domoticz.Error("Windows Platform NOT YET SUPPORTED!!")
             return
 
+        if (os.path.isfile(str(os.getcwd()) + "/plugins/" + pluginKey + "/exceptions.txt")) == True:
+            Domoticz.Log("Exception file found. Processing!!!")
+
+            # Open the file with read only permit
+            f = open(str(os.getcwd()) + "/plugins/" + pluginKey + "/exceptions.txt"))
+            # use readline() to read the first line 
+            line = f.readline()
+            # use the read line to read further.
+            # If the file is not empty keep reading one line
+            # at a time, till the file is empty
+            while line:
+                # in python 2+
+                # print line
+                # in python 3 print is a builtin function, so
+
+                if (line[:1] == "#"):
+                    Domoticz.Log(line)
+                # use realine() to read next line
+                line = f.readline()
+            f.close()
+
         pluginText = ""
         pluginAuthor = ""
         pluginRepository = ""
