@@ -282,7 +282,7 @@ class BasePlugin:
         if len(CurMin) == 1: CurMin = "0" + CurMin
         Domoticz.Debug("Current time:" + CurHr + ":" + CurMin)
 
-        if (mid(CurHr,0,2) == "12" and  mid(CurMin,0,2) == "00"):
+        if (self.mid(CurHr,0,2) == "12" and  mid(CurMin,0,2) == "00"):
             Domoticz.Log("Its time!!. Trigering Actions!!!")
 
 
@@ -483,9 +483,6 @@ class BasePlugin:
                 return None
 
 
-    def mid(s, offset, amount):
-        return s[offset:offset+amount]
-
 
 
 
@@ -528,5 +525,8 @@ def DumpConfigToLog():
         Domoticz.Debug("Device sValue:   '" + Devices[x].sValue + "'")
     return
 
+
+def mid(s, offset, amount):
+    return s[offset:offset+amount]
 
 
