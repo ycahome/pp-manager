@@ -282,7 +282,7 @@ class BasePlugin:
         if len(CurMin) == 1: CurMin = "0" + CurMin
         Domoticz.Debug("Current time:" + CurHr + ":" + CurMin)
 
-        if (self.mid(CurHr,0,2) == "12" and  mid(CurMin,0,2) == "00"):
+        if (mid(CurHr,0,2) == "12" and  mid(CurMin,0,2) == "00"):
             Domoticz.Log("Its time!!. Trigering Actions!!!")
 
 
