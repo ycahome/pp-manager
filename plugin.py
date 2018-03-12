@@ -378,7 +378,7 @@ class BasePlugin:
 
         if ppKey == "PP-MANAGER":
            Domoticz.Log("Self Update Initiated")
-        else if (self.plugindata[ppKey][2] in self.ExceptionList):
+        elif (self.plugindata[ppKey][2] in self.ExceptionList):
             Domoticz.Log("Plugin:" + self.plugindata[ppKey][2] + " excluded by Exclusion file (exclusion.txt). Skipping!!!")
             return
 
