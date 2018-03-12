@@ -472,7 +472,6 @@ class BasePlugin:
 
         return None
 
-
     #
     # Parse an int and return None if no int is given
     #
