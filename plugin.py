@@ -16,9 +16,12 @@
 			<li>Update All/Selected plugins</li>
 			<li>Update Notification for All/Selected</li>
 		</ul>
+		<h3>----------------------------------------------------------------------</h3>
 		<h3>WARNING:</h3>
 		<h2>         Auto Updating plugins without verifying their code</h2>
 		<h2>         makes you system vulnerable to developer's code intensions!!</h2>
+		<h3>----------------------------------------------------------------------</h3>
+		<h2>NOTE: After selectiong your options press "Update" button!!</h2>
     </description>
      <params>
         <param field="Mode2" label="Domoticz Plugin" width="200px">
@@ -233,11 +236,8 @@ class BasePlugin:
                    break
 
         if (Parameters["Mode4"] == 'SelectedNotify'): 
-            if (Parameters["Mode2"] not in self.ExceptionList):
                 Domoticz.Log("Collecting Updates for Plugin:" + pluginKey)
                 self.CheckForUpdatePythonPlugin(pluginAuthor, pluginRepository, pluginKey)
-            else:
-                Domoticz.Log("Plugin:" + Parameters["Mode2"] + " excluded by Exclusion file. Skipping!!!")
            
 
         if pluginKey == "Idle":
@@ -268,12 +268,13 @@ class BasePlugin:
 
 
     def onStop(self):
+        Domoticz.Debug("onStop called")
+
         Domoticz.Log("Plugin is stopping.")
         self.UpdatePythonPlugin("ycahome", "pp-manager", "PP-MANAGER")
         Domoticz.Debugging(0)
 
     def onHeartbeat(self):
-
         Domoticz.Debug("onHeartbeat called")
 
         CurHr = str(datetime.now().hour)
@@ -294,7 +295,6 @@ class BasePlugin:
                 for (path, dirs, files) in os.walk(path):
                     for dir in dirs:
                         if str(dir) != "":
-                            #UpdatePythonPlugin(pluginAuthor, pluginRepository, str(dir))
                             self.UpdatePythonPlugin(self.plugindata[Parameters["Mode2"]][0], self.plugindata[Parameters["Mode2"]][1], str(dir))
                     i += 1
                     if i >= 1:
@@ -307,7 +307,6 @@ class BasePlugin:
                 for (path, dirs, files) in os.walk(path):
                     for dir in dirs:
                         if str(dir) != "":
-                            #CheckForUpdatePythonPlugin(pluginAuthor, pluginRepository, str(dir))
                             self.CheckForUpdatePythonPlugin(self.plugindata[Parameters["Mode2"]][0], self.plugindata[Parameters["Mode2"]][1], str(dir))
                     i += 1
                     if i >= 1:
@@ -315,7 +314,6 @@ class BasePlugin:
 
             if Parameters["Mode4"] == 'SelectedNotify':
                 Domoticz.Log("Collecting Updates for Plugin:" + pluginKey)
-                #CheckForUpdatePythonPlugin(pluginAuthor, pluginRepository, pluginKey)
                 self.CheckForUpdatePythonPlugin(self.plugindata[Parameters["Mode2"]][0], self.plugindata[Parameters["Mode2"]][1], Parameters["Mode2"])
 
             #-------------------------------------
@@ -337,9 +335,10 @@ class BasePlugin:
 
     # InstallPyhtonPlugin function
     def InstallPythonPlugin(self, ppAuthor, ppRepository, ppKey):
+        Domoticz.Debug("InstallPythonPlugin called")
 
 
-        Domoticz.Log("Installing Plugin:" + ppRepository)
+        Domoticz.Log("Installing Plugin:" + self.plugindata[ppKey][2])
         ppUrl = "/usr/bin/git clone -b master https://github.com/" + ppAuthor + "/" + ppRepository + ".git " + ppKey
         Domoticz.Log("Calling:" + ppUrl)
         try:
@@ -375,6 +374,7 @@ class BasePlugin:
 
     # UpdatePyhtonPlugin function
     def UpdatePythonPlugin(self, ppAuthor, ppRepository, ppKey):
+        Domoticz.Debug("UpdatePythonPlugin called")
 
         if (self.plugindata[ppKey][2] in self.ExceptionList):
             Domoticz.Log("Plugin:" + self.plugindata[ppKey][2] + " excluded by Exclusion file (exclusion.txt). Skipping!!!")
@@ -415,6 +415,7 @@ class BasePlugin:
 
     # UpdateNotifyPyhtonPlugin function
     def CheckForUpdatePythonPlugin(self, ppAuthor, ppRepository, ppKey):
+        Domoticz.Debug("CheckForUpdatePythonPlugin called")
 
         if (self.plugindata[ppKey][2] in self.ExceptionList):
             Domoticz.Log("Plugin:" + self.plugindata[ppKey][2] + " excluded by Exclusion file (exclusion.txt). Skipping!!!")
@@ -452,6 +453,7 @@ class BasePlugin:
 
     # fnSelectedNotify function
     def fnSelectedNotify(self, pluginText):
+        Domoticz.Debug("fnSelectedNotify called")
 
            Domoticz.Log("Preparing Notification")
            ServerURL = "http://127.0.0.1:8080/json.htm?param=sendnotification&type=command"
@@ -476,6 +478,7 @@ class BasePlugin:
     #
 
     def parseIntValue(s):
+        Domoticz.Debug("parseIntValue called")
 
             try:
                 return int(s)
@@ -527,6 +530,7 @@ def DumpConfigToLog():
 
 
 def mid(s, offset, amount):
+    Domoticz.Debug("mid called")
     return s[offset:offset+amount]
 
 
