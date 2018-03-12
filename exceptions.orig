@@ -1,14 +1,14 @@
 # Insert Here the plugins you want PP-Manager to NOT process
 # Mark a line with "#" to de-activate it
 
-Dummy Plugin
-Battery monitoring for Z-Wave nodes
+#Dummy Plugin
+#Battery monitoring for Z-Wave nodes
 #Buienradar.nl (Weather lookup)
 #Denon/Marantz Amplifier
 #Disc usage
 #Dutch earthquakes
 #Eartquake EMSC Data
-ebusd bridge
+#ebusd bridge
 #Global Cache 100
 Homewizard
 #Hive Plugin
