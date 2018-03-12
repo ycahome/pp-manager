@@ -336,7 +336,7 @@ class BasePlugin:
 
 
     # InstallPyhtonPlugin function
-    def InstallPythonPlugin(ppAuthor, ppRepository, ppKey):
+    def InstallPythonPlugin(self, ppAuthor, ppRepository, ppKey):
 
 
         Domoticz.Log("Installing Plugin:" + ppRepository)
@@ -374,7 +374,7 @@ class BasePlugin:
 
 
     # UpdatePyhtonPlugin function
-    def UpdatePythonPlugin(ppAuthor, ppRepository, ppKey):
+    def UpdatePythonPlugin(self, ppAuthor, ppRepository, ppKey):
 
         if (self.plugindata[ppKey][2] in self.ExceptionList):
             Domoticz.Log("Plugin:" + self.plugindata[ppKey][2] + " excluded by Exclusion file. Skipping!!!")
@@ -414,7 +414,7 @@ class BasePlugin:
 
 
     # UpdateNotifyPyhtonPlugin function
-    def CheckForUpdatePythonPlugin(ppAuthor, ppRepository, ppKey):
+    def CheckForUpdatePythonPlugin(self, ppAuthor, ppRepository, ppKey):
 
         if (self.plugindata[ppKey][2] in self.ExceptionList):
             Domoticz.Log("Plugin:" + self.plugindata[ppKey][2] + " excluded by Exclusion file. Skipping!!!")
@@ -451,7 +451,7 @@ class BasePlugin:
 
 
     # fnSelectedNotify function
-    def fnSelectedNotify(pluginText):
+    def fnSelectedNotify(self, pluginText):
 
            Domoticz.Log("Preparing Notification")
            ServerURL = "http://127.0.0.1:8080/json.htm?param=sendnotification&type=command"
