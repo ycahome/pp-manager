@@ -453,24 +453,24 @@ class BasePlugin:
 
     # fnSelectedNotify function
     def fnSelectedNotify(self, pluginText):
-        Domoticz.Debug("fnSelectedNotify called")
+    	Domoticz.Debug("fnSelectedNotify called")
 
-           Domoticz.Log("Preparing Notification")
-           ServerURL = "http://127.0.0.1:8080/json.htm?param=sendnotification&type=command"
-           MailSubject = urllib.parse.quote(platform.node() + ":Domoticz Plugin Updates Available for " + pluginText)
-           MailBody = urllib.parse.quote(pluginText + " has updates available!!")
-           MailDetailsURL = "&subject=" + MailSubject + "&body=" + MailBody + "&subsystem=email"
-           notificationURL = ServerURL + MailDetailsURL
-           Domoticz.Debug("ConstructedURL is:" + notificationURL)
-           try:
-               response = urllib.request.urlopen(notificationURL, timeout = 30).read()
-           except urllib.error.HTTPError as err1:
-               Domoticz.Error("HTTP Request error: " + str(err1) + " URL: " + notificationURL)
-           return
-           Domoticz.Debug("Notification URL is :" + str(notificationURL))
+        Domoticz.Log("Preparing Notification")
+        ServerURL = "http://127.0.0.1:8080/json.htm?param=sendnotification&type=command"
+        MailSubject = urllib.parse.quote(platform.node() + ":Domoticz Plugin Updates Available for " + pluginText)
+        MailBody = urllib.parse.quote(pluginText + " has updates available!!")
+        MailDetailsURL = "&subject=" + MailSubject + "&body=" + MailBody + "&subsystem=email"
+        notificationURL = ServerURL + MailDetailsURL
+        Domoticz.Debug("ConstructedURL is:" + notificationURL)
+        try:
+    	    response = urllib.request.urlopen(notificationURL, timeout = 30).read()
+        except urllib.error.HTTPError as err1:
+            Domoticz.Error("HTTP Request error: " + str(err1) + " URL: " + notificationURL)
+        return
+        Domoticz.Debug("Notification URL is :" + str(notificationURL))
 
 
-           return None
+        return None
 
 
     #
