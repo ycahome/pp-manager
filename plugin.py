@@ -376,7 +376,7 @@ class BasePlugin:
     def UpdatePythonPlugin(self, ppAuthor, ppRepository, ppKey):
         Domoticz.Debug("UpdatePythonPlugin called")
 
-        if (ppKey in self.ExceptionList):
+        if (self.plugindata[ppKey][2] in self.ExceptionList):
             Domoticz.Log("Plugin:" + self.plugindata[ppKey][2] + " excluded by Exclusion file (exclusion.txt). Skipping!!!")
             return
 
@@ -417,7 +417,7 @@ class BasePlugin:
     def CheckForUpdatePythonPlugin(self, ppAuthor, ppRepository, ppKey):
         Domoticz.Debug("CheckForUpdatePythonPlugin called")
 
-        if (ppKey in self.ExceptionList):
+        if (self.plugindata[ppKey][2] in self.ExceptionList):
             Domoticz.Log("Plugin:" + self.plugindata[ppKey][2] + " excluded by Exclusion file (exclusion.txt). Skipping!!!")
             return
 
