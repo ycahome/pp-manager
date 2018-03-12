@@ -454,7 +454,6 @@ class BasePlugin:
     # fnSelectedNotify function
     def fnSelectedNotify(self, pluginText):
     	Domoticz.Debug("fnSelectedNotify called")
-
         Domoticz.Log("Preparing Notification")
         ServerURL = "http://127.0.0.1:8080/json.htm?param=sendnotification&type=command"
         MailSubject = urllib.parse.quote(platform.node() + ":Domoticz Plugin Updates Available for " + pluginText)
