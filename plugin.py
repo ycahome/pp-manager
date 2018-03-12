@@ -376,12 +376,12 @@ class BasePlugin:
     def UpdatePythonPlugin(self, ppAuthor, ppRepository, ppKey):
         Domoticz.Debug("UpdatePythonPlugin called")
 
-        if (self.plugindata[ppKey][2] in self.ExceptionList):
+        if ppKey == "PP-MANAGER":
+           Domoticz.Log("Self Update Initiated")
+        else if (self.plugindata[ppKey][2] in self.ExceptionList):
             Domoticz.Log("Plugin:" + self.plugindata[ppKey][2] + " excluded by Exclusion file (exclusion.txt). Skipping!!!")
             return
 
-        if ppKey == "PP-MANAGER":
-           Domoticz.Log("Self Update Initiated")
         Domoticz.Log("Updating Plugin:" + ppKey)
         ppUrl = "/usr/bin/git pull --force"
         Domoticz.Debug("Calling:" + ppUrl + " on folder " + str(os.getcwd()) + "/plugins/" + ppKey)
