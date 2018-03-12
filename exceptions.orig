@@ -1,5 +1,7 @@
 # Insert Here the plugins you want PP-Manager to NOT process
-# Mark a line with "#" to de-activate it
+# Copy "exceptions.orig" to "exceptions.txt" in order to modify it
+# Mark a line with "#" to disable
+# Remove "#" from the line to enable
 
 #Dummy Plugin
 #Battery monitoring for Z-Wave nodes
@@ -10,7 +12,7 @@
 #Eartquake EMSC Data
 #ebusd bridge
 #Global Cache 100
-Homewizard
+#Homewizard
 #Hive Plugin
 #Meteo Alarm EU RSS Reader
 #Mikrotik RouterOS
