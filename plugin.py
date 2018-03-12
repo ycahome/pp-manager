@@ -478,10 +478,10 @@ class BasePlugin:
     def parseIntValue(s):
         Domoticz.Debug("parseIntValue called")
 
-            try:
-                return int(s)
-            except:
-                return None
+        try:
+            return int(s)
+        except:
+            return None
 
 
 
