@@ -206,7 +206,7 @@ class BasePlugin:
                 for dir in dirs:
                     if str(dir) != "":
                         if str(dir) in self.plugindata:
-                            UpdatePythonPlugin(pluginAuthor, pluginRepository, str(dir))
+                            self.UpdatePythonPlugin(pluginAuthor, pluginRepository, str(dir))
                         elif str(dir) == "PP-MANAGER":
                             Domoticz.Debug("PP-Manager Folder found. Skipping!!")      
                         else:
@@ -223,7 +223,7 @@ class BasePlugin:
                 for dir in dirs:
                     if str(dir) != "":
                         if str(dir) in self.plugindata:
-                            CheckForUpdatePythonPlugin(pluginAuthor, pluginRepository, str(dir))
+                            self.CheckForUpdatePythonPlugin(pluginAuthor, pluginRepository, str(dir))
                         elif str(dir) == "PP-MANAGER":
                             Domoticz.Debug("PP-Manager Folder found. Skipping!!")      
                         else:
@@ -235,7 +235,7 @@ class BasePlugin:
         if (Parameters["Mode4"] == 'SelectedNotify'): 
             if (Parameters["Mode2"] not in self.ExceptionList):
                 Domoticz.Log("Collecting Updates for Plugin:" + pluginKey)
-                CheckForUpdatePythonPlugin(pluginAuthor, pluginRepository, pluginKey)
+                self.CheckForUpdatePythonPlugin(pluginAuthor, pluginRepository, pluginKey)
             else:
                 Domoticz.Log("Plugin:" + Parameters["Mode2"] + " excluded by Exclusion file. Skipping!!!")
            
@@ -251,7 +251,7 @@ class BasePlugin:
                 #Domoticz.Debug("Set 'Python Plugin Manager'/ 'Domoticz plugin' attribute to 'idle' in order t.")
                 if Parameters["Mode4"] == 'Selected':
                     Domoticz.Log("Updating Enabled for Plugin:" + pluginText + ".Checking For Update!!!")
-                    UpdatePythonPlugin(pluginAuthor, pluginRepository, pluginKey)
+                    self.UpdatePythonPlugin(pluginAuthor, pluginRepository, pluginKey)
                 Domoticz.Heartbeat(60)
             else:
                Domoticz.Log("Installation requested for Plugin:" + pluginText)
@@ -262,14 +262,14 @@ class BasePlugin:
                     Domoticz.Log("Plugin Author:" + pluginAuthor)
                     Domoticz.Log("Plugin Repository:" + pluginRepository)
                     Domoticz.Log("Plugin Key:" + pluginKey)
-                    InstallPythonPlugin(pluginAuthor, pluginRepository, pluginKey)
+                    self.InstallPythonPlugin(pluginAuthor, pluginRepository, pluginKey)
                Domoticz.Heartbeat(60)
             
 
 
     def onStop(self):
         Domoticz.Log("Plugin is stopping.")
-        UpdatePythonPlugin("ycahome", "pp-manager", "PP-MANAGER")
+        self.UpdatePythonPlugin("ycahome", "pp-manager", "PP-MANAGER")
         Domoticz.Debugging(0)
 
     def onHeartbeat(self):
@@ -295,7 +295,7 @@ class BasePlugin:
                     for dir in dirs:
                         if str(dir) != "":
                             #UpdatePythonPlugin(pluginAuthor, pluginRepository, str(dir))
-                            UpdatePythonPlugin(self.plugindata[Parameters["Mode2"]][0], self.plugindata[Parameters["Mode2"]][1], str(dir))
+                            self.UpdatePythonPlugin(self.plugindata[Parameters["Mode2"]][0], self.plugindata[Parameters["Mode2"]][1], str(dir))
                     i += 1
                     if i >= 1:
                        break
@@ -308,7 +308,7 @@ class BasePlugin:
                     for dir in dirs:
                         if str(dir) != "":
                             #CheckForUpdatePythonPlugin(pluginAuthor, pluginRepository, str(dir))
-                            CheckForUpdatePythonPlugin(self.plugindata[Parameters["Mode2"]][0], self.plugindata[Parameters["Mode2"]][1], str(dir))
+                            self.CheckForUpdatePythonPlugin(self.plugindata[Parameters["Mode2"]][0], self.plugindata[Parameters["Mode2"]][1], str(dir))
                     i += 1
                     if i >= 1:
                        break
@@ -316,12 +316,12 @@ class BasePlugin:
             if Parameters["Mode4"] == 'SelectedNotify':
                 Domoticz.Log("Collecting Updates for Plugin:" + pluginKey)
                 #CheckForUpdatePythonPlugin(pluginAuthor, pluginRepository, pluginKey)
-                CheckForUpdatePythonPlugin(self.plugindata[Parameters["Mode2"]][0], self.plugindata[Parameters["Mode2"]][1], Parameters["Mode2"])
+                self.CheckForUpdatePythonPlugin(self.plugindata[Parameters["Mode2"]][0], self.plugindata[Parameters["Mode2"]][1], Parameters["Mode2"])
 
             #-------------------------------------
             if Parameters["Mode4"] == 'Selected':
                 Domoticz.Log("Updating Enabled for Plugin:" + self.plugindata[pluginKey][2])
-                UpdatePythonPlugin(self.plugindata[Parameters["Mode2"]][0], self.plugindata[Parameters["Mode2"]][1], Parameters["Mode2"])
+                self.UpdatePythonPlugin(self.plugindata[Parameters["Mode2"]][0], self.plugindata[Parameters["Mode2"]][1], Parameters["Mode2"])
 
             #if Parameters["Mode2"] == "Idle":
                 #Domoticz.Log("Plugin Idle. No actions to be performed!!!")
