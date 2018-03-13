@@ -573,7 +573,7 @@ def parseFileForSecurityIssues(pyfilename):
     file = open(pyfilename, "r")
 
     ips = {}
-    safeStrings = ['import urllib',
+    safeStrings = ["['http://schemas.xmlsoap.org/soap/envelope/', 'http://schemas.xmlsoap.org/soap/encoding/']",
                    'from urllib',
                    'from subprocess',
                    'import subprocess']
@@ -599,7 +599,7 @@ def parseFileForSecurityIssues(pyfilename):
 
        regexFound = re.findall('subprocess.Popen',text)
        if regexFound and str(regexFound) not in safeStrings:
-           Domoticz.Error("Security Finding:" + re.sub('[']]', '', str(regexFound)) + " LINE:" + str(lineNum) + " FILE:" + pyfilename)
+           Domoticz.Error("Security Finding:" + re.sub('[']', '', str(regexFound)) + " LINE:" + str(lineNum) + " FILE:" + pyfilename)
            ips["SUB" + str(lineNum)] = (regexFound, "Subprocess")
 
        lineNum = lineNum + 1
