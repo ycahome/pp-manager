@@ -545,6 +545,9 @@ def parseFileForIP(pyfilename):
     file = open(pyfilename, "r")
 
     ips = []
+    ips.append([])
+    ips.append([])
+
     lineNum = 0
     for text in file.readlines():
        text = text.rstrip()
