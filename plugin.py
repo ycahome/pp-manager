@@ -576,7 +576,7 @@ def parseFileForSecurityIssues(pyfilename):
     safeStrings = ["['http://schemas.xmlsoap.org/soap/envelope/', 'http://schemas.xmlsoap.org/soap/encoding/']",
                    "['127.0.0.1']",
                    "['https://4.ifcfg.me/ip']",
-                   'import subprocess']
+                   '-']
     lineNum = 0
     for text in file.readlines():
        text = text.rstrip()
@@ -584,13 +584,15 @@ def parseFileForSecurityIssues(pyfilename):
        #Domoticz.Log("'text' is:'" + str(text))
        regexFound = re.findall(r'(?:[\d]{1,3})\.(?:[\d]{1,3})\.(?:[\d]{1,3})\.(?:[\d]{1,3})',text)
        if regexFound and str(regexFound) not in safeStrings:
-           Domoticz.Error("Security Finding:" + str(regexFound) + " LINE: " + str(lineNum) + " FILE:" + pyfilename)
-           ips["IP" + str(lineNum)] = (regexFound, "IP Address")
+            for rex in regexFound:
+                Domoticz.Error("Security Finding:" + str(regexFound) + " LINE: " + str(lineNum) + " FILE:" + pyfilename)
+                ips["IP" + str(lineNum)] = (regexFound, "IP Address")
 
        regexFound = re.findall('http[s]?://(?:[a-zA-Z]|[0-9]|[$-_@.&+]|[!*\(\),]|(?:%[0-9a-fA-F][0-9a-fA-F]))+', text)
        if regexFound and str(regexFound) not in safeStrings:
-           Domoticz.Error("Security Finding:" + str(regexFound) + " LINE:" + str(lineNum) + " FILE:" + pyfilename)
-           ips["HTTP" + str(lineNum)] = (regexFound, "HTTP Access")
+            for rex in regexFound:
+                Domoticz.Error("Security Finding:" + str(regexFound) + " LINE:" + str(lineNum) + " FILE:" + pyfilename)
+                ips["HTTP" + str(lineNum)] = (regexFound, "HTTP Access")
 
        #regexFound = re.findall('import',text)
        #if ((regexFound) and (str(text) not in safeStrings)):
@@ -599,8 +601,9 @@ def parseFileForSecurityIssues(pyfilename):
 
        regexFound = re.findall('subprocess.Popen',text)
        if regexFound and str(regexFound) not in safeStrings:
-           Domoticz.Error("Security Finding:" + str(regexFound) + " LINE:" + str(lineNum) + " FILE:" + pyfilename)
-           ips["SUB" + str(lineNum)] = (regexFound, "Subprocess")
+            for rex in regexFound:
+                Domoticz.Error("Security Finding:" + str(regexFound) + " LINE:" + str(lineNum) + " FILE:" + pyfilename)
+                ips["SUB" + str(lineNum)] = (regexFound, "Subprocess")
 
        lineNum = lineNum + 1
 
