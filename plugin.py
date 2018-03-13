@@ -73,7 +73,7 @@
          <param field="Mode5" label="Enable Security Scan" width="75px">
             <options>
                 <option label="True" value="True"/>
-                <option label="False" value="False"  default="true" />
+                <option label="False" value="False"  default="False" />
             </options>
         </param>
          <param field="Mode6" label="Debug" width="75px">
@@ -170,8 +170,6 @@ class BasePlugin:
         else:
             Domoticz.Debugging(0)
 
-        if Parameters["Mode5"] == 'True':
-            Domoticz.Log("Plugin Security Scan is enabled:")
 
         Domoticz.Log("Domoticz Node Name is:" + platform.node())
         Domoticz.Log("Domoticz Platform System is:" + platform.system())
@@ -194,8 +192,26 @@ class BasePlugin:
         pluginRepository = self.plugindata[pluginKey][1]
         pluginText = self.plugindata[pluginKey][2]
 
+
+        if Parameters["Mode5"] == 'True':
+            Domoticz.Log("Plugin Security Scan is enabled")
+            Domoticz.Log("Scanning All Plugins for Vulnerabilities!!!")
+            i = 0
+            path = str(os.getcwd()) + "/plugins/"
+            for (path, dirs, files) in os.walk(path):
+                for dir in dirs:
+                    if str(dir) != "":
+                            #self.UpdatePythonPlugin(pluginAuthor, pluginRepository, str(dir))
+                            #parseFileForSecurityIssues(str(os.getcwd()) + "/plugins/PP-MANAGER/plugin.py")
+                            parseFileForSecurityIssues(str(os.getcwd()) + "/plugins/" + str(dir) + "/plugin.py")
+                i += 1
+                if i >= 1:
+                   break
+        
+        
+        
         Domoticz.Log("Parsing Script TEST on:" + str(os.getcwd()) + "/plugins/PP-MANAGER/plugin.py")
-        parseFileForSecurityIssues(str(os.getcwd()) + "/plugins/PP-MANAGER/plugin.py")
+        
         
         Domoticz.Debug("Checking for Exception file on:" + str(os.getcwd()) + "/plugins/PP-MANAGER/exceptions.txt")
         if (os.path.isfile(str(os.getcwd()) + "/plugins/PP-MANAGER/exceptions.txt") == True):
@@ -564,22 +580,22 @@ def parseFileForSecurityIssues(pyfilename):
        #Domoticz.Log("'text' is:'" + str(text))
        regexFound = re.findall(r'(?:[\d]{1,3})\.(?:[\d]{1,3})\.(?:[\d]{1,3})\.(?:[\d]{1,3})',text)
        if regexFound:
-           Domoticz.Log("'IP Address' Security Scan finding:'" + str(regexFound) + "' in Line " + str(lineNum))
+           Domoticz.Error("'IP Address' Security Scan finding:'" + str(regexFound) + "' in Line " + str(lineNum))
            ips["IP" + str(lineNum)] = (regexFound, "IP Address")
 
        regexFound = re.findall('http[s]?://(?:[a-zA-Z]|[0-9]|[$-_@.&+]|[!*\(\),]|(?:%[0-9a-fA-F][0-9a-fA-F]))+', text)
        if regexFound:
-           Domoticz.Log("'HTTP Access' Security scan finding:'" + str(regexFound) + "' in Line " + str(lineNum))
+           Domoticz.Error("'HTTP Access' Security scan finding:'" + str(regexFound) + "' in Line " + str(lineNum))
            ips["HTTP" + str(lineNum)] = (regexFound, "HTTP Access")
 
        regexFound = re.findall('import',text)
        if regexFound:
-           Domoticz.Log("'Imports' Security Scan finding:'" + str(text) + "' in Line " + str(lineNum))
+           Domoticz.Error("'Imports' Security Scan finding:'" + str(text) + "' in Line " + str(lineNum))
            ips["IMP" + str(lineNum)] = (text, "Import")
 
        regexFound = re.findall('subprocess.Popen',text)
        if regexFound:
-           Domoticz.Log("'Subprocess' Security Scan finding:'" + str(regexFound) + "' in Line " + str(lineNum))
+           Domoticz.Error("'Subprocess' Security Scan finding:'" + str(regexFound) + "' in Line " + str(lineNum))
            ips["SUB" + str(lineNum)] = (regexFound, "Subprocess")
 
        lineNum = lineNum + 1
