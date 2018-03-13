@@ -555,25 +555,20 @@ def parseFileForSecurityIssues(pyfilename):
        if regexFound:
            Domoticz.Log("File Regex result:'" + str(regexFound) + "'")
            ips["IP" + str(lineNum)] = (regexFound, "IP Address")
-       lineNum = lineNum + 1
 
-    lineNum = 0
-    for text in file.readlines():
-       text = text.rstrip()
        regexFound = re.findall(r'^(http|https)://',text)
        if regexFound:
            Domoticz.Log("File Regex result:'" + str(regexFound) + "'")
            ips["HTTP" + str(lineNum)] = (regexFound, "IP Address")
-       lineNum = lineNum + 1
 
-    lineNum = 0
-    for text in file.readlines():
-       text = text.rstrip()
-       regexFound = re.findall(r'include',text)
+       regexFound = re.findall(r'import',text)
        if regexFound:
            Domoticz.Log("File Regex result:'" + str(regexFound) + "'")
            ips["INC" + str(lineNum)] = (regexFound, "IP Address")
+
        lineNum = lineNum + 1
+
+
     
     file.close()
     Domoticz.Log("IPS Table contents are:" + str(ips))
