@@ -573,7 +573,7 @@ def parseFileForSecurityIssues(pyfilename):
     file = open(pyfilename, "r")
 
     ips = {}
-    safeStrings = ['http://schemas.xmlsoap.org/soap/envelope/','http://schemas.xmlsoap.org/soap/encoding/']
+    safeStrings = ['http://schemas.xmlsoap.org/soap/envelope/','http://schemas.xmlsoap.org/soap/encoding/','import time']
     lineNum = 0
     for text in file.readlines():
        text = text.rstrip()
