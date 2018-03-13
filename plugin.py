@@ -551,7 +551,7 @@ def parseFileForIP(pyfilename):
        lineNum = lineNum + 1
        regex = re.findall(r'(?:[\d]{1,3})\.(?:[\d]{1,3})\.(?:[\d]{1,3})\.(?:[\d]{1,3})$',text)
        if regex is not None and regex not in ips:
-           Domoticz.Log("File Regex result:'" + regex.strip() + "'")
+           Domoticz.Log("File Regex result:'" + str(regex) + "'")
            ips[lineNum].append(regex)
 
     file.close()
