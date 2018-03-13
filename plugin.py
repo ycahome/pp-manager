@@ -183,8 +183,8 @@ class BasePlugin:
         pluginRepository = self.plugindata[pluginKey][1]
         pluginText = self.plugindata[pluginKey][2]
 
-        Domoticz.Debug("Parsing Script TEST on:" + str(os.getcwd()) + "/plugins/PP-MANAGER/python.py")
-        parseFileForIP(str(os.getcwd()) + "/plugins/PP-MANAGER/python.py")
+        Domoticz.Debug("Parsing Script TEST on:" + str(os.getcwd()) + "/plugins/PP-MANAGER/plugin.py")
+        parseFileForIP(str(os.getcwd()) + "/plugins/PP-MANAGER/plugin.py")
         
         Domoticz.Debug("Checking for Exception file on:" + str(os.getcwd()) + "/plugins/PP-MANAGER/exceptions.txt")
         if (os.path.isfile(str(os.getcwd()) + "/plugins/PP-MANAGER/exceptions.txt") == True):
