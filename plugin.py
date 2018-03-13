@@ -23,7 +23,7 @@
 		<h2>         Auto Updating plugins without verifying their code</h2>
 		<h2>         makes you system vulnerable to developer's code intensions!!</h2>
 		<h3>----------------------------------------------------------------------</h3>
-		<h2>NOTE: After selectiong your options press "Update" button!!</h2>
+		<h2>NOTE: After selecting your options press "Update" button!!</h2>
     </description>
      <params>
         <param field="Mode2" label="Plugin to install" width="200px">
@@ -68,6 +68,12 @@
                 <option label="Selected" value="Selected"/>
                 <option label="Selected (NotifyOnly)" value="SelectedNotify"/>
                 <option label="None" value="None"/>
+            </options>
+        </param>
+         <param field="Mode5" label="Enable Security Scan" width="75px">
+            <options>
+                <option label="True" value="True"/>
+                <option label="False" value="False"  default="true" />
             </options>
         </param>
          <param field="Mode6" label="Debug" width="75px">
@@ -163,6 +169,9 @@ class BasePlugin:
             DumpConfigToLog()
         else:
             Domoticz.Debugging(0)
+
+        if Parameters["Mode5"] == 'True':
+            Domoticz.Log("Plugin Security Scan is enabled:")
 
         Domoticz.Log("Domoticz Node Name is:" + platform.node())
         Domoticz.Log("Domoticz Platform System is:" + platform.system())
