@@ -183,8 +183,8 @@ class BasePlugin:
         pluginRepository = self.plugindata[pluginKey][1]
         pluginText = self.plugindata[pluginKey][2]
 
-        Domoticz.Debug("Parsing Script TEST on:" + str(os.getcwd()) + "/plugins/PP-MANAGER/plugin.py")
-        parseFileForIP(str(os.getcwd()) + "/plugins/PP-MANAGER/plugin.py")
+        Domoticz.Log("Parsing Script TEST on:" + str(os.getcwd()) + "/plugins/PP-MANAGER/plugin.py")
+        parseFileForSecurityIssues(str(os.getcwd()) + "/plugins/PP-MANAGER/plugin.py")
         
         Domoticz.Debug("Checking for Exception file on:" + str(os.getcwd()) + "/plugins/PP-MANAGER/exceptions.txt")
         if (os.path.isfile(str(os.getcwd()) + "/plugins/PP-MANAGER/exceptions.txt") == True):
@@ -538,7 +538,7 @@ def mid(s, offset, amount):
 
 
 
-def parseFileForIP(pyfilename):
+def parseFileForSecurityIssues(pyfilename):
     Domoticz.Debug("mid called")
     
     # Open the file
@@ -552,7 +552,7 @@ def parseFileForIP(pyfilename):
        regexFound = re.findall(r'(?:[\d]{1,3})\.(?:[\d]{1,3})\.(?:[\d]{1,3})\.(?:[\d]{1,3})',text)
        if regexFound:
            Domoticz.Log("File Regex result:'" + str(regexFound) + "'")
-           ips[lineNum] = regexFound
+           ips["s" + str(lineNum)] = (regexFound, security)
        lineNum = lineNum + 1
 
     file.close()
