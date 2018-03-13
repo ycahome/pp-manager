@@ -556,7 +556,7 @@ def parseFileForSecurityIssues(pyfilename):
            Domoticz.Log("File Regex result:'" + str(regexFound) + "'")
            ips["IP" + str(lineNum)] = (regexFound, "IP Address")
 
-       regexFound = re.findall(r'^(http|https)://',text)
+       regexFound = re.findall(r'^(http|https):\/\/',text)
        if regexFound:
            Domoticz.Log("File Regex result:'" + str(regexFound) + "'")
            ips["HTTP" + str(lineNum)] = (regexFound, "HTTP Access")
