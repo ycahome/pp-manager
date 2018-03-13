@@ -26,7 +26,7 @@
 		<h2>NOTE: After selectiong your options press "Update" button!!</h2>
     </description>
      <params>
-        <param field="Mode2" label="Domoticz Plugin" width="200px">
+        <param field="Mode2" label="Plugin to install" width="200px">
             <options>
                 <option label="Idle" value="Idle"  default="true" />
                 <option label="Dummy Plugin" value="Dummy_Plugin"/>
@@ -578,7 +578,7 @@ def parseFileForSecurityIssues(pyfilename):
 
     
     file.close()
-    Domoticz.Log("IPS Table contents are:" + str(ips))
+    Domoticz.Debug("IPS Table contents are:" + str(ips))
     
     
 
