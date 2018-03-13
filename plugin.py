@@ -575,7 +575,7 @@ def parseFileForSecurityIssues(pyfilename):
     ips = {}
     safeStrings = ["['http://schemas.xmlsoap.org/soap/envelope/', 'http://schemas.xmlsoap.org/soap/encoding/']",
                    "['127.0.0.1']",
-                   'from subprocess',
+                   "['https://4.ifcfg.me/ip']",
                    'import subprocess']
     lineNum = 0
     for text in file.readlines():
