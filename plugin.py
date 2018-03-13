@@ -86,6 +86,7 @@ import sys
 import urllib
 import urllib.request
 import urllib.error
+import re
 
 import time
 
@@ -182,6 +183,9 @@ class BasePlugin:
         pluginRepository = self.plugindata[pluginKey][1]
         pluginText = self.plugindata[pluginKey][2]
 
+        Domoticz.Debug("Parsing Script TEST on:" + str(os.getcwd()) + "/plugins/PP-MANAGER/python.py")
+        parseFileForIP(str(os.getcwd()) + "/plugins/PP-MANAGER/python.py")
+        
         Domoticz.Debug("Checking for Exception file on:" + str(os.getcwd()) + "/plugins/PP-MANAGER/exceptions.txt")
         if (os.path.isfile(str(os.getcwd()) + "/plugins/PP-MANAGER/exceptions.txt") == True):
             Domoticz.Log("Exception file found. Processing!!!")
@@ -532,4 +536,26 @@ def mid(s, offset, amount):
     Domoticz.Debug("mid called")
     return s[offset:offset+amount]
 
+
+
+def parseFileForIP(pyfilename):
+    Domoticz.Debug("mid called")
+    
+    # Open the file
+    file = open(pyfilename, "r")
+
+    ips = []
+    lineNum = 1
+    for text in file.readlines():
+       text = text.rstrip()
+       lineNum = lineNum + 1
+       regex = re.findall(r'(?:[\d]{1,3})\.(?:[\d]{1,3})\.(?:[\d]{1,3})\.(?:[\d]{1,3})$',text)
+       if regex is not None and regex not in ips:
+           Domoticz.Log("File Regex result:'" + regex.strip() + "'")
+           ips[lineNum].append(regex)
+
+    file.close()
+    Domoticz.Log("self.ExceptionList:" + str(self.ExceptionList))
+    
+    
 
