@@ -552,7 +552,7 @@ def parseFileForSecurityIssues(pyfilename):
        regexFound = re.findall(r'(?:[\d]{1,3})\.(?:[\d]{1,3})\.(?:[\d]{1,3})\.(?:[\d]{1,3})',text)
        if regexFound:
            Domoticz.Log("File Regex result:'" + str(regexFound) + "'")
-           ips["s" + str(lineNum)] = (regexFound, security)
+           ips["IP" + str(lineNum)] = (regexFound, "IP Address")
        lineNum = lineNum + 1
 
     file.close()
