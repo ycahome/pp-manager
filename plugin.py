@@ -574,7 +574,7 @@ def parseFileForSecurityIssues(pyfilename):
 
     ips = {}
     safeStrings = ["['http://schemas.xmlsoap.org/soap/envelope/', 'http://schemas.xmlsoap.org/soap/encoding/']",
-                   'from urllib',
+                   '['127.0.0.1']',
                    'from subprocess',
                    'import subprocess']
     lineNum = 0
