@@ -557,7 +557,7 @@ def parseFileForSecurityIssues(pyfilename):
            ips["IP" + str(lineNum)] = (regexFound, "IP Address")
        lineNum = lineNum + 1
 
-        lineNum = 0
+    lineNum = 0
     for text in file.readlines():
        text = text.rstrip()
        regexFound = re.findall(r'^(http|https)://',text)
@@ -566,7 +566,7 @@ def parseFileForSecurityIssues(pyfilename):
            ips["HTTP" + str(lineNum)] = (regexFound, "IP Address")
        lineNum = lineNum + 1
 
-        lineNum = 0
+    lineNum = 0
     for text in file.readlines():
        text = text.rstrip()
        regexFound = re.findall(r'include',text)
