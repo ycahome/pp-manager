@@ -378,7 +378,21 @@ class BasePlugin:
         Domoticz.Debug("UpdatePythonPlugin called")
 
         if ppKey == "PP-MANAGER":
-           Domoticz.Log("Self Update Initiated")
+            Domoticz.Log("Self Update Initiated")
+            ppGitReset = "/usr/bin/git reset --hard HEAD"
+            try:
+                pr = subprocess.Popen( ppGitReset , cwd = str(os.getcwd() + "/plugins/" + ppKey), shell = True, stdout = subprocess.PIPE, stderr = subprocess.PIPE )
+                (out, error) = pr.communicate()
+                if out:
+                    Domoticz.Debug("Git Response:" + str(out))
+                if error:
+                    Domoticz.Debug("Git Error:" + str(error.strip()))
+            except OSError as e:
+                Domoticz.Error("Git ErrorNo:" + str(e.errno))
+                Domoticz.Error("Git StrError:" + str(e.strerror))
+
+            
+            
         elif (self.plugindata[ppKey][2] in self.ExceptionList):
             Domoticz.Log("Plugin:" + self.plugindata[ppKey][2] + " excluded by Exclusion file (exclusion.txt). Skipping!!!")
             return
