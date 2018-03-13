@@ -580,22 +580,22 @@ def parseFileForSecurityIssues(pyfilename):
        
        #Domoticz.Log("'text' is:'" + str(text))
        regexFound = re.findall(r'(?:[\d]{1,3})\.(?:[\d]{1,3})\.(?:[\d]{1,3})\.(?:[\d]{1,3})',text)
-       if regexFound and text not in safeStrings:
+       if regexFound and str(regexFound) not in safeStrings:
            Domoticz.Error("Security Finding:'" + str(regexFound) + "' LINE: " + str(lineNum) + " FILE:" + pyfilename)
            ips["IP" + str(lineNum)] = (regexFound, "IP Address")
 
        regexFound = re.findall('http[s]?://(?:[a-zA-Z]|[0-9]|[$-_@.&+]|[!*\(\),]|(?:%[0-9a-fA-F][0-9a-fA-F]))+', text)
-       if regexFound and text not in safeStrings:
+       if regexFound and str(regexFound) not in safeStrings:
            Domoticz.Error("Security Finding:'" + str(regexFound) + "' LINE:" + str(lineNum) + " FILE:" + pyfilename)
            ips["HTTP" + str(lineNum)] = (regexFound, "HTTP Access")
 
        regexFound = re.findall('import',text)
-       if regexFound and text not in safeStrings:
+       if regexFound and str(text) not in safeStrings:
            Domoticz.Error("Security Finding:'" + str(text) + "' LINE:" + str(lineNum) + " FILE:" + pyfilename)
            ips["IMP" + str(lineNum)] = (text, "Import")
 
        regexFound = re.findall('subprocess.Popen',text)
-       if regexFound and text not in safeStrings:
+       if regexFound and str(regexFound) not in safeStrings:
            Domoticz.Error("Security Finding:'" + str(regexFound) + "' LINE:" + str(lineNum) + " FILE:" + pyfilename)
            ips["SUB" + str(lineNum)] = (regexFound, "Subprocess")
 
