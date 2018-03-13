@@ -558,7 +558,7 @@ def parseFileForIP(pyfilename):
        lineNum = lineNum + 1
 
     file.close()
-    Domoticz.Log("self.ExceptionList:" + str(self.ExceptionList))
+    Domoticz.Log("ips contents are:" + str(ips))
     
     
 
