@@ -201,8 +201,9 @@ class BasePlugin:
             for (path, dirs, files) in os.walk(path):
                 for dir in dirs:
                     if str(dir) != "":
-                            #self.UpdatePythonPlugin(pluginAuthor, pluginRepository, str(dir))
-                            #parseFileForSecurityIssues(str(os.getcwd()) + "/plugins/PP-MANAGER/plugin.py")
+                        #self.UpdatePythonPlugin(pluginAuthor, pluginRepository, str(dir))
+                        #parseFileForSecurityIssues(str(os.getcwd()) + "/plugins/PP-MANAGER/plugin.py")
+                        if (os.path.isfile(str(os.getcwd()) + "/plugins/" + str(dir) + "/plugin.py") == True):
                             parseFileForSecurityIssues(str(os.getcwd()) + "/plugins/" + str(dir) + "/plugin.py")
                 i += 1
                 if i >= 1:
