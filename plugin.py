@@ -550,7 +550,7 @@ def parseFileForIP(pyfilename):
     for text in file.readlines():
        text = text.rstrip()
        regexFound = re.findall(r'(?:[\d]{1,3})\.(?:[\d]{1,3})\.(?:[\d]{1,3})\.(?:[\d]{1,3})',text)
-       if (regexFound != "[]"):
+       if regexFound:
            Domoticz.Log("File Regex result:'" + str(regexFound) + "'")
            ips[lineNum] = regexFound
        lineNum = lineNum + 1
