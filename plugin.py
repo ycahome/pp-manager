@@ -561,7 +561,7 @@ def parseFileForSecurityIssues(pyfilename):
            Domoticz.Log("'HTTP Access' Security scan finding:'" + str(regexFound) + "' in Line " + str(lineNum))
            ips["HTTP" + str(lineNum)] = (regexFound, "HTTP Access")
 
-       regexFound = re.findall(r'import.$',text)
+       regexFound = re.findall(r'import.',text)
        if regexFound:
            Domoticz.Log("'Imports' Security Scan finding:'" + str(regexFound) + "' in Line " + str(lineNum))
            ips["IMP" + str(lineNum)] = (regexFound, "Import")
