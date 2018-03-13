@@ -553,6 +553,7 @@ def parseFileForIP(pyfilename):
        if regexFound is not None and regexFound not in ips:
            Domoticz.Log("File Regex result:'" + str(regexFound) + "'")
            ips.append(regexFound)
+           ips[regexFound].append(lineNum)
        lineNum = lineNum + 1
 
     file.close()
