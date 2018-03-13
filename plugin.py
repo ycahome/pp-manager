@@ -573,7 +573,7 @@ def parseFileForSecurityIssues(pyfilename):
     file = open(pyfilename, "r")
 
     ips = {}
-
+    safeStrings = ['http://schemas.xmlsoap.org/soap/envelope/','']
     lineNum = 0
     for text in file.readlines():
        text = text.rstrip()
@@ -590,7 +590,7 @@ def parseFileForSecurityIssues(pyfilename):
            ips["HTTP" + str(lineNum)] = (regexFound, "HTTP Access")
 
        regexFound = re.findall('import',text)
-       if regexFound:
+       if regexFound and text not in safeStrings:
            Domoticz.Error("Security Finding:'" + str(text) + "' LINE:" + str(lineNum) + " FILE:" + pyfilename)
            ips["IMP" + str(lineNum)] = (text, "Import")
 
