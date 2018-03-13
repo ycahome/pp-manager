@@ -550,7 +550,8 @@ def parseFileForSecurityIssues(pyfilename):
 
     lineNum = 0
     for text in file.readlines():
-       text = text.rstrip()
+       #text = text.rstrip()
+       text = text
        regexFound = re.findall(r'(?:[\d]{1,3})\.(?:[\d]{1,3})\.(?:[\d]{1,3})\.(?:[\d]{1,3})',text)
        if regexFound:
            Domoticz.Log("'IP Address' Security Scan finding:'" + str(regexFound) + "' in Line " + str(lineNum))
