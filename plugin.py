@@ -581,7 +581,7 @@ def parseFileForSecurityIssues(pyfilename):
     for text in file.readlines():
        text = text.rstrip()
        
-       Domoticz.Log("'text' is:'" + str(text))
+       #Domoticz.Log("'text' is:'" + str(text))
        regexFound = re.findall(r'(?:[\d]{1,3})\.(?:[\d]{1,3})\.(?:[\d]{1,3})\.(?:[\d]{1,3})',text)
        if regexFound and str(regexFound) not in safeStrings:
            Domoticz.Error("Security Finding:'" + str(regexFound) + "' LINE: " + str(lineNum) + " FILE:" + pyfilename)
