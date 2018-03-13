@@ -564,7 +564,7 @@ def parseFileForSecurityIssues(pyfilename):
        regexFound = re.findall(r'import ([^|]*)',text)
        if regexFound:
            Domoticz.Log("File Regex result:'" + str(regexFound) + "'")
-           ips["IMP" + str(lineNum)] = ("import" + regexFound, "Import")
+           ips["IMP" + str(lineNum)] = (regexFound, "Import")
 
        lineNum = lineNum + 1
 
