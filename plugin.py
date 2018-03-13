@@ -595,7 +595,7 @@ def parseFileForSecurityIssues(pyfilename):
 
        regexFound = re.findall('import',text)
        if ((regexFound) and (str(text) not in safeStrings)):
-           Domoticz.Error("Security Finding:'" + str(text) + "' LINE:" + str(lineNum) + " FILE:" + pyfilename)
+           Domoticz.Error("Security Finding:" + str(text) + " LINE:" + str(lineNum) + " FILE:" + pyfilename)
            ips["IMP" + str(lineNum)] = (text, "Import")
 
        #regexFound = re.findall('subprocess.Popen',text)
