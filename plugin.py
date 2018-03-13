@@ -541,7 +541,7 @@ def mid(s, offset, amount):
 
 
 def parseFileForSecurityIssues(pyfilename):
-    Domoticz.Debug("mid called")
+    Domoticz.Debug("parseFileForSecurityIssues called")
     
     # Open the file
     file = open(pyfilename, "r")
@@ -557,8 +557,26 @@ def parseFileForSecurityIssues(pyfilename):
            ips["IP" + str(lineNum)] = (regexFound, "IP Address")
        lineNum = lineNum + 1
 
+        lineNum = 0
+    for text in file.readlines():
+       text = text.rstrip()
+       regexFound = re.findall(r'^(http|https)://',text)
+       if regexFound:
+           Domoticz.Log("File Regex result:'" + str(regexFound) + "'")
+           ips["HTTP" + str(lineNum)] = (regexFound, "IP Address")
+       lineNum = lineNum + 1
+
+        lineNum = 0
+    for text in file.readlines():
+       text = text.rstrip()
+       regexFound = re.findall(r'include',text)
+       if regexFound:
+           Domoticz.Log("File Regex result:'" + str(regexFound) + "'")
+           ips["INC" + str(lineNum)] = (regexFound, "IP Address")
+       lineNum = lineNum + 1
+    
     file.close()
-    Domoticz.Log("ips contents are:" + str(ips))
+    Domoticz.Log("IPS Table contents are:" + str(ips))
     
     
 
