@@ -552,20 +552,23 @@ def parseFileForSecurityIssues(pyfilename):
     for text in file.readlines():
        #text = text.rstrip()
        
-       Domoticz.Log("'text' is:'" + str(text))
+       #Domoticz.Log("'text' is:'" + str(text))
        regexFound = re.findall(r'(?:[\d]{1,3})\.(?:[\d]{1,3})\.(?:[\d]{1,3})\.(?:[\d]{1,3})',text)
        if regexFound:
            Domoticz.Log("'IP Address' Security Scan finding:'" + str(regexFound) + "' in Line " + str(lineNum))
+           Domoticz.Log("'IP Address' Security Scan finding:'" + str(text) + "' in Line " + str(lineNum))
            ips["IP" + str(lineNum)] = (regexFound, "IP Address")
 
        regexFound = re.findall('http[s]?://(?:[a-zA-Z]|[0-9]|[$-_@.&+]|[!*\(\),]|(?:%[0-9a-fA-F][0-9a-fA-F]))+', text)
        if regexFound:
            Domoticz.Log("'HTTP Access' Security scan finding:'" + str(regexFound) + "' in Line " + str(lineNum))
+           Domoticz.Log("'HTTP Access' Security scan finding:'" + str(text) + "' in Line " + str(lineNum))
            ips["HTTP" + str(lineNum)] = (regexFound, "HTTP Access")
 
-       regexFound = re.findall('import.$',text)
+       regexFound = re.findall('import',text)
        if regexFound:
            Domoticz.Log("'Imports' Security Scan finding:'" + str(regexFound) + "' in Line " + str(lineNum))
+           Domoticz.Log("'Imports' Security Scan finding:'" + str(text) + "' in Line " + str(lineNum))
            ips["IMP" + str(lineNum)] = (regexFound, "Import")
 
        lineNum = lineNum + 1
