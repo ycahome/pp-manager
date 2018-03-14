@@ -222,7 +222,7 @@ class BasePlugin:
                         secpoluserSection = mid(line,4,len(line))
                         Domoticz.Log("secpoluser settings found for plugin:" + secpoluserSection)
                     if ((mid(line,0,4) != "--->") and (line.strip() != "") and (line.strip() != " ")):
-                        Domoticz.Log("SecPolUserList exception (" + secpoluserSection.strip() + "):'" + line.strip() + "'")
+                        Domoticz.Debug("SecPolUserList exception (" + secpoluserSection.strip() + "):'" + line.strip() + "'")
                         #SecPolUserList.append(line.strip())
                         #SecPolUserList[secpoluserSection].append(line.strip())
                         if secpoluserSection.strip() not in self.SecPolUserList:
