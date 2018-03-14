@@ -606,7 +606,7 @@ class BasePlugin:
                        #Domoticz.Error("Security Finding(IPr):" + regexFound[rex] + " LINE: " + str(lineNum) + " FILE:" + pyfilename)
                        ips["IP" + str(lineNum)] = (regexFound[rex], "IP Address")
                 else:
-                   if ((str(text).strip() != ""):
+                   if (str(text).strip() != ""):
                        Domoticz.Error("Security Finding(IPtext):'" + str(text) + "' LINE: " + str(lineNum) + " FILE:" + pyfilename)
                        #Domoticz.Error("Security Finding(IPr):" + regexFound[rex] + " LINE: " + str(lineNum) + " FILE:" + pyfilename)
                        ips["IP" + str(lineNum)] = (regexFound[rex], "IP Address")
