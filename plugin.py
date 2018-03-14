@@ -274,7 +274,7 @@ class BasePlugin:
                 # use realine() to read next line
                 line = f.readline()
             f.close()
-        Domoticz.Log("self.ExceptionList:" + str(self.ExceptionList))
+        Domoticz.Debug("self.ExceptionList:" + str(self.ExceptionList))
 
         
         
@@ -370,7 +370,7 @@ class BasePlugin:
 
             #-------------------------------------
             if Parameters["Mode4"] == 'All':
-                Domoticz.Log("Updating All Plugins!!!")
+                Domoticz.Log("Checking Updates for All Plugins!!!")
                 i = 0
                 path = str(os.getcwd()) + "/plugins/"
                 for (path, dirs, files) in os.walk(path):
@@ -399,7 +399,7 @@ class BasePlugin:
 
             #-------------------------------------
             if Parameters["Mode4"] == 'Selected':
-                Domoticz.Log("Updating Enabled for Plugin:" + self.plugindata[pluginKey][2])
+                Domoticz.Log("Checking Updates for Plugin:" + self.plugindata[pluginKey][2])
                 self.UpdatePythonPlugin(self.plugindata[Parameters["Mode2"]][0], self.plugindata[Parameters["Mode2"]][1], Parameters["Mode2"])
 
             #if Parameters["Mode2"] == "Idle":
