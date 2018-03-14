@@ -196,34 +196,6 @@ class BasePlugin:
 
  
 
-        # Reading secpoluserFile and populating array of values
-        secpoluserFile = str(os.getcwd()) + "/plugins/PP-MANAGER/secpoluser.txt"
-
-        Domoticz.Debug("Checking for SecPolUser file on:" + secpoluserFile)
-        if (os.path.isfile(secpoluserFile) == True):
-            Domoticz.Log("secpoluser file found. Processing!!!")
-
-            # Open the file
-            secpoluserFileHandle = open(secpoluserFile)
-
-            # use readline() to read the first line 
-            line = secpoluserFileHandle.readline()
-
-            while line:
-                if mid(line,0,4) == "--->":
-                    secpoluserSection = mid(line,4,len(line))
-                    Domoticz.Log("secpoluser settings found for plugin:" + secpoluserSection)
-                if ((mid(line,0,4) != "--->") and (line.strip() != "") and (line.strip() != " ")):
-                    Domoticz.Log("SecPolUserList exception (" + secpoluserSection.strip() + "):'" + line.strip() + "'")
-                    #SecPolUserList.append(line.strip())
-                    #SecPolUserList[secpoluserSection].append(line.strip())
-                    if secpoluserSection.strip() not in self.SecPolUserList:
-                        self.SecPolUserList[secpoluserSection.strip()] = []
-                    self.SecPolUserList[secpoluserSection.strip()].append(line.strip())
-                # use realine() to read next line
-                line = secpoluserFileHandle.readline()
-            secpoluserFileHandle.close()
-            Domoticz.Log("SecPolUserList exception:" + str(self.SecPolUserList))
 
 
         
@@ -231,7 +203,38 @@ class BasePlugin:
         
         if (Parameters["Mode5"] == 'True'):
             Domoticz.Log("Plugin Security Scan is enabled")
-            Domoticz.Log("Scanning All Plugins for Vulnerabilities!!!")
+            
+            # Reading secpoluserFile and populating array of values
+            secpoluserFile = str(os.getcwd()) + "/plugins/PP-MANAGER/secpoluser.txt"
+
+            Domoticz.Debug("Checking for SecPolUser file on:" + secpoluserFile)
+            if (os.path.isfile(secpoluserFile) == True):
+                Domoticz.Log("secpoluser file found. Processing!!!")
+
+                # Open the file
+                secpoluserFileHandle = open(secpoluserFile)
+
+                # use readline() to read the first line 
+                line = secpoluserFileHandle.readline()
+
+                while line:
+                    if mid(line,0,4) == "--->":
+                        secpoluserSection = mid(line,4,len(line))
+                        Domoticz.Log("secpoluser settings found for plugin:" + secpoluserSection)
+                    if ((mid(line,0,4) != "--->") and (line.strip() != "") and (line.strip() != " ")):
+                        Domoticz.Log("SecPolUserList exception (" + secpoluserSection.strip() + "):'" + line.strip() + "'")
+                        #SecPolUserList.append(line.strip())
+                        #SecPolUserList[secpoluserSection].append(line.strip())
+                        if secpoluserSection.strip() not in self.SecPolUserList:
+                            self.SecPolUserList[secpoluserSection.strip()] = []
+                        self.SecPolUserList[secpoluserSection.strip()].append(line.strip())
+                    # use realine() to read next line
+                    line = secpoluserFileHandle.readline()
+                secpoluserFileHandle.close()
+                Domoticz.Log("SecPolUserList exception:" + str(self.SecPolUserList))
+            
+            
+            
             i = 0
             path = str(os.getcwd()) + "/plugins/"
             for (path, dirs, files) in os.walk(path):
