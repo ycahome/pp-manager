@@ -255,8 +255,6 @@ class BasePlugin:
 
         
         # Reading exception file and populating array of values
-        Domoticz.Log("Parsing Script TEST on:" + str(os.getcwd()) + "/plugins/PP-MANAGER/plugin.py")
-        
         exceptionFile = str(os.getcwd()) + "/plugins/PP-MANAGER/exceptions.txt"
         Domoticz.Debug("Checking for Exception file on:" + exceptionFile)
         if (os.path.isfile(exceptionFile) == True):
