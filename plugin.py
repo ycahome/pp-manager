@@ -615,7 +615,8 @@ def parseFileForSecurityIssues(pyfilename):
             
     lineNum = 0
     for text in file.readlines():
-       text = text.rstrip()
+       #text = text.rstrip()
+       text = text
        
        #Domoticz.Log("'text' is:'" + str(text))
        regexFound = re.findall(r'(?:[\d]{1,3})\.(?:[\d]{1,3})\.(?:[\d]{1,3})\.(?:[\d]{1,3})',text)
