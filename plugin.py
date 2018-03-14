@@ -589,14 +589,16 @@ def parseFileForSecurityIssues(pyfilename):
         line = secpoluserFileHandle.readline()
 
         while line:
-
+            if mid(line,0,4) == "--->":
+                secpoluserSection = mid(line,4,len(line))
+                Domoticz.Log("secpoluser settings found for plugin:" + secpoluserSection)
             if ((line[:1].strip() != "#") and (line[:1].strip() != " ") and (line[:1].strip() != "")):
                 Domoticz.Log("File ReadLine result:'" + line.strip() + "'")
                 SecPolUserList.append(line.strip())    
             # use realine() to read next line
             line = secpoluserFileHandle.readline()
         secpoluserFileHandle.close()
-    Domoticz.Log("SecPolUserList:" + str(SecPolUserList))
+        Domoticz.Log("SecPolUserList:" + str(SecPolUserList))
 
 
             
