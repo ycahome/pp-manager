@@ -70,7 +70,7 @@
                 <option label="None" value="None"/>
             </options>
         </param>
-         <param field="Mode5" label="Enable Security Scan" width="75px">
+         <param field="Mode5" label="Security Scan (Experimental)" width="75px">
             <options>
                 <option label="True" value="True"/>
                 <option label="False" value="False"  default="False" />
@@ -80,7 +80,6 @@
             <options>
                 <option label="True" value="Debug"/>
                 <option label="False" value="Normal"  default="true" />
-                <option label="Monitor" value="Monitor"  default="true" />
             </options>
         </param>
     </params>
@@ -230,7 +229,7 @@ class BasePlugin:
         
         
         
-        if ((Parameters["Mode5"] == 'True') or (Parameters["Mode5"] == 'Monitor')):
+        if (Parameters["Mode5"] == 'True'):
             Domoticz.Log("Plugin Security Scan is enabled")
             Domoticz.Log("Scanning All Plugins for Vulnerabilities!!!")
             i = 0
