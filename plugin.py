@@ -619,12 +619,13 @@ def parseFileForSecurityIssues(pyfilename):
        
        #Domoticz.Log("'text' is:'" + str(text))
        regexFound = re.findall(r'(?:[\d]{1,3})\.(?:[\d]{1,3})\.(?:[\d]{1,3})\.(?:[\d]{1,3})',text)
-       if ((regexFound) and (str(text) not in safeStrings)):
+       if regexFound:
            #regexFound[rex] = regexFound[rex].strip('"]')
-	   for rex in range(0,len(regexFound)):
-                Domoticz.Error("Security Finding(IP):" + str(text) + " LINE: " + str(lineNum) + " FILE:" + pyfilename)
-                Domoticz.Error("Security Finding(IPr):" + regexFound[rex] + " LINE: " + str(lineNum) + " FILE:" + pyfilename)
-                ips["IP" + str(lineNum)] = (regexFound[rex], "IP Address")
+           for rex in range(0,len(regexFound)):
+                if str(text) not in safeStrings:
+                    Domoticz.Error("Security Finding(IP):" + str(text) + " LINE: " + str(lineNum) + " FILE:" + pyfilename)
+                    Domoticz.Error("Security Finding(IPr):" + regexFound[rex] + " LINE: " + str(lineNum) + " FILE:" + pyfilename)
+                    ips["IP" + str(lineNum)] = (regexFound[rex], "IP Address")
 
        #regexFound = re.findall('http[s]?://(?:[a-zA-Z]|[0-9]|[$-_@.&+]|[!*\(\),]|(?:%[0-9a-fA-F][0-9a-fA-F]))+', text)
        #for rex in range(0,len(regexFound)):
