@@ -606,16 +606,25 @@ class BasePlugin:
               #Domoticz.Error("Security Finding(IPregex):" + str(regexFound) + " LINE: " + str(lineNum) + " FILE:" + pyfilename)
               for rex in range(0,len(regexFound)):
                    if ((str(text).strip() not in self.SecPolUserList[pypluginid]) and (str(text).strip() != "")):
-                       Domoticz.Error("Security Finding(IPtext):'" + str(text).strip() + "' LINE: " + str(lineNum) + " FILE:" + pyfilename)
+                       Domoticz.Error("Security Finding(IP):-->" + str(text).strip() + "<-- LINE: " + str(lineNum) + " FILE:" + pyfilename)
                        #Domoticz.Error("Security Finding(IPr):" + regexFound[rex] + " LINE: " + str(lineNum) + " FILE:" + pyfilename)
                        ips["IP" + str(lineNum)] = (regexFound[rex], "IP Address")
 
-          #regexFound = re.findall('http[s]?://(?:[a-zA-Z]|[0-9]|[$-_@.&+]|[!*\(\),]|(?:%[0-9a-fA-F][0-9a-fA-F]))+', text)
+          regexFound = re.findall('http[s]?://(?:[a-zA-Z]|[0-9]|[$-_@.&+]|[!*\(\),]|(?:%[0-9a-fA-F][0-9a-fA-F]))+', text)
+          paramFound = re.findall(r'<param field=',text)
           #for rex in range(0,len(regexFound)):
           #    regexFound[rex] = regexFound[rex].strip('"]')
           #    if ((regexFound) and (str(regexFound[rex]) not in safeStrings)):
           #         Domoticz.Error("Security Finding(HTTP):" + str(regexFound[rex]) + " LINE:" + str(lineNum) + " FILE:" + pyfilename)
           #         ips["HTTP" + str(lineNum)] = (regexFound[rex], "HTTP Access")
+          if ((regexFound) and not (paramFound)):
+              #regexFound[rex] = regexFound[rex].strip('"]')
+              #Domoticz.Error("Security Finding(IPregex):" + str(regexFound) + " LINE: " + str(lineNum) + " FILE:" + pyfilename)
+              for rex in range(0,len(regexFound)):
+                   if ((str(text).strip() not in self.SecPolUserList[pypluginid]) and (str(text).strip() != "")):
+                       Domoticz.Error("Security Finding(HTTP):-->" + str(text).strip() + "<-- LINE: " + str(lineNum) + " FILE:" + pyfilename)
+                       #Domoticz.Error("Security Finding(IPr):" + regexFound[rex] + " LINE: " + str(lineNum) + " FILE:" + pyfilename)
+                       ips["IP" + str(lineNum)] = (regexFound[rex], "HTTP Address")
 
           #regexFound = re.findall('import',text)
           #for rex in range(0,len(regexFound)):
