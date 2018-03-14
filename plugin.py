@@ -600,7 +600,8 @@ class BasePlugin:
 
           #Domoticz.Log("'text' is:'" + str(text))
           regexFound = re.findall(r'(?:[\d]{1,3})\.(?:[\d]{1,3})\.(?:[\d]{1,3})\.(?:[\d]{1,3})',text)
-          if regexFound:
+          paramFound = re.findall(r'<param field=',text)
+          if ((regexFound) and not (paramFound)):
               #regexFound[rex] = regexFound[rex].strip('"]')
               #Domoticz.Error("Security Finding(IPregex):" + str(regexFound) + " LINE: " + str(lineNum) + " FILE:" + pyfilename)
               for rex in range(0,len(regexFound)):
