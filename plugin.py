@@ -590,6 +590,7 @@ class BasePlugin:
 
 
        lineNum = 1
+       Domoticz.Error("self.SecPolUserList[pypluginid]:'" + str(self.SecPolUserList[pypluginid]))
        for text in file.readlines():
           text = text.rstrip()
 
@@ -600,7 +601,6 @@ class BasePlugin:
               #regexFound[rex] = regexFound[rex].strip('"]')
               #Domoticz.Error("Security Finding(IPregex):" + str(regexFound) + " LINE: " + str(lineNum) + " FILE:" + pyfilename)
               for rex in range(0,len(regexFound)):
-                Domoticz.Error("self.SecPolUserList[pypluginid]:'" + str(self.SecPolUserList[pypluginid]))
                 if pypluginid in self.SecPolUserList:
                    if ((str(text).strip() not in self.SecPolUserList[pypluginid]) and (str(text).strip() != "")):
                        Domoticz.Error("Security Finding(IPtext):'" + str(text).strip() + "' LINE: " + str(lineNum) + " FILE:" + pyfilename)
