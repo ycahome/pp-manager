@@ -235,6 +235,40 @@ class BasePlugin:
             f.close()
         Domoticz.Log("self.ExceptionList:" + str(self.ExceptionList))
 
+        
+        
+        
+        # Reading secpoluserFile and populating array of values
+        secpoluserFile = str(os.getcwd()) + "/plugins/PP-MANAGER/secpoluser.txt"
+        Domoticz.Debug("Checking for SecPolUser file on:" + secpoluserFile)
+        if (os.path.isfile(secpoluserFile) == True):
+            Domoticz.Log("secpoluser file found. Processing!!!")
+
+            # Open the file
+            secpoluserFileHandle = open(secpoluserFile)
+
+            # use readline() to read the first line 
+            line = secpoluserFileHandle.readline()
+
+            while line:
+                if mid(line,0,4) == "--->":
+                    secpoluserSection = mid(line,4,len(line))
+                    Domoticz.Log("secpoluser settings found for plugin:" + secpoluserSection)
+                if ((line[:1].strip() != "#") and (line[:1].strip() != " ") and (line[:1].strip() != "") and mid(line,0,4) != "--->"):
+                    Domoticz.Log("File ReadLine result:'" + line.strip() + "'")
+                    SecPolUserList.append(line.strip())    
+                # use realine() to read next line
+                line = secpoluserFileHandle.readline()
+            secpoluserFileHandle.close()
+            Domoticz.Log("SecPolUserList:" + str(SecPolUserList))
+
+
+        
+        
+        
+        
+        
+        
         if Parameters["Mode4"] == 'All':
             Domoticz.Log("Updating All Plugins!!!")
             i = 0
@@ -576,31 +610,6 @@ def parseFileForSecurityIssues(pyfilename):
         Domoticz.Log("Plugin Security Scan is enabled")
         secmonitorOnly = True
             
-    # Reading secpoluserFile and populating array of values
-    secpoluserFile = str(os.getcwd()) + "/plugins/PP-MANAGER/secpoluser.txt"
-    Domoticz.Debug("Checking for SecPolUser file on:" + secpoluserFile)
-    if (os.path.isfile(secpoluserFile) == True):
-        Domoticz.Log("secpoluser file found. Processing!!!")
-
-        # Open the file
-        secpoluserFileHandle = open(secpoluserFile)
-
-        # use readline() to read the first line 
-        line = secpoluserFileHandle.readline()
-
-        while line:
-            if mid(line,0,4) == "--->":
-                secpoluserSection = mid(line,4,len(line))
-                Domoticz.Log("secpoluser settings found for plugin:" + secpoluserSection)
-            if ((line[:1].strip() != "#") and (line[:1].strip() != " ") and (line[:1].strip() != "") and mid(line,0,4) != "--->"):
-                Domoticz.Log("File ReadLine result:'" + line.strip() + "'")
-                SecPolUserList.append(line.strip())    
-            # use realine() to read next line
-            line = secpoluserFileHandle.readline()
-        secpoluserFileHandle.close()
-        Domoticz.Log("SecPolUserList:" + str(SecPolUserList))
-
-
             
     # Open the file
     file = open(pyfilename, "r")
