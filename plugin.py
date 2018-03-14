@@ -73,7 +73,7 @@
          <param field="Mode5" label="Security Scan (Experimental)" width="75px">
             <options>
                 <option label="True" value="True"/>
-                <option label="False" value="False"  default="False" />
+                <option label="False" value="False"  default="true" />
             </options>
         </param>
          <param field="Mode6" label="Debug" width="75px">
