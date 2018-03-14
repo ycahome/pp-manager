@@ -619,11 +619,12 @@ def parseFileForSecurityIssues(pyfilename):
        
        #Domoticz.Log("'text' is:'" + str(text))
        regexFound = re.findall(r'(?:[\d]{1,3})\.(?:[\d]{1,3})\.(?:[\d]{1,3})\.(?:[\d]{1,3})',text)
-       if regexFound:
+       paramFound = re.findall(r'(param',text)
+       if regexFound and not paramFound:
            #regexFound[rex] = regexFound[rex].strip('"]')
            Domoticz.Error("Security Finding(IPregex):" + str(regexFound) + " LINE: " + str(lineNum) + " FILE:" + pyfilename)
            for rex in range(0,len(regexFound)):
-                if ((str(text) not in safeStrings) and (str(text).strip() != "") and (mid(text,0,6) != "<param")):
+                if ((str(text) not in safeStrings) and (str(text).strip() != "")):
                     Domoticz.Error("Security Finding(IPtext):" + str(text) + " LINE: " + str(lineNum) + " FILE:" + pyfilename)
                     Domoticz.Error("Security Finding(IPr):" + regexFound[rex] + " LINE: " + str(lineNum) + " FILE:" + pyfilename)
                     ips["IP" + str(lineNum)] = (regexFound[rex], "IP Address")
