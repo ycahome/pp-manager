@@ -596,7 +596,7 @@ def parseFileForSecurityIssues(pyfilename):
             # use realine() to read next line
             line = secpoluserFileHandle.readline()
         secpoluserFileHandle.close()
-    Domoticz.Log("self.ExceptionList:" + str(self.ExceptionList))
+    Domoticz.Log("SecPolUserList:" + str(SecPolUserList))
 
 
             
