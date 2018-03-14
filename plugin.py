@@ -592,7 +592,7 @@ def parseFileForSecurityIssues(pyfilename):
             if mid(line,0,4) == "--->":
                 secpoluserSection = mid(line,4,len(line))
                 Domoticz.Log("secpoluser settings found for plugin:" + secpoluserSection)
-            if ((line[:1].strip() != "#") and (line[:1].strip() != " ") and (line[:1].strip() != "")):
+            if ((line[:1].strip() != "#") and (line[:1].strip() != " ") and (line[:1].strip() != "") and mid(line,0,4) != "--->"):
                 Domoticz.Log("File ReadLine result:'" + line.strip() + "'")
                 SecPolUserList.append(line.strip())    
             # use realine() to read next line
