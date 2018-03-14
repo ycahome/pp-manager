@@ -198,7 +198,7 @@ class BasePlugin:
 
         # Reading secpoluserFile and populating array of values
         secpoluserFile = str(os.getcwd()) + "/plugins/PP-MANAGER/secpoluser.txt"
-        SecPolUserList = []
+        SecPolUserList = {}
 
         Domoticz.Debug("Checking for SecPolUser file on:" + secpoluserFile)
         if (os.path.isfile(secpoluserFile) == True):
@@ -215,12 +215,13 @@ class BasePlugin:
                     secpoluserSection = mid(line,4,len(line))
                     Domoticz.Log("secpoluser settings found for plugin:" + secpoluserSection)
                 if ((line[:1].strip() != "#") and (line[:1].strip() != " ") and (line[:1].strip() != "") and mid(line,0,4) != "--->"):
-                    Domoticz.Log("File ReadLine result:'" + line.strip() + "'")
-                    SecPolUserList.append(line.strip())    
+                    Domoticz.Log("SecPolUserList exception (" + secpoluserSection + "):'" + line.strip() + "'")
+                    #SecPolUserList.append(line.strip())
+                    SecPolUserList[secpoluserSection].append(line.strip())
                 # use realine() to read next line
                 line = secpoluserFileHandle.readline()
             secpoluserFileHandle.close()
-            Domoticz.Log("SecPolUserList exception (" + secpoluserSection + "):" + str(SecPolUserList))
+            Domoticz.Log("SecPolUserList exception:" + str(SecPolUserList))
 
 
         
