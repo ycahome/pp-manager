@@ -239,7 +239,7 @@ class BasePlugin:
                         #self.UpdatePythonPlugin(pluginAuthor, pluginRepository, str(dir))
                         #parseFileForSecurityIssues(str(os.getcwd()) + "/plugins/PP-MANAGER/plugin.py")
                         if (os.path.isfile(str(os.getcwd()) + "/plugins/" + str(dir) + "/plugin.py") == True):
-                            parseFileForSecurityIssues(str(os.getcwd()) + "/plugins/" + str(dir) + "/plugin.py")
+                            parseFileForSecurityIssues(str(os.getcwd()) + "/plugins/" + str(dir) + "/plugin.py", str(dir))
                 i += 1
                 if i >= 1:
                    break
@@ -612,7 +612,7 @@ def mid(s, offset, amount):
 
 
 
-def parseFileForSecurityIssues(pyfilename):
+def parseFileForSecurityIssues(pyfilename, pypluginid):
     Domoticz.Debug("parseFileForSecurityIssues called")
     secmonitorOnly = False
             
@@ -645,7 +645,7 @@ def parseFileForSecurityIssues(pyfilename):
            #regexFound[rex] = regexFound[rex].strip('"]')
            #Domoticz.Error("Security Finding(IPregex):" + str(regexFound) + " LINE: " + str(lineNum) + " FILE:" + pyfilename)
            for rex in range(0,len(regexFound)):
-                if ((str(text) not in safeStrings) and (str(text).strip() != "")):
+                if ((str(text).strip() not in SecPolUserList[pypluginid]) and (str(text).strip() != "")):
                     Domoticz.Error("Security Finding(IPtext):'" + str(text) + "' LINE: " + str(lineNum) + " FILE:" + pyfilename)
                     #Domoticz.Error("Security Finding(IPr):" + regexFound[rex] + " LINE: " + str(lineNum) + " FILE:" + pyfilename)
                     ips["IP" + str(lineNum)] = (regexFound[rex], "IP Address")
