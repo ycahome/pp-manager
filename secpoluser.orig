@@ -1,0 +1,14 @@
+--->Global
+import time
+import sys
+"import time",
+ "import platform",
+ 'import re']
+
+--->PP-MANAGER
+127.0.0.1",
+"127.0.0.1",
+ ServerURL = "http://127.0.0.1:8080/json.htm?param=sendnotification&type=command"
+
+--->WAN-IP-CHECKER
+CurWANip = "0.0.0.0"
