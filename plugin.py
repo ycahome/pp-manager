@@ -590,7 +590,7 @@ class BasePlugin:
 
 
        lineNum = 1
-       Domoticz.Error("self.SecPolUserList[pypluginid]:'" + str(self.SecPolUserList[pypluginid]))
+       #Domoticz.Error("self.SecPolUserList[pypluginid]:" + str(self.SecPolUserList[pypluginid]))
        for text in file.readlines():
           text = text.rstrip()
 
