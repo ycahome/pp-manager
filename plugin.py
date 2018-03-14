@@ -623,7 +623,7 @@ class BasePlugin:
               Domoticz.Error("Security Finding(IPregex):" + str(regexFound) + " LINE: " + str(lineNum) + " FILE:" + pyfilename)
               for rex in range(0,len(regexFound)):
                    if ((str(text).strip() not in self.SecPolUserList[pypluginid]) and (str(text).strip() != "")):
-                       Domoticz.Error("Security Finding(HTTP):-->" + str(text).strip('http') + "<-- LINE: " + str(lineNum) + " FILE:" + pyfilename)
+                       Domoticz.Error("Security Finding(HTTP):-->" + str(text) + "<-- LINE: " + str(lineNum) + " FILE:" + pyfilename)
                        #Domoticz.Error("Security Finding(IPr):" + regexFound[rex] + " LINE: " + str(lineNum) + " FILE:" + pyfilename)
                        ips["IP" + str(lineNum)] = (regexFound[rex], "HTTP Address")
 
