@@ -198,7 +198,7 @@ class BasePlugin:
 
         # Reading secpoluserFile and populating array of values
         secpoluserFile = str(os.getcwd()) + "/plugins/PP-MANAGER/secpoluser.txt"
-        SecPolUserList = {}
+        self.SecPolUserList = {}
 
         Domoticz.Debug("Checking for SecPolUser file on:" + secpoluserFile)
         if (os.path.isfile(secpoluserFile) == True):
@@ -612,7 +612,7 @@ def mid(s, offset, amount):
 
 
 
-def parseFileForSecurityIssues(pyfilename, pypluginid):
+def parseFileForSecurityIssues(self, pyfilename, pypluginid):
     Domoticz.Debug("parseFileForSecurityIssues called")
     secmonitorOnly = False
             
@@ -645,7 +645,7 @@ def parseFileForSecurityIssues(pyfilename, pypluginid):
            #regexFound[rex] = regexFound[rex].strip('"]')
            #Domoticz.Error("Security Finding(IPregex):" + str(regexFound) + " LINE: " + str(lineNum) + " FILE:" + pyfilename)
            for rex in range(0,len(regexFound)):
-                if ((str(text).strip() not in SecPolUserList[pypluginid]) and (str(text).strip() != "")):
+                if ((str(text).strip() not in selfSecPolUserList[pypluginid]) and (str(text).strip() != "")):
                     Domoticz.Error("Security Finding(IPtext):'" + str(text) + "' LINE: " + str(lineNum) + " FILE:" + pyfilename)
                     #Domoticz.Error("Security Finding(IPr):" + regexFound[rex] + " LINE: " + str(lineNum) + " FILE:" + pyfilename)
                     ips["IP" + str(lineNum)] = (regexFound[rex], "IP Address")
