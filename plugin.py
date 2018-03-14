@@ -239,7 +239,7 @@ class BasePlugin:
                         #self.UpdatePythonPlugin(pluginAuthor, pluginRepository, str(dir))
                         #parseFileForSecurityIssues(str(os.getcwd()) + "/plugins/PP-MANAGER/plugin.py")
                         if (os.path.isfile(str(os.getcwd()) + "/plugins/" + str(dir) + "/plugin.py") == True):
-                            parseFileForSecurityIssues(str(os.getcwd()) + "/plugins/" + str(dir) + "/plugin.py", str(dir))
+                            self.parseFileForSecurityIssues(str(os.getcwd()) + "/plugins/" + str(dir) + "/plugin.py", str(dir))
                 i += 1
                 if i >= 1:
                    break
