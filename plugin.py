@@ -605,7 +605,7 @@ class BasePlugin:
               #regexFound[rex] = regexFound[rex].strip('"]')
               #Domoticz.Error("Security Finding(IPregex):" + str(regexFound) + " LINE: " + str(lineNum) + " FILE:" + pyfilename)
               for rex in range(0,len(regexFound)):
-                   if ((str(text).strip() not in self.SecPolUserList[pypluginid]) and (str(text).strip() != "")):
+                   if ((str(text).strip() not in self.SecPolUserList["Global"]) and (str(text).strip() not in self.SecPolUserList[pypluginid]) and (str(text).strip() != "") and (mid(text,0,1) != "#")):
                        Domoticz.Error("Security Finding(IP):-->" + str(text).strip() + "<-- LINE: " + str(lineNum) + " FILE:" + pyfilename)
                        #Domoticz.Error("Security Finding(IPr):" + regexFound[rex] + " LINE: " + str(lineNum) + " FILE:" + pyfilename)
                        ips["IP" + str(lineNum)] = (regexFound[rex], "IP Address")
@@ -617,7 +617,7 @@ class BasePlugin:
               #regexFound[rex] = regexFound[rex].strip('"]')
               #Domoticz.Error("Security Finding(IPregex):" + str(regexFound) + " LINE: " + str(lineNum) + " FILE:" + pyfilename)
               for rex in range(0,len(regexFound)):
-                   if ((str(text).strip() not in self.SecPolUserList[pypluginid]) and (str(text).strip() != "") and (mid(text,0,1) != "#")):
+                   if ((str(text).strip() not in self.SecPolUserList["Global"]) and (str(text).strip() not in self.SecPolUserList[pypluginid]) and (str(text).strip() != "") and (mid(text,0,1) != "#")):
                        Domoticz.Error("Security Finding(IMP):-->" + str(text) + "<-- LINE: " + str(lineNum) + " FILE:" + pyfilename)
                        #Domoticz.Error("Security Finding(IPr):" + regexFound[rex] + " LINE: " + str(lineNum) + " FILE:" + pyfilename)
                        ips["IP" + str(lineNum)] = (regexFound[rex], "Import")
