@@ -574,9 +574,11 @@ def parseFileForSecurityIssues(pyfilename):
 
     ips = {}
     safeStrings = ["['http://schemas.xmlsoap.org/soap/envelope/', 'http://schemas.xmlsoap.org/soap/encoding/']",
-                   "['127.0.0.1']",
-                   "['https://4.ifcfg.me/ip']",
-                   '-']
+                   "127.0.0.1",
+                   "http://schemas.xmlsoap.org/soap/envelope/'",
+                   "import json",
+                   "import time",
+                   'import re']
     lineNum = 0
     for text in file.readlines():
        text = text.rstrip()
