@@ -214,8 +214,8 @@ class BasePlugin:
                 if mid(line,0,4) == "--->":
                     secpoluserSection = mid(line,4,len(line))
                     Domoticz.Log("secpoluser settings found for plugin:" + secpoluserSection)
-                if ((line[:1].strip() != "#") and (line[:1].strip() != " ") and (line[:1].strip() != "") and mid(line,0,4) != "--->"):
-                    Domoticz.Log("SecPolUserList exception (" + secpoluserSection + "):'" + line.strip() + "'")
+                if ((line[:1].strip() != "#") and (line[:1].strip() != "") and mid(line,0,4) != "--->"):
+                    Domoticz.Log("SecPolUserList exception (" + secpoluserSection.strip() + "):'" + line.strip() + "'")
                     #SecPolUserList.append(line.strip())
                     #SecPolUserList[secpoluserSection].append(line.strip())
                     SecPolUserList.update({secpoluserSection:line.strip()})
