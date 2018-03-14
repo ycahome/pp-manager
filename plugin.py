@@ -566,6 +566,85 @@ class BasePlugin:
 
 
 
+        
+    def parseFileForSecurityIssues(self, pyfilename, pypluginid):
+       Domoticz.Debug("parseFileForSecurityIssues called")
+       secmonitorOnly = False
+
+       if Parameters["Mode5"] == 'Monitor':
+           Domoticz.Log("Plugin Security Scan is enabled")
+           secmonitorOnly = True
+
+
+       # Open the file
+       file = open(pyfilename, "r")
+
+       ips = {}
+       safeStrings = ["['http://schemas.xmlsoap.org/soap/envelope/', 'http://schemas.xmlsoap.org/soap/encoding/']",
+                      "127.0.0.1",
+                      "http://schemas.xmlsoap.org/soap/envelope/'",
+                      "import json",
+                      "import time",
+                      "import platform",
+                      'import re']
+
+
+       lineNum = 1
+       for text in file.readlines():
+          text = text.rstrip()
+
+          #Domoticz.Log("'text' is:'" + str(text))
+          regexFound = re.findall(r'(?:[\d]{1,3})\.(?:[\d]{1,3})\.(?:[\d]{1,3})\.(?:[\d]{1,3})',text)
+          paramFound = re.findall(r'<param field=',text)
+          if ((regexFound) and (not paramFound)):
+              #regexFound[rex] = regexFound[rex].strip('"]')
+              #Domoticz.Error("Security Finding(IPregex):" + str(regexFound) + " LINE: " + str(lineNum) + " FILE:" + pyfilename)
+              for rex in range(0,len(regexFound)):
+                   if ((str(text).strip() not in selfSecPolUserList[pypluginid]) and (str(text).strip() != "")):
+                       Domoticz.Error("Security Finding(IPtext):'" + str(text) + "' LINE: " + str(lineNum) + " FILE:" + pyfilename)
+                       #Domoticz.Error("Security Finding(IPr):" + regexFound[rex] + " LINE: " + str(lineNum) + " FILE:" + pyfilename)
+                       ips["IP" + str(lineNum)] = (regexFound[rex], "IP Address")
+
+          #regexFound = re.findall('http[s]?://(?:[a-zA-Z]|[0-9]|[$-_@.&+]|[!*\(\),]|(?:%[0-9a-fA-F][0-9a-fA-F]))+', text)
+          #for rex in range(0,len(regexFound)):
+          #    regexFound[rex] = regexFound[rex].strip('"]')
+          #    if ((regexFound) and (str(regexFound[rex]) not in safeStrings)):
+          #         Domoticz.Error("Security Finding(HTTP):" + str(regexFound[rex]) + " LINE:" + str(lineNum) + " FILE:" + pyfilename)
+          #         ips["HTTP" + str(lineNum)] = (regexFound[rex], "HTTP Access")
+
+          #regexFound = re.findall('import',text)
+          #for rex in range(0,len(regexFound)):
+          #    regexFound[rex] = regexFound[rex].strip('"]')
+          #    if ((regexFound) and (str(text).strip('"]') not in safeStrings)):
+          #         Domoticz.Error("Security Finding(IMP):" + str(text).strip('"]# ') + " LINE:" + str(lineNum) + " FILE:" + pyfilename)
+          #         ips["IMP" + str(lineNum)] = (text, "Import")
+
+          #regexFound = re.findall('subprocess.Popen',text)
+          #for rex in range(0,len(regexFound)):
+          #    regexFound[rex] = regexFound[rex].strip('"]')
+          #    if ((regexFound) and (str(regexFound[rex]) not in safeStrings)):
+          #         Domoticz.Error("Security Finding(SUB):" + str(regexFound[rex]) + " LINE:" + str(lineNum) + " FILE:" + pyfilename)
+          #         ips["SUB" + str(lineNum)] = (regexFound[rex], "Subprocess")
+
+          lineNum = lineNum + 1
+
+
+
+       file.close()
+       Domoticz.Debug("IPS Table contents are:" + str(ips))
+
+
+
+       
+        
+        
+        
+        
+        
+        
+        
+        
+        
 
 
 
@@ -611,72 +690,4 @@ def mid(s, offset, amount):
     return s[offset:offset+amount]
 
 
-
-def parseFileForSecurityIssues(self, pyfilename, pypluginid):
-    Domoticz.Debug("parseFileForSecurityIssues called")
-    secmonitorOnly = False
-            
-    if Parameters["Mode5"] == 'Monitor':
-        Domoticz.Log("Plugin Security Scan is enabled")
-        secmonitorOnly = True
-            
-            
-    # Open the file
-    file = open(pyfilename, "r")
-
-    ips = {}
-    safeStrings = ["['http://schemas.xmlsoap.org/soap/envelope/', 'http://schemas.xmlsoap.org/soap/encoding/']",
-                   "127.0.0.1",
-                   "http://schemas.xmlsoap.org/soap/envelope/'",
-                   "import json",
-                   "import time",
-                   "import platform",
-                   'import re']
-
-            
-    lineNum = 1
-    for text in file.readlines():
-       text = text.rstrip()
-       
-       #Domoticz.Log("'text' is:'" + str(text))
-       regexFound = re.findall(r'(?:[\d]{1,3})\.(?:[\d]{1,3})\.(?:[\d]{1,3})\.(?:[\d]{1,3})',text)
-       paramFound = re.findall(r'<param field=',text)
-       if ((regexFound) and (not paramFound)):
-           #regexFound[rex] = regexFound[rex].strip('"]')
-           #Domoticz.Error("Security Finding(IPregex):" + str(regexFound) + " LINE: " + str(lineNum) + " FILE:" + pyfilename)
-           for rex in range(0,len(regexFound)):
-                if ((str(text).strip() not in selfSecPolUserList[pypluginid]) and (str(text).strip() != "")):
-                    Domoticz.Error("Security Finding(IPtext):'" + str(text) + "' LINE: " + str(lineNum) + " FILE:" + pyfilename)
-                    #Domoticz.Error("Security Finding(IPr):" + regexFound[rex] + " LINE: " + str(lineNum) + " FILE:" + pyfilename)
-                    ips["IP" + str(lineNum)] = (regexFound[rex], "IP Address")
-
-       #regexFound = re.findall('http[s]?://(?:[a-zA-Z]|[0-9]|[$-_@.&+]|[!*\(\),]|(?:%[0-9a-fA-F][0-9a-fA-F]))+', text)
-       #for rex in range(0,len(regexFound)):
-       #    regexFound[rex] = regexFound[rex].strip('"]')
-       #    if ((regexFound) and (str(regexFound[rex]) not in safeStrings)):
-       #         Domoticz.Error("Security Finding(HTTP):" + str(regexFound[rex]) + " LINE:" + str(lineNum) + " FILE:" + pyfilename)
-       #         ips["HTTP" + str(lineNum)] = (regexFound[rex], "HTTP Access")
-
-       #regexFound = re.findall('import',text)
-       #for rex in range(0,len(regexFound)):
-       #    regexFound[rex] = regexFound[rex].strip('"]')
-       #    if ((regexFound) and (str(text).strip('"]') not in safeStrings)):
-       #         Domoticz.Error("Security Finding(IMP):" + str(text).strip('"]# ') + " LINE:" + str(lineNum) + " FILE:" + pyfilename)
-       #         ips["IMP" + str(lineNum)] = (text, "Import")
-
-       #regexFound = re.findall('subprocess.Popen',text)
-       #for rex in range(0,len(regexFound)):
-       #    regexFound[rex] = regexFound[rex].strip('"]')
-       #    if ((regexFound) and (str(regexFound[rex]) not in safeStrings)):
-       #         Domoticz.Error("Security Finding(SUB):" + str(regexFound[rex]) + " LINE:" + str(lineNum) + " FILE:" + pyfilename)
-       #         ips["SUB" + str(lineNum)] = (regexFound[rex], "Subprocess")
-
-       lineNum = lineNum + 1
-
-
-    
-    file.close()
-    Domoticz.Debug("IPS Table contents are:" + str(ips))
-    
-    
 
