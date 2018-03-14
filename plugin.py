@@ -80,6 +80,7 @@
             <options>
                 <option label="True" value="Debug"/>
                 <option label="False" value="Normal"  default="true" />
+                <option label="Monitor" value="Monitor"  default="true" />
             </options>
         </param>
     </params>
@@ -193,7 +194,7 @@ class BasePlugin:
         pluginText = self.plugindata[pluginKey][2]
 
 
-        if Parameters["Mode5"] == 'True':
+        if ((Parameters["Mode5"] == 'True') or (Parameters["Mode5"] == 'Monitor'):
             Domoticz.Log("Plugin Security Scan is enabled")
             Domoticz.Log("Scanning All Plugins for Vulnerabilities!!!")
             i = 0
@@ -213,13 +214,13 @@ class BasePlugin:
         
         Domoticz.Log("Parsing Script TEST on:" + str(os.getcwd()) + "/plugins/PP-MANAGER/plugin.py")
         
-        
-        Domoticz.Debug("Checking for Exception file on:" + str(os.getcwd()) + "/plugins/PP-MANAGER/exceptions.txt")
-        if (os.path.isfile(str(os.getcwd()) + "/plugins/PP-MANAGER/exceptions.txt") == True):
+        exceptionFile = str(os.getcwd()) + "/plugins/PP-MANAGER/exceptions.txt"
+        Domoticz.Debug("Checking for Exception file on:" + exceptionFile)
+        if (os.path.isfile(exceptionFile) == True):
             Domoticz.Log("Exception file found. Processing!!!")
 
             # Open the file
-            f = open(str(os.getcwd()) + "/plugins/PP-MANAGER/exceptions.txt")
+            f = open(exceptionFile)
 
             # use readline() to read the first line 
             line = f.readline()
@@ -568,7 +569,37 @@ def mid(s, offset, amount):
 
 def parseFileForSecurityIssues(pyfilename):
     Domoticz.Debug("parseFileForSecurityIssues called")
-    
+    SecPolUserList = []
+    secmonitorOnly = False
+            
+    if Parameters["Mode5"] == 'Monitor':
+        Domoticz.Log("Plugin Security Scan is enabled")
+        secmonitorOnly = True
+            
+    # Reading secpoluserFile and populating array of values
+    secpoluserFile = str(os.getcwd()) + "/plugins/PP-MANAGER/secpoluser.txt"
+    Domoticz.Debug("Checking for SecPolUser file on:" + secpoluserFile)
+    if (os.path.isfile(secpoluserFile) == True):
+        Domoticz.Log("secpoluser file found. Processing!!!")
+
+        # Open the file
+        secpoluserFileHandle = open(secpoluserFile)
+
+        # use readline() to read the first line 
+        line = secpoluserFileHandle.readline()
+
+        while line:
+
+            if ((line[:1].strip() != "#") and (line[:1].strip() != " ") and (line[:1].strip() != "")):
+                Domoticz.Log("File ReadLine result:'" + line.strip() + "'")
+                SecPolUserList.append(line.strip())    
+            # use realine() to read next line
+            line = secpoluserFileHandle.readline()
+        secpoluserFileHandle.close()
+    Domoticz.Log("self.ExceptionList:" + str(self.ExceptionList))
+
+
+            
     # Open the file
     file = open(pyfilename, "r")
 
@@ -579,6 +610,8 @@ def parseFileForSecurityIssues(pyfilename):
                    "import json",
                    "import time",
                    'import re']
+
+            
     lineNum = 0
     for text in file.readlines():
        text = text.rstrip()
