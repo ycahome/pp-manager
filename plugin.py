@@ -331,7 +331,7 @@ class BasePlugin:
                 Domoticz.Debug("Folder for Plugin:" + pluginKey + " already exists!!!")
                 #Domoticz.Debug("Set 'Python Plugin Manager'/ 'Domoticz plugin' attribute to 'idle' in order t.")
                 if Parameters["Mode4"] == 'Selected':
-                    Domoticz.Log("Updating Enabled for Plugin:" + pluginText + ".Checking For Update!!!")
+                    Domoticz.Debug("Updating Enabled for Plugin:" + pluginText + ".Checking For Update!!!")
                     self.UpdatePythonPlugin(pluginAuthor, pluginRepository, pluginKey)
                 Domoticz.Heartbeat(60)
             else:
