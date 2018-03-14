@@ -120,6 +120,7 @@ class BasePlugin:
         self.nextpoll = datetime.now()
         self.pollinterval = 60  #Time in seconds between two polls
         self.ExceptionList = []
+        self.SecPolUserList = {}
 
         self.plugindata = {
             # Plugin Key:          [gitHub author,        repository,                  plugin Text]
@@ -198,7 +199,6 @@ class BasePlugin:
 
         # Reading secpoluserFile and populating array of values
         secpoluserFile = str(os.getcwd()) + "/plugins/PP-MANAGER/secpoluser.txt"
-        self.SecPolUserList = {}
 
         Domoticz.Debug("Checking for SecPolUser file on:" + secpoluserFile)
         if (os.path.isfile(secpoluserFile) == True):
