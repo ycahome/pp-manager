@@ -218,7 +218,7 @@ class BasePlugin:
                     Domoticz.Log("SecPolUserList exception (" + secpoluserSection.strip() + "):'" + line.strip() + "'")
                     #SecPolUserList.append(line.strip())
                     #SecPolUserList[secpoluserSection].append(line.strip())
-                    self.SecPolUserList.update({secpoluserSection:line.strip()})
+                    self.SecPolUserList.update({secpoluserSection.strip():line.strip()})
                 # use realine() to read next line
                 line = secpoluserFileHandle.readline()
             secpoluserFileHandle.close()
