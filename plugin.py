@@ -220,7 +220,7 @@ class BasePlugin:
                 # use realine() to read next line
                 line = secpoluserFileHandle.readline()
             secpoluserFileHandle.close()
-            Domoticz.Log("SecPolUserList:" + str(SecPolUserList))
+            Domoticz.Log("SecPolUserList exception (" + secpoluserSection + "):" + str(SecPolUserList))
 
 
         
@@ -248,6 +248,7 @@ class BasePlugin:
 
 
         
+        # Reading exception file and populating array of values
         Domoticz.Log("Parsing Script TEST on:" + str(os.getcwd()) + "/plugins/PP-MANAGER/plugin.py")
         
         exceptionFile = str(os.getcwd()) + "/plugins/PP-MANAGER/exceptions.txt"
