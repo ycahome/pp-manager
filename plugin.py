@@ -613,7 +613,7 @@ def parseFileForSecurityIssues(pyfilename):
                    'import re']
 
             
-    lineNum = 0
+    lineNum = 1
     for text in file.readlines():
        text = text.rstrip()
        
