@@ -601,7 +601,7 @@ def parseFileForSecurityIssues(pyfilename):
        regexFound = re.findall('import',text)
        for rex in range(0,len(regexFound)):
            regexFound[rex] = regexFound[rex].strip('"]')
-           if ((regexFound) and (str(regexFound[rex]) not in safeStrings)):
+           if ((regexFound) and (str(text).strip('"]') not in safeStrings)):
                 Domoticz.Error("Security Finding:" + str(text).strip('"]') + " LINE:" + str(lineNum) + " FILE:" + pyfilename)
                 ips["IMP" + str(lineNum)] = (text, "Import")
 
