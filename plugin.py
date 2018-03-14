@@ -194,7 +194,7 @@ class BasePlugin:
         pluginText = self.plugindata[pluginKey][2]
 
 
-        if ((Parameters["Mode5"] == 'True') or (Parameters["Mode5"] == 'Monitor'):
+        if ((Parameters["Mode5"] == 'True') or (Parameters["Mode5"] == 'Monitor')):
             Domoticz.Log("Plugin Security Scan is enabled")
             Domoticz.Log("Scanning All Plugins for Vulnerabilities!!!")
             i = 0
