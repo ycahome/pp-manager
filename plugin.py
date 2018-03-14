@@ -6,10 +6,12 @@
 #  Since (2018-02-23): Initial Version
 #
 #
+
+
 """
-<plugin key="PP-MANAGER" name="Python Plugin Manager" author="ycahome" version="1.5.1" externallink="https://www.domoticz.com/forum/viewtopic.php?f=65&t=22339">
+<plugin key="PP-MANAGER" name="Python Plugin Manager" author="ycahome" version="1.5.5" externallink="https://www.domoticz.com/forum/viewtopic.php?f=65&t=22339">
     <description>
-		<h2>Python Plugin Manager v.1.5.1</h2><br/>
+		<h2>Python Plugin Manager v.1.5.5</h2><br/>
 		<h3>Features</h3>
 		<ul style="list-style-type:square">
 			<li>Install plugins</li>
@@ -21,10 +23,10 @@
 		<h2>         Auto Updating plugins without verifying their code</h2>
 		<h2>         makes you system vulnerable to developer's code intensions!!</h2>
 		<h3>----------------------------------------------------------------------</h3>
-		<h2>NOTE: After selectiong your options press "Update" button!!</h2>
+		<h2>NOTE: After selecting your options press "Update" button!!</h2>
     </description>
      <params>
-        <param field="Mode2" label="Domoticz Plugin" width="200px">
+        <param field="Mode2" label="Plugin to install" width="200px">
             <options>
                 <option label="Idle" value="Idle"  default="true" />
                 <option label="Dummy Plugin" value="Dummy_Plugin"/>
@@ -68,6 +70,12 @@
                 <option label="None" value="None"/>
             </options>
         </param>
+         <param field="Mode5" label="Security Scan (Experimental)" width="75px">
+            <options>
+                <option label="True" value="True"/>
+                <option label="False" value="False"  default="False" />
+            </options>
+        </param>
          <param field="Mode6" label="Debug" width="75px">
             <options>
                 <option label="True" value="Debug"/>
@@ -86,6 +94,7 @@ import sys
 import urllib
 import urllib.request
 import urllib.error
+import re
 
 import time
 
@@ -110,6 +119,7 @@ class BasePlugin:
         self.nextpoll = datetime.now()
         self.pollinterval = 60  #Time in seconds between two polls
         self.ExceptionList = []
+        self.SecPolUserList = {}
 
         self.plugindata = {
             # Plugin Key:          [gitHub author,        repository,                  plugin Text]
@@ -161,6 +171,7 @@ class BasePlugin:
         else:
             Domoticz.Debugging(0)
 
+
         Domoticz.Log("Domoticz Node Name is:" + platform.node())
         Domoticz.Log("Domoticz Platform System is:" + platform.system())
         Domoticz.Debug("Domoticz Platform Release is:" + platform.release())
@@ -182,12 +193,75 @@ class BasePlugin:
         pluginRepository = self.plugindata[pluginKey][1]
         pluginText = self.plugindata[pluginKey][2]
 
-        Domoticz.Debug("Checking for Exception file on:" + str(os.getcwd()) + "/plugins/PP-MANAGER/exceptions.txt")
-        if (os.path.isfile(str(os.getcwd()) + "/plugins/PP-MANAGER/exceptions.txt") == True):
+
+ 
+
+
+
+        
+        
+        
+        if (Parameters["Mode5"] == 'True'):
+            Domoticz.Log("Plugin Security Scan is enabled")
+            
+            # Reading secpoluserFile and populating array of values
+            secpoluserFile = str(os.getcwd()) + "/plugins/PP-MANAGER/secpoluser.txt"
+
+            Domoticz.Debug("Checking for SecPolUser file on:" + secpoluserFile)
+            if (os.path.isfile(secpoluserFile) == True):
+                Domoticz.Log("secpoluser file found. Processing!!!")
+
+                # Open the file
+                secpoluserFileHandle = open(secpoluserFile)
+
+                # use readline() to read the first line 
+                line = secpoluserFileHandle.readline()
+
+                while line:
+                    if mid(line,0,4) == "--->":
+                        secpoluserSection = mid(line,4,len(line))
+                        Domoticz.Log("secpoluser settings found for plugin:" + secpoluserSection)
+                    if ((mid(line,0,4) != "--->") and (line.strip() != "") and (line.strip() != " ")):
+                        Domoticz.Debug("SecPolUserList exception (" + secpoluserSection.strip() + "):'" + line.strip() + "'")
+                        #SecPolUserList.append(line.strip())
+                        #SecPolUserList[secpoluserSection].append(line.strip())
+                        if secpoluserSection.strip() not in self.SecPolUserList:
+                            self.SecPolUserList[secpoluserSection.strip()] = []
+                        self.SecPolUserList[secpoluserSection.strip()].append(line.strip())
+                    # use realine() to read next line
+                    line = secpoluserFileHandle.readline()
+                secpoluserFileHandle.close()
+                Domoticz.Log("SecPolUserList exception:" + str(self.SecPolUserList))
+            
+            
+            
+            i = 0
+            path = str(os.getcwd()) + "/plugins/"
+            for (path, dirs, files) in os.walk(path):
+                for dir in dirs:
+                    if str(dir) != "":
+                        #self.UpdatePythonPlugin(pluginAuthor, pluginRepository, str(dir))
+                        #parseFileForSecurityIssues(str(os.getcwd()) + "/plugins/PP-MANAGER/plugin.py")
+                        if (os.path.isfile(str(os.getcwd()) + "/plugins/" + str(dir) + "/plugin.py") == True):
+                            self.parseFileForSecurityIssues(str(os.getcwd()) + "/plugins/" + str(dir) + "/plugin.py", str(dir))
+                i += 1
+                if i >= 1:
+                   break
+        
+
+
+
+
+
+        
+        # Reading exception file and populating array of values
+        exceptionFile = str(os.getcwd()) + "/plugins/PP-MANAGER/exceptions.txt"
+        Domoticz.Debug("Checking for Exception file on:" + exceptionFile)
+        if (os.path.isfile(exceptionFile) == True):
             Domoticz.Log("Exception file found. Processing!!!")
 
             # Open the file
-            f = open(str(os.getcwd()) + "/plugins/PP-MANAGER/exceptions.txt")
+            f = open(exceptionFile)
 
             # use readline() to read the first line 
             line = f.readline()
@@ -200,8 +274,14 @@ class BasePlugin:
                 # use realine() to read next line
                 line = f.readline()
             f.close()
-        Domoticz.Log("self.ExceptionList:" + str(self.ExceptionList))
+        Domoticz.Debug("self.ExceptionList:" + str(self.ExceptionList))
 
+        
+        
+        
+        
+        
+        
         if Parameters["Mode4"] == 'All':
             Domoticz.Log("Updating All Plugins!!!")
             i = 0
@@ -251,7 +331,7 @@ class BasePlugin:
                 Domoticz.Debug("Folder for Plugin:" + pluginKey + " already exists!!!")
                 #Domoticz.Debug("Set 'Python Plugin Manager'/ 'Domoticz plugin' attribute to 'idle' in order t.")
                 if Parameters["Mode4"] == 'Selected':
-                    Domoticz.Log("Updating Enabled for Plugin:" + pluginText + ".Checking For Update!!!")
+                    Domoticz.Debug("Updating Enabled for Plugin:" + pluginText + ".Checking For Update!!!")
                     self.UpdatePythonPlugin(pluginAuthor, pluginRepository, pluginKey)
                 Domoticz.Heartbeat(60)
             else:
@@ -290,7 +370,7 @@ class BasePlugin:
 
             #-------------------------------------
             if Parameters["Mode4"] == 'All':
-                Domoticz.Log("Updating All Plugins!!!")
+                Domoticz.Log("Checking Updates for All Plugins!!!")
                 i = 0
                 path = str(os.getcwd()) + "/plugins/"
                 for (path, dirs, files) in os.walk(path):
@@ -319,7 +399,7 @@ class BasePlugin:
 
             #-------------------------------------
             if Parameters["Mode4"] == 'Selected':
-                Domoticz.Log("Updating Enabled for Plugin:" + self.plugindata[pluginKey][2])
+                Domoticz.Log("Checking Updates for Plugin:" + self.plugindata[pluginKey][2])
                 self.UpdatePythonPlugin(self.plugindata[Parameters["Mode2"]][0], self.plugindata[Parameters["Mode2"]][1], Parameters["Mode2"])
 
             #if Parameters["Mode2"] == "Idle":
@@ -502,6 +582,105 @@ class BasePlugin:
 
 
 
+        
+    def parseFileForSecurityIssues(self, pyfilename, pypluginid):
+       Domoticz.Debug("parseFileForSecurityIssues called")
+       secmonitorOnly = False
+
+       if Parameters["Mode5"] == 'Monitor':
+           Domoticz.Log("Plugin Security Scan is enabled")
+           secmonitorOnly = True
+
+
+       # Open the file
+       file = open(pyfilename, "r")
+
+       ips = {}
+       #safeStrings = ["['http://schemas.xmlsoap.org/soap/envelope/', 'http://schemas.xmlsoap.org/soap/encoding/']",
+       #               "127.0.0.1",
+       #               "http://schemas.xmlsoap.org/soap/envelope/'",
+       #               "import json",
+       #               "import time",
+       #               "import platform",
+       #               'import re']
+
+       if pypluginid not in self.SecPolUserList:
+            self.SecPolUserList[pypluginid] = []
+
+       lineNum = 1
+       #Domoticz.Error("self.SecPolUserList[pypluginid]:" + str(self.SecPolUserList[pypluginid]))
+       for text in file.readlines():
+          text = text.rstrip()
+
+          #Domoticz.Log("'text' is:'" + str(text))
+          regexFound = re.findall(r'(?:[\d]{1,3})\.(?:[\d]{1,3})\.(?:[\d]{1,3})\.(?:[\d]{1,3})',text)
+          paramFound = re.findall(r'<param field=',text)
+          if ((regexFound) and not (paramFound)):
+              #regexFound[rex] = regexFound[rex].strip('"]')
+              #Domoticz.Error("Security Finding(IPregex):" + str(regexFound) + " LINE: " + str(lineNum) + " FILE:" + pyfilename)
+              for rex in range(0,len(regexFound)):
+                   if ((str(text).strip() not in self.SecPolUserList["Global"]) and (str(text).strip() not in self.SecPolUserList[pypluginid]) and (str(text).strip() != "") and (mid(text,0,1) != "#")):
+                       Domoticz.Error("Security Finding(IP):-->" + str(text).strip() + "<-- LINE: " + str(lineNum) + " FILE:" + pyfilename)
+                       #Domoticz.Error("Security Finding(IPr):" + regexFound[rex] + " LINE: " + str(lineNum) + " FILE:" + pyfilename)
+                       ips["IP" + str(lineNum)] = (regexFound[rex], "IP Address")
+
+          #rex = 0
+          #regexFound = re.findall('import', text)
+
+          #if regexFound:
+              #regexFound[rex] = regexFound[rex].strip('"]')
+              #Domoticz.Error("Security Finding(IPregex):" + str(regexFound) + " LINE: " + str(lineNum) + " FILE:" + pyfilename)
+          #    for rex in range(0,len(regexFound)):
+          #         if ((str(text).strip() not in self.SecPolUserList["Global"]) and (str(text).strip() not in self.SecPolUserList[pypluginid]) and (str(text).strip() != "") and (mid(text,0,1) != "#")):
+          #             Domoticz.Error("Security Finding(IMP):-->" + str(text) + "<-- LINE: " + str(lineNum) + " FILE:" + pyfilename)
+                       #Domoticz.Error("Security Finding(IPr):" + regexFound[rex] + " LINE: " + str(lineNum) + " FILE:" + pyfilename)
+          #             ips["IP" + str(lineNum)] = (regexFound[rex], "Import")
+
+          #rex = 0
+          #regexFound = re.findall('subprocess.Popen', text)
+
+          #if regexFound:
+              #regexFound[rex] = regexFound[rex].strip('"]')
+              #Domoticz.Error("Security Finding(IPregex):" + str(regexFound) + " LINE: " + str(lineNum) + " FILE:" + pyfilename)
+          #    for rex in range(0,len(regexFound)):
+          #         if ((str(text).strip() not in self.SecPolUserList["Global"]) and (str(text).strip() not in self.SecPolUserList[pypluginid]) and (str(text).strip() != "") and (mid(text,0,1) != "#")):
+          #             Domoticz.Error("Security Finding(SUB):-->" + str(text) + "<-- LINE: " + str(lineNum) + " FILE:" + pyfilename)
+                       #Domoticz.Error("Security Finding(IPr):" + regexFound[rex] + " LINE: " + str(lineNum) + " FILE:" + pyfilename)
+          #             ips["IP" + str(lineNum)] = (regexFound[rex], "Subprocess")
+
+          #rex = 0
+          #regexFound = re.findall('http[s]?://(?:[a-zA-Z]|[0-9]|[$-_@.&+]|[!*\(\),]|(?:%[0-9a-fA-F][0-9a-fA-F]))+', text)
+          #paramFound = re.findall(r'<param field=',text)
+
+          #if ((regexFound) and not (paramFound)):
+              #regexFound[rex] = regexFound[rex].strip('"]')
+              #Domoticz.Error("Security Finding(IPregex):" + str(regexFound) + " LINE: " + str(lineNum) + " FILE:" + pyfilename)
+          #    for rex in range(0,len(regexFound)):
+          #         if ((str(text).strip() not in self.SecPolUserList[pypluginid]) and (str(text).strip() != "") and (mid(text,0,1) != "#")):
+          #             Domoticz.Error("Security Finding(HTTP):-->" + str(text) + "<-- LINE: " + str(lineNum) + " FILE:" + pyfilename)
+                       #Domoticz.Error("Security Finding(IPr):" + regexFound[rex] + " LINE: " + str(lineNum) + " FILE:" + pyfilename)
+          #             ips["IP" + str(lineNum)] = (regexFound[rex], "HTTP Address")
+
+
+          lineNum = lineNum + 1
+
+
+
+       file.close()
+       Domoticz.Debug("IPS Table contents are:" + str(ips))
+
+
+
+       
+        
+        
+        
+        
+        
+        
+        
+        
+        
 
 
 
@@ -545,5 +724,6 @@ def DumpConfigToLog():
 def mid(s, offset, amount):
     Domoticz.Debug("mid called")
     return s[offset:offset+amount]
+
 
 
