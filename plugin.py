@@ -112,7 +112,6 @@ class BasePlugin:
     sessionCookie = ""
     privateKey = b""
     socketOn = "FALSE"
-    SecPolUserList = []
 
 
     def __init__(self):
@@ -195,26 +194,12 @@ class BasePlugin:
         pluginText = self.plugindata[pluginKey][2]
 
 
-        if ((Parameters["Mode5"] == 'True') or (Parameters["Mode5"] == 'Monitor')):
-            Domoticz.Log("Plugin Security Scan is enabled")
-            Domoticz.Log("Scanning All Plugins for Vulnerabilities!!!")
-            i = 0
-            path = str(os.getcwd()) + "/plugins/"
-            for (path, dirs, files) in os.walk(path):
-                for dir in dirs:
-                    if str(dir) != "":
-                        #self.UpdatePythonPlugin(pluginAuthor, pluginRepository, str(dir))
-                        #parseFileForSecurityIssues(str(os.getcwd()) + "/plugins/PP-MANAGER/plugin.py")
-                        if (os.path.isfile(str(os.getcwd()) + "/plugins/" + str(dir) + "/plugin.py") == True):
-                            parseFileForSecurityIssues(str(os.getcwd()) + "/plugins/" + str(dir) + "/plugin.py")
-                i += 1
-                if i >= 1:
-                   break
-        
  
 
         # Reading secpoluserFile and populating array of values
         secpoluserFile = str(os.getcwd()) + "/plugins/PP-MANAGER/secpoluser.txt"
+        SecPolUserList = []
+
         Domoticz.Debug("Checking for SecPolUser file on:" + secpoluserFile)
         if (os.path.isfile(secpoluserFile) == True):
             Domoticz.Log("secpoluser file found. Processing!!!")
@@ -240,6 +225,22 @@ class BasePlugin:
 
         
         
+        
+        if ((Parameters["Mode5"] == 'True') or (Parameters["Mode5"] == 'Monitor')):
+            Domoticz.Log("Plugin Security Scan is enabled")
+            Domoticz.Log("Scanning All Plugins for Vulnerabilities!!!")
+            i = 0
+            path = str(os.getcwd()) + "/plugins/"
+            for (path, dirs, files) in os.walk(path):
+                for dir in dirs:
+                    if str(dir) != "":
+                        #self.UpdatePythonPlugin(pluginAuthor, pluginRepository, str(dir))
+                        #parseFileForSecurityIssues(str(os.getcwd()) + "/plugins/PP-MANAGER/plugin.py")
+                        if (os.path.isfile(str(os.getcwd()) + "/plugins/" + str(dir) + "/plugin.py") == True):
+                            parseFileForSecurityIssues(str(os.getcwd()) + "/plugins/" + str(dir) + "/plugin.py")
+                i += 1
+                if i >= 1:
+                   break
         
 
 
