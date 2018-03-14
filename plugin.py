@@ -622,7 +622,7 @@ def parseFileForSecurityIssues(pyfilename):
        for rex in range(0,len(regexFound)):
            regexFound[rex] = regexFound[rex].strip('"]')
            if ((regexFound) and (str(text) not in safeStrings)):
-                Domoticz.Error("Security Finding(IP):" + str(text) + " LINE: " + str(lineNum) + " FILE:" + pyfilename)
+                Domoticz.Error("Security Finding(IP):" + str(text).strip() + " LINE: " + str(lineNum) + " FILE:" + pyfilename)
                 ips["IP" + str(lineNum)] = (regexFound[rex], "IP Address")
 
        #regexFound = re.findall('http[s]?://(?:[a-zA-Z]|[0-9]|[$-_@.&+]|[!*\(\),]|(?:%[0-9a-fA-F][0-9a-fA-F]))+', text)
