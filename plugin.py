@@ -601,8 +601,8 @@ class BasePlugin:
               #Domoticz.Error("Security Finding(IPregex):" + str(regexFound) + " LINE: " + str(lineNum) + " FILE:" + pyfilename)
               for rex in range(0,len(regexFound)):
                 if pypluginid in self.SecPolUserList:
+                   Domoticz.Error("self.SecPolUserList[pypluginid]:'" + str(self.SecPolUserList[pypluginid]))
                    if ((str(text).strip() not in self.SecPolUserList[pypluginid]) and (str(text).strip() != "")):
-                       Domoticz.Error("self.SecPolUserList[pypluginid]:'" + str(self.SecPolUserList[pypluginid]))
                        Domoticz.Error("Security Finding(IPtext):'" + str(text).strip() + "' LINE: " + str(lineNum) + " FILE:" + pyfilename)
                        #Domoticz.Error("Security Finding(IPr):" + regexFound[rex] + " LINE: " + str(lineNum) + " FILE:" + pyfilename)
                        ips["IP" + str(lineNum)] = (regexFound[rex], "IP Address")
