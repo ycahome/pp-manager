@@ -112,6 +112,7 @@ class BasePlugin:
     sessionCookie = ""
     privateKey = b""
     socketOn = "FALSE"
+    SecPolUserList = []
 
 
     def __init__(self):
@@ -210,34 +211,8 @@ class BasePlugin:
                 if i >= 1:
                    break
         
-        
-        
-        Domoticz.Log("Parsing Script TEST on:" + str(os.getcwd()) + "/plugins/PP-MANAGER/plugin.py")
-        
-        exceptionFile = str(os.getcwd()) + "/plugins/PP-MANAGER/exceptions.txt"
-        Domoticz.Debug("Checking for Exception file on:" + exceptionFile)
-        if (os.path.isfile(exceptionFile) == True):
-            Domoticz.Log("Exception file found. Processing!!!")
+ 
 
-            # Open the file
-            f = open(exceptionFile)
-
-            # use readline() to read the first line 
-            line = f.readline()
-
-            while line:
-
-                if ((line[:1].strip() != "#") and (line[:1].strip() != " ") and (line[:1].strip() != "")):
-                    Domoticz.Log("File ReadLine result:'" + line.strip() + "'")
-                    self.ExceptionList.append(line.strip())    
-                # use realine() to read next line
-                line = f.readline()
-            f.close()
-        Domoticz.Log("self.ExceptionList:" + str(self.ExceptionList))
-
-        
-        
-        
         # Reading secpoluserFile and populating array of values
         secpoluserFile = str(os.getcwd()) + "/plugins/PP-MANAGER/secpoluser.txt"
         Domoticz.Debug("Checking for SecPolUser file on:" + secpoluserFile)
@@ -262,6 +237,38 @@ class BasePlugin:
             secpoluserFileHandle.close()
             Domoticz.Log("SecPolUserList:" + str(SecPolUserList))
 
+
+        
+        
+        
+
+
+
+
+
+        
+        Domoticz.Log("Parsing Script TEST on:" + str(os.getcwd()) + "/plugins/PP-MANAGER/plugin.py")
+        
+        exceptionFile = str(os.getcwd()) + "/plugins/PP-MANAGER/exceptions.txt"
+        Domoticz.Debug("Checking for Exception file on:" + exceptionFile)
+        if (os.path.isfile(exceptionFile) == True):
+            Domoticz.Log("Exception file found. Processing!!!")
+
+            # Open the file
+            f = open(exceptionFile)
+
+            # use readline() to read the first line 
+            line = f.readline()
+
+            while line:
+
+                if ((line[:1].strip() != "#") and (line[:1].strip() != " ") and (line[:1].strip() != "")):
+                    Domoticz.Log("File ReadLine result:'" + line.strip() + "'")
+                    self.ExceptionList.append(line.strip())    
+                # use realine() to read next line
+                line = f.readline()
+            f.close()
+        Domoticz.Log("self.ExceptionList:" + str(self.ExceptionList))
 
         
         
@@ -603,7 +610,6 @@ def mid(s, offset, amount):
 
 def parseFileForSecurityIssues(pyfilename):
     Domoticz.Debug("parseFileForSecurityIssues called")
-    SecPolUserList = []
     secmonitorOnly = False
             
     if Parameters["Mode5"] == 'Monitor':
