@@ -214,7 +214,7 @@ class BasePlugin:
                 if mid(line,0,4) == "--->":
                     secpoluserSection = mid(line,4,len(line))
                     Domoticz.Log("secpoluser settings found for plugin:" + secpoluserSection)
-                if (mid(line,0,4) != "--->"):
+                if ((mid(line,0,4) != "--->") and (line != "") and (line != " ")):
                     Domoticz.Log("SecPolUserList exception (" + secpoluserSection.strip() + "):'" + line.strip() + "'")
                     #SecPolUserList.append(line.strip())
                     #SecPolUserList[secpoluserSection].append(line.strip())
@@ -600,8 +600,8 @@ class BasePlugin:
               #regexFound[rex] = regexFound[rex].strip('"]')
               #Domoticz.Error("Security Finding(IPregex):" + str(regexFound) + " LINE: " + str(lineNum) + " FILE:" + pyfilename)
               for rex in range(0,len(regexFound)):
+                Domoticz.Error("self.SecPolUserList[pypluginid]:'" + str(self.SecPolUserList[pypluginid]))
                 if pypluginid in self.SecPolUserList:
-                   Domoticz.Error("self.SecPolUserList[pypluginid]:'" + str(self.SecPolUserList[pypluginid]))
                    if ((str(text).strip() not in self.SecPolUserList[pypluginid]) and (str(text).strip() != "")):
                        Domoticz.Error("Security Finding(IPtext):'" + str(text).strip() + "' LINE: " + str(lineNum) + " FILE:" + pyfilename)
                        #Domoticz.Error("Security Finding(IPr):" + regexFound[rex] + " LINE: " + str(lineNum) + " FILE:" + pyfilename)
