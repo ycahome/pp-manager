@@ -6,6 +6,8 @@ BEWARE, this plugin can be used ONLY ON LINUX SYSTEMS and Raspberry Pi!!!!!!
 
 
 Wiki Link: https://www.domoticz.com/wiki/Python_Plugin_Manager (Thanks to IDANIT)
+
+
 Plugin Discussion Thread:  http://www.domoticz.com/forum/viewtopic.php?f=65&t=22339&p=172358#p172358
 
 
