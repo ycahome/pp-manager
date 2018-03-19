@@ -9,9 +9,9 @@
 
 
 """
-<plugin key="PP-MANAGER" name="Python Plugin Manager" author="ycahome" version="1.5.6" externallink="https://www.domoticz.com/forum/viewtopic.php?f=65&t=22339">
+<plugin key="PP-MANAGER" name="Python Plugin Manager" author="ycahome" version="1.5.7" externallink="https://www.domoticz.com/forum/viewtopic.php?f=65&t=22339">
     <description>
-		<h2>Python Plugin Manager v.1.5.6</h2><br/>
+		<h2>Python Plugin Manager v.1.5.7</h2><br/>
 		<h3>Features</h3>
 		<ul style="list-style-type:square">
 			<li>Install plugins</li>
@@ -33,7 +33,6 @@
                 <option label="Battery monitoring for Z-Wave nodes" value="BatteryLevel"/>
                 <option label="Buienradar.nl (Weather lookup)" value="Buienradar"/>
                 <option label="Crow Runner Alarm" value="AAPIPModule"/>
-                <option label="Daikin Airconditioning (BRP069A42)" value="BRP069A42"/>
                 <option label="Denon/Marantz Amplifier" value="Denon4306"/>
                 <option label="Disc usage" value="xfr_discusage"/>
                 <option label="Dutch earthquakes" value="xfr_aardbeving"/>
@@ -134,7 +133,6 @@ class BasePlugin:
             "BatteryLevel":                 ["999LV",           "BatteryLevel",                         "Battery monitoring for Z-Wave nodes"],
             "Buienradar":                   ["ffes",            "domoticz-buienradar",                  "Buienradar.nl (Weather lookup)"],
             "AAPIPModule":                  ["febalci",         "DomoticzCrowAlarm",                    "Crow Runner Alarm"],
-            "BRP069A42":                    ["leejoow",         "domoticz_daikin_BRP069A42",            "Daikin Airconditioning (BRP069A42)"],
             "Denon4306":                  	["dnpwwo",    	    "Domoticz-Denon-Plugin",                "Denon/Marantz Amplifier"],
             "xfr_discusage":                ["Xorfor",    	    "Domoticz-Disc-usage-Plugin",           "Disc usage"],
             "xfr_aardbeving":               ["Xorfor",    	    "Domoticz-LastDutchEarthquake-Plugin",  "Dutch earthquakes"],
