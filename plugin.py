@@ -9,9 +9,9 @@
 
 
 """
-<plugin key="PP-MANAGER" name="Python Plugin Manager" author="ycahome" version="1.5.5" externallink="https://www.domoticz.com/forum/viewtopic.php?f=65&t=22339">
+<plugin key="PP-MANAGER" name="Python Plugin Manager" author="ycahome" version="1.5.6" externallink="https://www.domoticz.com/forum/viewtopic.php?f=65&t=22339">
     <description>
-		<h2>Python Plugin Manager v.1.5.5</h2><br/>
+		<h2>Python Plugin Manager v.1.5.6</h2><br/>
 		<h3>Features</h3>
 		<ul style="list-style-type:square">
 			<li>Install plugins</li>
@@ -32,6 +32,8 @@
                 <option label="Dummy Plugin" value="Dummy_Plugin"/>
                 <option label="Battery monitoring for Z-Wave nodes" value="BatteryLevel"/>
                 <option label="Buienradar.nl (Weather lookup)" value="Buienradar"/>
+                <option label="Crow Runner Alarm" value="AAPIPModule"/>
+                <option label="Daikin Airconditioning (BRP069A42)" value="BRP069A42"/>
                 <option label="Denon/Marantz Amplifier" value="Denon4306"/>
                 <option label="Disc usage" value="xfr_discusage"/>
                 <option label="Dutch earthquakes" value="xfr_aardbeving"/>
@@ -40,6 +42,8 @@
                 <option label="Global Cache 100" value="GC-100"/>
                 <option label="Homewizard" value="Homewizard"/>
                 <option label="Hive Plugin" value="HivePlug"/>
+                <option label="IKEA Tradfri" value="IKEA-Tradfri"/>
+                <option label="Life 360 Presence" value="Life360"/>
                 <option label="Meteo Alarm EU RSS Reader" value="MeteoAlarmEU"/>
                 <option label="Mikrotik RouterOS" value="mikrotik-routeros"/>
                 <option label="Moon Phases" value="MoonPhases"/>
@@ -48,6 +52,8 @@
                 <option label="OpenAQ" value="xfr_openaq"/>
                 <option label="Pi-hole summary" value="xfr_pihole"/>
                 <option label="PiMonitor" value="xfr-pimonitor"/>
+                <option label="Pioneer AVR" value="PioneerAVR"/>
+                <option label="RAVEn Zigbee energy monitor" value="RAVEn"/>
                 <option label="SNMP Reader" value="SNMPreader"/>
                 <option label="Sonos Players" value="Sonos"/>
                 <option label="Sony Bravia TV (with Kodi remote)" value="sony"/>
@@ -125,8 +131,10 @@ class BasePlugin:
             # Plugin Key:          [gitHub author,        repository,                  plugin Text]
             "Idle":                         ["Idle",            "Idle",                                 "Idle"],
             "Dummy_Plugin":                 ["ycahome",         "Dummy_Plugin",                         "Dummy Plugin"],
-            "BatteryLevel":  			    ["999LV",           "BatteryLevel",                         "Battery monitoring for Z-Wave nodes"],
-            "Buienradar":   			    ["ffes",            "domoticz-buienradar",                  "Buienradar.nl (Weather lookup)"],
+            "BatteryLevel":                 ["999LV",           "BatteryLevel",                         "Battery monitoring for Z-Wave nodes"],
+            "Buienradar":                   ["ffes",            "domoticz-buienradar",                  "Buienradar.nl (Weather lookup)"],
+            "AAPIPModule":                  ["febalci",         "DomoticzCrowAlarm",                    "Crow Runner Alarm"],
+            "BRP069A42":                    ["leejoow",         "domoticz_daikin_BRP069A42",            "Daikin Airconditioning (BRP069A42)"],
             "Denon4306":                  	["dnpwwo",    	    "Domoticz-Denon-Plugin",                "Denon/Marantz Amplifier"],
             "xfr_discusage":                ["Xorfor",    	    "Domoticz-Disc-usage-Plugin",           "Disc usage"],
             "xfr_aardbeving":               ["Xorfor",    	    "Domoticz-LastDutchEarthquake-Plugin",  "Dutch earthquakes"],
@@ -135,6 +143,8 @@ class BasePlugin:
             "GC-100":                     	["dnpwwo",          "Domoticz-GlobalCache-Plugin",          "Global Cache 100"],
             "Homewizard":                   ["rvdvoorde",       "domoticz-homewizard",                  "Homewizard"],
             "HivePlug":                     ["imcfarla2003",    "domoticz-hive",                        "Hive Plugin"],
+            "IKEA-Tradfri":                 ["moroen",          "IKEA-Tradfri-plugin",                  "IKEA Tradfri"],
+            "Life360":                      ["febalci",         "DomoticzLife360",                     "Life 360 Presence"],
             "MeteoAlarmEU":                 ["ycahome",         "MeteoAlarmEU",                         "Meteo Alarm EU RSS Reader"],
             "mikrotik-routeros":            ["mrin",            "domoticz-routeros-plugin",             "Mikrotik RouterOS"],
             "MoonPhases":                   ["ycahome",         "MoonPhases",                           "Moon Phases"],
@@ -143,10 +153,12 @@ class BasePlugin:
             "xfr_openaq":                   ["Xorfor",          "Domoticz-OpenAQ-Plugin",               "OpenAQ"],
             "xfr_pihole":                  	["Xorfor",          "Domoticz-Pi-hole-Plugin",              "Pi-hole summary"],
             "xfr-pimonitor":                ["Xorfor",          "Domoticz-PiMonitor-Plugin",            "PiMonitor"],
+            "PioneerAVR":                   ["febalci",         "DomoticzPioneerAVR",                   "Pioneer AVR"],
+            "RAVEn":                        ["dnpwwo",          "Domoticz-RAVEn-Plugin",                "RAVEn Zigbee energy monitor"],
             "SNMPreader":                   ["ycahome",         "SNMPreader",                           "SNMP Reader"],
             "Sonos":                    	["gerard33",        "sonos",                                "Sonos Players"],
             "sony":                         ["gerard33",        "sony-bravia",                          "Sony Bravia TV (with Kodi remote)"],
-            "xfr_speedtest":                ["Xorfor",          "Domoticz-Speedtest-Plugin ",           "Speedtest"],
+            "xfr_speedtest":                ["Xorfor",          "Domoticz-Speedtest-Plugin",           "Speedtest"],
             "SYSFS-Switches":               ["flatsiedatsie",   "GPIO-SYSFS-Switches",                  "SYSFS-Switches"],
             "NUT_UPS":                      ["999LV",           "NUT_UPS",                              "UPS Monitor"],
             "WAN-IP-CHECKER":               ["ycahome",         "WAN-IP-CHECKER",                       "Wan IP Checker"],
