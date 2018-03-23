@@ -556,7 +556,7 @@ class BasePlugin:
                    Domoticz.Debug("find(error):" + str(str(out).find("error")))
                 elif (str(out).find("Your branch is behind") != -1) and (str(str(out).find("error")) == "-1"):
                    Domoticz.Log("Found that we are behind on plugin " + ppKey)
-                   fnSelectedNotify(ppKey)
+                   self.fnSelectedNotify(ppKey)
                 elif (str(out).find("Your branch is ahead") != -1) and (str(str(out).find("error")) == "-1"):
                    Domoticz.Debug("Found that we are ahead on plugin " + ppKey + ". No need for update")
                 else:
