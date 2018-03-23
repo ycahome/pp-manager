@@ -477,9 +477,9 @@ class BasePlugin:
                     Domoticz.Debug("Git Response:" + str(out))
                 if error:
                     Domoticz.Debug("Git Error:" + str(error.strip()))
-            except OSError as e:
-                Domoticz.Error("Git ErrorNo:" + str(e.errno))
-                Domoticz.Error("Git StrError:" + str(e.strerror))
+            except OSError as eReset:
+                Domoticz.Error("Git ErrorNo:" + str(eReset.errno))
+                Domoticz.Error("Git StrError:" + str(eReset.strerror))
 
             
             
@@ -540,9 +540,9 @@ class BasePlugin:
                 Domoticz.Debug("Git Response:" + str(out))
             if error:
                 Domoticz.Debug("Git Error:" + str(error.strip()))
-        except OSError as e:
-            Domoticz.Error("Git ErrorNo:" + str(e.errno))
-            Domoticz.Error("Git StrError:" + str(e.strerror))
+        except OSError as eFetch:
+            Domoticz.Error("Git ErrorNo:" + str(eFetch.errno))
+            Domoticz.Error("Git StrError:" + str(eFetch.strerror))
         
         
         
