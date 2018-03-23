@@ -749,7 +749,7 @@ def DumpConfigToLog():
 
 
 def mid(s, offset, amount):
-    Domoticz.Debug("mid called")
+    #Domoticz.Debug("mid called")
     return s[offset:offset+amount]
 
 
