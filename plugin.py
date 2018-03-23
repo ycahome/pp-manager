@@ -564,9 +564,9 @@ class BasePlugin:
                 Domoticz.Debug("Git Error:" + str(error.strip()))
                 if str(error).find("Not a git repository") != -1:
                    Domoticz.Log("Plugin:" + ppKey + " is not installed from gitHub. Ignoring!!.")
-        except OSError as e:
-            Domoticz.Log("OS ErrorNo:")
-            #Domoticz.Error("Git StrError:" + str(e.strerror))
+        except OSError as er:
+            Domoticz.Log("OS Error")
+            #Domoticz.Error("Git StrError:" + str(er.strerror))
 
         return None
 
