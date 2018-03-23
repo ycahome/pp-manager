@@ -186,7 +186,6 @@ class BasePlugin:
         Domoticz.Log("Domoticz Platform System is:" + platform.system())
         Domoticz.Debug("Domoticz Platform Release is:" + platform.release())
         Domoticz.Debug("Domoticz Platform Version is:" + platform.version())
-        Domoticz.Log("Domoticz Version is:" + Domoticz.Version())
         Domoticz.Log("Default Python Version is:" + str(sys.version_info[0]) + "." + str(sys.version_info[1]) + "." + str(sys.version_info[2]) + ".")
 
         if platform.system() == "Windows":
