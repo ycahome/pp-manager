@@ -529,7 +529,7 @@ class BasePlugin:
         Domoticz.Debug("Checking Plugin:" + ppKey + " for updates")
         
         
-        Domoticz.Log("Fetching Repository Details")
+        #Domoticz.Log("Fetching Repository Details")
         ppGitFetch = "/usr/bin/git fetch"
         try:
             prFetch = subprocess.Popen( ppGitFetch , cwd = str(os.getcwd() + "/plugins/" + ppKey), shell = True, stdout = subprocess.PIPE, stderr = subprocess.PIPE )
