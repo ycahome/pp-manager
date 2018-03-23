@@ -531,13 +531,13 @@ class BasePlugin:
         Domoticz.Log("Fetching Repository Details")
         ppGitFetch = "/usr/bin/git fetch"
         try:
-            pr = subprocess.Popen( ppGitFetch , cwd = str(os.getcwd() + "/plugins/" + ppKey), shell = True, stdout = subprocess.PIPE, stderr = subprocess.PIPE )
-            (out, error) = pr.communicate()
-            if out:
-                Domoticz.Debug("Git Response:" + str(out))
-            if error:
-                Domoticz.Debug("Git Error:" + str(error.strip()))
-        except OSError as eFetch:
+            prFetch = subprocess.Popen( ppGitFetch , cwd = str(os.getcwd() + "/plugins/" + ppKey), shell = True, stdout = subprocess.PIPE, stderr = subprocess.PIPE )
+            (outFetch, errorFetch) = prFetch.communicate()
+            if outFetch:
+                Domoticz.Debug("Git Response:" + str(outFetch))
+            if errorFetch:
+                Domoticz.Debug("Git Error:" + str(errorFetch.strip()))
+        except OSErrorFetch as eFetch:
             Domoticz.Error("Git ErrorNo:" + str(eFetch.errno))
             Domoticz.Error("Git StrError:" + str(eFetch.strerror))
         
@@ -566,7 +566,7 @@ class BasePlugin:
                    Domoticz.Log("Plugin:" + ppKey + " is not installed from gitHub. Ignoring!!.")
         except OSError as e:
             Domoticz.Error("Git ErrorNo:" + str(e.errno))
-            #Domoticz.Error("Git StrError:" + str(e.strerror))
+            Domoticz.Error("Git StrError:" + str(e.strerror))
 
         return None
 
