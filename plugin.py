@@ -430,10 +430,10 @@ class BasePlugin:
 
 
         Domoticz.Log("Installing Plugin:" + self.plugindata[ppKey][2])
-        ppUrl = "/usr/bin/git clone -b master https://github.com/" + ppAuthor + "/" + ppRepository + ".git " + ppKey
-        Domoticz.Log("Calling:" + ppUrl)
+        ppCloneCmd = "/usr/bin/git clone -b master https://github.com/" + ppAuthor + "/" + ppRepository + ".git " + ppKey
+        Domoticz.Log("Calling:" + ppCloneCmd)
         try:
-            pr = subprocess.Popen( ppUrl , cwd = os.path.dirname(str(os.getcwd()) + "/plugins/"), shell = True, stdout = subprocess.PIPE, stderr = subprocess.PIPE )
+            pr = subprocess.Popen( ppCloneCmd , cwd = os.path.dirname(str(os.getcwd()) + "/plugins/"), shell = True, stdout = subprocess.PIPE, stderr = subprocess.PIPE )
             (out, error) = pr.communicate()
             if out:
                    Domoticz.Log("Succesfully installed:" + str(out).strip)
@@ -565,9 +565,9 @@ class BasePlugin:
                 Domoticz.Debug("Git Error:" + str(error.strip()))
                 if str(error).find("Not a git repository") != -1:
                    Domoticz.Log("Plugin:" + ppKey + " is not installed from gitHub. Ignoring!!.")
-        except OSError as er:
-            Domoticz.Log("Error")
-            #Domoticz.Error("Git StrError:" + str(er.strerror))
+        except OSError as e:
+            Domoticz.Error("Git ErrorNo:" + str(e.errno))
+            Domoticz.Error("Git StrError:" + str(e.strerror))
 
         return None
 
