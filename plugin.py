@@ -9,9 +9,9 @@
 
 
 """
-<plugin key="PP-MANAGER" name="Python Plugin Manager" author="ycahome" version="1.5.7" externallink="https://www.domoticz.com/forum/viewtopic.php?f=65&t=22339">
+<plugin key="PP-MANAGER" name="Python Plugin Manager" author="ycahome" version="1.5.8" externallink="https://www.domoticz.com/forum/viewtopic.php?f=65&t=22339">
     <description>
-		<h2>Python Plugin Manager v.1.5.7</h2><br/>
+		<h2>Python Plugin Manager v.1.5.8</h2><br/>
 		<h3>Features</h3>
 		<ul style="list-style-type:square">
 			<li>Install plugins</li>
@@ -529,6 +529,23 @@ class BasePlugin:
         Domoticz.Debug("Checking Plugin:" + ppKey + " for updates")
         ppUrl = "/usr/bin/git status -uno"
         Domoticz.Debug("Calling:" + ppUrl + " on folder " + str(os.getcwd()) + "/plugins/" + ppKey)
+
+        
+        Domoticz.Log("Fetching Repository Details")
+        ppGitFetch = "/usr/bin/git fetch"
+        try:
+            pr = subprocess.Popen( ppGitFetch , cwd = str(os.getcwd() + "/plugins/" + ppKey), shell = True, stdout = subprocess.PIPE, stderr = subprocess.PIPE )
+            (out, error) = pr.communicate()
+            if out:
+                Domoticz.Debug("Git Response:" + str(out))
+            if error:
+                Domoticz.Debug("Git Error:" + str(error.strip()))
+        except OSError as e:
+            Domoticz.Error("Git ErrorNo:" + str(e.errno))
+            Domoticz.Error("Git StrError:" + str(e.strerror))
+        
+        
+        
         try:
             pr = subprocess.Popen( ppUrl , cwd = str(os.getcwd() + "/plugins/" + ppKey), shell = True, stdout = subprocess.PIPE, stderr = subprocess.PIPE )
             (out, error) = pr.communicate()
