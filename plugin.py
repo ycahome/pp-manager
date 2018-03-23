@@ -243,7 +243,7 @@ class BasePlugin:
                 secpoluserFileHandle.close()
                 Domoticz.Log("SecPolUserList exception:" + str(self.SecPolUserList))
             else:
-		self.SecPolUserList = {"GLOBAL":[]}
+                self.SecPolUserList = {"GLOBAL":[]}
             
             
             i = 0
