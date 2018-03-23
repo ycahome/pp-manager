@@ -9,9 +9,9 @@
 
 
 """
-<plugin key="PP-MANAGER" name="Python Plugin Manager" author="ycahome" version="1.5.8" externallink="https://www.domoticz.com/forum/viewtopic.php?f=65&t=22339">
+<plugin key="PP-MANAGER" name="Python Plugin Manager" author="ycahome" version="1.5.9" externallink="https://www.domoticz.com/forum/viewtopic.php?f=65&t=22339">
     <description>
-		<h2>Python Plugin Manager v.1.5.8</h2><br/>
+		<h2>Python Plugin Manager v.1.5.9</h2><br/>
 		<h3>Features</h3>
 		<ul style="list-style-type:square">
 			<li>Install plugins</li>
@@ -242,7 +242,8 @@ class BasePlugin:
                     line = secpoluserFileHandle.readline()
                 secpoluserFileHandle.close()
                 Domoticz.Log("SecPolUserList exception:" + str(self.SecPolUserList))
-            
+            else:
+		self.SecPolUserList = {"GLOBAL":[]}
             
             
             i = 0
