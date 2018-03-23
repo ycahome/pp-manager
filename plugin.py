@@ -529,7 +529,20 @@ class BasePlugin:
         Domoticz.Debug("Checking Plugin:" + ppKey + " for updates")
         
         
-        
+        Domoticz.Log("Fetching Repository Details")
+        ppGitFetch = "/usr/bin/git fetch"
+        try:
+            prFetch = subprocess.Popen( ppGitFetch , cwd = str(os.getcwd() + "/plugins/" + ppKey), shell = True, stdout = subprocess.PIPE, stderr = subprocess.PIPE )
+            (outFetch, errorFetch) = prFetch.communicate()
+            if outFetch:
+                Domoticz.Debug("Git Response:" + str(outFetch))
+            if errorFetch:
+                Domoticz.Debug("Git Error:" + str(errorFetch.strip()))
+        except OSError as eFetch:
+            Domoticz.Error("Git ErrorNo:" + str(eFetch.errno))
+            Domoticz.Error("Git StrError:" + str(eFetch.strerror))
+
+
         ppUrl = "/usr/bin/git status -uno"
         Domoticz.Debug("Calling:" + ppUrl + " on folder " + str(os.getcwd()) + "/plugins/" + ppKey)
 
