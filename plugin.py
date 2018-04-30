@@ -38,6 +38,7 @@
                 <option label="Dutch earthquakes" value="xfr_aardbeving"/>
                 <option label="Eartquake EMSC Data" value="SeismicPortal"/>
                 <option label="ebusd bridge" value="ebusd"/>
+                <option label="Freebox Revolution" value="freeboxv6"/>
                 <option label="Global Cache 100" value="GC-100"/>
                 <option label="Homewizard" value="Homewizard"/>
                 <option label="Hive Plugin" value="HivePlug"/>
@@ -138,6 +139,7 @@ class BasePlugin:
             "xfr_aardbeving":               ["Xorfor",    	    "Domoticz-LastDutchEarthquake-Plugin",  "Dutch earthquakes"],
             "SeismicPortal":                ["febalci",    	    "DomoticzEarthquake",                   "Eartquake EMSC Data"],
             "ebusd":                     	["guillaumezin",    "DomoticzEbusd",                        "ebusd bridge"],
+            "freeboxv6":                   	["supermat",        "PluginDomoticzFreebox",                "Freebox V6 (Revolution)"],
             "GC-100":                     	["dnpwwo",          "Domoticz-GlobalCache-Plugin",          "Global Cache 100"],
             "Homewizard":                   ["rvdvoorde",       "domoticz-homewizard",                  "Homewizard"],
             "HivePlug":                     ["imcfarla2003",    "domoticz-hive",                        "Hive Plugin"],
