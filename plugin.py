@@ -498,7 +498,7 @@ class BasePlugin:
             (out, error) = pr.communicate()
             if out:
                 Domoticz.Debug("Git Response:" + str(out))
-                if str(out).find("Already up-to-date") != -1:
+                if (str(out).find("Already up-to-date") != -1) or (str(out).find("Already up to date") != -1):
                    Domoticz.Log("Plugin " + ppKey + " already Up-To-Date")
                    #Domoticz.Log("find(error):" + str(str(out).find("error")))
                 elif (str(out).find("Updating") != -1) and (str(str(out).find("error")) == "-1"):
