@@ -9,9 +9,9 @@
 
 
 """
-<plugin key="PP-MANAGER" name="Python Plugin Manager" author="ycahome" version="1.5.9" externallink="https://www.domoticz.com/forum/viewtopic.php?f=65&t=22339">
+<plugin key="PP-MANAGER" name="Python Plugin Manager" author="ycahome" version="1.5.10" externallink="https://www.domoticz.com/forum/viewtopic.php?f=65&t=22339">
     <description>
-		<h2>Python Plugin Manager v.1.5.9</h2><br/>
+		<h2>Python Plugin Manager v.1.5.10</h2><br/>
 		<h3>Features</h3>
 		<ul style="list-style-type:square">
 			<li>Install plugins</li>
@@ -43,6 +43,7 @@
                 <option label="Hive Plugin" value="HivePlug"/>
                 <option label="IKEA Tradfri" value="IKEA-Tradfri"/>
                 <option label="Life 360 Presence" value="Life360"/>
+                <option label="Linky" value="Linky"/>
                 <option label="Meteo Alarm EU RSS Reader" value="MeteoAlarmEU"/>
                 <option label="Mikrotik RouterOS" value="mikrotik-routeros"/>
                 <option label="Moon Phases" value="MoonPhases"/>
@@ -143,6 +144,7 @@ class BasePlugin:
             "HivePlug":                     ["imcfarla2003",    "domoticz-hive",                        "Hive Plugin"],
             "IKEA-Tradfri":                 ["moroen",          "IKEA-Tradfri-plugin",                  "IKEA Tradfri"],
             "Life360":                      ["febalci",         "DomoticzLife360",                     "Life 360 Presence"],
+            "Linky":                        ["guillaumezin",    "DomoticzLinky",                        "Linky"],
             "MeteoAlarmEU":                 ["ycahome",         "MeteoAlarmEU",                         "Meteo Alarm EU RSS Reader"],
             "mikrotik-routeros":            ["mrin",            "domoticz-routeros-plugin",             "Mikrotik RouterOS"],
             "MoonPhases":                   ["ycahome",         "MoonPhases",                           "Moon Phases"],
@@ -431,7 +433,7 @@ class BasePlugin:
 
 
         Domoticz.Log("Installing Plugin:" + self.plugindata[ppKey][2])
-        ppCloneCmd = "/usr/bin/git clone -b master https://github.com/" + ppAuthor + "/" + ppRepository + ".git " + ppKey
+        ppCloneCmd = "LANG=en_US /usr/bin/git clone -b master https://github.com/" + ppAuthor + "/" + ppRepository + ".git " + ppKey
         Domoticz.Log("Calling:" + ppCloneCmd)
         try:
             pr = subprocess.Popen( ppCloneCmd , cwd = os.path.dirname(str(os.getcwd()) + "/plugins/"), shell = True, stdout = subprocess.PIPE, stderr = subprocess.PIPE )
@@ -470,7 +472,7 @@ class BasePlugin:
 
         if ppKey == "PP-MANAGER":
             Domoticz.Log("Self Update Initiated")
-            ppGitReset = "/usr/bin/git reset --hard HEAD"
+            ppGitReset = "LANG=en_US /usr/bin/git reset --hard HEAD"
             try:
                 pr = subprocess.Popen( ppGitReset , cwd = str(os.getcwd() + "/plugins/" + ppKey), shell = True, stdout = subprocess.PIPE, stderr = subprocess.PIPE )
                 (out, error) = pr.communicate()
@@ -489,7 +491,7 @@ class BasePlugin:
             return
 
         Domoticz.Log("Updating Plugin:" + ppKey)
-        ppUrl = "/usr/bin/git pull --force"
+        ppUrl = "LANG=en_US /usr/bin/git pull --force"
         Domoticz.Debug("Calling:" + ppUrl + " on folder " + str(os.getcwd()) + "/plugins/" + ppKey)
         try:
             pr = subprocess.Popen( ppUrl , cwd = str(os.getcwd() + "/plugins/" + ppKey), shell = True, stdout = subprocess.PIPE, stderr = subprocess.PIPE )
@@ -531,7 +533,7 @@ class BasePlugin:
         
         
         #Domoticz.Log("Fetching Repository Details")
-        ppGitFetch = "/usr/bin/git fetch"
+        ppGitFetch = "LANG=en_US /usr/bin/git fetch"
         try:
             prFetch = subprocess.Popen( ppGitFetch , cwd = str(os.getcwd() + "/plugins/" + ppKey), shell = True, stdout = subprocess.PIPE, stderr = subprocess.PIPE )
             (outFetch, errorFetch) = prFetch.communicate()
@@ -544,7 +546,7 @@ class BasePlugin:
             Domoticz.Error("Git StrError:" + str(eFetch.strerror))
 
 
-        ppUrl = "/usr/bin/git status -uno"
+        ppUrl = "LANG=en_US /usr/bin/git status -uno"
         Domoticz.Debug("Calling:" + ppUrl + " on folder " + str(os.getcwd()) + "/plugins/" + ppKey)
 
         try:
@@ -552,7 +554,7 @@ class BasePlugin:
             (out, error) = pr.communicate()
             if out:
                 Domoticz.Debug("Git Response:" + str(out))
-                if str(out).find("up-to-date") != -1:
+                if (str(out).find("up-to-date") != -1) or (str(out).find("up to date") != -1):
                    Domoticz.Log("Plugin " + ppKey + " already Up-To-Date")
                    Domoticz.Debug("find(error):" + str(str(out).find("error")))
                 elif (str(out).find("Your branch is behind") != -1) and (str(str(out).find("error")) == "-1"):
