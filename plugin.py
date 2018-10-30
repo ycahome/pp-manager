@@ -11,7 +11,7 @@
 """
 <plugin key="PP-MANAGER" name="Python Plugin Manager" author="ycahome" version="1.5.10" externallink="https://www.domoticz.com/forum/viewtopic.php?f=65&t=22339">
     <description>
-		<h2>Python Plugin Manager v.1.5.10</h2><br/>
+		<h2>Python Plugin Manager v.1.5.11</h2><br/>
 		<h3>Features</h3>
 		<ul style="list-style-type:square">
 			<li>Install plugins</li>
@@ -66,6 +66,7 @@
                 <option label="Xiaomi Mi Robot Vacuum" value="xiaomi-mi-robot-vacuum"/>
                 <option label="Xiaomi PM2.5 Sensor" value="XiaomiPM"/>
                 <option label="Yamaha AV Receiver" value="YamahaPlug"/>
+                <option label="Zigbee2Mqtt" value="Zigbee2Mqtt"/>
             </options>
         </param>
          <param field="Mode4" label="Auto Update" width="175px">
@@ -129,19 +130,19 @@ class BasePlugin:
         self.SecPolUserList = {}
 
         self.plugindata = {
-            # Plugin Key:          [gitHub author,        repository,                  plugin Text]
+            # Plugin Key:                   [gitHub author,     repository,                             plugin Text]
             "Idle":                         ["Idle",            "Idle",                                 "Idle"],
             "Dummy_Plugin":                 ["ycahome",         "Dummy_Plugin",                         "Dummy Plugin"],
             "BatteryLevel":                 ["999LV",           "BatteryLevel",                         "Battery monitoring for Z-Wave nodes"],
             "Buienradar":                   ["ffes",            "domoticz-buienradar",                  "Buienradar.nl (Weather lookup)"],
             "AAPIPModule":                  ["febalci",         "DomoticzCrowAlarm",                    "Crow Runner Alarm"],
-            "Denon4306":                  	["dnpwwo",    	    "Domoticz-Denon-Plugin",                "Denon/Marantz Amplifier"],
-            "xfr_discusage":                ["Xorfor",    	    "Domoticz-Disc-usage-Plugin",           "Disc usage"],
-            "xfr_aardbeving":               ["Xorfor",    	    "Domoticz-LastDutchEarthquake-Plugin",  "Dutch earthquakes"],
-            "SeismicPortal":                ["febalci",    	    "DomoticzEarthquake",                   "Eartquake EMSC Data"],
-            "ebusd":                     	["guillaumezin",    "DomoticzEbusd",                        "ebusd bridge"],
-            "freeboxv6":                   	["supermat",        "PluginDomoticzFreebox",                "Freebox V6 (Revolution)"],
-            "GC-100":                     	["dnpwwo",          "Domoticz-GlobalCache-Plugin",          "Global Cache 100"],
+            "Denon4306":                    ["dnpwwo",    	"Domoticz-Denon-Plugin",                "Denon/Marantz Amplifier"],
+            "xfr_discusage":                ["Xorfor",    	"Domoticz-Disc-usage-Plugin",           "Disc usage"],
+            "xfr_aardbeving":               ["Xorfor",    	"Domoticz-LastDutchEarthquake-Plugin",  "Dutch earthquakes"],
+            "SeismicPortal":                ["febalci",    	"DomoticzEarthquake",                   "Eartquake EMSC Data"],
+            "ebusd":                        ["guillaumezin",    "DomoticzEbusd",                        "ebusd bridge"],
+            "freeboxv6":                    ["supermat",        "PluginDomoticzFreebox",                "Freebox V6 (Revolution)"],
+            "GC-100":                       ["dnpwwo",          "Domoticz-GlobalCache-Plugin",          "Global Cache 100"],
             "Homewizard":                   ["rvdvoorde",       "domoticz-homewizard",                  "Homewizard"],
             "HivePlug":                     ["imcfarla2003",    "domoticz-hive",                        "Hive Plugin"],
             "IKEA-Tradfri":                 ["moroen",          "IKEA-Tradfri-plugin",                  "IKEA Tradfri"],
@@ -151,14 +152,14 @@ class BasePlugin:
             "mikrotik-routeros":            ["mrin",            "domoticz-routeros-plugin",             "Mikrotik RouterOS"],
             "MoonPhases":                   ["ycahome",         "MoonPhases",                           "Moon Phases"],
             "MQTTDiscovery":                ["emontnemery",     "domoticz_mqtt_discovery",              "MQTT discovery"],
-            "Onkyo":                		["jorgh6",          "domoticz-onkyo-plugin",                "Onkyo AV Receiver"],
+            "Onkyo":                	    ["jorgh6",          "domoticz-onkyo-plugin",                "Onkyo AV Receiver"],
             "xfr_openaq":                   ["Xorfor",          "Domoticz-OpenAQ-Plugin",               "OpenAQ"],
-            "xfr_pihole":                  	["Xorfor",          "Domoticz-Pi-hole-Plugin",              "Pi-hole summary"],
+            "xfr_pihole":                   ["Xorfor",          "Domoticz-Pi-hole-Plugin",              "Pi-hole summary"],
             "xfr-pimonitor":                ["Xorfor",          "Domoticz-PiMonitor-Plugin",            "PiMonitor"],
             "PioneerAVR":                   ["febalci",         "DomoticzPioneerAVR",                   "Pioneer AVR"],
             "RAVEn":                        ["dnpwwo",          "Domoticz-RAVEn-Plugin",                "RAVEn Zigbee energy monitor"],
             "SNMPreader":                   ["ycahome",         "SNMPreader",                           "SNMP Reader"],
-            "Sonos":                    	["gerard33",        "sonos",                                "Sonos Players"],
+            "Sonos":                        ["gerard33",        "sonos",                                "Sonos Players"],
             "sony":                         ["gerard33",        "sony-bravia",                          "Sony Bravia TV (with Kodi remote)"],
             "xfr_speedtest":                ["Xorfor",          "Domoticz-Speedtest-Plugin",           "Speedtest"],
             "SYSFS-Switches":               ["flatsiedatsie",   "GPIO-SYSFS-Switches",                  "SYSFS-Switches"],
@@ -168,6 +169,7 @@ class BasePlugin:
             "xiaomi-mi-robot-vacuum":       ["mrin",            "domoticz-mirobot-plugin",              "Xiaomi Mi Robot Vacuum"],
             "XiaomiPM":                     ["febalci",         "DomoticzXiaomiPM2.5",                  "Xiaomi PM2.5 Sensor"],
             "YamahaPlug":                   ["thomas-villagers","domoticz-yamaha",                      "Yamaha AV Receiver"],
+            "Zigbee2Mqtt":                  ["stas-demydiuk",	"domoticz-zigbee2mqtt-plugin",          "Zigbee2Mqtt"],
         }        
         
 	
