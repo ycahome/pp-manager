@@ -9,9 +9,9 @@
 
 
 """
-<plugin key="PP-MANAGER" name="Python Plugin Manager" author="ycahome" version="1.5.11" externallink="https://www.domoticz.com/forum/viewtopic.php?f=65&t=22339">
+<plugin key="PP-MANAGER" name="Python Plugin Manager" author="ycahome" version="1.5.12" externallink="https://www.domoticz.com/forum/viewtopic.php?f=65&t=22339">
     <description>
-		<h2>Python Plugin Manager v.1.5.11</h2><br/>
+		<h2>Python Plugin Manager v.1.5.12</h2><br/>
 		<h3>Features</h3>
 		<ul style="list-style-type:square">
 			<li>Install plugins</li>
@@ -55,7 +55,7 @@
                 <option label="PiMonitor" value="xfr-pimonitor"/>
                 <option label="Pioneer AVR" value="PioneerAVR"/>
                 <option label="RAVEn Zigbee energy monitor" value="RAVEn"/>
-                <option label="SmogTok" value="SmogTok"/>
+                <option label="SmogTok Air Quality monitor" value="SmogTok"/>
                 <option label="SNMP Reader" value="SNMPreader"/>
                 <option label="Sonos Players" value="Sonos"/>
                 <option label="Sony Bravia TV (with Kodi remote)" value="sony"/>
