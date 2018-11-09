@@ -9,9 +9,9 @@
 
 
 """
-<plugin key="PP-MANAGER" name="Python Plugin Manager" author="ycahome" version="1.5.12" externallink="https://www.domoticz.com/forum/viewtopic.php?f=65&t=22339">
+<plugin key="PP-MANAGER" name="Python Plugin Manager" author="ycahome" version="1.5.13" externallink="https://www.domoticz.com/forum/viewtopic.php?f=65&t=22339">
     <description>
-		<h2>Python Plugin Manager v.1.5.12</h2><br/>
+		<h2>Python Plugin Manager v.1.5.13</h2><br/>
 		<h3>Features</h3>
 		<ul style="list-style-type:square">
 			<li>Install plugins</li>
@@ -38,6 +38,7 @@
                 <option label="Dutch earthquakes" value="xfr_aardbeving"/>
                 <option label="Eartquake EMSC Data" value="SeismicPortal"/>
                 <option label="ebusd bridge" value="ebusd"/>
+                <option label="eQ-3 MAX!" value="eq3max"/>
                 <option label="Freebox Revolution" value="freeboxv6"/>
                 <option label="Global Cache 100" value="GC-100"/>
                 <option label="Homewizard" value="Homewizard"/>
@@ -142,12 +143,13 @@ class BasePlugin:
             "xfr_aardbeving":               ["Xorfor",    	"Domoticz-LastDutchEarthquake-Plugin",  "Dutch earthquakes"],
             "SeismicPortal":                ["febalci",    	"DomoticzEarthquake",                   "Eartquake EMSC Data"],
             "ebusd":                        ["guillaumezin",    "DomoticzEbusd",                        "ebusd bridge"],
+            "eq3max":                       ["mvzut",           "maxcube-Domoticz-plugin",              "eQ-3 MAX! Cube"],
             "freeboxv6":                    ["supermat",        "PluginDomoticzFreebox",                "Freebox V6 (Revolution)"],
             "GC-100":                       ["dnpwwo",          "Domoticz-GlobalCache-Plugin",          "Global Cache 100"],
             "Homewizard":                   ["rvdvoorde",       "domoticz-homewizard",                  "Homewizard"],
             "HivePlug":                     ["imcfarla2003",    "domoticz-hive",                        "Hive Plugin"],
             "IKEA-Tradfri":                 ["moroen",          "IKEA-Tradfri-plugin",                  "IKEA Tradfri"],
-            "Life360":                      ["febalci",         "DomoticzLife360",                     "Life 360 Presence"],
+            "Life360":                      ["febalci",         "DomoticzLife360",                      "Life 360 Presence"],
             "Linky":                        ["guillaumezin",    "DomoticzLinky",                        "Linky"],
             "MeteoAlarmEU":                 ["ycahome",         "MeteoAlarmEU",                         "Meteo Alarm EU RSS Reader"],
             "mikrotik-routeros":            ["mrin",            "domoticz-routeros-plugin",             "Mikrotik RouterOS"],
@@ -163,7 +165,7 @@ class BasePlugin:
             "SNMPreader":                   ["ycahome",         "SNMPreader",                           "SNMP Reader"],
             "Sonos":                        ["gerard33",        "sonos",                                "Sonos Players"],
             "sony":                         ["gerard33",        "sony-bravia",                          "Sony Bravia TV (with Kodi remote)"],
-            "xfr_speedtest":                ["Xorfor",          "Domoticz-Speedtest-Plugin",           "Speedtest"],
+            "xfr_speedtest":                ["Xorfor",          "Domoticz-Speedtest-Plugin",            "Speedtest"],
             "SYSFS-Switches":               ["flatsiedatsie",   "GPIO-SYSFS-Switches",                  "SYSFS-Switches"],
             "NUT_UPS":                      ["999LV",           "NUT_UPS",                              "UPS Monitor"],
             "WAN-IP-CHECKER":               ["ycahome",         "WAN-IP-CHECKER",                       "Wan IP Checker"],
@@ -760,6 +762,5 @@ def DumpConfigToLog():
 def mid(s, offset, amount):
     #Domoticz.Debug("mid called")
     return s[offset:offset+amount]
-
 
 
