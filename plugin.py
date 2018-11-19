@@ -9,7 +9,7 @@
 
 
 """
-<plugin key="PP-MANAGER" name="Python Plugin Manager" author="ycahome" version="1.5.14" externallink="https://www.domoticz.com/forum/viewtopic.php?f=65&t=22339">
+<plugin key="PP-MANAGER" name="Python Plugin Manager" author="ycahome" version="1.5.15" externallink="https://www.domoticz.com/forum/viewtopic.php?f=65&t=22339">
     <description>
 		<h2>Python Plugin Manager v.1.5.15</h2><br/>
 		<h3>Features</h3>
@@ -43,7 +43,7 @@
                 <option label="Global Cache 100" value="GC-100"/>
                 <option label="Homewizard" value="Homewizard"/>
                 <option label="Hive Plugin" value="HivePlug"/>
-		<option label="iDetect Presence Detection" value="iDetect"/>
+                <option label="iDetect Presence Detection" value="iDetect"/>
                 <option label="IKEA Tradfri" value="IKEA-Tradfri"/>
                 <option label="Life 360 Presence" value="Life360"/>
                 <option label="Linky" value="Linky"/>
@@ -149,7 +149,7 @@ class BasePlugin:
             "GC-100":                       ["dnpwwo",          "Domoticz-GlobalCache-Plugin",          "Global Cache 100"],
             "Homewizard":                   ["rvdvoorde",       "domoticz-homewizard",                  "Homewizard"],
             "HivePlug":                     ["imcfarla2003",    "domoticz-hive",                        "Hive Plugin"],
-	    "iDetect":                      ["d-EScape",        "Domoticz_iDetect",              	"iDetect Presence Detection"],
+            "iDetect":                      ["d-EScape",        "Domoticz_iDetect",              	"iDetect Presence Detection"],
             "IKEA-Tradfri":                 ["moroen",          "IKEA-Tradfri-plugin",                  "IKEA Tradfri"],
             "Life360":                      ["febalci",         "DomoticzLife360",                      "Life 360 Presence"],
             "Linky":                        ["guillaumezin",    "DomoticzLinky",                        "Linky"],
