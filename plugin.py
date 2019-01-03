@@ -9,9 +9,9 @@
 
 
 """
-<plugin key="PP-MANAGER" name="Python Plugin Manager" author="ycahome" version="1.5.15" externallink="https://www.domoticz.com/forum/viewtopic.php?f=65&t=22339">
+<plugin key="PP-MANAGER" name="Python Plugin Manager" author="ycahome" version="1.5.16" externallink="https://www.domoticz.com/forum/viewtopic.php?f=65&t=22339">
     <description>
-		<h2>Python Plugin Manager v.1.5.15</h2><br/>
+		<h2>Python Plugin Manager v.1.5.16</h2><br/>
 		<h3>Features</h3>
 		<ul style="list-style-type:square">
 			<li>Install plugins</li>
@@ -69,6 +69,7 @@
                 <option label="Xiaomi Mi Robot Vacuum" value="xiaomi-mi-robot-vacuum"/>
                 <option label="Xiaomi PM2.5 Sensor" value="XiaomiPM"/>
                 <option label="Yamaha AV Receiver" value="YamahaPlug"/>
+                <option label="Zigate plugin" value="Zigate"/>
                 <option label="Zigbee2Mqtt" value="Zigbee2Mqtt"/>
             </options>
         </param>
@@ -133,52 +134,51 @@ class BasePlugin:
         self.SecPolUserList = {}
 
         self.plugindata = {
-            # Plugin Key:                   [gitHub author,     repository,                             plugin Text]
-            "Idle":                         ["Idle",            "Idle",                                 "Idle"],
-            "Dummy_Plugin":                 ["ycahome",         "Dummy_Plugin",                         "Dummy Plugin"],
-            "BatteryLevel":                 ["999LV",           "BatteryLevel",                         "Battery monitoring for Z-Wave nodes"],
-            "Buienradar":                   ["ffes",            "domoticz-buienradar",                  "Buienradar.nl (Weather lookup)"],
-            "AAPIPModule":                  ["febalci",         "DomoticzCrowAlarm",                    "Crow Runner Alarm"],
-            "Denon4306":                    ["dnpwwo",    	"Domoticz-Denon-Plugin",                "Denon/Marantz Amplifier"],
-            "xfr_discusage":                ["Xorfor",    	"Domoticz-Disc-usage-Plugin",           "Disc usage"],
-            "xfr_aardbeving":               ["Xorfor",    	"Domoticz-LastDutchEarthquake-Plugin",  "Dutch earthquakes"],
-            "SeismicPortal":                ["febalci",    	"DomoticzEarthquake",                   "Eartquake EMSC Data"],
-            "ebusd":                        ["guillaumezin",    "DomoticzEbusd",                        "ebusd bridge"],
-            "eq3max":                       ["mvzut",           "maxcube-Domoticz-plugin",              "eQ-3 MAX! Cube"],
-            "freeboxv6":                    ["supermat",        "PluginDomoticzFreebox",                "Freebox V6 (Revolution)"],
-            "GC-100":                       ["dnpwwo",          "Domoticz-GlobalCache-Plugin",          "Global Cache 100"],
-            "Homewizard":                   ["rvdvoorde",       "domoticz-homewizard",                  "Homewizard"],
-            "HivePlug":                     ["imcfarla2003",    "domoticz-hive",                        "Hive Plugin"],
-            "iDetect":                      ["d-EScape",        "Domoticz_iDetect",              	"iDetect Presence Detection"],
-            "IKEA-Tradfri":                 ["moroen",          "IKEA-Tradfri-plugin",                  "IKEA Tradfri"],
-            "Life360":                      ["febalci",         "DomoticzLife360",                      "Life 360 Presence"],
-            "Linky":                        ["guillaumezin",    "DomoticzLinky",                        "Linky"],
-            "MeteoAlarmEU":                 ["ycahome",         "MeteoAlarmEU",                         "Meteo Alarm EU RSS Reader"],
-            "mikrotik-routeros":            ["mrin",            "domoticz-routeros-plugin",             "Mikrotik RouterOS"],
-            "MoonPhases":                   ["ycahome",         "MoonPhases",                           "Moon Phases"],
-            "MQTTDiscovery":                ["emontnemery",     "domoticz_mqtt_discovery",              "MQTT discovery"],
-            "Onkyo":                	    ["jorgh6",          "domoticz-onkyo-plugin",                "Onkyo AV Receiver"],
-            "xfr_openaq":                   ["Xorfor",          "Domoticz-OpenAQ-Plugin",               "OpenAQ"],
-            "xfr_pihole":                   ["Xorfor",          "Domoticz-Pi-hole-Plugin",              "Pi-hole summary"],
-            "xfr-pimonitor":                ["Xorfor",          "Domoticz-PiMonitor-Plugin",            "PiMonitor"],
-            "PioneerAVR":                   ["febalci",         "DomoticzPioneerAVR",                   "Pioneer AVR"],
-            "RAVEn":                        ["dnpwwo",          "Domoticz-RAVEn-Plugin",                "RAVEn Zigbee energy monitor"],
-            "SmogTok":                      ["smogtok",         "smogtokdomoticzplug",                  "SmogTok Air Quality monitor"],
-            "SNMPreader":                   ["ycahome",         "SNMPreader",                           "SNMP Reader"],
-            "Sonos":                        ["gerard33",        "sonos",                                "Sonos Players"],
-            "sony":                         ["gerard33",        "sony-bravia",                          "Sony Bravia TV (with Kodi remote)"],
-            "xfr_speedtest":                ["Xorfor",          "Domoticz-Speedtest-Plugin",            "Speedtest"],
-            "SYSFS-Switches":               ["flatsiedatsie",   "GPIO-SYSFS-Switches",                  "SYSFS-Switches"],
-            "NUT_UPS":                      ["999LV",           "NUT_UPS",                              "UPS Monitor"],
-            "WAN-IP-CHECKER":               ["ycahome",         "WAN-IP-CHECKER",                       "Wan IP Checker"],
-            "Mi_Flower_mate_plugin":        ["flatsiedatsie",   "Mi_Flower_mate_plugin",                "Xiaomi Mi Flower Mate"],
-            "xiaomi-mi-robot-vacuum":       ["mrin",            "domoticz-mirobot-plugin",              "Xiaomi Mi Robot Vacuum"],
-            "XiaomiPM":                     ["febalci",         "DomoticzXiaomiPM2.5",                  "Xiaomi PM2.5 Sensor"],
-            "YamahaPlug":                   ["thomas-villagers","domoticz-yamaha",                      "Yamaha AV Receiver"],
-            "Zigbee2Mqtt":                  ["stas-demydiuk",	"domoticz-zigbee2mqtt-plugin",          "Zigbee2Mqtt"],
-        }        
-        
-	
+            # Plugin Key:                   [gitHub author,     repository,                             plugin Text,                         Branch]
+            "Idle":                         ["Idle",            "Idle",                                 "Idle",                              "master"],
+            "Dummy_Plugin":                 ["ycahome",         "Dummy_Plugin",                         "Dummy Plugin",                      "master"],
+            "BatteryLevel":                 ["999LV",           "BatteryLevel",                         "Battery monitoring for Z-Wave nodes", "master"],
+            "Buienradar":                   ["ffes",            "domoticz-buienradar",                  "Buienradar.nl (Weather lookup)",    "master"],
+            "AAPIPModule":                  ["febalci",         "DomoticzCrowAlarm",                    "Crow Runner Alarm",                 "master"],
+            "Denon4306":                    ["dnpwwo",    	"Domoticz-Denon-Plugin",                "Denon/Marantz Amplifier",           "master"],
+            "xfr_discusage":                ["Xorfor",    	"Domoticz-Disc-usage-Plugin",           "Disc usage",                        "master"],
+            "xfr_aardbeving":               ["Xorfor",    	"Domoticz-LastDutchEarthquake-Plugin",  "Dutch earthquakes",                 "master"],
+            "SeismicPortal":                ["febalci",    	"DomoticzEarthquake",                   "Eartquake EMSC Data",               "master"],
+            "ebusd":                        ["guillaumezin",    "DomoticzEbusd",                        "ebusd bridge",                      "master"],
+            "eq3max":                       ["mvzut",           "maxcube-Domoticz-plugin",              "eQ-3 MAX! Cube",                    "master"],
+            "freeboxv6":                    ["supermat",        "PluginDomoticzFreebox",                "Freebox V6 (Revolution)",           "master"],
+            "GC-100":                       ["dnpwwo",          "Domoticz-GlobalCache-Plugin",          "Global Cache 100",                  "master"],
+            "Homewizard":                   ["rvdvoorde",       "domoticz-homewizard",                  "Homewizard",                        "master"],
+            "HivePlug":                     ["imcfarla2003",    "domoticz-hive",                        "Hive Plugin",                       "master"],
+            "iDetect":                      ["d-EScape",        "Domoticz_iDetect",              	"iDetect Presence Detection",        "master"],
+            "IKEA-Tradfri":                 ["moroen",          "IKEA-Tradfri-plugin",                  "IKEA Tradfri",                      "master"],
+            "Life360":                      ["febalci",         "DomoticzLife360",                      "Life 360 Presence",                 "master"],
+            "Linky":                        ["guillaumezin",    "DomoticzLinky",                        "Linky",                             "master"],
+            "MeteoAlarmEU":                 ["ycahome",         "MeteoAlarmEU",                         "Meteo Alarm EU RSS Reader",         "master"],
+            "mikrotik-routeros":            ["mrin",            "domoticz-routeros-plugin",             "Mikrotik RouterOS",                 "master"],
+            "MoonPhases":                   ["ycahome",         "MoonPhases",                           "Moon Phases",                       "master"],
+            "MQTTDiscovery":                ["emontnemery",     "domoticz_mqtt_discovery",              "MQTT discovery",                    "master"],
+            "Onkyo":                	    ["jorgh6",          "domoticz-onkyo-plugin",                "Onkyo AV Receiver",                 "master"],
+            "xfr_openaq":                   ["Xorfor",          "Domoticz-OpenAQ-Plugin",               "OpenAQ",                            "master"],
+            "xfr_pihole":                   ["Xorfor",          "Domoticz-Pi-hole-Plugin",              "Pi-hole summary",                   "master"],
+            "xfr-pimonitor":                ["Xorfor",          "Domoticz-PiMonitor-Plugin",            "PiMonitor",                         "master"],
+            "PioneerAVR":                   ["febalci",         "DomoticzPioneerAVR",                   "Pioneer AVR",                       "master"],
+            "RAVEn":                        ["dnpwwo",          "Domoticz-RAVEn-Plugin",                "RAVEn Zigbee energy monitor",       "master"],
+            "SmogTok":                      ["smogtok",         "smogtokdomoticzplug",                  "SmogTok Air Quality monitor",       "master"],
+            "SNMPreader":                   ["ycahome",         "SNMPreader",                           "SNMP Reader",                       "master"],
+            "Sonos":                        ["gerard33",        "sonos",                                "Sonos Players",                     "master"],
+            "sony":                         ["gerard33",        "sony-bravia",                          "Sony Bravia TV (with Kodi remote)", "master"],
+            "xfr_speedtest":                ["Xorfor",          "Domoticz-Speedtest-Plugin",            "Speedtest",                         "master"],
+            "SYSFS-Switches":               ["flatsiedatsie",   "GPIO-SYSFS-Switches",                  "SYSFS-Switches",                    "master"],
+            "NUT_UPS":                      ["999LV",           "NUT_UPS",                              "UPS Monitor",                       "master"],
+            "WAN-IP-CHECKER":               ["ycahome",         "WAN-IP-CHECKER",                       "Wan IP Checker",                    "master"],
+            "Mi_Flower_mate_plugin":        ["flatsiedatsie",   "Mi_Flower_mate_plugin",                "Xiaomi Mi Flower Mate",             "master"],
+            "xiaomi-mi-robot-vacuum":       ["mrin",            "domoticz-mirobot-plugin",              "Xiaomi Mi Robot Vacuum",            "master"],
+            "XiaomiPM":                     ["febalci",         "DomoticzXiaomiPM2.5",                  "Xiaomi PM2.5 Sensor",               "master"],
+            "YamahaPlug":                   ["thomas-villagers","domoticz-yamaha",                      "Yamaha AV Receiver",                "master"],
+            "Zigate":                       ["sasu-drooz",      "Domoticz-Zigate",                      "Zigate plugin",                     "stable"],
+            "Zigbee2Mqtt":                  ["stas-demydiuk",	"domoticz-zigbee2mqtt-plugin",          "Zigbee2Mqtt",                       "master"],
+        }
         
         return
 
@@ -214,7 +214,7 @@ class BasePlugin:
         pluginAuthor = self.plugindata[pluginKey][0]
         pluginRepository = self.plugindata[pluginKey][1]
         pluginText = self.plugindata[pluginKey][2]
-
+        pluginBranch = self.plugindata[pluginKey][3]    # GitHub branch to clone
 
  
 
@@ -366,7 +366,8 @@ class BasePlugin:
                     Domoticz.Log("Plugin Author:" + pluginAuthor)
                     Domoticz.Log("Plugin Repository:" + pluginRepository)
                     Domoticz.Log("Plugin Key:" + pluginKey)
-                    self.InstallPythonPlugin(pluginAuthor, pluginRepository, pluginKey)
+                    Domoticz.Log("Plugin Branch:" + pluginBranch)
+                    self.InstallPythonPlugin(pluginAuthor, pluginRepository, pluginKey, pluginBranch)
                Domoticz.Heartbeat(60)
             
 
@@ -439,12 +440,12 @@ class BasePlugin:
 
 
     # InstallPyhtonPlugin function
-    def InstallPythonPlugin(self, ppAuthor, ppRepository, ppKey):
+    def InstallPythonPlugin(self, ppAuthor, ppRepository, ppKey, ppBranch):
         Domoticz.Debug("InstallPythonPlugin called")
 
 
         Domoticz.Log("Installing Plugin:" + self.plugindata[ppKey][2])
-        ppCloneCmd = "LANG=en_US /usr/bin/git clone -b master https://github.com/" + ppAuthor + "/" + ppRepository + ".git " + ppKey
+        ppCloneCmd = "LANG=en_US /usr/bin/git clone -b " + ppBranch + " https://github.com/" + ppAuthor + "/" + ppRepository + ".git " + ppKey
         Domoticz.Log("Calling:" + ppCloneCmd)
         try:
             pr = subprocess.Popen( ppCloneCmd , cwd = os.path.dirname(str(os.getcwd()) + "/plugins/"), shell = True, stdout = subprocess.PIPE, stderr = subprocess.PIPE )
