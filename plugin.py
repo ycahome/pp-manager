@@ -9,9 +9,9 @@
 
 
 """
-<plugin key="PP-MANAGER" name="Python Plugin Manager" author="ycahome" version="1.5.16" externallink="https://www.domoticz.com/forum/viewtopic.php?f=65&t=22339">
+<plugin key="PP-MANAGER" name="Python Plugin Manager" author="ycahome" version="1.5.17" externallink="https://www.domoticz.com/forum/viewtopic.php?f=65&t=22339">
     <description>
-		<h2>Python Plugin Manager v.1.5.16</h2><br/>
+		<h2>Python Plugin Manager v.1.5.17</h2><br/>
 		<h3>Features</h3>
 		<ul style="list-style-type:square">
 			<li>Install plugins</li>
@@ -33,6 +33,7 @@
                 <option label="Battery monitoring for Z-Wave nodes" value="BatteryLevel"/>
                 <option label="Buienradar.nl (Weather lookup)" value="Buienradar"/>
                 <option label="Crow Runner Alarm" value="AAPIPModule"/>
+                <option label="deCONZ bridge (For Conbee,Raspbee)" value="deCONZ"/>
                 <option label="Denon/Marantz Amplifier" value="Denon4306"/>
                 <option label="Disc usage" value="xfr_discusage"/>
                 <option label="Dutch earthquakes" value="xfr_aardbeving"/>
@@ -140,6 +141,7 @@ class BasePlugin:
             "BatteryLevel":                 ["999LV",           "BatteryLevel",                         "Battery monitoring for Z-Wave nodes", "master"],
             "Buienradar":                   ["ffes",            "domoticz-buienradar",                  "Buienradar.nl (Weather lookup)",    "master"],
             "AAPIPModule":                  ["febalci",         "DomoticzCrowAlarm",                    "Crow Runner Alarm",                 "master"],
+            "deCONZ":                       ["Smanar",          "Domoticz-deCONZ",                      "deCONZ bridge (For Conbee,Raspbee)","master"],
             "Denon4306":                    ["dnpwwo",    	"Domoticz-Denon-Plugin",                "Denon/Marantz Amplifier",           "master"],
             "xfr_discusage":                ["Xorfor",    	"Domoticz-Disc-usage-Plugin",           "Disc usage",                        "master"],
             "xfr_aardbeving":               ["Xorfor",    	"Domoticz-LastDutchEarthquake-Plugin",  "Dutch earthquakes",                 "master"],
