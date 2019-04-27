@@ -9,9 +9,9 @@
 
 
 """
-<plugin key="PP-MANAGER" name="Python Plugin Manager" author="ycahome" version="1.5.18" externallink="https://www.domoticz.com/forum/viewtopic.php?f=65&t=22339">
+<plugin key="PP-MANAGER" name="Python Plugin Manager" author="ycahome" version="1.5.19" externallink="https://www.domoticz.com/forum/viewtopic.php?f=65&t=22339">
     <description>
-		<h2>Python Plugin Manager v.1.5.18</h2><br/>
+		<h2>Python Plugin Manager v.1.5.19</h2><br/>
 		<h3>Features</h3>
 		<ul style="list-style-type:square">
 			<li>Install plugins</li>
@@ -55,7 +55,8 @@
                 <option label="MQTT discovery" value="MQTTDiscovery"/>
                 <option label="Onkyo AV Receiver" value="Onkyo"/>
                 <option label="OpenAQ" value="xfr_openaq"/>
-                <option label="Pi-hole summary" value="xfr_pihole"/>
+		<option label="OpenAQ" value="xfr_openaq"/>
+		<option label="OpenUV" value="OpenUV"/>
                 <option label="PiMonitor" value="xfr-pimonitor"/>
                 <option label="Pioneer AVR" value="PioneerAVR"/>
                 <option label="RAVEn Zigbee energy monitor" value="RAVEn"/>
@@ -163,6 +164,7 @@ class BasePlugin:
             "MoonPhases":                   ["ycahome",         "MoonPhases",                           "Moon Phases",                       "master"],
             "MQTTDiscovery":                ["emontnemery",     "domoticz_mqtt_discovery",              "MQTT discovery",                    "master"],
             "Onkyo":                	    ["jorgh6",          "domoticz-onkyo-plugin",                "Onkyo AV Receiver",                 "master"],
+	    "OpenUV":			    ["Xorfor",		"Domoticz-OpenUV-Plugin,		"Open UV",			     "master"],
             "xfr_openaq":                   ["Xorfor",          "Domoticz-OpenAQ-Plugin",               "OpenAQ",                            "master"],
             "xfr_pihole":                   ["Xorfor",          "Domoticz-Pi-hole-Plugin",              "Pi-hole summary",                   "master"],
             "xfr-pimonitor":                ["Xorfor",          "Domoticz-PiMonitor-Plugin",            "PiMonitor",                         "master"],
