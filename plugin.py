@@ -9,9 +9,9 @@
 
 
 """
-<plugin key="PP-MANAGER" name="Python Plugin Manager" author="ycahome" version="1.5.18" externallink="https://www.domoticz.com/forum/viewtopic.php?f=65&t=22339">
+<plugin key="PP-MANAGER" name="Python Plugin Manager" author="ycahome" version="1.5.19" externallink="https://www.domoticz.com/forum/viewtopic.php?f=65&t=22339">
     <description>
-		<h2>Python Plugin Manager v.1.5.18</h2><br/>
+		<h2>Python Plugin Manager v.1.5.19</h2><br/>
 		<h3>Features</h3>
 		<ul style="list-style-type:square">
 			<li>Install plugins</li>
@@ -64,6 +64,7 @@
                 <option label="Sonos Players" value="Sonos"/>
                 <option label="Sony Bravia TV (with Kodi remote)" value="sony"/>
                 <option label="Speedtest" value="xfr_speedtest"/>
+		<option label="Synology SurveillanceStation" value="SurveillanceStation"/>
                 <option label="SYSFS-Switches" value="SYSFS-Switches"/>
                 <option label="UPS Monitor" value="NUT_UPS"/>
                 <option label="Wan IP Checker" value="WAN-IP-CHECKER"/>
@@ -172,6 +173,7 @@ class BasePlugin:
             "SNMPreader":                   ["ycahome",         "SNMPreader",                           "SNMP Reader",                       "master"],
             "Sonos":                        ["gerard33",        "sonos",                                "Sonos Players",                     "master"],
             "sony":                         ["gerard33",        "sony-bravia",                          "Sony Bravia TV (with Kodi remote)", "master"],
+            "Synology SurveillanceStation": ["lolautruche",     "SurveillanceStationDomoticz",          "Synology SurveillanceStation",      "master"],
             "xfr_speedtest":                ["Xorfor",          "Domoticz-Speedtest-Plugin",            "Speedtest",                         "master"],
             "SYSFS-Switches":               ["flatsiedatsie",   "GPIO-SYSFS-Switches",                  "SYSFS-Switches",                    "master"],
             "NUT_UPS":                      ["999LV",           "NUT_UPS",                              "UPS Monitor",                       "master"],
