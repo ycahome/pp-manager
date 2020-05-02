@@ -1,0 +1,57 @@
+from manager import Plugin
+
+plugins_raw = {
+    # Plugin Key:                   [gitHub author,     repository,                             plugin Text,                         Branch]
+    "Idle":                         ["Idle",            "Idle",                                 "Idle",                              "master"],
+    "Dummy_Plugin":                 ["ycahome",         "Dummy_Plugin",                         "Dummy Plugin",                      "master"],
+    "BatteryLevel":                 ["999LV",           "BatteryLevel",                         "Battery monitoring for Z-Wave nodes", "master"],
+    "Buienradar":                   ["ffes",            "domoticz-buienradar",                  "Buienradar.nl (Weather lookup)",    "master"],
+    "AAPIPModule":                  ["febalci",         "DomoticzCrowAlarm",                    "Crow Runner Alarm",                 "master"],
+    "ChromecastPlugin":             ["Tsjippy",         "ChromecastPlugin",                    	"Chromecast plugin for Domoticz",    "master"],
+    "deCONZ":                       ["Smanar",          "Domoticz-deCONZ",                      "deCONZ bridge (For Conbee,Raspbee)", "master"],
+    "Denon4306":                    ["dnpwwo",    	    "Domoticz-Denon-Plugin",                "Denon/Marantz Amplifier",           "master"],
+    "xfr_discusage":                ["Xorfor",    	    "Domoticz-Disc-usage-Plugin",           "Disc usage",                        "master"],
+    "xfr_aardbeving":               ["Xorfor",    	    "Domoticz-LastDutchEarthquake-Plugin",  "Dutch earthquakes",                 "master"],
+    "SeismicPortal":                ["febalci",    	    "DomoticzEarthquake",                   "Eartquake EMSC Data",               "master"],
+    "ebusd":                        ["guillaumezin",    "DomoticzEbusd",                        "ebusd bridge",                      "master"],
+    "ems-gateway":                  ["bbqkees",         "ems-esp-domoticz-plugin",              "EMS bus Wi-Fi Gateway",             "master"],
+    "eq3max":                       ["mvzut",           "maxcube-Domoticz-plugin",              "eQ-3 MAX! Cube",                    "master"],
+    "freeboxv6":                    ["supermat",        "PluginDomoticzFreebox",                "Freebox V6 (Revolution)",           "master"],
+    "GC-100":                       ["dnpwwo",          "Domoticz-GlobalCache-Plugin",          "Global Cache 100",                  "master"],
+    "Homewizard":                   ["rvdvoorde",       "domoticz-homewizard",                  "Homewizard",                        "master"],
+    "HivePlug":                     ["imcfarla2003",    "domoticz-hive",                        "Hive Plugin",                       "master"],
+    "iDetect":                      ["d-EScape",        "Domoticz_iDetect",              	    "iDetect Presence Detection",        "master"],
+    "IKEA-Tradfri":                 ["moroen",          "IKEA-Tradfri-plugin",                  "IKEA Tradfri",                      "master"],
+    "Life360":                      ["febalci",         "DomoticzLife360",                      "Life 360 Presence",                 "master"],
+    "Linky":                        ["guillaumezin",    "DomoticzLinky",                        "Linky",                             "master"],
+    "MeteoAlarmEU":                 ["ycahome",         "MeteoAlarmEU",                         "Meteo Alarm EU RSS Reader",         "master"],
+    "mikrotik-routeros":            ["mrin",            "domoticz-routeros-plugin",             "Mikrotik RouterOS",                 "master"],
+    "MoonPhases":                   ["ycahome",         "MoonPhases",                           "Moon Phases",                       "master"],
+    "MQTTDiscovery":                ["emontnemery",     "domoticz_mqtt_discovery",              "MQTT discovery",                    "master"],
+    "Onkyo":                	    ["jorgh6",          "domoticz-onkyo-plugin",                "Onkyo AV Receiver",                 "master"],
+    "xfr_openaq":                   ["Xorfor",          "Domoticz-OpenAQ-Plugin",               "OpenAQ",                            "master"],
+    "xfr_pihole":                   ["Xorfor",          "Domoticz-Pi-hole-Plugin",              "Pi-hole summary",                   "master"],
+    "xfr-pimonitor":                ["Xorfor",          "Domoticz-PiMonitor-Plugin",            "PiMonitor",                         "master"],
+    "PioneerAVR":                   ["febalci",         "DomoticzPioneerAVR",                   "Pioneer AVR",                       "master"],
+    "RAVEn":                        ["dnpwwo",          "Domoticz-RAVEn-Plugin",                "RAVEn Zigbee energy monitor",       "master"],
+    "SmogTok":                      ["smogtok",         "smogtokdomoticzplug",                  "SmogTok Air Quality monitor",       "master"],
+    "SNMPreader":                   ["ycahome",         "SNMPreader",                           "SNMP Reader",                       "master"],
+    "Sonos":                        ["gerard33",        "sonos",                                "Sonos Players",                     "master"],
+    "sony":                         ["gerard33",        "sony-bravia",                          "Sony Bravia TV (with Kodi remote)", "master"],
+    "Synology SurveillanceStation": ["lolautruche",     "SurveillanceStationDomoticz",          "Synology SurveillanceStation",      "master"],
+    "xfr_speedtest":                ["Xorfor",          "Domoticz-Speedtest-Plugin",            "Speedtest",                         "master"],
+    "SYSFS-Switches":               ["flatsiedatsie",   "GPIO-SYSFS-Switches",                  "SYSFS-Switches",                    "master"],
+    "NUT_UPS":                      ["999LV",           "NUT_UPS",                              "UPS Monitor",                       "master"],
+    "WAN-IP-CHECKER":               ["ycahome",         "WAN-IP-CHECKER",                       "Wan IP Checker",                    "master"],
+    "Mi_Flower_mate_plugin":        ["flatsiedatsie",   "Mi_Flower_mate_plugin",                "Xiaomi Mi Flower Mate",             "master"],
+    "xiaomi-mi-robot-vacuum":       ["mrin",            "domoticz-mirobot-plugin",              "Xiaomi Mi Robot Vacuum",            "master"],
+    "XiaomiPM":                     ["febalci",         "DomoticzXiaomiPM2.5",                  "Xiaomi PM2.5 Sensor",               "master"],
+    "YamahaPlug":                   ["thomas-villagers", "domoticz-yamaha",                     "Yamaha AV Receiver",                "master"],
+    "Zigate":                       ["pipiche38",       "Domoticz-Zigate",                      "Zigate plugin",                     "stable"],
+    "zigbee2mqtt":                  ["stas-demydiuk",	"domoticz-zigbee2mqtt-plugin",          "Zigbee2Mqtt",                       "master"],
+}
+
+plugins = {}
+
+for key, value in plugins_raw.items():
+    plugins[key] = Plugin(key, value[0], value[2], value[1], value[3])

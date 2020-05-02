@@ -1,0 +1,28 @@
+<div id="plugin-view"></div>
+
+<script type="text/ng-template" id="app/pp-manager/index.html">
+    <div class="container">
+        <a class="btnstylerev" back-button>{{ ::'Back' | translate }}</a>
+        <h2 class="page-header">Python Plugins Manager</h2>
+
+        <page-loading-indicator ng-hide="::$ctrl.plugins"/>
+
+        <pp-manager-plugins-table
+                ng-if="::$ctrl.plugins"
+                plugins="$ctrl.plugins"
+                on-update="$ctrl.refreshPlugins()"
+        />
+    </div>
+</script>
+
+<script>
+    require(['../templates/plugins-manager'], function() {
+        angular.element(document).injector().invoke(function($compile) {
+            var $div = angular.element('<pp-manager-plugin />');
+            angular.element('#plugin-view').append($div);
+
+            var scope = angular.element($div).scope();
+            $compile($div)(scope);
+        });
+    });
+</script>
