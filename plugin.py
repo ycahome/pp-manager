@@ -9,9 +9,9 @@
 
 
 """
-<plugin key="PP-MANAGER" name="Python Plugin Manager" author="ycahome" version="1.5.21" externallink="https://www.domoticz.com/forum/viewtopic.php?f=65&t=22339">
+<plugin key="PP-MANAGER" name="Python Plugin Manager" author="ycahome" version="1.5.22" externallink="https://www.domoticz.com/forum/viewtopic.php?f=65&t=22339">
     <description>
-		<h2>Python Plugin Manager v.1.5.21</h2><br/>
+		<h2>Python Plugin Manager v.1.5.22</h2><br/>
 		<h3>Features</h3>
 		<ul style="list-style-type:square">
 			<li>Install plugins</li>
@@ -32,18 +32,20 @@
                 <option label="Dummy Plugin" value="Dummy_Plugin"/>
                 <option label="Battery monitoring for Z-Wave nodes" value="BatteryLevel"/>
                 <option label="Buienradar.nl (Weather lookup)" value="Buienradar"/>
-		<option label="Chromecast plugin for Domoticz" value="ChromecastPlugin"/>
+                <option label="Chromecast plugin for Domoticz" value="ChromecastPlugin"/>
                 <option label="Crow Runner Alarm" value="AAPIPModule"/>
                 <option label="deCONZ bridge (For Conbee,Raspbee)" value="deCONZ"/>
                 <option label="Denon/Marantz Amplifier" value="Denon4306"/>
                 <option label="Disc usage" value="xfr_discusage"/>
                 <option label="Dutch earthquakes" value="xfr_aardbeving"/>
+                <option label="Dyson Pure Link" value="DysonPureLink"/>
                 <option label="Eartquake EMSC Data" value="SeismicPortal"/>
                 <option label="ebusd bridge" value="ebusd"/>
-		<option label="EMS bus Wi-Fi Gateway" value="ems-gateway"/>
+                <option label="EMS bus Wi-Fi Gateway" value="ems-gateway"/>
                 <option label="eQ-3 MAX!" value="eq3max"/>
                 <option label="Freebox Revolution" value="freeboxv6"/>
                 <option label="Global Cache 100" value="GC-100"/>
+                <option label="GoodWE Solar inverter via SEMS API" value="GoodWeAPI"/>
                 <option label="Homewizard" value="Homewizard"/>
                 <option label="Hive Plugin" value="HivePlug"/>
                 <option label="iDetect Presence Detection" value="iDetect"/>
@@ -149,12 +151,14 @@ class BasePlugin:
             "Denon4306":                    ["dnpwwo",    	"Domoticz-Denon-Plugin",                "Denon/Marantz Amplifier",           "master"],
             "xfr_discusage":                ["Xorfor",    	"Domoticz-Disc-usage-Plugin",           "Disc usage",                        "master"],
             "xfr_aardbeving":               ["Xorfor",    	"Domoticz-LastDutchEarthquake-Plugin",  "Dutch earthquakes",                 "master"],
+            "DysonPureLink":               ["JanJaapKo",    	"DysonPureLink",                    "Dyson Pure Link",                  "master"],
             "SeismicPortal":                ["febalci",    	"DomoticzEarthquake",                   "Eartquake EMSC Data",               "master"],
             "ebusd":                        ["guillaumezin",    "DomoticzEbusd",                        "ebusd bridge",                      "master"],
             "ems-gateway":                  ["bbqkees",         "ems-esp-domoticz-plugin",              "EMS bus Wi-Fi Gateway",             "master"],
 	    "eq3max":                       ["mvzut",           "maxcube-Domoticz-plugin",              "eQ-3 MAX! Cube",                    "master"],
             "freeboxv6":                    ["supermat",        "PluginDomoticzFreebox",                "Freebox V6 (Revolution)",           "master"],
             "GC-100":                       ["dnpwwo",          "Domoticz-GlobalCache-Plugin",          "Global Cache 100",                  "master"],
+            "GoodWeAPI":                       ["JanJaapKo",          "domoticz-GoodWeSEMS",          "GoodWE Solar inverter via SEMS API",  "master"],
             "Homewizard":                   ["rvdvoorde",       "domoticz-homewizard",                  "Homewizard",                        "master"],
             "HivePlug":                     ["imcfarla2003",    "domoticz-hive",                        "Hive Plugin",                       "master"],
             "iDetect":                      ["d-EScape",        "Domoticz_iDetect",              	"iDetect Presence Detection",        "master"],
