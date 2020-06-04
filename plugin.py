@@ -9,9 +9,9 @@
 
 
 """
-<plugin key="PP-MANAGER" name="Python Plugin Manager" author="ycahome" version="1.5.22" externallink="https://www.domoticz.com/forum/viewtopic.php?f=65&t=22339">
+<plugin key="PP-MANAGER" name="Python Plugin Manager" author="ycahome" version="1.5.23" externallink="https://www.domoticz.com/forum/viewtopic.php?f=65&t=22339">
     <description>
-		<h2>Python Plugin Manager v.1.5.22</h2><br/>
+		<h2>Python Plugin Manager v.1.5.23</h2><br/>
 		<h3>Features</h3>
 		<ul style="list-style-type:square">
 			<li>Install plugins</li>
@@ -47,6 +47,7 @@
                 <option label="Global Cache 100" value="GC-100"/>
                 <option label="GoodWE Solar inverter via SEMS API" value="GoodWeAPI"/>
                 <option label="Homewizard" value="Homewizard"/>
+                <option label="Hisense AC (AEH-W4A1)" value="aeh-w4a1"/>
                 <option label="Hive Plugin" value="HivePlug"/>
                 <option label="iDetect Presence Detection" value="iDetect"/>
                 <option label="IKEA Tradfri" value="IKEA-Tradfri"/>
@@ -67,7 +68,7 @@
                 <option label="Sonos Players" value="Sonos"/>
                 <option label="Sony Bravia TV (with Kodi remote)" value="sony"/>
                 <option label="Speedtest" value="xfr_speedtest"/>
-		<option label="Synology SurveillanceStation" value="SurveillanceStation"/>
+                <option label="Synology SurveillanceStation" value="SurveillanceStation"/>
                 <option label="SYSFS-Switches" value="SYSFS-Switches"/>
                 <option label="UPS Monitor" value="NUT_UPS"/>
                 <option label="Wan IP Checker" value="WAN-IP-CHECKER"/>
@@ -160,6 +161,7 @@ class BasePlugin:
             "GC-100":                       ["dnpwwo",          "Domoticz-GlobalCache-Plugin",          "Global Cache 100",                  "master"],
             "GoodWeAPI":                       ["JanJaapKo",          "domoticz-GoodWeSEMS",          "GoodWE Solar inverter via SEMS API",  "master"],
             "Homewizard":                   ["rvdvoorde",       "domoticz-homewizard",                  "Homewizard",                        "master"],
+            "aeh-w4a1":                     ["x-th-unicorn",    "domoticz-aeh-w4a1",                    "Hisense AC (AEH-W4A1)",             "master"],
             "HivePlug":                     ["imcfarla2003",    "domoticz-hive",                        "Hive Plugin",                       "master"],
             "iDetect":                      ["d-EScape",        "Domoticz_iDetect",              	"iDetect Presence Detection",        "master"],
             "IKEA-Tradfri":                 ["moroen",          "IKEA-Tradfri-plugin",                  "IKEA Tradfri",                      "master"],
