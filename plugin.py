@@ -9,9 +9,9 @@
 
 
 """
-<plugin key="PP-MANAGER" name="Python Plugin Manager" author="ycahome" version="1.5.23" externallink="https://www.domoticz.com/forum/viewtopic.php?f=65&t=22339">
+<plugin key="PP-MANAGER" name="Python Plugin Manager" author="ycahome" version="1.5.24" externallink="https://www.domoticz.com/forum/viewtopic.php?f=65&t=22339">
     <description>
-		<h2>Python Plugin Manager v.1.5.23</h2><br/>
+		<h2>Python Plugin Manager v.1.5.24</h2><br/>
 		<h3>Features</h3>
 		<ul style="list-style-type:square">
 			<li>Install plugins</li>
@@ -76,6 +76,7 @@
                 <option label="Xiaomi Mi Robot Vacuum" value="xiaomi-mi-robot-vacuum"/>
                 <option label="Xiaomi PM2.5 Sensor" value="XiaomiPM"/>
                 <option label="Yamaha AV Receiver" value="YamahaPlug"/>
+                <option label="Yi Hack" value="YiHack"/>
                 <option label="Zigate plugin" value="Zigate"/>
                 <option label="Zigbee2Mqtt" value="Zigbee2Mqtt"/>
             </options>
@@ -152,14 +153,14 @@ class BasePlugin:
             "Denon4306":                    ["dnpwwo",    	"Domoticz-Denon-Plugin",                "Denon/Marantz Amplifier",           "master"],
             "xfr_discusage":                ["Xorfor",    	"Domoticz-Disc-usage-Plugin",           "Disc usage",                        "master"],
             "xfr_aardbeving":               ["Xorfor",    	"Domoticz-LastDutchEarthquake-Plugin",  "Dutch earthquakes",                 "master"],
-            "DysonPureLink":               ["JanJaapKo",    	"DysonPureLink",                    "Dyson Pure Link",                  "master"],
+            "DysonPureLink":                ["JanJaapKo",    	"DysonPureLink",                    "Dyson Pure Link",                  "master"],
             "SeismicPortal":                ["febalci",    	"DomoticzEarthquake",                   "Eartquake EMSC Data",               "master"],
             "ebusd":                        ["guillaumezin",    "DomoticzEbusd",                        "ebusd bridge",                      "master"],
             "ems-gateway":                  ["bbqkees",         "ems-esp-domoticz-plugin",              "EMS bus Wi-Fi Gateway",             "master"],
 	    "eq3max":                       ["mvzut",           "maxcube-Domoticz-plugin",              "eQ-3 MAX! Cube",                    "master"],
             "freeboxv6":                    ["supermat",        "PluginDomoticzFreebox",                "Freebox V6 (Revolution)",           "master"],
             "GC-100":                       ["dnpwwo",          "Domoticz-GlobalCache-Plugin",          "Global Cache 100",                  "master"],
-            "GoodWeAPI":                       ["JanJaapKo",          "domoticz-GoodWeSEMS",          "GoodWE Solar inverter via SEMS API",  "master"],
+            "GoodWeAPI":                    ["JanJaapKo",       "domoticz-GoodWeSEMS",                  "GoodWE Solar inverter via SEMS API","master"],
             "Homewizard":                   ["rvdvoorde",       "domoticz-homewizard",                  "Homewizard",                        "master"],
             "aeh-w4a1":                     ["x-th-unicorn",    "domoticz-aeh-w4a1",                    "Hisense AC (AEH-W4A1)",             "master"],
             "HivePlug":                     ["imcfarla2003",    "domoticz-hive",                        "Hive Plugin",                       "master"],
@@ -190,6 +191,7 @@ class BasePlugin:
             "xiaomi-mi-robot-vacuum":       ["mrin",            "domoticz-mirobot-plugin",              "Xiaomi Mi Robot Vacuum",            "master"],
             "XiaomiPM":                     ["febalci",         "DomoticzXiaomiPM2.5",                  "Xiaomi PM2.5 Sensor",               "master"],
             "YamahaPlug":                   ["thomas-villagers","domoticz-yamaha",                      "Yamaha AV Receiver",                "master"],
+            "YiHack":                       ["galadril",        "Domoticz-Yi-Hack-Plugin",              "Yi Hack",                	     "master"],
             "Zigate":                       ["pipiche38",       "Domoticz-Zigate",                      "Zigate plugin",                     "stable"],
             "Zigbee2Mqtt":                  ["stas-demydiuk",	"domoticz-zigbee2mqtt-plugin",          "Zigbee2Mqtt",                       "master"],
         }
