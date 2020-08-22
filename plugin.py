@@ -73,6 +73,7 @@
                 <option label="SYSFS-Switches" value="SYSFS-Switches"/>
                 <option label="UPS Monitor" value="NUT_UPS"/>
                 <option label="Wan IP Checker" value="WAN-IP-CHECKER"/>
+		<option label="WLANThermo" value="WLANThermo"/>
                 <option label="Xiaomi Mi Flower Mate" value="Mi_Flower_mate_plugin"/>
                 <option label="Xiaomi Mi Robot Vacuum" value="xiaomi-mi-robot-vacuum"/>
                 <option label="Xiaomi PM2.5 Sensor" value="XiaomiPM"/>
@@ -188,6 +189,7 @@ class BasePlugin:
             "xfr_speedtest":                ["Xorfor",          "Domoticz-Speedtest-Plugin",            "Speedtest",                         "master"],
             "SYSFS-Switches":               ["flatsiedatsie",   "GPIO-SYSFS-Switches",                  "SYSFS-Switches",                    "master"],
             "NUT_UPS":                      ["999LV",           "NUT_UPS",                              "UPS Monitor",                       "master"],
+            "WLANThermo":                   ["galadril",        "Domoticz-WLANThermo-Plugin",           "WLANThermo",                        "master"],
             "WAN-IP-CHECKER":               ["ycahome",         "WAN-IP-CHECKER",                       "Wan IP Checker",                    "master"],
             "Mi_Flower_mate_plugin":        ["flatsiedatsie",   "Mi_Flower_mate_plugin",                "Xiaomi Mi Flower Mate",             "master"],
             "xiaomi-mi-robot-vacuum":       ["mrin",            "domoticz-mirobot-plugin",              "Xiaomi Mi Robot Vacuum",            "master"],
