@@ -9,9 +9,9 @@
 
 
 """
-<plugin key="PP-MANAGER" name="Python Plugin Manager" author="ycahome" version="1.5.26" externallink="https://www.domoticz.com/forum/viewtopic.php?f=65&t=22339">
+<plugin key="PP-MANAGER" name="Python Plugin Manager" author="ycahome" version="1.5.27" externallink="https://www.domoticz.com/forum/viewtopic.php?f=65&t=22339">
     <description>
-		<h2>Python Plugin Manager v.1.5.26</h2><br/>
+		<h2>Python Plugin Manager v.1.5.27</h2><br/>
 		<h3>Features</h3>
 		<ul style="list-style-type:square">
 			<li>Install plugins</li>
@@ -67,6 +67,7 @@
                 <option label="SmogTok Air Quality monitor" value="SmogTok"/>
                 <option label="SNMP Reader" value="SNMPreader"/>
                 <option label="Sonos Players" value="Sonos"/>
+                <option label="Sonoff Mini" value="sonoff-domoticz-plugin"/>
                 <option label="Sony Bravia TV (with Kodi remote)" value="sony"/>
                 <option label="Speedtest" value="xfr_speedtest"/>
                 <option label="Synology SurveillanceStation" value="SurveillanceStation"/>
@@ -184,6 +185,7 @@ class BasePlugin:
             "SmogTok":                      ["smogtok",         "smogtokdomoticzplug",                  "SmogTok Air Quality monitor",       "master"],
             "SNMPreader":                   ["ycahome",         "SNMPreader",                           "SNMP Reader",                       "master"],
             "Sonos":                        ["gerard33",        "sonos",                                "Sonos Players",                     "master"],
+            "sonoff-domoticz-plugin":       ["bobzomer",        "sonoff-domoticz-plugin",               "Sonoff Mini",                       "master"],
             "sony":                         ["gerard33",        "sony-bravia",                          "Sony Bravia TV (with Kodi remote)", "master"],
             "Synology SurveillanceStation": ["lolautruche",     "SurveillanceStationDomoticz",          "Synology SurveillanceStation",      "master"],
             "xfr_speedtest":                ["Xorfor",          "Domoticz-Speedtest-Plugin",            "Speedtest",                         "master"],
