@@ -9,9 +9,9 @@
 
 
 """
-<plugin key="PP-MANAGER" name="Python Plugin Manager" author="ycahome" version="1.5.27" externallink="https://www.domoticz.com/forum/viewtopic.php?f=65&t=22339">
+<plugin key="PP-MANAGER" name="Python Plugin Manager" author="ycahome" version="1.5.28" externallink="https://www.domoticz.com/forum/viewtopic.php?f=65&t=22339">
     <description>
-		<h2>Python Plugin Manager v.1.5.27</h2><br/>
+		<h2>Python Plugin Manager v.1.5.28</h2><br/>
 		<h3>Features</h3>
 		<ul style="list-style-type:square">
 			<li>Install plugins</li>
@@ -60,10 +60,13 @@
                 <option label="MQTT discovery" value="MQTTDiscovery"/>
                 <option label="Onkyo AV Receiver" value="Onkyo"/>
                 <option label="OpenAQ" value="xfr_openaq"/>
+                <option label="OpenWRT WiFi Presence MQTT translator" value="owrtwifi2domo"/>
                 <option label="Pi-hole summary" value="xfr_pihole"/>
                 <option label="PiMonitor" value="xfr-pimonitor"/>
                 <option label="Pioneer AVR" value="PioneerAVR"/>
+                <option label="RTL_433 MQTT receiver" value="pyrtl433"/>
                 <option label="RAVEn Zigbee energy monitor" value="RAVEn"/>
+                <option label="Shelly MQTT translator" value="Shelly_MQTT"/>
                 <option label="SmogTok Air Quality monitor" value="SmogTok"/>
                 <option label="SNMP Reader" value="SNMPreader"/>
                 <option label="Sonos Players" value="Sonos"/>
@@ -180,8 +183,11 @@ class BasePlugin:
             "xfr_openaq":                   ["Xorfor",          "Domoticz-OpenAQ-Plugin",               "OpenAQ",                            "master"],
             "xfr_pihole":                   ["Xorfor",          "Domoticz-Pi-hole-Plugin",              "Pi-hole summary",                   "master"],
             "xfr-pimonitor":                ["Xorfor",          "Domoticz-PiMonitor-Plugin",            "PiMonitor",                         "master"],
+            "owrtwifi2domo":                ["enesbcs",         "owrtwifi2domo",                        "OpenWRT WiFi Presence MQTT translator","master"],
             "PioneerAVR":                   ["febalci",         "DomoticzPioneerAVR",                   "Pioneer AVR",                       "master"],
+            "pyrtl433":                     ["enesbcs",         "pyrtl433",                             "RTL_433 MQTT receiver",             "master"],
             "RAVEn":                        ["dnpwwo",          "Domoticz-RAVEn-Plugin",                "RAVEn Zigbee energy monitor",       "master"],
+            "Shelly_MQTT":                  ["enesbcs",         "Shelly_MQTT",                          "Shelly MQTT translator",            "master"],
             "SmogTok":                      ["smogtok",         "smogtokdomoticzplug",                  "SmogTok Air Quality monitor",       "master"],
             "SNMPreader":                   ["ycahome",         "SNMPreader",                           "SNMP Reader",                       "master"],
             "Sonos":                        ["gerard33",        "sonos",                                "Sonos Players",                     "master"],
