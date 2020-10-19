@@ -9,9 +9,9 @@
 
 
 """
-<plugin key="PP-MANAGER" name="Python Plugin Manager" author="ycahome" version="1.5.28" externallink="https://www.domoticz.com/forum/viewtopic.php?f=65&t=22339">
+<plugin key="PP-MANAGER" name="Python Plugin Manager" author="ycahome" version="1.5.29" externallink="https://www.domoticz.com/forum/viewtopic.php?f=65&t=22339">
     <description>
-		<h2>Python Plugin Manager v.1.5.28</h2><br/>
+		<h2>Python Plugin Manager v.1.5.29</h2><br/>
 		<h3>Features</h3>
 		<ul style="list-style-type:square">
 			<li>Install plugins</li>
@@ -78,6 +78,7 @@
                 <option label="UPS Monitor" value="NUT_UPS"/>
                 <option label="Wan IP Checker" value="WAN-IP-CHECKER"/>
 		<option label="WLANThermo" value="WLANThermo"/>
+		<option label="WLED" value="WLED"/>
                 <option label="Xiaomi Mi Flower Mate" value="Mi_Flower_mate_plugin"/>
                 <option label="Xiaomi Mi Robot Vacuum" value="xiaomi-mi-robot-vacuum"/>
                 <option label="Xiaomi PM2.5 Sensor" value="XiaomiPM"/>
@@ -198,6 +199,7 @@ class BasePlugin:
             "SYSFS-Switches":               ["flatsiedatsie",   "GPIO-SYSFS-Switches",                  "SYSFS-Switches",                    "master"],
             "NUT_UPS":                      ["999LV",           "NUT_UPS",                              "UPS Monitor",                       "master"],
             "WLANThermo":                   ["galadril",        "Domoticz-WLANThermo-Plugin",           "WLANThermo",                        "master"],
+            "WLED":                         ["frustreermeneer", "domoticz-wled-plugin",                 "WLED",                              "master"],
             "WAN-IP-CHECKER":               ["ycahome",         "WAN-IP-CHECKER",                       "Wan IP Checker",                    "master"],
             "Mi_Flower_mate_plugin":        ["flatsiedatsie",   "Mi_Flower_mate_plugin",                "Xiaomi Mi Flower Mate",             "master"],
             "xiaomi-mi-robot-vacuum":       ["mrin",            "domoticz-mirobot-plugin",              "Xiaomi Mi Robot Vacuum",            "master"],
