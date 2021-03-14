@@ -9,9 +9,9 @@
 
 
 """
-<plugin key="PP-MANAGER" name="Python Plugin Manager" author="ycahome" version="1.5.29" externallink="https://www.domoticz.com/forum/viewtopic.php?f=65&t=22339">
+<plugin key="PP-MANAGER" name="Python Plugin Manager" author="ycahome" version="1.5.30" externallink="https://www.domoticz.com/forum/viewtopic.php?f=65&t=22339">
     <description>
-		<h2>Python Plugin Manager v.1.5.29</h2><br/>
+		<h2>Python Plugin Manager v.1.5.30</h2><br/>
 		<h3>Features</h3>
 		<ul style="list-style-type:square">
 			<li>Install plugins</li>
@@ -33,6 +33,7 @@
                 <option label="Battery monitoring for Z-Wave nodes" value="BatteryLevel"/>
                 <option label="Buienradar.nl (Weather lookup)" value="Buienradar"/>
                 <option label="Chromecast plugin for Domoticz" value="ChromecastPlugin"/>
+                <option label="Creasol DomBus RS485 I/O/Sens modules" value="CreasolDomBus"/>
                 <option label="Crow Runner Alarm" value="AAPIPModule"/>
                 <option label="deCONZ bridge (For Conbee,Raspbee)" value="deCONZ"/>
                 <option label="Denon/Marantz Amplifier" value="Denon4306"/>
@@ -156,6 +157,7 @@ class BasePlugin:
             "Buienradar":                   ["ffes",            "domoticz-buienradar",                  "Buienradar.nl (Weather lookup)",    "master"],
 	    "AAPIPModule":                  ["febalci",         "DomoticzCrowAlarm",                    "Crow Runner Alarm",                 "master"],
             "ChromecastPlugin":             ["Tsjippy",         "ChromecastPlugin",                    	"Chromecast plugin for Domoticz",    "master"],
+            "CreasolDomBus":                ["CreasolTech",     "CreasolDomBus",                    	"Creasol DomBus RS485 I/O/Sens modules", "master"],
             "deCONZ":                       ["Smanar",          "Domoticz-deCONZ",                      "deCONZ bridge (For Conbee,Raspbee)","master"],
             "Denon4306":                    ["dnpwwo",    	"Domoticz-Denon-Plugin",                "Denon/Marantz Amplifier",           "master"],
             "xfr_discusage":                ["Xorfor",    	"Domoticz-Disc-usage-Plugin",           "Disc usage",                        "master"],
