@@ -49,6 +49,7 @@
                 <option label="Global Cache 100" value="GC-100"/>
                 <option label="GoodWE Solar inverter via SEMS API" value="GoodWeAPI"/>
                 <option label="Homewizard" value="Homewizard"/>
+                <option label="Hiking DDS238-2 ZN/S modbus over TCP/IP" value="ds238-modus-tcp"/>
                 <option label="Hisense AC (AEH-W4A1)" value="aeh-w4a1"/>
                 <option label="Hive Plugin" value="HivePlug"/>
                 <option label="iDetect Presence Detection" value="iDetect"/>
@@ -210,6 +211,7 @@ class BasePlugin:
             "YiHack":                       ["galadril",        "Domoticz-Yi-Hack-Plugin",              "Yi Hack",                	     "master"],
             "Zigate":                       ["pipiche38",       "Domoticz-Zigate",                      "Zigate plugin",                     "stable"],
             "Zigbee2Mqtt":                  ["stas-demydiuk",	"domoticz-zigbee2mqtt-plugin",          "Zigbee2Mqtt",                       "master"],
+            "ds238-modbus-tcp":             ["xbeaudouin",	"domoticz-ds238-modbus-tcp",            "DS238-2 ZN/S ModbusTCP",            "master"],
         }
         
         return
