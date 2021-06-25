@@ -9,9 +9,9 @@
 
 
 """
-<plugin key="PP-MANAGER" name="Python Plugin Manager" author="ycahome" version="1.5.30" externallink="https://www.domoticz.com/forum/viewtopic.php?f=65&t=22339">
+<plugin key="PP-MANAGER" name="Python Plugin Manager" author="ycahome" version="1.5.31" externallink="https://www.domoticz.com/forum/viewtopic.php?f=65&t=22339">
     <description>
-		<h2>Python Plugin Manager v.1.5.30</h2><br/>
+		<h2>Python Plugin Manager v.1.5.31</h2><br/>
 		<h3>Features</h3>
 		<ul style="list-style-type:square">
 			<li>Install plugins</li>
@@ -55,6 +55,7 @@
                 <option label="IKEA Tradfri" value="IKEA-Tradfri"/>
                 <option label="Life 360 Presence" value="Life360"/>
                 <option label="Linky" value="Linky"/>
+		<option label="Link-Tap" value="Link-Tap"/>
                 <option label="Meteo Alarm EU RSS Reader" value="MeteoAlarmEU"/>
                 <option label="Mikrotik RouterOS" value="mikrotik-routeros"/>
                 <option label="Moon Phases" value="MoonPhases"/>
@@ -178,7 +179,8 @@ class BasePlugin:
             "IKEA-Tradfri":                 ["moroen",          "IKEA-Tradfri-plugin",                  "IKEA Tradfri",                      "master"],
             "Life360":                      ["febalci",         "DomoticzLife360",                      "Life 360 Presence",                 "master"],
             "Linky":                        ["guillaumezin",    "DomoticzLinky",                        "Linky",                             "master"],
-            "MeteoAlarmEU":                 ["ycahome",         "MeteoAlarmEU",                         "Meteo Alarm EU RSS Reader",         "master"],
+	    "Link-Tap":                     ["DebugBill",       "Link-Tap",                             "Link-Tap Watering System",          "master"],
+	    "MeteoAlarmEU":                 ["ycahome",         "MeteoAlarmEU",                         "Meteo Alarm EU RSS Reader",         "master"],
             "mikrotik-routeros":            ["mrin",            "domoticz-routeros-plugin",             "Mikrotik RouterOS",                 "master"],
             "MoonPhases":                   ["ycahome",         "MoonPhases",                           "Moon Phases",                       "master"],
             "MQTTDiscovery":                ["emontnemery",     "domoticz_mqtt_discovery",              "MQTT discovery",                    "master"],
