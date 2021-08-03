@@ -53,6 +53,7 @@
                 <option label="Hive Plugin" value="HivePlug"/>
                 <option label="iDetect Presence Detection" value="iDetect"/>
                 <option label="IKEA Tradfri" value="IKEA-Tradfri"/>
+                <option label="Kia UVO and Hyundai BlueLink vehicles" value="KiaUvoHyundaiBlueLink"/>
                 <option label="Life 360 Presence" value="Life360"/>
                 <option label="Linky" value="Linky"/>
 		<option label="Link-Tap" value="Link-Tap"/>
@@ -177,6 +178,7 @@ class BasePlugin:
             "HivePlug":                     ["imcfarla2003",    "domoticz-hive",                        "Hive Plugin",                       "master"],
             "iDetect":                      ["d-EScape",        "Domoticz_iDetect",              	"iDetect Presence Detection",        "master"],
             "IKEA-Tradfri":                 ["moroen",          "IKEA-Tradfri-plugin",                  "IKEA Tradfri",                      "master"],
+            "KiaUvoHyundaiBlueLink":        ["CreasolTech",     "domoticz-kia-hyundai",                 "Kia UVO and Hyundai BlueLink vehicles", "master"],
             "Life360":                      ["febalci",         "DomoticzLife360",                      "Life 360 Presence",                 "master"],
             "Linky":                        ["guillaumezin",    "DomoticzLinky",                        "Linky",                             "master"],
 	    "Link-Tap":                     ["DebugBill",       "Link-Tap",                             "Link-Tap Watering System",          "master"],
