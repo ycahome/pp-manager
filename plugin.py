@@ -54,8 +54,10 @@
                 <option label="Hive Plugin" value="HivePlug"/>
                 <option label="iDetect Presence Detection" value="iDetect"/>
                 <option label="IKEA Tradfri" value="IKEA-Tradfri"/>
+                <option label="Kia UVO and Hyundai BlueLink vehicles" value="KiaUvoHyundaiBlueLink"/>
                 <option label="Life 360 Presence" value="Life360"/>
                 <option label="Linky" value="Linky"/>
+		<option label="Link-Tap" value="Link-Tap"/>
                 <option label="Meteo Alarm EU RSS Reader" value="MeteoAlarmEU"/>
                 <option label="Mikrotik RouterOS" value="mikrotik-routeros"/>
                 <option label="Moon Phases" value="MoonPhases"/>
@@ -177,9 +179,11 @@ class BasePlugin:
             "HivePlug":                     ["imcfarla2003",    "domoticz-hive",                        "Hive Plugin",                       "master"],
             "iDetect":                      ["d-EScape",        "Domoticz_iDetect",              	"iDetect Presence Detection",        "master"],
             "IKEA-Tradfri":                 ["moroen",          "IKEA-Tradfri-plugin",                  "IKEA Tradfri",                      "master"],
+            "KiaUvoHyundaiBlueLink":        ["CreasolTech",     "domoticz-kia-hyundai",                 "Kia UVO and Hyundai BlueLink vehicles", "master"],
             "Life360":                      ["febalci",         "DomoticzLife360",                      "Life 360 Presence",                 "master"],
             "Linky":                        ["guillaumezin",    "DomoticzLinky",                        "Linky",                             "master"],
-            "MeteoAlarmEU":                 ["ycahome",         "MeteoAlarmEU",                         "Meteo Alarm EU RSS Reader",         "master"],
+	    "Link-Tap":                     ["DebugBill",       "Link-Tap",                             "Link-Tap Watering System",          "master"],
+	    "MeteoAlarmEU":                 ["ycahome",         "MeteoAlarmEU",                         "Meteo Alarm EU RSS Reader",         "master"],
             "mikrotik-routeros":            ["mrin",            "domoticz-routeros-plugin",             "Mikrotik RouterOS",                 "master"],
             "MoonPhases":                   ["ycahome",         "MoonPhases",                           "Moon Phases",                       "master"],
             "MQTTDiscovery":                ["emontnemery",     "domoticz_mqtt_discovery",              "MQTT discovery",                    "master"],
@@ -209,7 +213,7 @@ class BasePlugin:
             "XiaomiPM":                     ["febalci",         "DomoticzXiaomiPM2.5",                  "Xiaomi PM2.5 Sensor",               "master"],
             "YamahaPlug":                   ["thomas-villagers","domoticz-yamaha",                      "Yamaha AV Receiver",                "master"],
             "YiHack":                       ["galadril",        "Domoticz-Yi-Hack-Plugin",              "Yi Hack",                	     "master"],
-            "Zigate":                       ["pipiche38",       "Domoticz-Zigate",                      "Zigate plugin",                     "stable"],
+            "Zigate":                       ["zigbeefordomoticz", "Domoticz-Zigbee",                    "Zigate plugin",                     "stable5"],
             "Zigbee2Mqtt":                  ["stas-demydiuk",	"domoticz-zigbee2mqtt-plugin",          "Zigbee2Mqtt",                       "master"],
             "ds238-modbus-tcp":             ["xbeaudouin",	"domoticz-ds238-modbus-tcp",            "DS238-2 ZN/S ModbusTCP",            "master"],
         }
