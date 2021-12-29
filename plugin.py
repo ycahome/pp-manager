@@ -9,9 +9,9 @@
 
 
 """
-<plugin key="PP-MANAGER" name="Python Plugin Manager" author="ycahome" version="1.5.31" externallink="https://www.domoticz.com/forum/viewtopic.php?f=65&t=22339">
+<plugin key="PP-MANAGER" name="Python Plugin Manager" author="ycahome" version="1.5.32" externallink="https://www.domoticz.com/forum/viewtopic.php?f=65&t=22339">
     <description>
-		<h2>Python Plugin Manager v.1.5.31</h2><br/>
+		<h2>Python Plugin Manager v.1.5.32</h2><br/>
 		<h3>Features</h3>
 		<ul style="list-style-type:square">
 			<li>Install plugins</li>
@@ -210,7 +210,7 @@ class BasePlugin:
             "XiaomiPM":                     ["febalci",         "DomoticzXiaomiPM2.5",                  "Xiaomi PM2.5 Sensor",               "master"],
             "YamahaPlug":                   ["thomas-villagers","domoticz-yamaha",                      "Yamaha AV Receiver",                "master"],
             "YiHack":                       ["galadril",        "Domoticz-Yi-Hack-Plugin",              "Yi Hack",                	     "master"],
-            "Zigate":                       ["pipiche38",       "Domoticz-Zigate",                      "Zigate plugin",                     "stable"],
+            "Zigate":                       ["zigbeefordomoticz", "Domoticz-Zigbee",                    "Zigate plugin",                     "stable5"],
             "Zigbee2Mqtt":                  ["stas-demydiuk",	"domoticz-zigbee2mqtt-plugin",          "Zigbee2Mqtt",                       "master"],
         }
         
