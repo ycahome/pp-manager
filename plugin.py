@@ -9,9 +9,9 @@
 
 
 """
-<plugin key="PP-MANAGER" name="Python Plugin Manager" author="ycahome" version="1.5.34" externallink="https://www.domoticz.com/forum/viewtopic.php?f=65&t=22339">
+<plugin key="PP-MANAGER" name="Python Plugin Manager" author="ycahome" version="1.5.35" externallink="https://www.domoticz.com/forum/viewtopic.php?f=65&t=22339">
     <description>
-		<h2>Python Plugin Manager v.1.5.34</h2><br/>
+		<h2>Python Plugin Manager v.1.5.35</h2><br/>
 		<h3>Features</h3>
 		<ul style="list-style-type:square">
 			<li>Install plugins</li>
@@ -52,9 +52,9 @@
                 <option label="Hiking DDS238-2 ZN/S modbus over TCP/IP" value="ds238-modus-tcp"/>
                 <option label="Hisense AC (AEH-W4A1)" value="aeh-w4a1"/>
                 <option label="Hive Plugin" value="HivePlug"/>
+		<option label="Hyundai Kia connect" value="HyundaiKiaConnect"/>
                 <option label="iDetect Presence Detection" value="iDetect"/>
                 <option label="IKEA Tradfri" value="IKEA-Tradfri"/>
-                <option label="Kia UVO and Hyundai BlueLink vehicles" value="KiaUvoHyundaiBlueLink"/>
                 <option label="Life 360 Presence" value="Life360"/>
                 <option label="Linky" value="Linky"/>
 		<option label="Link-Tap" value="Link-Tap"/>
@@ -177,9 +177,9 @@ class BasePlugin:
             "Homewizard":                   ["rvdvoorde",       "domoticz-homewizard",                  "Homewizard",                        "master"],
             "aeh-w4a1":                     ["x-th-unicorn",    "domoticz-aeh-w4a1",                    "Hisense AC (AEH-W4A1)",             "master"],
             "HivePlug":                     ["imcfarla2003",    "domoticz-hive",                        "Hive Plugin",                       "master"],
+            "HyundaiKiaConnect":            ["CreasolTech",     "domoticz-hyundai-kia",                 "Hyundai and Kia vehicles",          "master"],
             "iDetect":                      ["d-EScape",        "Domoticz_iDetect",              	"iDetect Presence Detection",        "master"],
             "IKEA-Tradfri":                 ["moroen",          "IKEA-Tradfri-plugin",                  "IKEA Tradfri",                      "master"],
-            "KiaUvoHyundaiBlueLink":        ["CreasolTech",     "domoticz-kia-hyundai",                 "Kia UVO and Hyundai BlueLink vehicles", "master"],
             "Life360":                      ["febalci",         "DomoticzLife360",                      "Life 360 Presence",                 "master"],
             "Linky":                        ["guillaumezin",    "DomoticzLinky",                        "Linky",                             "master"],
 	    "Link-Tap":                     ["DebugBill",       "Link-Tap",                             "Link-Tap Watering System",          "master"],
