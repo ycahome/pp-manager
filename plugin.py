@@ -88,7 +88,7 @@
                 <option label="Xiaomi PM2.5 Sensor" value="XiaomiPM"/>
                 <option label="Yamaha AV Receiver" value="YamahaPlug"/>
                 <option label="Yi Hack" value="YiHack"/>
-                <option label="Zigate plugin" value="Zigate"/>
+                <option label="Zigbee for Domoticz" value="Zigate"/>
                 <option label="Zigbee2Mqtt" value="Zigbee2Mqtt"/>
             </options>
         </param>
@@ -213,7 +213,7 @@ class BasePlugin:
             "XiaomiPM":                     ["febalci",         "DomoticzXiaomiPM2.5",                  "Xiaomi PM2.5 Sensor",               "master"],
             "YamahaPlug":                   ["thomas-villagers","domoticz-yamaha",                      "Yamaha AV Receiver",                "master"],
             "YiHack":                       ["galadril",        "Domoticz-Yi-Hack-Plugin",              "Yi Hack",                	     "master"],
-            "Zigate":                       ["zigbeefordomoticz", "Domoticz-Zigbee",                    "Zigate plugin",                     "stable5"],
+            "Zigate":                       ["zigbeefordomoticz", "Domoticz-Zigbee",                    "Zigate plugin",                     "stable6"],
             "Zigbee2Mqtt":                  ["stas-demydiuk",	"domoticz-zigbee2mqtt-plugin",          "Zigbee2Mqtt",                       "master"],
             "ds238-modbus-tcp":             ["xbeaudouin",	"domoticz-ds238-modbus-tcp",            "DS238-2 ZN/S ModbusTCP",            "master"],
         }
