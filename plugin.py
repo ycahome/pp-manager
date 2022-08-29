@@ -6,90 +6,133 @@
 #  Since (2018-02-23): Initial Version
 #
 #
+from collections import OrderedDict
+
+global PP_VERSION
+PP_VERSION = "1.5.36"
+
+list_of_plugins = [
+    ("999LV",               "BatteryLevel",                         "Battery monitoring for Z-Wave nodes",  "master"),
+    ("ffes",                "domoticz-buienradar",                  "Buienradar.nl (Weather lookup)",       "master"),
+    ("Tsjippy",             "ChromecastPlugin",                     "Chromecast plugin for Domoticz",       "master"),
+    ("CreasolTech",         "CreasolDomBus",                        "Creasol DomBus RS485 I/O/Sens modules","master"),
+    ("febalci",             "DomoticzCrowAlarm",                    "Crow Runner Alarm",                    "master"),
+    ("Smanar",              "Domoticz-deCONZ",                      "deCONZ bridge (For Conbee,Raspbee)",   "master"),
+    ("dnpwwo",              "Domoticz-Denon-Plugin",                "Denon/Marantz Amplifier",              "master"),
+    ("Xorfor",              "Domoticz-Disc-usage-Plugin",           "Disc usage",                           "master"),
+    ("ajarzyn",             "domoticz-komfovent-c6",                "Domekt",                               "master"),
+    ("galadril",            "domoticz-theme-manager",               "Domoticz Theme Manager",               "master"),
+    ("xbeaudouin",          "domoticz-ds238-modbus-tcp",            "DS238-2 ZN/S ModbusTCP",               "master"),
+    ("ycahome",             "Dummy_Plugin",                         "Dummy Plugin",                         "master"),
+    ("Xorfor",              "Domoticz-LastDutchEarthquake-Plugin",  "Dutch earthquakes",                    "master"),
+    ("JanJaapKo",           "DysonPureLink",                        "Dyson Pure Link",                      "master"),
+    ("febalci",             "DomoticzEarthquake",                   "Eartquake EMSC Data",                  "master"),
+    ("guillaumezin",        "DomoticzEbusd",                        "ebusd bridge",                         "master"),
+    ("bbqkees",             "ems-esp-domoticz-plugin",              "EMS bus Wi-Fi Gateway",                "master"),
+    ("mvzut",               "maxcube-Domoticz-plugin",              "eQ-3 MAX! Cube",                       "master"),
+    ("supermat",            "PluginDomoticzFreebox",                "Freebox V6 (Revolution)",              "master"),
+    ("dnpwwo",              "Domoticz-GlobalCache-Plugin",          "Global Cache 100",                     "master"),
+    ("JanJaapKo",           "domoticz-GoodWeSEMS",                  "GoodWE Solar inverter via SEMS API",   "master"),
+    ("x-th-unicorn",        "domoticz-aeh-w4a1",                    "Hisense AC (AEH-W4A1)",                "master"),
+    ("imcfarla2003",        "domoticz-hive",                        "Hive Plugin",                          "master"),
+    ("rvdvoorde",           "domoticz-homewizard",                  "Homewizard",                           "master"),
+    ("CreasolTech",         "domoticz-hyundai-kia",                 "Hyundai and Kia vehicles",             "master"),
+    ("d-EScape",            "Domoticz_iDetect",                     "iDetect Presence Detection",           "master"),
+    ("moroen",              "IKEA-Tradfri-plugin",                  "IKEA Tradfri",                         "master"),
+    ("ajarzyn",             "domoticz-rest980",                     "iRobot based on rest980",              "master"),
+    ("febalci",             "DomoticzLife360",                      "Life 360 Presence",                    "master"),
+    ("DebugBill",           "Link-Tap",                             "Link-Tap Watering System",             "master"),
+    ("guillaumezin",        "DomoticzLinky",                        "Linky",                                "master"),
+    ("ajarzyn",             "domoticz-luxtronic2",                  "Luxtronic2 based on sockets.",         "master"),
+    ("ycahome",             "MeteoAlarmEU",                         "Meteo Alarm EU RSS Reader",            "master"),
+    ("mrin",                "domoticz-routeros-plugin",             "Mikrotik RouterOS",                    "master"),
+    ("ycahome",             "MoonPhases",                           "Moon Phases",                          "master"),
+    ("emontnemery",         "domoticz_mqtt_discovery",              "MQTT discovery",                       "master"),
+    ("jorgh6",              "domoticz-onkyo-plugin",                "Onkyo AV Receiver",                    "master"),
+    ("Xorfor",              "Domoticz-OpenAQ-Plugin",               "OpenAQ",                               "master"),
+    ("enesbcs",             "owrtwifi2domo",                        "OpenWRT WiFi Presence MQTT translator","master"),
+    ("Xorfor",              "Domoticz-Pi-hole-Plugin",              "Pi-hole summary",                      "master"),
+    ("Xorfor",              "Domoticz-PiMonitor-Plugin",            "PiMonitor",                            "master"),
+    ("febalci",             "DomoticzPioneerAVR",                   "Pioneer AVR",                          "master"),
+    ("dnpwwo",              "Domoticz-RAVEn-Plugin",                "RAVEn Zigbee energy monitor",          "master"),
+    ("enesbcs",             "pyrtl433",                             "RTL_433 MQTT receiver",                "master"),
+    ("enesbcs",             "Shelly_MQTT",                          "Shelly MQTT translator",               "master"),
+    ("smogtok",             "smogtokdomoticzplug",                  "SmogTok Air Quality monitor",          "master"),
+    ("ycahome",             "SNMPreader",                           "SNMP Reader",                          "master"),
+    ("bobzomer",            "sonoff-domoticz-plugin",               "Sonoff Mini",                          "master"),
+    ("gerard33",            "sonos",                                "Sonos Players",                        "master"),
+    ("gerard33",            "sony-bravia",                          "Sony Bravia TV (with Kodi remote)",    "master"),
+    ("Xorfor",              "Domoticz-Speedtest-Plugin",            "Speedtest",                            "master"),
+    ("lolautruche",         "SurveillanceStationDomoticz",          "Synology SurveillanceStation",         "master"),
+    ("flatsiedatsie",       "GPIO-SYSFS-Switches",                  "SYSFS-Switches",                       "master"),
+    ("999LV",               "NUT_UPS",                              "UPS Monitor",                          "master"),
+    ("ajarzyn",             "domoticz-venta",                       "Venta based on sockets.",              "master"),
+    ("ycahome",             "WAN-IP-CHECKER",                       "Wan IP Checker",                       "master"),
+    ("galadril",            "Domoticz-WLANThermo-Plugin",           "WLANThermo",                           "master"),
+    ("frustreermeneer",     "domoticz-wled-plugin",                 "WLED",                                 "master"),
+    ("flatsiedatsie",       "Mi_Flower_mate_plugin",                "Xiaomi Mi Flower Mate",                "master"),
+    ("mrin",                "domoticz-mirobot-plugin",              "Xiaomi Mi Robot Vacuum",               "master"),
+    ("febalci",             "DomoticzXiaomiPM2.5",                  "Xiaomi PM2.5 Sensor",                  "master"),
+    ("thomas-villagers",    "domoticz-yamaha",                      "Yamaha AV Receiver",                   "master"),
+    ("galadril",            "Domoticz-Yi-Hack-Plugin",              "Yi Hack",                              "master"),
+    ("zigbeefordomoticz",   "Domoticz-Zigbee",                      "Zigate plugin",                        "stable6"),
+    ("stas-demydiuk",       "domoticz-zigbee2mqtt-plugin",          "Zigbee2Mqtt",                          "master")
+]
+
+# Sort plugin list to be displayed in alphabetical order.
+list_of_plugins.sort(key=lambda x: x[2])
 
 
-"""
-<plugin key="PP-MANAGER" name="Python Plugin Manager" author="ycahome" version="1.5.35" externallink="https://www.domoticz.com/forum/viewtopic.php?f=65&t=22339">
+class PythonPluginData:
+    def __init__(self, author, repository, name, branch):
+        self.author = author
+        self.repository = repository
+        self.name = name
+        self.branch = branch
+
+
+global PLUGIN_DATA
+PLUGIN_DATA = OrderedDict()
+
+# First element in Dict is Idle to make it default on the list.
+PLUGIN_DATA["Idle"] = PythonPluginData("Idle", "Idle", "Idle", "master")
+for plugin_data in sorted(list_of_plugins, ):
+    tmp = PythonPluginData(*plugin_data)
+    PLUGIN_DATA[tmp.repository] = tmp
+
+
+# Generate option list for plugins.
+def format_plugin_list():
+    ret_str = ""
+    global PLUGIN_DATA
+    is_default = "true"
+    for plugin in PLUGIN_DATA.values():
+        ret_str += f"                <option label={plugin.name} value={plugin.repository}  default={is_default} />"
+        is_default = "false"
+
+
+def generate_python_plugin_description():
+    return f"""<plugin key="PP-MANAGER" name="Python Plugin Manager" author="ycahome" version="{PP_VERSION}"
+ externallink="https://www.domoticz.com/forum/viewtopic.php?f=65&t=22339">
     <description>
-		<h2>Python Plugin Manager v.1.5.36</h2><br/>
-		<h3>Features</h3>
-		<ul style="list-style-type:square">
-			<li>Install plugins</li>
-			<li>Update All/Selected plugins</li>
-			<li>Update Notification for All/Selected</li>
-		</ul>
-		<h3>----------------------------------------------------------------------</h3>
-		<h3>WARNING:</h3>
-		<h2>         Auto Updating plugins without verifying their code</h2>
-		<h2>         makes you system vulnerable to developer's code intensions!!</h2>
-		<h3>----------------------------------------------------------------------</h3>
-		<h2>NOTE: After selecting your options press "Update" button!!</h2>
+        <h2>Python Plugin Manager v.{PP_VERSION}</h2><br/>
+        <h3>Features</h3>
+        <ul style="list-style-type:square">
+            <li>Install plugins</li>
+            <li>Update All/Selected plugins</li>
+            <li>Update Notification for All/Selected</li>
+        </ul>
+        <h3>----------------------------------------------------------------------</h3>
+        <h3>WARNING:</h3>
+        <h2>         Auto Updating plugins without verifying their code</h2>
+        <h2>         makes you system vulnerable to developer's code intensions!!</h2>
+        <h3>----------------------------------------------------------------------</h3>
+        <h2>NOTE: After selecting your options press "Update" button!!</h2>
     </description>
      <params>
         <param field="Mode2" label="Plugin to install" width="200px">
             <options>
-                <option label="Idle" value="Idle"  default="true" />
-                <option label="Dummy Plugin" value="Dummy_Plugin"/>
-                <option label="Battery monitoring for Z-Wave nodes" value="BatteryLevel"/>
-                <option label="Buienradar.nl (Weather lookup)" value="Buienradar"/>
-                <option label="Chromecast plugin for Domoticz" value="ChromecastPlugin"/>
-                <option label="Creasol DomBus RS485 I/O/Sens modules" value="CreasolDomBus"/>
-                <option label="Crow Runner Alarm" value="AAPIPModule"/>
-                <option label="deCONZ bridge (For Conbee,Raspbee)" value="deCONZ"/>
-                <option label="Denon/Marantz Amplifier" value="Denon4306"/>
-                <option label="Domoticz Theme Manager" value="domoticz-theme-manager"/>
-                <option label="Disc usage" value="xfr_discusage"/>
-                <option label="Dutch earthquakes" value="xfr_aardbeving"/>
-                <option label="Dyson Pure Link" value="DysonPureLink"/>
-                <option label="Eartquake EMSC Data" value="SeismicPortal"/>
-                <option label="ebusd bridge" value="ebusd"/>
-                <option label="EMS bus Wi-Fi Gateway" value="ems-gateway"/>
-                <option label="eQ-3 MAX!" value="eq3max"/>
-                <option label="Freebox Revolution" value="freeboxv6"/>
-                <option label="Global Cache 100" value="GC-100"/>
-                <option label="GoodWE Solar inverter via SEMS API" value="GoodWeAPI"/>
-                <option label="Homewizard" value="Homewizard"/>
-                <option label="Hiking DDS238-2 ZN/S modbus over TCP/IP" value="ds238-modus-tcp"/>
-                <option label="Hisense AC (AEH-W4A1)" value="aeh-w4a1"/>
-                <option label="Hive Plugin" value="HivePlug"/>
-		<option label="Hyundai Kia connect" value="HyundaiKiaConnect"/>
-                <option label="iDetect Presence Detection" value="iDetect"/>
-                <option label="IKEA Tradfri" value="IKEA-Tradfri"/>
-                <option label="Life 360 Presence" value="Life360"/>
-                <option label="Linky" value="Linky"/>
-		<option label="Link-Tap" value="Link-Tap"/>
-                <option label="Meteo Alarm EU RSS Reader" value="MeteoAlarmEU"/>
-                <option label="Mikrotik RouterOS" value="mikrotik-routeros"/>
-                <option label="Moon Phases" value="MoonPhases"/>
-                <option label="MQTT discovery" value="MQTTDiscovery"/>
-                <option label="Onkyo AV Receiver" value="Onkyo"/>
-                <option label="OpenAQ" value="xfr_openaq"/>
-                <option label="OpenWRT WiFi Presence MQTT translator" value="owrtwifi2domo"/>
-                <option label="Pi-hole summary" value="xfr_pihole"/>
-                <option label="PiMonitor" value="xfr-pimonitor"/>
-                <option label="Pioneer AVR" value="PioneerAVR"/>
-                <option label="RTL_433 MQTT receiver" value="pyrtl433"/>
-                <option label="RAVEn Zigbee energy monitor" value="RAVEn"/>
-                <option label="Shelly MQTT translator" value="Shelly_MQTT"/>
-                <option label="SmogTok Air Quality monitor" value="SmogTok"/>
-                <option label="SNMP Reader" value="SNMPreader"/>
-                <option label="Sonos Players" value="Sonos"/>
-                <option label="Sonoff Mini" value="sonoff-domoticz-plugin"/>
-                <option label="Sony Bravia TV (with Kodi remote)" value="sony"/>
-                <option label="Speedtest" value="xfr_speedtest"/>
-                <option label="Synology SurveillanceStation" value="SurveillanceStation"/>
-                <option label="SYSFS-Switches" value="SYSFS-Switches"/>
-                <option label="UPS Monitor" value="NUT_UPS"/>
-                <option label="Wan IP Checker" value="WAN-IP-CHECKER"/>
-		<option label="WLANThermo" value="WLANThermo"/>
-		<option label="WLED" value="WLED"/>
-                <option label="Xiaomi Mi Flower Mate" value="Mi_Flower_mate_plugin"/>
-                <option label="Xiaomi Mi Robot Vacuum" value="xiaomi-mi-robot-vacuum"/>
-                <option label="Xiaomi PM2.5 Sensor" value="XiaomiPM"/>
-                <option label="Yamaha AV Receiver" value="YamahaPlug"/>
-                <option label="Yi Hack" value="YiHack"/>
-                <option label="Zigbee for Domoticz" value="Zigate"/>
-                <option label="Zigbee2Mqtt" value="Zigbee2Mqtt"/>
+                {format_plugin_list()}
             </options>
         </param>
          <param field="Mode4" label="Auto Update" width="175px">
@@ -127,13 +170,9 @@ import urllib.request
 import urllib.error
 import re
 
-import time
-
 import platform
 
-#from urllib2 import urlopen
-from datetime import datetime, timedelta
-
+from datetime import datetime
 
 
 class BasePlugin:
@@ -143,85 +182,26 @@ class BasePlugin:
     privateKey = b""
     socketOn = "FALSE"
 
-
     def __init__(self):
         self.debug = False
         self.error = False
         self.nextpoll = datetime.now()
-        self.pollinterval = 60  #Time in seconds between two polls
+        self.pollinterval = 60  # Time in seconds between two polls
         self.ExceptionList = []
         self.SecPolUserList = {}
 
-        self.plugindata = {
-            # Plugin Key:                   [gitHub author,     repository,                             plugin Text,                         Branch]
-            "Idle":                         ["Idle",            "Idle",                                 "Idle",                              "master"],
-            "Dummy_Plugin":                 ["ycahome",         "Dummy_Plugin",                         "Dummy Plugin",                      "master"],
-            "BatteryLevel":                 ["999LV",           "BatteryLevel",                         "Battery monitoring for Z-Wave nodes", "master"],
-            "Buienradar":                   ["ffes",            "domoticz-buienradar",                  "Buienradar.nl (Weather lookup)",    "master"],
-	    "AAPIPModule":                  ["febalci",         "DomoticzCrowAlarm",                    "Crow Runner Alarm",                 "master"],
-            "ChromecastPlugin":             ["Tsjippy",         "ChromecastPlugin",                    	"Chromecast plugin for Domoticz",    "master"],
-            "CreasolDomBus":                ["CreasolTech",     "CreasolDomBus",                    	"Creasol DomBus RS485 I/O/Sens modules", "master"],
-            "deCONZ":                       ["Smanar",          "Domoticz-deCONZ",                      "deCONZ bridge (For Conbee,Raspbee)","master"],
-            "Denon4306":                    ["dnpwwo",    	"Domoticz-Denon-Plugin",                "Denon/Marantz Amplifier",           "master"],
-            "xfr_discusage":                ["Xorfor",    	"Domoticz-Disc-usage-Plugin",           "Disc usage",                        "master"],
-            "domoticz-theme-manager":       ["galadril",    	"domoticz-theme-manager",  		"Domoticz Theme Manager",            "master"],
-            "xfr_aardbeving":               ["Xorfor",    	"Domoticz-LastDutchEarthquake-Plugin",  "Dutch earthquakes",                 "master"],
-            "DysonPureLink":                ["JanJaapKo",    	"DysonPureLink",                    "Dyson Pure Link",                  "master"],
-            "SeismicPortal":                ["febalci",    	"DomoticzEarthquake",                   "Eartquake EMSC Data",               "master"],
-            "ebusd":                        ["guillaumezin",    "DomoticzEbusd",                        "ebusd bridge",                      "master"],
-            "ems-gateway":                  ["bbqkees",         "ems-esp-domoticz-plugin",              "EMS bus Wi-Fi Gateway",             "master"],
-	    "eq3max":                       ["mvzut",           "maxcube-Domoticz-plugin",              "eQ-3 MAX! Cube",                    "master"],
-            "freeboxv6":                    ["supermat",        "PluginDomoticzFreebox",                "Freebox V6 (Revolution)",           "master"],
-            "GC-100":                       ["dnpwwo",          "Domoticz-GlobalCache-Plugin",          "Global Cache 100",                  "master"],
-            "GoodWeAPI":                    ["JanJaapKo",       "domoticz-GoodWeSEMS",                  "GoodWE Solar inverter via SEMS API","master"],
-            "Homewizard":                   ["rvdvoorde",       "domoticz-homewizard",                  "Homewizard",                        "master"],
-            "aeh-w4a1":                     ["x-th-unicorn",    "domoticz-aeh-w4a1",                    "Hisense AC (AEH-W4A1)",             "master"],
-            "HivePlug":                     ["imcfarla2003",    "domoticz-hive",                        "Hive Plugin",                       "master"],
-            "HyundaiKiaConnect":            ["CreasolTech",     "domoticz-hyundai-kia",                 "Hyundai and Kia vehicles",          "master"],
-            "iDetect":                      ["d-EScape",        "Domoticz_iDetect",              	"iDetect Presence Detection",        "master"],
-            "IKEA-Tradfri":                 ["moroen",          "IKEA-Tradfri-plugin",                  "IKEA Tradfri",                      "master"],
-            "Life360":                      ["febalci",         "DomoticzLife360",                      "Life 360 Presence",                 "master"],
-            "Linky":                        ["guillaumezin",    "DomoticzLinky",                        "Linky",                             "master"],
-	    "Link-Tap":                     ["DebugBill",       "Link-Tap",                             "Link-Tap Watering System",          "master"],
-	    "MeteoAlarmEU":                 ["ycahome",         "MeteoAlarmEU",                         "Meteo Alarm EU RSS Reader",         "master"],
-            "mikrotik-routeros":            ["mrin",            "domoticz-routeros-plugin",             "Mikrotik RouterOS",                 "master"],
-            "MoonPhases":                   ["ycahome",         "MoonPhases",                           "Moon Phases",                       "master"],
-            "MQTTDiscovery":                ["emontnemery",     "domoticz_mqtt_discovery",              "MQTT discovery",                    "master"],
-            "Onkyo":                	    ["jorgh6",          "domoticz-onkyo-plugin",                "Onkyo AV Receiver",                 "master"],
-            "xfr_openaq":                   ["Xorfor",          "Domoticz-OpenAQ-Plugin",               "OpenAQ",                            "master"],
-            "xfr_pihole":                   ["Xorfor",          "Domoticz-Pi-hole-Plugin",              "Pi-hole summary",                   "master"],
-            "xfr-pimonitor":                ["Xorfor",          "Domoticz-PiMonitor-Plugin",            "PiMonitor",                         "master"],
-            "owrtwifi2domo":                ["enesbcs",         "owrtwifi2domo",                        "OpenWRT WiFi Presence MQTT translator","master"],
-            "PioneerAVR":                   ["febalci",         "DomoticzPioneerAVR",                   "Pioneer AVR",                       "master"],
-            "pyrtl433":                     ["enesbcs",         "pyrtl433",                             "RTL_433 MQTT receiver",             "master"],
-            "RAVEn":                        ["dnpwwo",          "Domoticz-RAVEn-Plugin",                "RAVEn Zigbee energy monitor",       "master"],
-            "Shelly_MQTT":                  ["enesbcs",         "Shelly_MQTT",                          "Shelly MQTT translator",            "master"],
-            "SmogTok":                      ["smogtok",         "smogtokdomoticzplug",                  "SmogTok Air Quality monitor",       "master"],
-            "SNMPreader":                   ["ycahome",         "SNMPreader",                           "SNMP Reader",                       "master"],
-            "Sonos":                        ["gerard33",        "sonos",                                "Sonos Players",                     "master"],
-            "sonoff-domoticz-plugin":       ["bobzomer",        "sonoff-domoticz-plugin",               "Sonoff Mini",                       "master"],
-            "sony":                         ["gerard33",        "sony-bravia",                          "Sony Bravia TV (with Kodi remote)", "master"],
-            "Synology SurveillanceStation": ["lolautruche",     "SurveillanceStationDomoticz",          "Synology SurveillanceStation",      "master"],
-            "xfr_speedtest":                ["Xorfor",          "Domoticz-Speedtest-Plugin",            "Speedtest",                         "master"],
-            "SYSFS-Switches":               ["flatsiedatsie",   "GPIO-SYSFS-Switches",                  "SYSFS-Switches",                    "master"],
-            "NUT_UPS":                      ["999LV",           "NUT_UPS",                              "UPS Monitor",                       "master"],
-            "WLANThermo":                   ["galadril",        "Domoticz-WLANThermo-Plugin",           "WLANThermo",                        "master"],
-            "WLED":                         ["frustreermeneer", "domoticz-wled-plugin",                 "WLED",                              "master"],
-            "WAN-IP-CHECKER":               ["ycahome",         "WAN-IP-CHECKER",                       "Wan IP Checker",                    "master"],
-            "Mi_Flower_mate_plugin":        ["flatsiedatsie",   "Mi_Flower_mate_plugin",                "Xiaomi Mi Flower Mate",             "master"],
-            "xiaomi-mi-robot-vacuum":       ["mrin",            "domoticz-mirobot-plugin",              "Xiaomi Mi Robot Vacuum",            "master"],
-            "XiaomiPM":                     ["febalci",         "DomoticzXiaomiPM2.5",                  "Xiaomi PM2.5 Sensor",               "master"],
-            "YamahaPlug":                   ["thomas-villagers","domoticz-yamaha",                      "Yamaha AV Receiver",                "master"],
-            "YiHack":                       ["galadril",        "Domoticz-Yi-Hack-Plugin",              "Yi Hack",                	     "master"],
-            "Zigate":                       ["zigbeefordomoticz", "Domoticz-Zigbee",                    "Zigate plugin",                     "stable6"],
-            "Zigbee2Mqtt":                  ["stas-demydiuk",	"domoticz-zigbee2mqtt-plugin",          "Zigbee2Mqtt",                       "master"],
-            "ds238-modbus-tcp":             ["xbeaudouin",	"domoticz-ds238-modbus-tcp",            "DS238-2 ZN/S ModbusTCP",            "master"],
-        }
-        
-        return
+        self.plugin_key = ""
+        self.plugin_obj = None
+
+        self.pluginAuthor = ""
+        self.pluginRepository = ""
+        self.pluginText = ""
+        self.pluginBranch = ""
+
+        self.auto_update = ""
+        self.security_scan = ""
 
     def onStart(self):
-
         Domoticz.Debug("onStart called")
 
         if Parameters["Mode6"] == 'Debug':
@@ -230,7 +210,6 @@ class BasePlugin:
             DumpConfigToLog()
         else:
             Domoticz.Debugging(0)
-
 
         Domoticz.Log("Domoticz Node Name is:" + platform.node())
         Domoticz.Log("Domoticz Platform System is:" + platform.system())
@@ -242,33 +221,25 @@ class BasePlugin:
             Domoticz.Error("Windows Platform NOT YET SUPPORTED!!")
             return
 
+        self.auto_update = Parameters["Mode4"]
+        self.security_scan = True if Parameters["Mode5"] == 'True' else False
 
-        pluginText = ""
-        pluginAuthor = ""
-        pluginRepository = ""
-        pluginKey = ""
+        self.plugin_key = Parameters["Mode2"]
+        self.plugin_obj = self.plugindata[self.plugin_key]
 
-        pluginKey = Parameters["Mode2"]
-        pluginAuthor = self.plugindata[pluginKey][0]
-        pluginRepository = self.plugindata[pluginKey][1]
-        pluginText = self.plugindata[pluginKey][2]
-        pluginBranch = self.plugindata[pluginKey][3]    # GitHub branch to clone
+        self.pluginAuthor = self.plugin_obj.author
+        self.pluginRepository = self.plugin_obj.repository
+        self.pluginText = self.plugin_obj.name
+        self.pluginBranch = self.plugin_obj.branch    # GitHub branch to clone
 
- 
-
-
-
-        
-        
-        
-        if (Parameters["Mode5"] == 'True'):
+        if self.security_scan:
             Domoticz.Log("Plugin Security Scan is enabled")
             
             # Reading secpoluserFile and populating array of values
             secpoluserFile = str(os.getcwd()) + "/plugins/PP-MANAGER/secpoluser.txt"
 
             Domoticz.Debug("Checking for SecPolUser file on:" + secpoluserFile)
-            if (os.path.isfile(secpoluserFile) == True):
+            if os.path.isfile(secpoluserFile):
                 Domoticz.Log("secpoluser file found. Processing!!!")
 
                 # Open the file
@@ -293,32 +264,25 @@ class BasePlugin:
                 secpoluserFileHandle.close()
                 Domoticz.Log("SecPolUserList exception:" + str(self.SecPolUserList))
             else:
-                self.SecPolUserList = {"Global":[]}
-            
-            
+                self.SecPolUserList = {"Global": []}
+
             i = 0
             path = str(os.getcwd()) + "/plugins/"
             for (path, dirs, files) in os.walk(path):
                 for dir in dirs:
                     if str(dir) != "":
-                        #self.UpdatePythonPlugin(pluginAuthor, pluginRepository, str(dir))
+                        #self.UpdatePythonPlugin(self.pluginAuthor, self.pluginRepository, str(dir))
                         #parseFileForSecurityIssues(str(os.getcwd()) + "/plugins/PP-MANAGER/plugin.py")
                         if (os.path.isfile(str(os.getcwd()) + "/plugins/" + str(dir) + "/plugin.py") == True):
                             self.parseFileForSecurityIssues(str(os.getcwd()) + "/plugins/" + str(dir) + "/plugin.py", str(dir))
                 i += 1
                 if i >= 1:
                    break
-        
 
-
-
-
-
-        
         # Reading exception file and populating array of values
         exceptionFile = str(os.getcwd()) + "/plugins/PP-MANAGER/exceptions.txt"
         Domoticz.Debug("Checking for Exception file on:" + exceptionFile)
-        if (os.path.isfile(exceptionFile) == True):
+        if os.path.isfile(exceptionFile) == True:
             Domoticz.Log("Exception file found. Processing!!!")
 
             # Open the file
@@ -337,13 +301,7 @@ class BasePlugin:
             f.close()
         Domoticz.Debug("self.ExceptionList:" + str(self.ExceptionList))
 
-        
-        
-        
-        
-        
-        
-        if Parameters["Mode4"] == 'All':
+        if self.auto_update == 'All':
             Domoticz.Log("Updating All Plugins!!!")
             i = 0
             path = str(os.getcwd()) + "/plugins/"
@@ -351,7 +309,7 @@ class BasePlugin:
                 for dir in dirs:
                     if str(dir) != "":
                         if str(dir) in self.plugindata:
-                            self.UpdatePythonPlugin(pluginAuthor, pluginRepository, str(dir))
+                            self.UpdatePythonPlugin(self.pluginAuthor, self.pluginRepository, str(dir))
                         elif str(dir) == "PP-MANAGER":
                             Domoticz.Debug("PP-Manager Folder found. Skipping!!")      
                         else:
@@ -360,7 +318,7 @@ class BasePlugin:
                 if i >= 1:
                    break
 
-        if Parameters["Mode4"] == 'AllNotify':
+        if self.auto_update == 'AllNotify':
             Domoticz.Log("Collecting Updates for All Plugins!!!")
             i = 0
             path = str(os.getcwd()) + "/plugins/"
@@ -368,58 +326,52 @@ class BasePlugin:
                 for dir in dirs:
                     if str(dir) != "":
                         if str(dir) in self.plugindata:
-                            self.CheckForUpdatePythonPlugin(pluginAuthor, pluginRepository, str(dir))
+                            self.CheckForUpdatePythonPlugin(self.pluginAuthor, self.pluginRepository, str(dir))
                         elif str(dir) == "PP-MANAGER":
                             Domoticz.Debug("PP-Manager Folder found. Skipping!!")      
                         else:
                             Domoticz.Log("Plugin:" + str(dir) + " cannot be managed with PP-Manager!!.")      
                 i += 1
                 if i >= 1:
-                   break
+                    break
 
-        if (Parameters["Mode4"] == 'SelectedNotify'): 
-                Domoticz.Log("Collecting Updates for Plugin:" + pluginKey)
-                self.CheckForUpdatePythonPlugin(pluginAuthor, pluginRepository, pluginKey)
+        if self.auto_update == 'SelectedNotify':
+                Domoticz.Log("Collecting Updates for Plugin:" + self.pluginKey)
+                self.CheckForUpdatePythonPlugin(self.pluginAuthor, self.pluginRepository, self.pluginKey)
            
-
-        if pluginKey == "Idle":
+        if self.pluginKey == "Idle":
             Domoticz.Log("Plugin Idle")
-            Domoticz.Heartbeat(60)
         else:
-            Domoticz.Debug("Checking for dir:" + str(os.getcwd()) + "/plugins/" + pluginKey)
-            #If plugin Directory exists
-            if (os.path.isdir(str(os.getcwd()) + "/plugins/" + pluginKey)) == True:
-                Domoticz.Debug("Folder for Plugin:" + pluginKey + " already exists!!!")
-                #Domoticz.Debug("Set 'Python Plugin Manager'/ 'Domoticz plugin' attribute to 'idle' in order t.")
-                if Parameters["Mode4"] == 'Selected':
-                    Domoticz.Debug("Updating Enabled for Plugin:" + pluginText + ".Checking For Update!!!")
-                    self.UpdatePythonPlugin(pluginAuthor, pluginRepository, pluginKey)
-                Domoticz.Heartbeat(60)
+            Domoticz.Debug("Checking for dir:" + str(os.getcwd()) + "/plugins/" + self.pluginKey)
+            # If plugin Directory exists
+            if os.path.isdir(str(os.getcwd()) + "/plugins/" + self.pluginKey):
+                Domoticz.Debug("Folder for Plugin:" + self.pluginKey + " already exists!!!")
+                # Domoticz.Debug("Set 'Python Plugin Manager'/ 'Domoticz plugin' attribute to 'idle' in order t.")
+                if self.auto_update == 'Selected':
+                    Domoticz.Debug("Updating Enabled for Plugin:" + self.pluginText + ".Checking For Update!!!")
+                    self.UpdatePythonPlugin(self.pluginAuthor, self.pluginRepository, self.pluginKey)
             else:
-               Domoticz.Log("Installation requested for Plugin:" + pluginText)
-               Domoticz.Debug("Installation URL is:" + "https://github.com/" + pluginAuthor +"/" + pluginRepository)
-               Domoticz.Debug("Current Working dir is:" + str(os.getcwd()))
-               if pluginKey in self.plugindata:
-                    Domoticz.Log("Plugin Display Name:" + pluginText)
-                    Domoticz.Log("Plugin Author:" + pluginAuthor)
-                    Domoticz.Log("Plugin Repository:" + pluginRepository)
-                    Domoticz.Log("Plugin Key:" + pluginKey)
-                    Domoticz.Log("Plugin Branch:" + pluginBranch)
-                    self.InstallPythonPlugin(pluginAuthor, pluginRepository, pluginKey, pluginBranch)
-               Domoticz.Heartbeat(60)
-            
+                Domoticz.Log("Installation requested for Plugin:" + self.pluginText)
+                Domoticz.Debug("Installation URL is:" + "https://github.com/" + self.pluginAuthor +"/" + self.pluginRepository)
+                Domoticz.Debug("Current Working dir is:" + str(os.getcwd()))
+                if self.pluginKey in self.plugindata:
+                    Domoticz.Log("Plugin Display Name:" + self.pluginText)
+                    Domoticz.Log("Plugin Author:" + self.pluginAuthor)
+                    Domoticz.Log("Plugin Repository:" + self.pluginRepository)
+                    Domoticz.Log("Plugin Key:" + self.pluginKey)
+                    Domoticz.Log("Plugin Branch:" + self.pluginBranch)
+                    self.InstallPythonPlugin(self.pluginAuthor, self.pluginRepository, self.pluginKey, self.pluginBranch)
 
+        Domoticz.Heartbeat(60)
 
     def onStop(self):
         Domoticz.Debug("onStop called")
-
         Domoticz.Log("Plugin is stopping.")
         self.UpdatePythonPlugin("ycahome", "pp-manager", "PP-MANAGER")
         Domoticz.Debugging(0)
 
     def onHeartbeat(self):
         Domoticz.Debug("onHeartbeat called")
-        pluginKey = Parameters["Mode2"]
 
         CurHr = str(datetime.now().hour)
         CurMin = str(datetime.now().minute)
@@ -430,63 +382,48 @@ class BasePlugin:
         if (mid(CurHr,0,2) == "12" and  mid(CurMin,0,2) == "00"):
             Domoticz.Log("Its time!!. Trigering Actions!!!")
 
-
-            #-------------------------------------
-            if Parameters["Mode4"] == 'All':
+            if self.auto_update == 'All':
                 Domoticz.Log("Checking Updates for All Plugins!!!")
                 i = 0
                 path = str(os.getcwd()) + "/plugins/"
                 for (path, dirs, files) in os.walk(path):
                     for dir in dirs:
                         if str(dir) != "":
-                            self.UpdatePythonPlugin(self.plugindata[Parameters["Mode2"]][0], self.plugindata[Parameters["Mode2"]][1], str(dir))
+                            self.UpdatePythonPlugin(self.plugin_obj.author, self.plugin_obj.repository, str(dir))
                     i += 1
                     if i >= 1:
                        break
 
-            if Parameters["Mode4"] == 'AllNotify':
+            if self.auto_update == 'AllNotify':
                 Domoticz.Log("Collecting Updates for All Plugins!!!")
                 i = 0
                 path = str(os.getcwd()) + "/plugins/"
                 for (path, dirs, files) in os.walk(path):
                     for dir in dirs:
                         if str(dir) != "":
-                            self.CheckForUpdatePythonPlugin(self.plugindata[Parameters["Mode2"]][0], self.plugindata[Parameters["Mode2"]][1], str(dir))
+                            self.CheckForUpdatePythonPlugin(self.plugin_obj.author, self.plugin_obj.repository, str(dir))
                     i += 1
                     if i >= 1:
                        break
 
-            if Parameters["Mode4"] == 'SelectedNotify':
-                Domoticz.Log("Collecting Updates for Plugin:" + pluginKey)
-                self.CheckForUpdatePythonPlugin(self.plugindata[Parameters["Mode2"]][0], self.plugindata[Parameters["Mode2"]][1], Parameters["Mode2"])
+            if self.auto_update == 'SelectedNotify':
+                Domoticz.Log("Collecting Updates for Plugin:" + self.self.name)
+                self.CheckForUpdatePythonPlugin(self.plugin_obj.author, self.plugin_obj.repository, self.plugin_key)
 
-            #-------------------------------------
-            if Parameters["Mode4"] == 'Selected':
-                Domoticz.Log("Checking Updates for Plugin:" + self.plugindata[pluginKey][2])
-                self.UpdatePythonPlugin(self.plugindata[Parameters["Mode2"]][0], self.plugindata[Parameters["Mode2"]][1], Parameters["Mode2"])
-
-            #if Parameters["Mode2"] == "Idle":
-                #Domoticz.Log("Plugin Idle. No actions to be performed!!!")
- 
-
-
-
-
-
-
-
-
+            if self.auto_update == 'Selected':
+                Domoticz.Log("Checking Updates for Plugin:" + self.plugin_obj.name)
+                self.UpdatePythonPlugin(self.plugin_obj.author, self.plugin_obj.repository, self.plugin_key)
 
     # InstallPyhtonPlugin function
     def InstallPythonPlugin(self, ppAuthor, ppRepository, ppKey, ppBranch):
         Domoticz.Debug("InstallPythonPlugin called")
+        Domoticz.Log("Installing Plugin:" + self.plugindata[ppKey].name)
 
-
-        Domoticz.Log("Installing Plugin:" + self.plugindata[ppKey][2])
         ppCloneCmd = "LANG=en_US /usr/bin/git clone -b " + ppBranch + " https://github.com/" + ppAuthor + "/" + ppRepository + ".git " + ppKey
         Domoticz.Log("Calling:" + ppCloneCmd)
         try:
-            pr = subprocess.Popen( ppCloneCmd , cwd = os.path.dirname(str(os.getcwd()) + "/plugins/"), shell = True, stdout = subprocess.PIPE, stderr = subprocess.PIPE )
+            pr = subprocess.Popen(ppCloneCmd, cwd=os.path.dirname(str(os.getcwd()) + "/plugins/"),
+                                  shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
             (out, error) = pr.communicate()
             if out:
                    Domoticz.Log("Succesfully installed:" + str(out).strip)
@@ -510,11 +447,7 @@ class BasePlugin:
         #    Domoticz.Error("Command ErrorNo1:" + str(e1.errno))
         #    Domoticz.Error("Command StrError1:" + str(e1.strerror))
 
-
         return None
-
-
-
 
     # UpdatePyhtonPlugin function
     def UpdatePythonPlugin(self, ppAuthor, ppRepository, ppKey):
@@ -566,10 +499,6 @@ class BasePlugin:
             Domoticz.Error("Git StrError:" + str(e.strerror))
 
         return None
-
-
-
-
 
     # UpdateNotifyPyhtonPlugin function
     def CheckForUpdatePythonPlugin(self, ppAuthor, ppRepository, ppKey):
@@ -624,8 +553,6 @@ class BasePlugin:
 
         return None
 
-
-
     # fnSelectedNotify function
     def fnSelectedNotify(self, pluginText):
         Domoticz.Debug("fnSelectedNotify called")
@@ -658,16 +585,11 @@ class BasePlugin:
         except:
             return None
 
-
-
-
-
-        
     def parseFileForSecurityIssues(self, pyfilename, pypluginid):
        Domoticz.Debug("parseFileForSecurityIssues called")
        secmonitorOnly = False
 
-       if Parameters["Mode5"] == 'Monitor':
+       if self.security_scan:
            Domoticz.Log("Plugin Security Scan is enabled")
            secmonitorOnly = True
 
