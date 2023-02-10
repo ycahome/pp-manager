@@ -79,6 +79,7 @@
                 <option label="Speedtest" value="xfr_speedtest"/>
                 <option label="Synology SurveillanceStation" value="SurveillanceStation"/>
                 <option label="SYSFS-Switches" value="SYSFS-Switches"/>
+                <option label="Tuya" value="tuyaha"/>
                 <option label="UPS Monitor" value="NUT_UPS"/>
                 <option label="Wan IP Checker" value="WAN-IP-CHECKER"/>
 		<option label="WLANThermo" value="WLANThermo"/>
@@ -204,6 +205,7 @@ class BasePlugin:
             "Synology SurveillanceStation": ["lolautruche",     "SurveillanceStationDomoticz",          "Synology SurveillanceStation",      "master"],
             "xfr_speedtest":                ["Xorfor",          "Domoticz-Speedtest-Plugin",            "Speedtest",                         "master"],
             "SYSFS-Switches":               ["flatsiedatsie",   "GPIO-SYSFS-Switches",                  "SYSFS-Switches",                    "master"],
+            "tuyaha":                       ["guino",           "tuyaha",                               "Tuya",                              "master"],
             "NUT_UPS":                      ["999LV",           "NUT_UPS",                              "UPS Monitor",                       "master"],
             "WLANThermo":                   ["galadril",        "Domoticz-WLANThermo-Plugin",           "WLANThermo",                        "master"],
             "WLED":                         ["frustreermeneer", "domoticz-wled-plugin",                 "WLED",                              "master"],
