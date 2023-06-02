@@ -9,7 +9,7 @@
 from collections import OrderedDict
 
 global PP_VERSION
-PP_VERSION = "1.5.36"
+PP_VERSION = "1.5.40"
 
 list_of_plugins = [
     ("999LV",               "BatteryLevel",                         "Battery monitoring for Z-Wave nodes",  "master"),
@@ -33,6 +33,7 @@ list_of_plugins = [
     ("supermat",            "PluginDomoticzFreebox",                "Freebox V6 (Revolution)",              "master"),
     ("dnpwwo",              "Domoticz-GlobalCache-Plugin",          "Global Cache 100",                     "master"),
     ("JanJaapKo",           "domoticz-GoodWeSEMS",                  "GoodWE Solar inverter via SEMS API",   "master"),
+    ("galadril",            "Domoticz-Govee-Plugin",                "Govee Local Api Control",              "master"),
     ("x-th-unicorn",        "domoticz-aeh-w4a1",                    "Hisense AC (AEH-W4A1)",                "master"),
     ("imcfarla2003",        "domoticz-hive",                        "Hive Plugin",                          "master"),
     ("rvdvoorde",           "domoticz-homewizard",                  "Homewizard",                           "master"),
