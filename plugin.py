@@ -9,9 +9,9 @@
 
 
 """
-<plugin key="PP-MANAGER" name="Python Plugin Manager" author="ycahome" version="1.5.36" externallink="https://www.domoticz.com/forum/viewtopic.php?f=65&t=22339">
+<plugin key="PP-MANAGER" name="Python Plugin Manager" author="ycahome" version="1.5.37" externallink="https://www.domoticz.com/forum/viewtopic.php?f=65&t=22339">
     <description>
-		<h2>Python Plugin Manager v.1.5.36</h2><br/>
+		<h2>Python Plugin Manager v.1.5.37</h2><br/>
 		<h3>Features</h3>
 		<ul style="list-style-type:square">
 			<li>Install plugins</li>
@@ -48,6 +48,7 @@
                 <option label="Freebox Revolution" value="freeboxv6"/>
                 <option label="Global Cache 100" value="GC-100"/>
                 <option label="GoodWE Solar inverter via SEMS API" value="GoodWeAPI"/>
+                <option label="Govee Local Api Control" value="GoveeDiscovery"/>
                 <option label="Homewizard" value="Homewizard"/>
                 <option label="Hiking DDS238-2 ZN/S modbus over TCP/IP" value="ds238-modus-tcp"/>
                 <option label="Hisense AC (AEH-W4A1)" value="aeh-w4a1"/>
@@ -175,6 +176,7 @@ class BasePlugin:
             "freeboxv6":                    ["supermat",        "PluginDomoticzFreebox",                "Freebox V6 (Revolution)",           "master"],
             "GC-100":                       ["dnpwwo",          "Domoticz-GlobalCache-Plugin",          "Global Cache 100",                  "master"],
             "GoodWeAPI":                    ["JanJaapKo",       "domoticz-GoodWeSEMS",                  "GoodWE Solar inverter via SEMS API","master"],
+            "GoveeDiscovery":               ["galadril",        "Domoticz-Govee-Plugin",                "Govee Local Api Control",	     "master"],
             "Homewizard":                   ["rvdvoorde",       "domoticz-homewizard",                  "Homewizard",                        "master"],
             "aeh-w4a1":                     ["x-th-unicorn",    "domoticz-aeh-w4a1",                    "Hisense AC (AEH-W4A1)",             "master"],
             "HivePlug":                     ["imcfarla2003",    "domoticz-hive",                        "Hive Plugin",                       "master"],
