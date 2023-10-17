@@ -69,6 +69,7 @@
                 <option label="Pi-hole summary" value="xfr_pihole"/>
                 <option label="PiMonitor" value="xfr-pimonitor"/>
                 <option label="Pioneer AVR" value="PioneerAVR"/>
+                <option label="Quatt" value="Quatt"/>
                 <option label="RTL_433 MQTT receiver" value="pyrtl433"/>
                 <option label="RAVEn Zigbee energy monitor" value="RAVEn"/>
                 <option label="Shelly MQTT translator" value="Shelly_MQTT"/>
@@ -197,6 +198,7 @@ class BasePlugin:
             "owrtwifi2domo":                ["enesbcs",         "owrtwifi2domo",                        "OpenWRT WiFi Presence MQTT translator","master"],
             "PioneerAVR":                   ["febalci",         "DomoticzPioneerAVR",                   "Pioneer AVR",                       "master"],
             "pyrtl433":                     ["enesbcs",         "pyrtl433",                             "RTL_433 MQTT receiver",             "master"],
+            "Quatt":                        ["galadril",        "Domoticz-Quatt-Plugin",                "Quatt",       			     "master"],
             "RAVEn":                        ["dnpwwo",          "Domoticz-RAVEn-Plugin",                "RAVEn Zigbee energy monitor",       "master"],
             "Shelly_MQTT":                  ["enesbcs",         "Shelly_MQTT",                          "Shelly MQTT translator",            "master"],
             "SmogTok":                      ["smogtok",         "smogtokdomoticzplug",                  "SmogTok Air Quality monitor",       "master"],
