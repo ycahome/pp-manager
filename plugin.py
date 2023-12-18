@@ -201,7 +201,7 @@ class BasePlugin:
             "owrtwifi2domo":                ["enesbcs",         "owrtwifi2domo",                        "OpenWRT WiFi Presence MQTT translator","master"],
             "PioneerAVR":                   ["febalci",         "DomoticzPioneerAVR",                   "Pioneer AVR",                       "master"],
             "pyrtl433":                     ["enesbcs",         "pyrtl433",                             "RTL_433 MQTT receiver",             "master"],
-            "pzem016":                      ["CreasolTech",     "domoticz-pzem-016",                    "PZEM-016 PZEM-014 energy meters",   "main"],
+            "pzem016":                      ["CreasolTech",     "domoticz-pzem-016",                    "PZEM-016 PZEM-014 energy meters",   "master"],
             "Quatt":                        ["galadril",        "Domoticz-Quatt-Plugin",                "Quatt",       			     "master"],
             "RAVEn":                        ["dnpwwo",          "Domoticz-RAVEn-Plugin",                "RAVEn Zigbee energy monitor",       "master"],
             "Shelly_MQTT":                  ["enesbcs",         "Shelly_MQTT",                          "Shelly MQTT translator",            "master"],
