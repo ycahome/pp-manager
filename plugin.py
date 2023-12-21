@@ -9,9 +9,9 @@
 
 
 """
-<plugin key="PP-MANAGER" name="Python Plugin Manager" author="ycahome" version="1.5.37" externallink="https://www.domoticz.com/forum/viewtopic.php?f=65&t=22339">
+<plugin key="PP-MANAGER" name="Python Plugin Manager" author="ycahome" version="1.5.39" externallink="https://www.domoticz.com/forum/viewtopic.php?f=65&t=22339">
     <description>
-		<h2>Python Plugin Manager v.1.5.38</h2><br/>
+		<h2>Python Plugin Manager v.1.5.39</h2><br/>
 		<h3>Features</h3>
 		<ul style="list-style-type:square">
 			<li>Install plugins</li>
@@ -43,6 +43,7 @@
                 <option label="Dyson Pure Link" value="DysonPureLink"/>
                 <option label="Eartquake EMSC Data" value="SeismicPortal"/>
                 <option label="ebusd bridge" value="ebusd"/>
+                <option label="Emmeti Mirai heat pumps" value="domoticz-emmeti-mirai"/>
                 <option label="EMS bus Wi-Fi Gateway" value="ems-gateway"/>
                 <option label="eQ-3 MAX!" value="eq3max"/>
                 <option label="Freebox Revolution" value="freeboxv6"/>
@@ -53,12 +54,12 @@
                 <option label="Hiking DDS238-2 ZN/S modbus over TCP/IP" value="ds238-modus-tcp"/>
                 <option label="Hisense AC (AEH-W4A1)" value="aeh-w4a1"/>
                 <option label="Hive Plugin" value="HivePlug"/>
-		<option label="Hyundai Kia connect" value="HyundaiKiaConnect"/>
+                <option label="Hyundai Kia connect" value="HyundaiKiaConnect"/>
                 <option label="iDetect Presence Detection" value="iDetect"/>
                 <option label="IKEA Tradfri" value="IKEA-Tradfri"/>
                 <option label="Life 360 Presence" value="Life360"/>
                 <option label="Linky" value="Linky"/>
-		<option label="Link-Tap" value="Link-Tap"/>
+                <option label="Link-Tap" value="Link-Tap"/>
                 <option label="Meteo Alarm EU RSS Reader" value="MeteoAlarmEU"/>
                 <option label="Mikrotik RouterOS" value="mikrotik-routeros"/>
                 <option label="Moon Phases" value="MoonPhases"/>
@@ -71,6 +72,7 @@
                 <option label="Pioneer AVR" value="PioneerAVR"/>
                 <option label="Quatt" value="Quatt"/>
                 <option label="RTL_433 MQTT receiver" value="pyrtl433"/>
+                <option label="PZEM-016 PZEM-014 and PZEM-004T energy meters" value="pzem016"/>
                 <option label="RAVEn Zigbee energy monitor" value="RAVEn"/>
                 <option label="Shelly MQTT translator" value="Shelly_MQTT"/>
                 <option label="SmogTok Air Quality monitor" value="SmogTok"/>
@@ -84,8 +86,8 @@
                 <option label="Tuya" value="tuyaha"/>
                 <option label="UPS Monitor" value="NUT_UPS"/>
                 <option label="Wan IP Checker" value="WAN-IP-CHECKER"/>
-		<option label="WLANThermo" value="WLANThermo"/>
-		<option label="WLED" value="WLED"/>
+                <option label="WLANThermo" value="WLANThermo"/>
+                <option label="WLED" value="WLED"/>
                 <option label="Xiaomi Mi Flower Mate" value="Mi_Flower_mate_plugin"/>
                 <option label="Xiaomi Mi Robot Vacuum" value="xiaomi-mi-robot-vacuum"/>
                 <option label="Xiaomi PM2.5 Sensor" value="XiaomiPM"/>
@@ -172,6 +174,7 @@ class BasePlugin:
             "DysonPureLink":                ["JanJaapKo",    	"DysonPureLink",                    "Dyson Pure Link",                  "master"],
             "SeismicPortal":                ["febalci",    	"DomoticzEarthquake",                   "Eartquake EMSC Data",               "master"],
             "ebusd":                        ["guillaumezin",    "DomoticzEbusd",                        "ebusd bridge",                      "master"],
+            "domoticz-emmeti-mirai":        ["CreasolTech",     "domoticz-emmeti-mirai",                "Emmeti Mirai heat pumps",           "master"],
             "ems-gateway":                  ["bbqkees",         "ems-esp-domoticz-plugin",              "EMS bus Wi-Fi Gateway",             "master"],
 	    "eq3max":                       ["mvzut",           "maxcube-Domoticz-plugin",              "eQ-3 MAX! Cube",                    "master"],
             "freeboxv6":                    ["supermat",        "PluginDomoticzFreebox",                "Freebox V6 (Revolution)",           "master"],
@@ -198,6 +201,7 @@ class BasePlugin:
             "owrtwifi2domo":                ["enesbcs",         "owrtwifi2domo",                        "OpenWRT WiFi Presence MQTT translator","master"],
             "PioneerAVR":                   ["febalci",         "DomoticzPioneerAVR",                   "Pioneer AVR",                       "master"],
             "pyrtl433":                     ["enesbcs",         "pyrtl433",                             "RTL_433 MQTT receiver",             "master"],
+            "pzem016":                      ["CreasolTech",     "domoticz-pzem-016",                    "PZEM-016 PZEM-014 PZEM-004T energy meters",   "master"],
             "Quatt":                        ["galadril",        "Domoticz-Quatt-Plugin",                "Quatt",       			     "master"],
             "RAVEn":                        ["dnpwwo",          "Domoticz-RAVEn-Plugin",                "RAVEn Zigbee energy monitor",       "master"],
             "Shelly_MQTT":                  ["enesbcs",         "Shelly_MQTT",                          "Shelly MQTT translator",            "master"],
