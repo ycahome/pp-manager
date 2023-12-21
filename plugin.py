@@ -72,7 +72,7 @@
                 <option label="Pioneer AVR" value="PioneerAVR"/>
                 <option label="Quatt" value="Quatt"/>
                 <option label="RTL_433 MQTT receiver" value="pyrtl433"/>
-                <option label="PZEM-016 PZEM-014 energy meters" value="pzem016"/>
+                <option label="PZEM-016 PZEM-014 and PZEM-004T energy meters" value="pzem016"/>
                 <option label="RAVEn Zigbee energy monitor" value="RAVEn"/>
                 <option label="Shelly MQTT translator" value="Shelly_MQTT"/>
                 <option label="SmogTok Air Quality monitor" value="SmogTok"/>
@@ -201,7 +201,7 @@ class BasePlugin:
             "owrtwifi2domo":                ["enesbcs",         "owrtwifi2domo",                        "OpenWRT WiFi Presence MQTT translator","master"],
             "PioneerAVR":                   ["febalci",         "DomoticzPioneerAVR",                   "Pioneer AVR",                       "master"],
             "pyrtl433":                     ["enesbcs",         "pyrtl433",                             "RTL_433 MQTT receiver",             "master"],
-            "pzem016":                      ["CreasolTech",     "domoticz-pzem-016",                    "PZEM-016 PZEM-014 energy meters",   "master"],
+            "pzem016":                      ["CreasolTech",     "domoticz-pzem-016",                    "PZEM-016 PZEM-014 PZEM-004T energy meters",   "master"],
             "Quatt":                        ["galadril",        "Domoticz-Quatt-Plugin",                "Quatt",       			     "master"],
             "RAVEn":                        ["dnpwwo",          "Domoticz-RAVEn-Plugin",                "RAVEn Zigbee energy monitor",       "master"],
             "Shelly_MQTT":                  ["enesbcs",         "Shelly_MQTT",                          "Shelly MQTT translator",            "master"],
