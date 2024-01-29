@@ -35,6 +35,7 @@
                 <option label="Chromecast plugin for Domoticz" value="ChromecastPlugin"/>
                 <option label="Creasol DomBus RS485 I/O/Sens modules" value="CreasolDomBus"/>
                 <option label="Crow Runner Alarm" value="AAPIPModule"/>
+                <option label="DDS238 ZN/S energy meter, single phase, Modbus RTU" value="domoticz-dds238"/>
                 <option label="deCONZ bridge (For Conbee,Raspbee)" value="deCONZ"/>
                 <option label="Denon/Marantz Amplifier" value="Denon4306"/>
                 <option label="Domoticz Theme Manager" value="domoticz-theme-manager"/>
@@ -169,6 +170,7 @@ class BasePlugin:
             "deCONZ":                       ["Smanar",          "Domoticz-deCONZ",                      "deCONZ bridge (For Conbee,Raspbee)","master"],
             "Denon4306":                    ["dnpwwo",    	"Domoticz-Denon-Plugin",                "Denon/Marantz Amplifier",           "master"],
             "xfr_discusage":                ["Xorfor",    	"Domoticz-Disc-usage-Plugin",           "Disc usage",                        "master"],
+            "domoticz-dds238":              ["CreasolTech",     "domoticz-dds238",                    	"DDS238 ZN/S energy meter, single phase, Modbus RTU", "master"],
             "domoticz-theme-manager":       ["galadril",    	"domoticz-theme-manager",  		"Domoticz Theme Manager",            "master"],
             "xfr_aardbeving":               ["Xorfor",    	"Domoticz-LastDutchEarthquake-Plugin",  "Dutch earthquakes",                 "master"],
             "DysonPureLink":                ["JanJaapKo",    	"DysonPureLink",                    "Dyson Pure Link",                  "master"],
