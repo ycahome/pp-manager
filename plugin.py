@@ -57,6 +57,7 @@
                 <option label="Hive Plugin" value="HivePlug"/>
                 <option label="Hyundai Kia connect" value="HyundaiKiaConnect"/>
                 <option label="iDetect Presence Detection" value="iDetect"/>
+                <option label="IthoWifi" value="IthoWifi"/>
                 <option label="IKEA Tradfri" value="IKEA-Tradfri"/>
                 <option label="Life 360 Presence" value="Life360"/>
                 <option label="Linky" value="Linky"/>
@@ -188,6 +189,7 @@ class BasePlugin:
             "HivePlug":                     ["imcfarla2003",    "domoticz-hive",                        "Hive Plugin",                       "master"],
             "HyundaiKiaConnect":            ["CreasolTech",     "domoticz-hyundai-kia",                 "Hyundai and Kia vehicles",          "master"],
             "iDetect":                      ["d-EScape",        "Domoticz_iDetect",              	"iDetect Presence Detection",        "master"],
+            "IthoWifi":                     ["galadril",        "Domoticz-Itho-Wifi-Plugin",            "Itho Wifi module",        	     "master"],
             "IKEA-Tradfri":                 ["moroen",          "IKEA-Tradfri-plugin",                  "IKEA Tradfri",                      "master"],
             "Life360":                      ["febalci",         "DomoticzLife360",                      "Life 360 Presence",                 "master"],
             "Linky":                        ["guillaumezin",    "DomoticzLinky",                        "Linky",                             "master"],
