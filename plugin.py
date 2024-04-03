@@ -9,9 +9,9 @@
 
 
 """
-<plugin key="PP-MANAGER" name="Python Plugin Manager" author="ycahome" version="1.5.40" externallink="https://www.domoticz.com/forum/viewtopic.php?f=65&t=22339">
+<plugin key="PP-MANAGER" name="Python Plugin Manager" author="ycahome" version="1.5.41" externallink="https://www.domoticz.com/forum/viewtopic.php?f=65&t=22339">
     <description>
-		<h2>Python Plugin Manager v.1.5.40</h2><br/>
+		<h2>Python Plugin Manager v.1.5.41</h2><br/>
 		<h3>Features</h3>
 		<ul style="list-style-type:square">
 			<li>Install plugins</li>
@@ -57,6 +57,7 @@
                 <option label="Hive Plugin" value="HivePlug"/>
                 <option label="Hyundai Kia connect" value="HyundaiKiaConnect"/>
                 <option label="iDetect Presence Detection" value="iDetect"/>
+                <option label="IthoWifi" value="IthoWifi"/>
                 <option label="IKEA Tradfri" value="IKEA-Tradfri"/>
                 <option label="Life 360 Presence" value="Life360"/>
                 <option label="Linky" value="Linky"/>
@@ -188,6 +189,7 @@ class BasePlugin:
             "HivePlug":                     ["imcfarla2003",    "domoticz-hive",                        "Hive Plugin",                       "master"],
             "HyundaiKiaConnect":            ["CreasolTech",     "domoticz-hyundai-kia",                 "Hyundai and Kia vehicles",          "master"],
             "iDetect":                      ["d-EScape",        "Domoticz_iDetect",              	"iDetect Presence Detection",        "master"],
+            "IthoWifi":                     ["galadril",        "Domoticz-Itho-Wifi-Plugin",            "Itho Wifi module",        	     "master"],
             "IKEA-Tradfri":                 ["moroen",          "IKEA-Tradfri-plugin",                  "IKEA Tradfri",                      "master"],
             "Life360":                      ["febalci",         "DomoticzLife360",                      "Life 360 Presence",                 "master"],
             "Linky":                        ["guillaumezin",    "DomoticzLinky",                        "Linky",                             "master"],
