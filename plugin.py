@@ -9,9 +9,9 @@
 
 
 """
-<plugin key="PP-MANAGER" name="Python Plugin Manager" author="ycahome" version="1.5.41" externallink="https://www.domoticz.com/forum/viewtopic.php?f=65&t=22339">
+<plugin key="PP-MANAGER" name="Python Plugin Manager" author="ycahome" version="1.5.42" externallink="https://www.domoticz.com/forum/viewtopic.php?f=65&t=22339">
     <description>
-		<h2>Python Plugin Manager v.1.5.41</h2><br/>
+		<h2>Python Plugin Manager v.1.5.42</h2><br/>
 		<h3>Features</h3>
 		<ul style="list-style-type:square">
 			<li>Install plugins</li>
@@ -36,6 +36,7 @@
                 <option label="Creasol DomBus RS485 I/O/Sens modules" value="CreasolDomBus"/>
                 <option label="Crow Runner Alarm" value="AAPIPModule"/>
                 <option label="DDS238 ZN/S energy meter, single phase, Modbus RTU" value="domoticz-dds238"/>
+                <option label="DTS238 ZN/S energy meter, three phase, Modbus RTU" value="domoticz-dts238"/>
                 <option label="deCONZ bridge (For Conbee,Raspbee)" value="deCONZ"/>
                 <option label="Denon/Marantz Amplifier" value="Denon4306"/>
                 <option label="Domoticz Theme Manager" value="domoticz-theme-manager"/>
@@ -44,6 +45,7 @@
                 <option label="Dyson Pure Link" value="DysonPureLink"/>
                 <option label="Eartquake EMSC Data" value="SeismicPortal"/>
                 <option label="ebusd bridge" value="ebusd"/>
+                <option label="Emmeti EQ 2021 and EQ 3021 ES hot water heat pumps" value="domoticz-emmeti-eq2021"/>
                 <option label="Emmeti Mirai heat pumps" value="domoticz-emmeti-mirai"/>
                 <option label="EMS bus Wi-Fi Gateway" value="ems-gateway"/>
                 <option label="eQ-3 MAX!" value="eq3max"/>
@@ -172,11 +174,13 @@ class BasePlugin:
             "Denon4306":                    ["dnpwwo",    	"Domoticz-Denon-Plugin",                "Denon/Marantz Amplifier",           "master"],
             "xfr_discusage":                ["Xorfor",    	"Domoticz-Disc-usage-Plugin",           "Disc usage",                        "master"],
             "domoticz-dds238":              ["CreasolTech",     "domoticz-dds238",                    	"DDS238 ZN/S energy meter, single phase, Modbus RTU", "master"],
+            "domoticz-dts238":              ["CreasolTech",     "domoticz-dts238",                    	"DTS238 ZN/S energy meter, three phase, Modbus RTU", "master"],
             "domoticz-theme-manager":       ["galadril",    	"domoticz-theme-manager",  		"Domoticz Theme Manager",            "master"],
             "xfr_aardbeving":               ["Xorfor",    	"Domoticz-LastDutchEarthquake-Plugin",  "Dutch earthquakes",                 "master"],
             "DysonPureLink":                ["JanJaapKo",    	"DysonPureLink",                    "Dyson Pure Link",                  "master"],
             "SeismicPortal":                ["febalci",    	"DomoticzEarthquake",                   "Eartquake EMSC Data",               "master"],
             "ebusd":                        ["guillaumezin",    "DomoticzEbusd",                        "ebusd bridge",                      "master"],
+            "domoticz-emmeti-eq2021":       ["CreasolTech",     "domoticz-emmeti-eq2021",               "Emmeti EQ 2021 amd EQ 3021 ES hot water heat pumps",     "master"],
             "domoticz-emmeti-mirai":        ["CreasolTech",     "domoticz-emmeti-mirai",                "Emmeti Mirai heat pumps",           "master"],
             "ems-gateway":                  ["bbqkees",         "ems-esp-domoticz-plugin",              "EMS bus Wi-Fi Gateway",             "master"],
 	    "eq3max":                       ["mvzut",           "maxcube-Domoticz-plugin",              "eQ-3 MAX! Cube",                    "master"],
