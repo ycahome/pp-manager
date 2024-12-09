@@ -30,6 +30,7 @@
             <options>
                 <option label="Idle" value="Idle"  default="true" />
                 <option label="Dummy Plugin" value="Dummy_Plugin"/>
+                <option label="AWTRIX3" value="AWTRIX3"/>
                 <option label="Battery monitoring for Z-Wave nodes" value="BatteryLevel"/>
                 <option label="Buienradar.nl (Weather lookup)" value="Buienradar"/>
                 <option label="Chromecast plugin for Domoticz" value="ChromecastPlugin"/>
@@ -166,6 +167,7 @@ class BasePlugin:
             # Plugin Key:                   [gitHub author,     repository,                             plugin Text,                         Branch]
             "Idle":                         ["Idle",            "Idle",                                 "Idle",                              "master"],
             "Dummy_Plugin":                 ["ycahome",         "Dummy_Plugin",                         "Dummy Plugin",                      "master"],
+            "AWTRIX3":                 	    ["galadril",        "Domoticz-AWTRIX3-Plugin",              "Integrate with AWTRIX3 Smart Clock", "master"],
             "BatteryLevel":                 ["999LV",           "BatteryLevel",                         "Battery monitoring for Z-Wave nodes", "master"],
             "Buienradar":                   ["ffes",            "domoticz-buienradar",                  "Buienradar.nl (Weather lookup)",    "master"],
 	    "AAPIPModule":                  ["febalci",         "DomoticzCrowAlarm",                    "Crow Runner Alarm",                 "master"],
