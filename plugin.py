@@ -9,7 +9,7 @@
 
 
 """
-<plugin key="PP-MANAGER" name="Python Plugin Manager" author="ycahome" version="1.5.42" externallink="https://www.domoticz.com/forum/viewtopic.php?f=65&t=22339">
+<plugin key="PP-MANAGER" name="Python Plugin Manager" author="ycahome" version="1.5.43" externallink="https://www.domoticz.com/forum/viewtopic.php?f=65&t=22339">
     <description>
 		<h2>Python Plugin Manager v.1.5.42</h2><br/>
 		<h3>Features</h3>
@@ -45,6 +45,7 @@
                 <option label="Dyson Pure Link" value="DysonPureLink"/>
                 <option label="Eartquake EMSC Data" value="SeismicPortal"/>
                 <option label="ebusd bridge" value="ebusd"/>
+                <option label="E-Flux" value="E-Flux"/>
                 <option label="Emmeti EQ 2021 and EQ 3021 ES hot water heat pumps" value="domoticz-emmeti-eq2021"/>
                 <option label="Emmeti Mirai heat pumps" value="domoticz-emmeti-mirai"/>
                 <option label="EMS bus Wi-Fi Gateway" value="ems-gateway"/>
@@ -180,6 +181,7 @@ class BasePlugin:
             "DysonPureLink":                ["JanJaapKo",    	"DysonPureLink",                    "Dyson Pure Link",                  "master"],
             "SeismicPortal":                ["febalci",    	"DomoticzEarthquake",                   "Eartquake EMSC Data",               "master"],
             "ebusd":                        ["guillaumezin",    "DomoticzEbusd",                        "ebusd bridge",                      "master"],
+            "E-Flux":                       ["galadril",   	"Domoticz-E-Flux-Plugin",               "E-Flux by Road back office",        "master"],
             "domoticz-emmeti-eq2021":       ["CreasolTech",     "domoticz-emmeti-eq2021",               "Emmeti EQ 2021 amd EQ 3021 ES hot water heat pumps",     "master"],
             "domoticz-emmeti-mirai":        ["CreasolTech",     "domoticz-emmeti-mirai",                "Emmeti Mirai heat pumps",           "master"],
             "ems-gateway":                  ["bbqkees",         "ems-esp-domoticz-plugin",              "EMS bus Wi-Fi Gateway",             "master"],
