@@ -3,7 +3,8 @@ import re
 import sys
 import subprocess
 
-PLUGIN_FILE_PATH = "plugin.py"
+# Adjust path relative to the current script location
+PLUGIN_FILE_PATH = os.path.join(os.path.dirname(__file__), '../../plugin.py')
 
 def parse_plugin_file():
     plugin_data = {}
