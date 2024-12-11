@@ -68,7 +68,6 @@
                 <option label="MQTT discovery" value="MQTTDiscovery"/>
                 <option label="Onkyo AV Receiver" value="Onkyo"/>
                 <option label="OpenWRT WiFi Presence MQTT translator" value="owrtwifi2domo"/>
-                <option label="PiMonitor" value="xfr-pimonitor"/>
                 <option label="Quatt" value="Quatt"/>
                 <option label="RTL_433 MQTT receiver" value="pyrtl433"/>
                 <option label="PZEM-016 PZEM-014 and PZEM-004T energy meters" value="pzem016"/>
@@ -194,7 +193,6 @@ class BasePlugin:
             "MoonPhases":                   ["ycahome",         "MoonPhases",                           "Moon Phases",                       "master"],
             "MQTTDiscovery":                ["emontnemery",     "domoticz_mqtt_discovery",              "MQTT discovery",                    "master"],
             "Onkyo":                	    ["jorgh6",          "domoticz-onkyo-plugin",                "Onkyo AV Receiver",                 "master"],
-            "xfr-pimonitor":                ["Xorfor",          "Domoticz-PiMonitor-Plugin",            "PiMonitor",                         "master"],
             "owrtwifi2domo":                ["enesbcs",         "owrtwifi2domo",                        "OpenWRT WiFi Presence MQTT translator","master"],
             "pyrtl433":                     ["enesbcs",         "pyrtl433",                             "RTL_433 MQTT receiver",             "master"],
             "pzem016":                      ["CreasolTech",     "domoticz-pzem-016",                    "PZEM-016 PZEM-014 PZEM-004T energy meters",   "master"],
