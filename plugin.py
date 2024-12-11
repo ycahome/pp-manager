@@ -1,4 +1,3 @@
-
 # pp-manager - PythonPlugin Manager
 #
 # Author: ycahome, 2018
@@ -517,6 +516,9 @@ class BasePlugin:
             Domoticz.Error("Git ErrorNo:" + str(e.errno))
             Domoticz.Error("Git StrError:" + str(e.strerror))
 
+        # Check for requirements.txt and install dependencies
+        self.installDependencies(ppKey)
+
         #try:
         #    pr1 = subprocess.Popen( "/etc/init.d/domoticz.sh restart" , cwd = os.path.dirname(str(os.getcwd()) + "/plugins/"), shell = True, stdout = subprocess.PIPE, stderr = subprocess.PIPE )
         #    (out1, error1) = pr1.communicate()
@@ -582,6 +584,9 @@ class BasePlugin:
         except OSError as e:
             Domoticz.Error("Git ErrorNo:" + str(e.errno))
             Domoticz.Error("Git StrError:" + str(e.strerror))
+
+        # Check for requirements.txt and install dependencies
+        self.installDependencies(ppKey)
 
         return None
 
@@ -788,6 +793,30 @@ class BasePlugin:
 
 
 
+    def installDependencies(self, pluginKey):
+        Domoticz.Debug("installDependencies called")
+
+        requirementsFile = str(os.getcwd()) + "/plugins/" + pluginKey + "/requirements.txt"
+        if os.path.isfile(requirementsFile):
+            Domoticz.Log("requirements.txt found for plugin: " + pluginKey)
+            installCmd = "sudo pip3 install -r " + requirementsFile
+            Domoticz.Log("Installing dependencies using: " + installCmd)
+            try:
+                pr = subprocess.Popen(installCmd, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+                (out, error) = pr.communicate()
+                if out:
+                    Domoticz.Log("Dependencies installed: " + str(out).strip())
+                if error:
+                    Domoticz.Error("Error installing dependencies: " + str(error).strip())
+            except OSError as e:
+                Domoticz.Error("ErrorNo: " + str(e.errno))
+                Domoticz.Error("StrError: " + str(e.strerror))
+        else:
+            Domoticz.Log("No requirements.txt found for plugin: " + pluginKey)
+
+        return None
+
+
 global _plugin
 _plugin = BasePlugin()
 
@@ -822,5 +851,4 @@ def DumpConfigToLog():
 def mid(s, offset, amount):
     #Domoticz.Debug("mid called")
     return s[offset:offset+amount]
-
 
