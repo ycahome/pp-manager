@@ -1,5 +1,10 @@
 import os
+import sys
 import requests
+
+# Add the repository root to sys.path
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '../../')))
+
 from plugin import BasePlugin
 
 def validate_repositories():
