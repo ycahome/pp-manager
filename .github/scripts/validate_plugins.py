@@ -19,12 +19,15 @@ def parse_plugin_file():
         content = plugin_file.read()
         print(f"Read content from plugin file, length: {len(content)}")
 
-        plugin_data_section = re.search(r'self\.plugindata\s*=\s*{\n(.*?)\n}', content, re.DOTALL)
+        # Adjusted regex to be more robust and handle multi-line content
+        plugin_data_section = re.search(r'self\.plugindata\s*=\s*{(.*?)\n\s*}', content, re.DOTALL)
         if plugin_data_section:
+            print("Found plugindata section")
             plugin_lines = plugin_data_section.group(1).split('\n')
             for line in plugin_lines:
-                print(f"Processing line: {line.strip()}")
-                match = re.match(r'\s*"(?P<key>[^"]+)"\s*:\s*\["(?P<author>[^"]+)",\s*"(?P<repository>[^"]+)",\s*"(?P<description>[^"]+)",\s*"(?P<branch>[^"]+)"\],?', line.strip())
+                line = line.strip()
+                print(f"Processing line: {line}")
+                match = re.match(r'"(?P<key>[^"]+)"\s*:\s*\["(?P<author>[^"]+)",\s*"(?P<repository>[^"]+)",\s*"(?P<description>[^"]+)",\s*"(?P<branch>[^"]+)"\],?', line)
                 if match:
                     plugin_info = match.groupdict()
                     plugin_data[plugin_info["key"]] = plugin_info
@@ -47,7 +50,7 @@ def main():
     print("Parsing plugin file...")
     plugin_data = parse_plugin_file()
     print(f"Parsed data: {plugin_data}")
-    
+
     if not plugin_data:
         print("No plugin data found, exiting.")
         sys.exit(1)
