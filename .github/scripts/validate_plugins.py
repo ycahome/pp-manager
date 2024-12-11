@@ -22,11 +22,18 @@ def parse_plugin_file():
 def validate_repository(author, repository, branch):
     repo_url = f"https://github.com/{author}/{repository}"
     repo_clone_cmd = f"git ls-remote --heads {repo_url} {branch}"
-    result = subprocess.run(repo_clone_cmd, shell=True, capture_output=True)
+    result = subprocess.run(repo_clone_cmd, shell=True, capture_output=True, text=True)
+    if result.returncode != 0:
+        print(f"Error executing command: {repo_clone_cmd}")
+        print(f"stdout: {result.stdout}")
+        print(f"stderr: {result.stderr}")
     return result.returncode == 0
 
 def main():
+    print("Parsing plugin file...")
     plugin_data = parse_plugin_file()
+    print(f"Parsed data: {plugin_data}")
+    
     all_valid = True
     for key, data in plugin_data.items():
         print(f"Validating repository for plugin: {key}")
@@ -38,6 +45,7 @@ def main():
             all_valid = False
 
     if not all_valid:
+        print("One or more plugins are invalid.")
         sys.exit(1)  # Exit with a non-zero code to indicate failure
 
 if __name__ == "__main__":
