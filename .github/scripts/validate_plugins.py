@@ -26,6 +26,8 @@ def parse_plugin_file():
             plugin_lines = plugin_data_section.group(1).split('\n')
             for line in plugin_lines:
                 line = line.strip()
+                if line.startswith('"Idle"'):
+                    continue  # Skip the Idle plugin
                 print(f"Processing line: {line}")
                 match = re.match(r'"(?P<key>[^"]+)"\s*:\s*\["(?P<author>[^"]+)",\s*"(?P<repository>[^"]+)",\s*"(?P<description>[^"]+)",\s*"(?P<branch>[^"]+)"\],?', line)
                 if match:
