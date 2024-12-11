@@ -41,10 +41,7 @@
                 <option label="deCONZ bridge (For Conbee,Raspbee)" value="deCONZ"/>
                 <option label="Denon/Marantz Amplifier" value="Denon4306"/>
                 <option label="Domoticz Theme Manager" value="domoticz-theme-manager"/>
-                <option label="Disc usage" value="xfr_discusage"/>
-                <option label="Dutch earthquakes" value="xfr_aardbeving"/>
                 <option label="Dyson Pure Link" value="DysonPureLink"/>
-                <option label="Eartquake EMSC Data" value="SeismicPortal"/>
                 <option label="ebusd bridge" value="ebusd"/>
                 <option label="E-Flux" value="E-Flux"/>
                 <option label="Emmeti EQ 2021 and EQ 3021 ES hot water heat pumps" value="domoticz-emmeti-eq2021"/>
@@ -63,7 +60,6 @@
                 <option label="iDetect Presence Detection" value="iDetect"/>
                 <option label="IthoWifi" value="IthoWifi"/>
                 <option label="IKEA Tradfri" value="IKEA-Tradfri"/>
-                <option label="Life 360 Presence" value="Life360"/>
                 <option label="Linky" value="Linky"/>
                 <option label="Link-Tap" value="Link-Tap"/>
                 <option label="Meteo Alarm EU RSS Reader" value="MeteoAlarmEU"/>
@@ -71,11 +67,8 @@
                 <option label="Moon Phases" value="MoonPhases"/>
                 <option label="MQTT discovery" value="MQTTDiscovery"/>
                 <option label="Onkyo AV Receiver" value="Onkyo"/>
-                <option label="OpenAQ" value="xfr_openaq"/>
                 <option label="OpenWRT WiFi Presence MQTT translator" value="owrtwifi2domo"/>
-                <option label="Pi-hole summary" value="xfr_pihole"/>
                 <option label="PiMonitor" value="xfr-pimonitor"/>
-                <option label="Pioneer AVR" value="PioneerAVR"/>
                 <option label="Quatt" value="Quatt"/>
                 <option label="RTL_433 MQTT receiver" value="pyrtl433"/>
                 <option label="PZEM-016 PZEM-014 and PZEM-004T energy meters" value="pzem016"/>
@@ -86,7 +79,6 @@
                 <option label="Sonos Players" value="Sonos"/>
                 <option label="Sonoff Mini" value="sonoff-domoticz-plugin"/>
                 <option label="Sony Bravia TV (with Kodi remote)" value="sony"/>
-                <option label="Speedtest" value="xfr_speedtest"/>
                 <option label="Synology SurveillanceStation" value="SurveillanceStation"/>
                 <option label="SYSFS-Switches" value="SYSFS-Switches"/>
                 <option label="Tuya" value="tuyaha"/>
@@ -96,7 +88,6 @@
                 <option label="WLED" value="WLED"/>
                 <option label="Xiaomi Mi Flower Mate" value="Mi_Flower_mate_plugin"/>
                 <option label="Xiaomi Mi Robot Vacuum" value="xiaomi-mi-robot-vacuum"/>
-                <option label="Xiaomi PM2.5 Sensor" value="XiaomiPM"/>
                 <option label="Yamaha AV Receiver" value="YamahaPlug"/>
                 <option label="Yi Hack" value="YiHack"/>
                 <option label="Zigbee for Domoticz" value="Zigate"/>
@@ -175,13 +166,10 @@ class BasePlugin:
             "CreasolDomBus":                ["CreasolTech",     "CreasolDomBus",                    	"Creasol DomBus RS485 I/O/Sens modules", "master"],
             "deCONZ":                       ["Smanar",          "Domoticz-deCONZ",                      "deCONZ bridge (For Conbee,Raspbee)","master"],
             "Denon4306":                    ["dnpwwo",    	"Domoticz-Denon-Plugin",                "Denon/Marantz Amplifier",           "master"],
-            "xfr_discusage":                ["Xorfor",    	"Domoticz-Disc-usage-Plugin",           "Disc usage",                        "master"],
             "domoticz-dds238":              ["CreasolTech",     "domoticz-dds238",                    	"DDS238 ZN/S energy meter, single phase, Modbus RTU", "master"],
             "domoticz-dts238":              ["CreasolTech",     "domoticz-dts238",                    	"DTS238 ZN/S energy meter, three phase, Modbus RTU", "master"],
             "domoticz-theme-manager":       ["galadril",    	"domoticz-theme-manager",  		"Domoticz Theme Manager",            "master"],
-            "xfr_aardbeving":               ["Xorfor",    	"Domoticz-LastDutchEarthquake-Plugin",  "Dutch earthquakes",                 "master"],
             "DysonPureLink":                ["JanJaapKo",    	"DysonPureLink",                    "Dyson Pure Link",                  "master"],
-            "SeismicPortal":                ["febalci",    	"DomoticzEarthquake",                   "Eartquake EMSC Data",               "master"],
             "ebusd":                        ["guillaumezin",    "DomoticzEbusd",                        "ebusd bridge",                      "master"],
             "E-Flux":                       ["galadril",   	"Domoticz-E-Flux-Plugin",               "E-Flux by Road back office",        "master"],
             "domoticz-emmeti-eq2021":       ["CreasolTech",     "domoticz-emmeti-eq2021",               "Emmeti EQ 2021 amd EQ 3021 ES hot water heat pumps",     "master"],
@@ -199,7 +187,6 @@ class BasePlugin:
             "iDetect":                      ["d-EScape",        "Domoticz_iDetect",              	"iDetect Presence Detection",        "master"],
             "IthoWifi":                     ["galadril",        "Domoticz-Itho-Wifi-Plugin",            "Itho Wifi module",        	     "master"],
             "IKEA-Tradfri":                 ["moroen",          "IKEA-Tradfri-plugin",                  "IKEA Tradfri",                      "master"],
-            "Life360":                      ["febalci",         "DomoticzLife360",                      "Life 360 Presence",                 "master"],
             "Linky":                        ["guillaumezin",    "DomoticzLinky",                        "Linky",                             "master"],
 	    "Link-Tap":                     ["DebugBill",       "Link-Tap",                             "Link-Tap Watering System",          "master"],
 	    "MeteoAlarmEU":                 ["ycahome",         "MeteoAlarmEU",                         "Meteo Alarm EU RSS Reader",         "master"],
@@ -207,11 +194,8 @@ class BasePlugin:
             "MoonPhases":                   ["ycahome",         "MoonPhases",                           "Moon Phases",                       "master"],
             "MQTTDiscovery":                ["emontnemery",     "domoticz_mqtt_discovery",              "MQTT discovery",                    "master"],
             "Onkyo":                	    ["jorgh6",          "domoticz-onkyo-plugin",                "Onkyo AV Receiver",                 "master"],
-            "xfr_openaq":                   ["Xorfor",          "Domoticz-OpenAQ-Plugin",               "OpenAQ",                            "master"],
-            "xfr_pihole":                   ["Xorfor",          "Domoticz-Pi-hole-Plugin",              "Pi-hole summary",                   "master"],
             "xfr-pimonitor":                ["Xorfor",          "Domoticz-PiMonitor-Plugin",            "PiMonitor",                         "master"],
             "owrtwifi2domo":                ["enesbcs",         "owrtwifi2domo",                        "OpenWRT WiFi Presence MQTT translator","master"],
-            "PioneerAVR":                   ["febalci",         "DomoticzPioneerAVR",                   "Pioneer AVR",                       "master"],
             "pyrtl433":                     ["enesbcs",         "pyrtl433",                             "RTL_433 MQTT receiver",             "master"],
             "pzem016":                      ["CreasolTech",     "domoticz-pzem-016",                    "PZEM-016 PZEM-014 PZEM-004T energy meters",   "master"],
             "Quatt":                        ["galadril",        "Domoticz-Quatt-Plugin",                "Quatt",       			     "master"],
@@ -223,7 +207,6 @@ class BasePlugin:
             "sonoff-domoticz-plugin":       ["bobzomer",        "sonoff-domoticz-plugin",               "Sonoff Mini",                       "master"],
             "sony":                         ["gerard33",        "sony-bravia",                          "Sony Bravia TV (with Kodi remote)", "master"],
             "Synology SurveillanceStation": ["lolautruche",     "SurveillanceStationDomoticz",          "Synology SurveillanceStation",      "master"],
-            "xfr_speedtest":                ["Xorfor",          "Domoticz-Speedtest-Plugin",            "Speedtest",                         "master"],
             "SYSFS-Switches":               ["flatsiedatsie",   "GPIO-SYSFS-Switches",                  "SYSFS-Switches",                    "master"],
             "tuyaha":                       ["guino",           "tuyaha",                               "Tuya",                              "master"],
             "NUT_UPS":                      ["999LV",           "NUT_UPS",                              "UPS Monitor",                       "master"],
@@ -232,7 +215,6 @@ class BasePlugin:
             "WAN-IP-CHECKER":               ["ycahome",         "WAN-IP-CHECKER",                       "Wan IP Checker",                    "master"],
             "Mi_Flower_mate_plugin":        ["flatsiedatsie",   "Mi_Flower_mate_plugin",                "Xiaomi Mi Flower Mate",             "master"],
             "xiaomi-mi-robot-vacuum":       ["mrin",            "domoticz-mirobot-plugin",              "Xiaomi Mi Robot Vacuum",            "master"],
-            "XiaomiPM":                     ["febalci",         "DomoticzXiaomiPM2.5",                  "Xiaomi PM2.5 Sensor",               "master"],
             "YamahaPlug":                   ["thomas-villagers","domoticz-yamaha",                      "Yamaha AV Receiver",                "master"],
             "YiHack":                       ["galadril",        "Domoticz-Yi-Hack-Plugin",              "Yi Hack",                	     "master"],
             "Zigate":                       ["zigbeefordomoticz", "Domoticz-Zigbee",                    "Zigate plugin",                     "stable6"],
