@@ -28,7 +28,6 @@
             <options>
                 <option label="Idle" value="Idle"  default="true" />
                 <option label="Dummy Plugin" value="Dummy_Plugin"/>
-                <option label="AWTRIX3" value="AWTRIX3"/>
                 <option label="Battery monitoring for Z-Wave nodes" value="BatteryLevel"/>
                 <option label="Buienradar.nl (Weather lookup)" value="Buienradar"/>
                 <option label="Chromecast plugin for Domoticz" value="ChromecastPlugin"/>
@@ -41,7 +40,6 @@
                 <option label="Domoticz Theme Manager" value="domoticz-theme-manager"/>
                 <option label="Dyson Pure Link" value="DysonPureLink"/>
                 <option label="ebusd bridge" value="ebusd"/>
-                <option label="E-Flux" value="E-Flux"/>
                 <option label="Emmeti EQ 2021 and EQ 3021 ES hot water heat pumps" value="domoticz-emmeti-eq2021"/>
                 <option label="Emmeti Mirai heat pumps" value="domoticz-emmeti-mirai"/>
                 <option label="EMS bus Wi-Fi Gateway" value="ems-gateway"/>
@@ -155,7 +153,6 @@ class BasePlugin:
             # Plugin Key:                   [gitHub author,     repository,                             plugin Text,                         Branch]
             "Idle":                         ["Idle",            "Idle",                                 "Idle",                              "master"],
             "Dummy_Plugin":                 ["ycahome",         "Dummy_Plugin",                         "Dummy Plugin",                      "master"],
-            "AWTRIX3":                 	    ["galadril",        "Domoticz-AWTRIX3-Plugin",              "Integrate with AWTRIX3 Smart Clock", "master"],
             "BatteryLevel":                 ["999LV",           "BatteryLevel",                         "Battery monitoring for Z-Wave nodes", "master"],
             "Buienradar":                   ["ffes",            "domoticz-buienradar",                  "Buienradar.nl (Weather lookup)",    "master"],
 	    "AAPIPModule":                  ["febalci",         "DomoticzCrowAlarm",                    "Crow Runner Alarm",                 "master"],
@@ -168,7 +165,6 @@ class BasePlugin:
             "domoticz-theme-manager":       ["galadril",    	"domoticz-theme-manager",  		"Domoticz Theme Manager",            "master"],
             "DysonPureLink":                ["JanJaapKo",    	"DysonPureLink",                    "Dyson Pure Link",                  "master"],
             "ebusd":                        ["guillaumezin",    "DomoticzEbusd",                        "ebusd bridge",                      "master"],
-            "E-Flux":                       ["galadril",   	"Domoticz-E-Flux-Plugin",               "E-Flux by Road back office",        "master"],
             "domoticz-emmeti-eq2021":       ["CreasolTech",     "domoticz-emmeti-eq2021",               "Emmeti EQ 2021 amd EQ 3021 ES hot water heat pumps",     "master"],
             "domoticz-emmeti-mirai":        ["CreasolTech",     "domoticz-emmeti-mirai",                "Emmeti Mirai heat pumps",           "master"],
             "ems-gateway":                  ["bbqkees",         "ems-esp-domoticz-plugin",              "EMS bus Wi-Fi Gateway",             "master"],
