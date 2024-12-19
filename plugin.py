@@ -1,10 +1,8 @@
-
 # pp-manager - PythonPlugin Manager
 #
 # Author: ycahome, 2018
 #
 #  Since (2018-02-23): Initial Version
-#
 #
 
 
@@ -260,6 +258,9 @@ class BasePlugin:
 
 
 
+
+
+        
         
         
         
@@ -316,6 +317,7 @@ class BasePlugin:
 
 
 
+        
         
         # Reading exception file and populating array of values
         exceptionFile = str(os.getcwd()) + "/plugins/PP-MANAGER/exceptions.txt"
@@ -441,7 +443,12 @@ class BasePlugin:
                 for (path, dirs, files) in os.walk(path):
                     for dir in dirs:
                         if str(dir) != "":
-                            self.UpdatePythonPlugin(self.plugindata[Parameters["Mode2"]][0], self.plugindata[Parameters["Mode2"]][1], str(dir))
+                            if str(dir) in self.plugindata:
+                                self.UpdatePythonPlugin(self.plugindata[Parameters["Mode2"]][0], self.plugindata[Parameters["Mode2"]][1], str(dir))
+                            elif str(dir) == "PP-MANAGER":
+                                Domoticz.Debug("PP-Manager Folder found. Skipping!!")      
+                            else:
+                                Domoticz.Log("Plugin:" + str(dir) + " cannot be managed with PP-Manager!!.")      
                     i += 1
                     if i >= 1:
                        break
@@ -453,14 +460,22 @@ class BasePlugin:
                 for (path, dirs, files) in os.walk(path):
                     for dir in dirs:
                         if str(dir) != "":
-                            self.CheckForUpdatePythonPlugin(self.plugindata[Parameters["Mode2"]][0], self.plugindata[Parameters["Mode2"]][1], str(dir))
+                            if str(dir) in self.plugindata:
+                                self.CheckForUpdatePythonPlugin(self.plugindata[Parameters["Mode2"]][0], self.plugindata[Parameters["Mode2"]][1], str(dir))
+                            elif str(dir) == "PP-MANAGER":
+                                Domoticz.Debug("PP-Manager Folder found. Skipping!!")      
+                            else:
+                                Domoticz.Log("Plugin:" + str(dir) + " cannot be managed with PP-Manager!!.")      
                     i += 1
                     if i >= 1:
                        break
 
             if Parameters["Mode4"] == 'SelectedNotify':
                 Domoticz.Log("Collecting Updates for Plugin:" + pluginKey)
-                self.CheckForUpdatePythonPlugin(self.plugindata[Parameters["Mode2"]][0], self.plugindata[Parameters["Mode2"]][1], Parameters["Mode2"])
+                if pluginKey in self.plugindata:
+                    self.CheckForUpdatePythonPlugin(self.plugindata[Parameters["Mode2"]][0], self.plugindata[Parameters["Mode2"]][1], Parameters["Mode2"])
+                else:
+                    Domoticz.Log("Plugin:" + pluginKey + " not found in plugindata. Skipping update check.")
 
             #-------------------------------------
             if Parameters["Mode4"] == 'Selected':
@@ -469,7 +484,9 @@ class BasePlugin:
 
             #if Parameters["Mode2"] == "Idle":
                 #Domoticz.Log("Plugin Idle. No actions to be performed!!!")
- 
+
+
+
 
 
 
@@ -501,6 +518,9 @@ class BasePlugin:
             Domoticz.Error("Git ErrorNo:" + str(e.errno))
             Domoticz.Error("Git StrError:" + str(e.strerror))
 
+        # Check for requirements.txt and install dependencies
+        self.installDependencies(ppKey)
+
         #try:
         #    pr1 = subprocess.Popen( "/etc/init.d/domoticz.sh restart" , cwd = os.path.dirname(str(os.getcwd()) + "/plugins/"), shell = True, stdout = subprocess.PIPE, stderr = subprocess.PIPE )
         #    (out1, error1) = pr1.communicate()
@@ -514,7 +534,6 @@ class BasePlugin:
 
 
         return None
-
 
 
 
@@ -567,8 +586,10 @@ class BasePlugin:
             Domoticz.Error("Git ErrorNo:" + str(e.errno))
             Domoticz.Error("Git StrError:" + str(e.strerror))
 
-        return None
+        # Check for requirements.txt and install dependencies
+        self.installDependencies(ppKey)
 
+        return None
 
 
 
@@ -625,7 +646,6 @@ class BasePlugin:
             Domoticz.Error("Git StrError:" + str(e.strerror))
 
         return None
-
 
 
     # fnSelectedNotify function
@@ -715,7 +735,7 @@ class BasePlugin:
           #    for rex in range(0,len(regexFound)):
           #         if ((str(text).strip() not in self.SecPolUserList["Global"]) and (str(text).strip() not in self.SecPolUserList[pypluginid]) and (str(text).strip() != "") and (mid(text,0,1) != "#")):
           #             Domoticz.Error("Security Finding(IMP):-->" + str(text) + "<-- LINE: " + str(lineNum) + " FILE:" + pyfilename)
-                       #Domoticz.Error("Security Finding(IPr):" + regexFound[rex] + " LINE: " + str(lineNum) + " FILE:" + pyfilename)
+                     #Domoticz.Error("Security Finding(IPr):" + regexFound[rex] + " LINE: " + str(lineNum) + " FILE:" + pyfilename)
           #             ips["IP" + str(lineNum)] = (regexFound[rex], "Import")
 
           #rex = 0
@@ -727,7 +747,7 @@ class BasePlugin:
           #    for rex in range(0,len(regexFound)):
           #         if ((str(text).strip() not in self.SecPolUserList["Global"]) and (str(text).strip() not in self.SecPolUserList[pypluginid]) and (str(text).strip() != "") and (mid(text,0,1) != "#")):
           #             Domoticz.Error("Security Finding(SUB):-->" + str(text) + "<-- LINE: " + str(lineNum) + " FILE:" + pyfilename)
-                       #Domoticz.Error("Security Finding(IPr):" + regexFound[rex] + " LINE: " + str(lineNum) + " FILE:" + pyfilename)
+                     #Domoticz.Error("Security Finding(IPr):" + regexFound[rex] + " LINE: " + str(lineNum) + " FILE:" + pyfilename)
           #             ips["IP" + str(lineNum)] = (regexFound[rex], "Subprocess")
 
           #rex = 0
@@ -740,7 +760,7 @@ class BasePlugin:
           #    for rex in range(0,len(regexFound)):
           #         if ((str(text).strip() not in self.SecPolUserList[pypluginid]) and (str(text).strip() != "") and (mid(text,0,1) != "#")):
           #             Domoticz.Error("Security Finding(HTTP):-->" + str(text) + "<-- LINE: " + str(lineNum) + " FILE:" + pyfilename)
-                       #Domoticz.Error("Security Finding(IPr):" + regexFound[rex] + " LINE: " + str(lineNum) + " FILE:" + pyfilename)
+                     #Domoticz.Error("Security Finding(IPr):" + regexFound[rex] + " LINE: " + str(lineNum) + " FILE:" + pyfilename)
           #             ips["IP" + str(lineNum)] = (regexFound[rex], "HTTP Address")
 
 
@@ -753,16 +773,6 @@ class BasePlugin:
 
 
 
-       
-        
-        
-        
-        
-        
-        
-        
-        
-        
 
 
 
@@ -770,6 +780,32 @@ class BasePlugin:
 
 
 
+
+
+
+
+    def installDependencies(self, pluginKey):
+        Domoticz.Debug("installDependencies called")
+
+        requirementsFile = str(os.getcwd()) + "/plugins/" + pluginKey + "/requirements.txt"
+        if os.path.isfile(requirementsFile):
+            Domoticz.Log("requirements.txt found for plugin: " + pluginKey)
+            installCmd = "sudo pip3 install -r " + requirementsFile
+            Domoticz.Log("Installing dependencies using: " + installCmd)
+            try:
+                pr = subprocess.Popen(installCmd, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+                (out, error) = pr.communicate()
+                if out:
+                    Domoticz.Log("Dependencies installed: " + str(out).strip())
+                if error:
+                    Domoticz.Error("Error installing dependencies: " + str(error).strip())
+            except OSError as e:
+                Domoticz.Error("ErrorNo: " + str(e.errno))
+                Domoticz.Error("StrError: " + str(e.strerror))
+        else:
+            Domoticz.Log("No requirements.txt found for plugin: " + pluginKey)
+
+        return None
 
 
 global _plugin
@@ -806,5 +842,4 @@ def DumpConfigToLog():
 def mid(s, offset, amount):
     #Domoticz.Debug("mid called")
     return s[offset:offset+amount]
-
 
