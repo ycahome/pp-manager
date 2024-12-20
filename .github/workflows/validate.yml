@@ -3,10 +3,10 @@ name: Validate Plugins
 on:
   push:
     branches:
-      - main
+      - master
   pull_request:
     branches:
-      - main
+      - master
   workflow_dispatch: # Allows manual trigger
 
 jobs:
