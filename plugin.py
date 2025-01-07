@@ -7,9 +7,9 @@
 
 
 """
-<plugin key="PP-MANAGER" name="Python Plugin Manager" author="ycahome" version="1.5.44" externallink="https://www.domoticz.com/forum/viewtopic.php?f=65&t=22339">
+<plugin key="PP-MANAGER" name="Python Plugin Manager" author="ycahome" version="1.5.45" externallink="https://www.domoticz.com/forum/viewtopic.php?f=65&t=22339">
     <description>
-		<h2>Python Plugin Manager v.1.5.42</h2><br/>
+		<h2>Python Plugin Manager 1.5.45</h2><br/>
 		<h3>Features</h3>
 		<ul style="list-style-type:square">
 			<li>Install plugins</li>
@@ -76,6 +76,7 @@
                 <option label="Sonos Players" value="Sonos"/>
                 <option label="Sonoff Mini" value="sonoff-domoticz-plugin"/>
                 <option label="Sony Bravia TV (with Kodi remote)" value="sony"/>
+                <option label="Steam" value="steam"/>
                 <option label="Synology SurveillanceStation" value="SurveillanceStation"/>
                 <option label="SYSFS-Switches" value="SYSFS-Switches"/>
                 <option label="Tuya" value="tuyaha"/>
@@ -202,6 +203,7 @@ class BasePlugin:
             "Sonos":                        ["gerard33",        "sonos",                                "Sonos Players",                     "master"],
             "sonoff-domoticz-plugin":       ["bobzomer",        "sonoff-domoticz-plugin",               "Sonoff Mini",                       "master"],
             "sony":                         ["gerard33",        "sony-bravia",                          "Sony Bravia TV (with Kodi remote)", "master"],
+            "steam":                        ["galadril",        "Domoticz-Steam-Plugin",                "Steam player status", 		     "master"],
             "Synology SurveillanceStation": ["lolautruche",     "SurveillanceStationDomoticz",          "Synology SurveillanceStation",      "master"],
             "SYSFS-Switches":               ["flatsiedatsie",   "GPIO-SYSFS-Switches",                  "SYSFS-Switches",                    "master"],
             "tuyaha":                       ["guino",           "tuyaha",                               "Tuya",                              "master"],
