@@ -180,7 +180,7 @@ class BasePlugin:
             "GoodWeAPI":                    ["JanJaapKo",       "domoticz-GoodWeSEMS",                  "GoodWE Solar inverter via SEMS API","master"],
             "GoveeDiscovery":               ["galadril",        "Domoticz-Govee-Plugin",                "Govee Local Api Control",	     "master"],
             "Homewizard":                   ["rvdvoorde",       "domoticz-homewizard",                  "Homewizard",                        "master"],
-	    "Homewizard-Battery":           ["etmmvdp",       	"HomeWizard-Battery-plugin",            "Homewizard Battery",                "master"],
+	    "Homewizard-Battery":           ["etmmvdp",       	"HomeWizard-Battery-plugin",            "Homewizard Battery",                "main"],
             "aeh-w4a1":                     ["x-th-unicorn",    "domoticz-aeh-w4a1",                    "Hisense AC (AEH-W4A1)",             "master"],
             "HivePlug":                     ["imcfarla2003",    "domoticz-hive",                        "Hive Plugin",                       "master"],
             "HyundaiKiaConnect":            ["CreasolTech",     "domoticz-hyundai-kia",                 "Hyundai and Kia vehicles",          "master"],
