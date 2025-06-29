@@ -7,9 +7,9 @@
 
 
 """
-<plugin key="PP-MANAGER" name="Python Plugin Manager" author="ycahome" version="1.5.46" externallink="https://www.domoticz.com/forum/viewtopic.php?f=65&t=22339">
+<plugin key="PP-MANAGER" name="Python Plugin Manager" author="ycahome" version="1.5.47" externallink="https://www.domoticz.com/forum/viewtopic.php?f=65&t=22339">
     <description>
-		<h2>Python Plugin Manager 1.5.46</h2><br/>
+		<h2>Python Plugin Manager 1.5.47</h2><br/>
 		<h3>Features</h3>
 		<ul style="list-style-type:square">
 			<li>Install plugins</li>
@@ -46,6 +46,7 @@
                 <option label="Emmeti Mirai heat pumps" value="domoticz-emmeti-mirai"/>
                 <option label="EMS bus Wi-Fi Gateway" value="ems-gateway"/>
                 <option label="eQ-3 MAX!" value="eq3max"/>
+                <option label="EVCC IO Plugin" value="Domoticz-EVCC-IO-Plugin"/>
                 <option label="Freebox Revolution" value="freeboxv6"/>
                 <option label="Global Cache 100" value="GC-100"/>
                 <option label="GoodWE Solar inverter via SEMS API" value="GoodWeAPI"/>
@@ -175,6 +176,7 @@ class BasePlugin:
             "domoticz-emmeti-mirai":        ["CreasolTech",     "domoticz-emmeti-mirai",                "Emmeti Mirai heat pumps",           "master"],
             "ems-gateway":                  ["bbqkees",         "ems-esp-domoticz-plugin",              "EMS bus Wi-Fi Gateway",             "master"],
 	    "eq3max":                       ["mvzut",           "maxcube-Domoticz-plugin",              "eQ-3 MAX! Cube",                    "master"],
+            "Domoticz-EVCC-IO-Plugin":      ["galadril",        "Domoticz-EVCC-IO-Plugin",              "EVCC IO Plugin",                    "master"],
             "freeboxv6":                    ["supermat",        "PluginDomoticzFreebox",                "Freebox V6 (Revolution)",           "master"],
             "GC-100":                       ["dnpwwo",          "Domoticz-GlobalCache-Plugin",          "Global Cache 100",                  "master"],
             "GoodWeAPI":                    ["JanJaapKo",       "domoticz-GoodWeSEMS",                  "GoodWE Solar inverter via SEMS API","master"],
