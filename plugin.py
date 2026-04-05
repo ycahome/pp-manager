@@ -75,6 +75,7 @@
                 <option label="Shelly MQTT translator" value="Shelly_MQTT"/>
                 <option label="SmogTok Air Quality monitor" value="SmogTok"/>
                 <option label="SNMP Reader" value="SNMPreader"/>
+                <option label="SolaxCloud" value="Domoticz-SolaxCloud-Plugin"/>
                 <option label="Sonos Players" value="Sonos"/>
                 <option label="Sonoff Mini" value="sonoff-domoticz-plugin"/>
                 <option label="Sony Bravia TV (with Kodi remote)" value="sony"/>
@@ -204,6 +205,7 @@ class BasePlugin:
             "Shelly_MQTT":                  ["enesbcs",         "Shelly_MQTT",                          "Shelly MQTT translator",            "master"],
             "SmogTok":                      ["smogtok",         "smogtokdomoticzplug",                  "SmogTok Air Quality monitor",       "master"],
             "SNMPreader":                   ["ycahome",         "SNMPreader",                           "SNMP Reader",                       "master"],
+            "Domoticz-SolaxCloud-Plugin":   ["galadril",        "Domoticz-SolaxCloud-Plugin",           "SolaxCloud",                        "main"],
             "Sonos":                        ["gerard33",        "sonos",                                "Sonos Players",                     "master"],
             "sonoff-domoticz-plugin":       ["bobzomer",        "sonoff-domoticz-plugin",               "Sonoff Mini",                       "master"],
             "sony":                         ["gerard33",        "sony-bravia",                          "Sony Bravia TV (with Kodi remote)", "master"],
