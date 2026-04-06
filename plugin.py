@@ -9,7 +9,7 @@
 """
 <plugin key="PP-MANAGER" name="Python Plugin Manager" author="ycahome" version="1.5.49" externallink="https://www.domoticz.com/forum/viewtopic.php?f=65&t=22339">
     <description>
-		<h2>Python Plugin Manager 1.5.49</h2><br/>
+		<h2>Python Plugin Manager 1.5.48</h2><br/>
 		<h3>Features</h3>
 		<ul style="list-style-type:square">
 			<li>Install plugins</li>
@@ -64,6 +64,7 @@
                 <option label="Link-Tap" value="Link-Tap"/>
                 <option label="Meteo Alarm EU RSS Reader" value="MeteoAlarmEU"/>
                 <option label="Mikrotik RouterOS" value="mikrotik-routeros"/>
+                <option label="MeshCore" value="Domoticz-MeshCore-Plugin"/>
                 <option label="Moon Phases" value="MoonPhases"/>
                 <option label="MQTT discovery" value="MQTTDiscovery"/>
                 <option label="Onkyo AV Receiver" value="Onkyo"/>
@@ -195,6 +196,7 @@ class BasePlugin:
 	    "MeteoAlarmEU":                 ["ycahome",         "MeteoAlarmEU",                         "Meteo Alarm EU RSS Reader",         "master"],
             "mikrotik-routeros":            ["mrin",            "domoticz-routeros-plugin",             "Mikrotik RouterOS",                 "master"],
             "MoonPhases":                   ["ycahome",         "MoonPhases",                           "Moon Phases",                       "master"],
+            "Domoticz-MeshCore-Plugin":     ["galadril",        "Domoticz-MeshCore-Plugin",             "MeshCore",                          "main"],
             "MQTTDiscovery":                ["emontnemery",     "domoticz_mqtt_discovery",              "MQTT discovery",                    "master"],
             "Onkyo":                	    ["jorgh6",          "domoticz-onkyo-plugin",                "Onkyo AV Receiver",                 "master"],
             "owrtwifi2domo":                ["enesbcs",         "owrtwifi2domo",                        "OpenWRT WiFi Presence MQTT translator","master"],
