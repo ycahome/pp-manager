@@ -52,6 +52,7 @@
                 <option label="Global Cache 100" value="GC-100"/>
                 <option label="GoodWE Solar inverter via SEMS API" value="GoodWeAPI"/>
                 <option label="Govee Local Api Control" value="GoveeDiscovery"/>
+                <option label="Home Connect appliances (Bosch, Siemens, Neff, Gaggenau)" value="homeconnectex"/>
                 <option label="Homewizard" value="Homewizard"/>
 		<option label="Homewizard Battery" value="Homewizard-Battery"/>
                 <option label="Hiking DDS238-2 ZN/S modbus over TCP/IP" value="ds238-modus-tcp"/>
@@ -187,6 +188,7 @@ class BasePlugin:
             "GC-100":                       ["dnpwwo",          "Domoticz-GlobalCache-Plugin",          "Global Cache 100",                  "master"],
             "GoodWeAPI":                    ["JanJaapKo",       "domoticz-GoodWeSEMS",                  "GoodWE Solar inverter via SEMS API","master"],
             "GoveeDiscovery":               ["galadril",        "Domoticz-Govee-Plugin",                "Govee Local Api Control",	     "master"],
+            "homeconnectex":                ["Rouzax",          "home-connect-domoticz-plugin",         "Home Connect appliances (Bosch, Siemens, Neff, Gaggenau): state, programs and washer meters, plus opt-in control", "dist"],
             "Homewizard":                   ["rvdvoorde",       "domoticz-homewizard",                  "Homewizard",                        "master"],
 	    "Homewizard-Battery":           ["etmmvdp",       	"HomeWizard-Battery-plugin",            "Homewizard Battery",                "main"],
             "aeh-w4a1":                     ["x-th-unicorn",    "domoticz-aeh-w4a1",                    "Hisense AC (AEH-W4A1)",             "master"],
