@@ -197,7 +197,7 @@ class BasePlugin:
             "IKEA-Tradfri":                 ["moroen",          "IKEA-Tradfri-plugin",                  "IKEA Tradfri",                      "master"],
             "Linky":                        ["guillaumezin",    "DomoticzLinky",                        "Linky",                             "master"],
 	    "Link-Tap":                     ["DebugBill",       "Link-Tap",                             "Link-Tap Watering System",          "master"],
-            "luxtronikex":                  ["Rouzax",          "luxtronik-domoticz-plugin-v2",         "Luxtronik-based heat pump controllers (Alpha Innotec)", "dist"],
+            "luxtronikex":                  ["Rouzax",          "luxtronik-domoticz-plugin",            "Luxtronik-based heat pump controllers (Alpha Innotec)", "dist"],
 	    "MeteoAlarmEU":                 ["ycahome",         "MeteoAlarmEU",                         "Meteo Alarm EU RSS Reader",         "master"],
             "mikrotik-routeros":            ["mrin",            "domoticz-routeros-plugin",             "Mikrotik RouterOS",                 "master"],
             "MoonPhases":                   ["ycahome",         "MoonPhases",                           "Moon Phases",                       "master"],
